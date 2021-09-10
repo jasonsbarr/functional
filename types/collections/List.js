@@ -90,3 +90,47 @@ export const List = (...args) => {
   });
   return l;
 };
+
+// List functions
+List.toArray = (list) => [...list];
+
+List.each = (fn, list) => {
+  for (let item of list) {
+    fn(item);
+  }
+};
+
+List.each_with_index = (fn, list) => {
+  let i = 0;
+  for (let item of list) {
+    fn(item, i);
+  }
+};
+
+List.map = (fn, list) => {
+  let temp = [];
+  for (let item of list) {
+    temp.push(fn(item));
+  }
+  return List(...temp);
+};
+
+List.filter = (pred, list) => {
+  let temp = [];
+  for (let item of list) {
+    if (pred(item)) {
+      temp.push(item);
+    }
+  }
+  return temp.length ? List(...temp) : List();
+};
+
+List.reject = (pred, list) => {
+  let temp = [];
+  for (let item of list) {
+    if (!pred(item)) {
+      temp.push(item);
+    }
+  }
+  return temp.length ? List(...temp) : List();
+};
