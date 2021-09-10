@@ -8,6 +8,10 @@ class Nil {
     });
   }
 
+  fold() {
+    return null;
+  }
+
   toString() {
     return "Nil()";
   }
