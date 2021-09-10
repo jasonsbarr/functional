@@ -4,33 +4,37 @@
 
 export const Result = {
   of: (x) => {
-    return x instanceof Error ? Success(x) : Failure(x);
+    return x instanceof Error ? Ok(x) : Err(x);
   },
-  isSuccess: (obj) => obj.kind === "Success",
-  isFailure: (obj) => obj.kind === "Failure",
-  isResult: (obj) => obj.kind === "Success" || obj.kind === "Failure",
+  isOk: (obj) => obj.kind === "Ok",
+  isErr: (obj) => obj.kind === "Err",
+  isResult: (obj) => obj.kind === "Ok" || obj.kind === "Err",
 };
 
-export const Success = (x) => ({
-  kind: "Success",
+export const Ok = (x) => ({
+  kind: "Ok",
   map: (f) => Result.of(f(x)),
   chain: (f) => f(x),
   fold: (f, g) => g(x),
-  inspect: () => `Success(${x})`,
+  inspect: () => `Ok(${x})`,
+  isErr: () => false,
+  isOk: () => true,
 });
 
-export const Failure = (x) => ({
-  kind: "Failure",
-  map: (f) => Failure(x),
-  chain: (f) => Failure(x),
+export const Err = (x) => ({
+  kind: "Err",
+  map: (f) => Err(x),
+  chain: (f) => Err(x),
   fold: (f, g) => f(x),
-  inspect: () => `Failure(${x})`,
+  inspect: () => `Err(${x})`,
+  isErr: () => true,
+  isOk: () => false
 });
 
 export const tryCatch = (f) => {
   try {
-    return Success(f());
+    return Ok(f());
   } catch (e) {
-    return Failure(e);
+    return Err(e);
   }
 };
