@@ -1,8 +1,18 @@
+import { each, toArray } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
 class Cons extends Array {
   constructor(car, cdr) {
     super(car, cdr);
+  }
+
+  // can use either a fluent method interface or use the iterable functions used here directly
+  toArray() {
+    return toArray(this);
+  }
+
+  each(fn) {
+    each(fn, this);
   }
 
   toString() {
@@ -82,3 +92,6 @@ export const List = (...args) => {
 
   return l;
 };
+
+// constructs a list from any iterable
+List.of = (iter) => List(...iter);
