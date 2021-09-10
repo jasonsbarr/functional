@@ -20,6 +20,8 @@ export const Right = (x) => ({
   chain: (f) => f(x),
   fold: (f, g) => g(x),
   inspect: () => `Right(${x})`,
+  isLeft: () => false,
+  isRight: () => true,
 });
 
 export const Left = (x) => ({
@@ -28,4 +30,6 @@ export const Left = (x) => ({
   chain: (f) => Left(x),
   fold: (f, g) => f(x),
   inspect: () => `Left(${x})`,
+  isLeft: () => true,
+  isRight: () => false,
 });
