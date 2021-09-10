@@ -3,9 +3,7 @@
  */
 
 export const Either = {
-  of: (pred) => (x) => {
-    return pred(x) ? Right(x) : Left(x);
-  },
+  of: (pred) => (x) => pred(x) ? Right(x) : Left(x),
   isRight: (obj) => obj.kind === "Right",
   isLeft: (obj) => obj.kind === "Left",
   isEither: (obj) => obj.kind === "Right" || obj.kind === "Left",
@@ -13,10 +11,7 @@ export const Either = {
 
 export const Right = (x) => ({
   kind: "Right",
-  map: (f) =>
-    Either.of(
-      () => typeof f(x) === typeof x && f(x) != null && !Number.isNaN(f(x))
-    )(f(x)),
+  map: (f) => Right(f(x)),
   chain: (f) => f(x),
   fold: (f, g) => g(x),
   inspect: () => `Right(${x})`,
