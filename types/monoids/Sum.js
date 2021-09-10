@@ -3,7 +3,7 @@ export const Sum = (x) => ({
   kind: "Sum",
   value: x,
   concat: ({ value: y }) => Sum(x + y),
-  inspect: () => `Sum(${value})`,
+  inspect: () => `Sum(${x})`,
 });
 
 Sum.isSum = (obj) => obj.kind === "Sum";
