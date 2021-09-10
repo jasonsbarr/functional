@@ -1,4 +1,11 @@
-import { each, eachWithIndex, filter, toArray } from "../../utils/iter.js";
+import {
+  each,
+  eachWithIndex,
+  filter,
+  reduce,
+  reduceRight,
+  toArray,
+} from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
 class Cons extends Array {
@@ -21,6 +28,26 @@ class Cons extends Array {
 
   filter(pred) {
     return filter(pred, this);
+  }
+
+  fold(fn, initial) {
+    return this.reduce(fn, initial);
+  }
+
+  foldLeft(fn, initial) {
+    return this.reduce(fn, initial);
+  }
+
+  foldRight(fn, initial) {
+    return this.reduceRight(fn, initial);
+  }
+
+  reduce(fn, initial) {
+    return reduce(fn, initial, this);
+  }
+
+  reduceRight(fn, initial) {
+    return reduceRight(fn, initial, this);
   }
 
   toString() {

@@ -28,14 +28,6 @@ export const eachWithIndex = curry((fn, iter) => {
   }
 });
 
-export const map = curry((fn, iter) => {
-  let temp = [];
-  for (let item of iter) {
-    temp.push(fn(item));
-  }
-  return iter.constructor(...temp);
-});
-
 export const filter = curry((pred, iter) => {
   let temp = [];
   for (let item of iter) {
@@ -46,14 +38,12 @@ export const filter = curry((pred, iter) => {
   return temp.length ? iter.constructor(...temp) : iter.constructor();
 });
 
-export const reject = curry((pred, iter) => {
+export const map = curry((fn, iter) => {
   let temp = [];
   for (let item of iter) {
-    if (!pred(item)) {
-      temp.push(item);
-    }
+    temp.push(fn(item));
   }
-  return temp.length ? iter.constructor(...temp) : iter.constructor();
+  return iter.constructor(...temp);
 });
 
 export const reduce = curry((fn, initial, iter) => {
@@ -73,3 +63,13 @@ export const reduceRight = curry((fn, initial, iter) => {
 });
 
 export const foldRight = reduceRight;
+
+export const reject = curry((pred, iter) => {
+  let temp = [];
+  for (let item of iter) {
+    if (!pred(item)) {
+      temp.push(item);
+    }
+  }
+  return temp.length ? iter.constructor(...temp) : iter.constructor();
+});
