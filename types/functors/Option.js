@@ -19,6 +19,11 @@ export const Some = (x) => ({
   inspect: () => `Some(${x})`,
   isNone: () => false,
   isSome: () => true,
+  concat: (x) =>
+    o.fold(
+      (n) => None(n),
+      (s) => Some(x.concat(s))
+    ),
 });
 
 export const None = (x) => ({
@@ -29,4 +34,5 @@ export const None = (x) => ({
   inspect: () => "None",
   isNone: () => true,
   isSome: () => false,
+  concat: (o) => Left(x),
 });

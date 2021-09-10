@@ -17,6 +17,11 @@ export const Right = (x) => ({
   inspect: () => `Right(${x})`,
   isLeft: () => false,
   isRight: () => true,
+  concat: (o) =>
+    o.fold(
+      (l) => Left(l),
+      (r) => Right(x.concat(r))
+    ),
 });
 
 export const Left = (x) => ({
@@ -27,4 +32,5 @@ export const Left = (x) => ({
   inspect: () => `Left(${x})`,
   isLeft: () => true,
   isRight: () => false,
+  concat: (o) => Left(x),
 });

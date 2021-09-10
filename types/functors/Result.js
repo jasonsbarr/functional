@@ -17,6 +17,11 @@ export const Ok = (x) => ({
   inspect: () => `Ok(${x})`,
   isErr: () => false,
   isOk: () => true,
+  concat: (o) =>
+    o.fold(
+      (e) => Err(e),
+      (ok) => Ok(x.concat(ok))
+    ),
 });
 
 export const Err = (x) => ({
@@ -27,6 +32,7 @@ export const Err = (x) => ({
   inspect: () => `Err(${x})`,
   isErr: () => true,
   isOk: () => false,
+  concat: (o) => Err(x),
 });
 
 export const tryCatch = (f) => {
