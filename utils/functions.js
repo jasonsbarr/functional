@@ -1,5 +1,5 @@
-import { tryCatch } from "../types/functors/Result";
-import { isIterable } from "./iter";
+import { tryCatch } from "../types/functors/Result.js";
+import { isIterable } from "./iter.js";
 
 export const identity = (x) => x;
 

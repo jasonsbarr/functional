@@ -1,5 +1,5 @@
-import { curry } from "./functions";
-import { isNil } from "./nil";
+import { curry } from "./functions.js";
+import { isNil } from "./nil.js";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with iterable collections from this library
