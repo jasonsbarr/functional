@@ -4,6 +4,7 @@ export const Sum = (x) => ({
   value: x,
   concat: ({ value: y }) => Sum(x + y),
   inspect: () => `Sum(${x})`,
+  fold: (f) => f(x),
 });
 
 Sum.isSum = (obj) => obj.kind === "Sum";

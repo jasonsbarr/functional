@@ -3,6 +3,7 @@ export const Any = (x) => ({
   value: x,
   concat: ({ value: y }) => Any(x || y),
   inspect: () => `Any(${x})`,
+  fold: (f) => f(x),
 });
 
 Any.isAny = (obj) => obj.kind === "Any";

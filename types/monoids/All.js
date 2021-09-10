@@ -3,6 +3,7 @@ export const All = (x) => ({
   value: x,
   concat: ({ value: y }) => All(x && y),
   inspect: () => `All(${x})`,
+  fold: (f) => f(x),
 });
 
 All.isAll = (obj) => obj.kind === "All";
