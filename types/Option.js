@@ -18,6 +18,8 @@ export const Some = (x) => ({
   chain: (f) => f(x),
   fold: (f, g) => g(x),
   inspect: () => `Some(${x})`,
+  isNone: () => false,
+  isSome: () => true,
 });
 
 export const None = (x) => ({
@@ -26,4 +28,6 @@ export const None = (x) => ({
   chain: (f) => None(x),
   fold: (f, g) => f(x),
   inspect: () => "None",
+  isNone: () => true,
+  isSome: () => false,
 });
