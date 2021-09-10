@@ -4,7 +4,7 @@
 
 export const Either = {
   of: (pred) => (x) => {
-    return pred() ? Right(x) : Left(x);
+    return pred(x) ? Right(x) : Left(x);
   },
   isRight: (obj) => obj.kind === "Right",
   isLeft: (obj) => obj.kind === "Left",
