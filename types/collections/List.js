@@ -1,4 +1,4 @@
-import { NIL } from "./List";
+import { NIL } from "./Nil.js";
 
 class Cons extends Array {
   constructor(car, cdr) {
@@ -22,7 +22,7 @@ class Cons extends Array {
     return {
       next() {
         let value = head[i];
-        if (value == null) {
+        if (value == null || value.constructor.name === "Nil") {
           return {
             done: true,
           };
@@ -49,7 +49,11 @@ class Cons extends Array {
 export const cons = (car, cdr) => new Cons(car, cdr);
 
 export const List = (...args) => {
-  if (args.length === 0 || args[0] == null || args[0] instanceof Nil) {
+  if (
+    args.length === 0 ||
+    args[0] == null ||
+    args[0].constructor.name === "Nil"
+  ) {
     return NIL;
   }
 
@@ -69,6 +73,13 @@ export const List = (...args) => {
     writable: false,
     value: "List",
   });
+  Object.defineProperty(l, "constructor", {
+    configurable: false,
+    enumerable: false,
+    writable: false,
+    value: List,
+  });
+
   return l;
 };
 
