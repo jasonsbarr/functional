@@ -115,3 +115,21 @@ List.reject = (pred, list) => {
   }
   return temp.length ? List(...temp) : List();
 };
+
+List.reduce = (fn, initial, list) => {
+  let acc = initial;
+  for (let item of list) {
+    acc = fn(acc, item);
+  }
+  return acc;
+};
+
+List.fold = List.reduce;
+List.foldLeft = List.reduce;
+
+List.reduceRight = (fn, initial, list) => {
+  const temp = [...list];
+  return temp.reduceRight(fn, initial);
+};
+
+List.foldRight = List.reduceRight;
