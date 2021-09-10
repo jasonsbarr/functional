@@ -1,0 +1,27 @@
+{
+  "name": "@jasonsbarr/types",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A collection of functional-ish data types",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonsbarr/types.git"
+  },
+  "keywords": [
+    "adts",
+    "types",
+    "collections",
+    "data",
+    "types"
+  ],
+  "author": "Jason Barr <jason@jasonsbarr.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonsbarr/types/issues"
+  },
+  "homepage": "https://github.com/jasonsbarr/types#readme"
+}
