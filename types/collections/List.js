@@ -8,6 +8,18 @@ class Nil {
     });
   }
 
+  map(fn) {
+    return this;
+  }
+
+  chain(fn) {
+    return this;
+  }
+
+  concat(other) {
+    return this;
+  }
+
   fold() {
     return null;
   }
