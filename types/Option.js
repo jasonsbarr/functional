@@ -3,10 +3,9 @@
  */
 
 export const Option = {
-  of: (x) => {
+  of: (x) =>
     // check if null, undefined, or NaN
-    return x != null || Number.isNaN(x) ? Some(x) : None(x);
-  },
+    x != null || Number.isNaN(x) ? Some(x) : None(x),
   isSome: (obj) => obj.kind === "Some",
   isNone: (obj) => obj.kind === "None",
   isOption: (obj) => obj.kind === "Some" || obj.kind === "None",

@@ -3,9 +3,7 @@
  */
 
 export const Result = {
-  of: (x) => {
-    return x instanceof Error ? Ok(x) : Err(x);
-  },
+  of: (x) => (x instanceof Error ? Ok(x) : Err(x)),
   isOk: (obj) => obj.kind === "Ok",
   isErr: (obj) => obj.kind === "Err",
   isResult: (obj) => obj.kind === "Ok" || obj.kind === "Err",
@@ -28,7 +26,7 @@ export const Err = (x) => ({
   fold: (f, g) => f(x),
   inspect: () => `Err(${x})`,
   isErr: () => true,
-  isOk: () => false
+  isOk: () => false,
 });
 
 export const tryCatch = (f) => {
