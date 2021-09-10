@@ -1,4 +1,5 @@
 import { tryCatch } from "../types/functors/Result";
+import { isIterable } from "./iter";
 
 export const identity = (x) => x;
 
@@ -34,17 +35,17 @@ export const defer =
     ? (f) => process.nextTick(f)
     : (f) => setTimeout(f, 0);
 
-// Returns a single array of the function args based on whether the first arg is an array
+// Returns a single array of the function args based on whether the first arg is an iterable object
 export const getArrayFromArgs = (...args) =>
-  Array.isArray(args[0]) ? args[0] : args;
+  isIterable(args[0]) && typeof args[0] !== "string" ? [...args[0]] : args;
 
-// returns true if all arguments or all elements in a single array argument are true
+// returns true if all arguments or all elements in a single iterable argument are true
 export const all = (...args) =>
   tryCatch(() =>
     getArrayFromArgs(args).reduce((acc, x) => acc && x, true)
   ).fold(() => false, identity);
 
-// returns true if any argument or an element in a single array argument is true
+// returns true if any argument or an element in a single iterable argument is true
 export const any = (...args) =>
   tryCatch(() =>
     getArrayFromArgs(args).reduce((acc, x) => acc || x, false)
@@ -55,6 +56,3 @@ export const sum = (...args) =>
 
 export const product = (...args) =>
   getArrayFromArgs(args).reduce((acc, x) => acc * x, 1);
-
-// stolen from https://stackoverflow.com/a/32538867
-export const isIterable = (obj) => obj != null;
