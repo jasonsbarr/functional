@@ -2,6 +2,7 @@ import {
   each,
   eachWithIndex,
   filter,
+  map,
   reduce,
   reduceRight,
   toArray,
@@ -40,6 +41,10 @@ class Cons extends Array {
 
   foldRight(fn, initial) {
     return this.reduceRight(fn, initial);
+  }
+
+  map(fn) {
+    return map(fn, this);
   }
 
   reduce(fn, initial) {

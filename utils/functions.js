@@ -1,4 +1,4 @@
-import { tryCatch } from "../types/functors/Result.js";
+import { tryCatch } from "../types/monads/Result.js";
 import { isIterable } from "./iter.js";
 
 export const identity = (x) => x;
