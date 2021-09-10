@@ -1,4 +1,4 @@
-import { each, toArray } from "../../utils/iter.js";
+import { each, eachWithIndex, toArray } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
 class Cons extends Array {
@@ -13,6 +13,10 @@ class Cons extends Array {
 
   each(fn) {
     each(fn, this);
+  }
+
+  eachWithIndex(fn) {
+    eachWithIndex(fn, this);
   }
 
   toString() {
