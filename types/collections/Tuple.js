@@ -5,6 +5,14 @@ class Tuple extends Array {
     super(...args);
     Object.freeze(this);
   }
+
+  toString() {
+    return `Tuple(${super.toString().split(",").join(", ")})`;
+  }
+
+  inspect() {
+    return this.toString();
+  }
 }
 
 export const tuple = (...args) => new Tuple(...args);
