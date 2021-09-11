@@ -18,6 +18,13 @@ class Cons extends Array {
   constructor(car, cdr) {
     super(car, cdr);
 
+    Object.defineProperty(this, "kind", {
+      configurable: false,
+      enumerable: false,
+      writable: true,
+      value: "Cons",
+    });
+
     Object.defineProperty(this, "constructor", {
       configurable: false,
       enumerable: false,
@@ -65,6 +72,14 @@ class Cons extends Array {
 
   foldRight(fn, initial) {
     return this.reduceRight(fn, initial);
+  }
+
+  isCons() {
+    return true;
+  }
+
+  isList() {
+    return this.kind === "List";
   }
 
   map(fn) {
@@ -128,6 +143,8 @@ class Cons extends Array {
   }
 }
 
+Cons.isCons = (obj) => typeof obj.isCons === "function" && obj.isCons();
+
 export const cons = (car, cdr) => new Cons(car, cdr);
 
 export const List = (...args) => {
@@ -169,3 +186,5 @@ export const list = List;
 
 // constructs a list from any iterable
 List.of = (iter) => List(...iter);
+
+List.isList = (obj) => obj.kind === "List";
