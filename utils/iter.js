@@ -5,6 +5,7 @@ import { isNil } from "./nil.js";
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
 // These work because return value is created with iter.constructor
+// All functions that take multiple arguments are curried
 
 // stolen from https://stackoverflow.com/a/32538867
 export const isIterable = (obj) =>
@@ -52,7 +53,7 @@ export const filter = curry((pred, iter) => {
 });
 
 // Returns Option
-export const first = at(1);
+export const first = at(0);
 
 export const flatMap = chain;
 
