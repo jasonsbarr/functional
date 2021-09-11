@@ -17,6 +17,13 @@ import { NIL } from "./Nil.js";
 class Cons extends Array {
   constructor(car, cdr) {
     super(car, cdr);
+
+    Object.defineProperty(this, "constructor", {
+      configurable: false,
+      enumerable: false,
+      writable: true,
+      value: cons,
+    });
   }
 
   // can use either a fluent method interface or use the iterable functions used here directly
