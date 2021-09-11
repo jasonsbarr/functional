@@ -1,5 +1,6 @@
 import {
   append,
+  all,
   at,
   chain,
   concat,
@@ -8,6 +9,7 @@ import {
   copyWithin,
   each,
   eachWithIndex,
+  entries,
   filter,
   first,
   flatten,
@@ -19,6 +21,7 @@ import {
   reduceRight,
   reject,
   toArray,
+  any,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -49,6 +52,14 @@ class Cons extends Array {
   }
 
   // can use either a fluent method interface or use the iterable functions used here directly
+  all(pred) {
+    return all(this, pred);
+  }
+
+  any(pred) {
+    return any(this, pred);
+  }
+
   append(item) {
     return append(item, this);
   }
@@ -71,6 +82,7 @@ class Cons extends Array {
     return concatToArray(this, ...lists);
   }
 
+  // makes a shallow copy
   copy() {
     return copy(this);
   }
@@ -85,6 +97,14 @@ class Cons extends Array {
 
   eachWithIndex(fn) {
     eachWithIndex(fn, this);
+  }
+
+  entries() {
+    return entries(this);
+  }
+
+  every(pred) {
+    return this.all(pred);
   }
 
   filter(pred) {
@@ -171,6 +191,10 @@ class Cons extends Array {
   // returns Option, not value
   shift() {
     return this.first();
+  }
+
+  some(pred) {
+    return this.any(pred);
   }
 
   toArray() {

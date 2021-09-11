@@ -11,6 +11,14 @@ import { isNil } from "./nil.js";
 export const isIterable = (obj) =>
   !isNil(obj) && typeof obj[Symbol.iterator] === "function";
 
+export const all = curry((pred, iter) =>
+  [...iter].reduce((acc, v) => acc && pred(v), true)
+);
+
+export const any = curry((pred, iter) =>
+  [...iter].reduce((acc, v) => acc || pred(v), false)
+);
+
 export const append = curry((item, iter) => iter.constructor(item, ...iter));
 
 // Returns Option, not value
@@ -47,6 +55,10 @@ export const eachWithIndex = curry((fn, iter) => {
     i++;
   }
 });
+
+export const entries = (iter) => [...iter].entries();
+
+export const every = any;
 
 export const filter = curry((pred, iter) => {
   let temp = [];
@@ -121,6 +133,8 @@ export const reject = curry((pred, iter) => {
 
 // returns Option
 export const shift = first;
+
+export const some = any;
 
 export const toArray = (iter) => [...iter];
 
