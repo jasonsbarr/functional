@@ -5,7 +5,8 @@ export const equal = (a, b) => {
   if (a === b) return true;
 
   if (a && b && typeof a == "object" && typeof b == "object") {
-    if (a.constructor !== b.constructor) return false;
+    // I just want to check for structural equality, not necessarily type equality, so I'm commenting this out
+    // if (a.constructor !== b.constructor) return false;
 
     var length, i, keys;
     if (Array.isArray(a)) {
