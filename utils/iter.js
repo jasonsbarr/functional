@@ -3,7 +3,7 @@ import { curry } from "./functions.js";
 import { isNil } from "./nil.js";
 
 // Iterable functions used for iterable collection types
-// Only guaranteed to work with iterable collections from this library
+// Only guaranteed to work with arrays and iterable collections from this library
 // These work because return value is created with iter.constructor
 
 // stolen from https://stackoverflow.com/a/32538867
@@ -58,6 +58,8 @@ export const flatMap = chain;
 
 // flattens by one level only
 export const flatten = (iter) => iter.constructor(concatToArray(...iter));
+
+export const forEach = each;
 
 // returns Option
 export const get = at;
