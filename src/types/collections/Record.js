@@ -1,17 +1,36 @@
+import { equal } from "../../utils/equal.js";
 import { Option } from "../monads/Option.js";
 
 const recordProto = {
+  isRecord() {
+    return true;
+  },
+
+  // checks for deep equality
+  equals(other) {
+    return equal(this, other);
+  },
+
   get(key) {
     return Option.of(this[key]);
+  },
+
+  has(key) {
+    return Object.keys(this).includes(key);
+  },
+
+  hasValue(value) {
+    for (let key in Object.keys(this)) {
+      if (equal(this[key], value)) {
+        return true;
+      }
+    }
+    return false;
   },
 
   set(key, value) {
     return this.constructor.of({ ...this, [key]: value });
   },
-
-  has(key) {
-    return Object.keys(this).includes(key);
-  }
 
   toObject() {
     return { ...this };
@@ -68,6 +87,9 @@ export const Record = (...keys) => {
 
   return constructor;
 };
+
+Record.isRecord = (obj) =>
+  typeof obj.isRecord === "function" && obj.isRecord() === true;
 
 // create ad-hoc records
 export const record = (object) => {
