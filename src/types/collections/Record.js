@@ -1,3 +1,4 @@
+import objectHash from "object-hash";
 import { equal } from "../../utils/equal.js";
 import { Option } from "../monads/Option.js";
 
@@ -17,6 +18,14 @@ const recordProto = {
 
   has(key) {
     return Object.keys(this).includes(key);
+  },
+
+  hash() {
+    return objectHash(this);
+  },
+
+  hashEquals(other) {
+    return objectHash(this) === objectHash(other);
   },
 
   hasValue(value) {
