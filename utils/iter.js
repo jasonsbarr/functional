@@ -5,7 +5,7 @@ import { isNil } from "./nil.js";
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
 // These work because return value is created with iter.constructor
-// All functions that take multiple arguments are curried
+// Most functions that take multiple arguments are curried
 
 // stolen from https://stackoverflow.com/a/32538867
 export const isIterable = (obj) =>
@@ -27,6 +27,12 @@ export const concat = (...iters) =>
 
 export const concatToArray = (...iters) =>
   iters.reduce((arr, iter) => arr.concat([...iter]), []);
+
+export const copy = (iter) => iter.constructor(...[...iter]);
+
+// have to do data-first due to optional arguments
+export const copyWithin = (iter, target, start, end) =>
+  iter.constructor(...[...iter].copyWithin(target, start, end));
 
 export const each = curry((fn, iter) => {
   for (let item of iter) {

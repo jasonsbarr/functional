@@ -4,6 +4,8 @@ import {
   chain,
   concat,
   concatToArray,
+  copy,
+  copyWithin,
   each,
   eachWithIndex,
   filter,
@@ -67,6 +69,14 @@ class Cons extends Array {
 
   concatToArray(...lists) {
     return concatToArray(this, ...lists);
+  }
+
+  copy() {
+    return copy(this);
+  }
+
+  copyWithin(target, start, end) {
+    return copyWithin(this, target, start, end);
   }
 
   each(fn) {
