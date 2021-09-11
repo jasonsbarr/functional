@@ -1,9 +1,44 @@
+import {
+  append,
+  all,
+  at,
+  chain,
+  concat,
+  concatToArray,
+  copy,
+  copyWithin,
+  each,
+  eachWithIndex,
+  entries,
+  filter,
+  first,
+  flatten,
+  last,
+  length,
+  map,
+  prepend,
+  reduce,
+  reduceRight,
+  reject,
+  toArray,
+  any,
+  find,
+  findIndex,
+  includes,
+  indexOf,
+  join,
+  lastIndexOf,
+  reverse,
+  sort,
+  splice,
+  slice,
+} from "../../utils/iter.js";
+
 // A tuple is immutable, like in Python.
 // Objects inside it, however (not primitives!), can be mutated.
 class Tuple extends Array {
   constructor(...args) {
     super(...args);
-    Object.freeze(this);
 
     Object.defineProperty(this, "kind", {
       configurable: false,
@@ -25,6 +60,8 @@ class Tuple extends Array {
       writable: true,
       value: this.length,
     });
+
+    Object.freeze(this);
   }
 
   // can use either a fluent method interface or use the iterable functions used here directly

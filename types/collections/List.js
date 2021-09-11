@@ -313,7 +313,7 @@ Cons.isCons = (obj) => typeof obj.isCons === "function" && obj.isCons();
 
 export const cons = (car, cdr) => new Cons(car, cdr);
 
-export const List = (...args) => {
+const List = (...args) => {
   if (
     args.length === 0 ||
     args[0] == null ||
@@ -354,9 +354,9 @@ export const List = (...args) => {
   return l;
 };
 
-export const list = List;
-
 // constructs a list from any iterable
 List.of = (iter) => List(...iter);
 
 List.isList = (obj) => obj.kind === "List";
+
+export const list = List;
