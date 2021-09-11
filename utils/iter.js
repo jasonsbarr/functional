@@ -69,7 +69,7 @@ export const map = curry((fn, iter) => {
   return iter.constructor(...temp);
 });
 
-pop = last;
+export const pop = last;
 
 export const prepend = curry((item, iter) => iter.constructor(item, ...iter));
 
