@@ -9,7 +9,11 @@ import { isNil } from "./nil.js";
 export const isIterable = (obj) =>
   !isNil(obj) && typeof obj[Symbol.iterator] === "function";
 
-export const toArray = (iter) => [...iter];
+export const chain = (fn, iter) => map(fn, flatten(iter));
+
+// assumes all iterables are of the same kind
+export const concat = (...iters) =>
+  iter[0].constructor(concatToArray(...iters));
 
 export const concatToArray = (...iters) =>
   iters.reduce((arr, iter) => arr.concat([...iter]), []);
@@ -37,6 +41,9 @@ export const filter = curry((pred, iter) => {
   }
   return temp.length ? iter.constructor(...temp) : iter.constructor();
 });
+
+// flattens by one level only
+export const flatten = (iter) => iter.constructor(concatToArray(...iter));
 
 export const map = curry((fn, iter) => {
   let temp = [];
@@ -73,3 +80,5 @@ export const reject = curry((pred, iter) => {
   }
   return temp.length ? iter.constructor(...temp) : iter.constructor();
 });
+
+export const toArray = (iter) => [...iter];
