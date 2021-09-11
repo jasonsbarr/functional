@@ -1,4 +1,5 @@
 import {
+  append,
   chain,
   concat,
   concatToArray,
@@ -7,6 +8,7 @@ import {
   filter,
   flatten,
   map,
+  prepend,
   reduce,
   reduceRight,
   reject,
@@ -34,6 +36,10 @@ class Cons extends Array {
   }
 
   // can use either a fluent method interface or use the iterable functions used here directly
+  append(item) {
+    return append(item, this);
+  }
+
   chain(fn) {
     return chain(fn, this);
   }
@@ -95,6 +101,14 @@ class Cons extends Array {
     return map(fn, this);
   }
 
+  prepend(item) {
+    return prepend(item, this);
+  }
+
+  push(item) {
+    return this.append(item);
+  }
+
   reduce(fn, initial) {
     return reduce(fn, initial, this);
   }
@@ -119,6 +133,10 @@ class Cons extends Array {
         ? "'(" + strArr.join(" . ") + ")"
         : "'(" + strArr.join(" ") + ")";
     return str;
+  }
+
+  unshift(item) {
+    return this.prepend(item);
   }
 
   [Symbol.iterator]() {
