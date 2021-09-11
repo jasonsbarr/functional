@@ -1,7 +1,11 @@
 import {
+  chain,
+  concat,
+  concatToArray,
   each,
   eachWithIndex,
   filter,
+  flatten,
   map,
   reduce,
   reduceRight,
@@ -16,8 +20,16 @@ class Cons extends Array {
   }
 
   // can use either a fluent method interface or use the iterable functions used here directly
-  toArray() {
-    return toArray(this);
+  chain(fn) {
+    return chain(fn, this);
+  }
+
+  concat(...lists) {
+    return concat(this, ...lists);
+  }
+
+  concatToArray(...lists) {
+    return concatToArray(this, ...lists);
   }
 
   each(fn) {
@@ -30,6 +42,10 @@ class Cons extends Array {
 
   filter(pred) {
     return filter(pred, this);
+  }
+
+  flatten() {
+    return flatten(this);
   }
 
   fold(fn, initial) {
@@ -58,6 +74,10 @@ class Cons extends Array {
 
   reject(pred) {
     return reject(pred, this);
+  }
+
+  toArray() {
+    return toArray(this);
   }
 
   toString() {
