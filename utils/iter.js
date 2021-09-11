@@ -42,6 +42,8 @@ export const filter = curry((pred, iter) => {
   return temp.length ? iter.constructor(...temp) : iter.constructor();
 });
 
+export const flatMap = chain;
+
 // flattens by one level only
 export const flatten = (iter) => iter.constructor(concatToArray(...iter));
 

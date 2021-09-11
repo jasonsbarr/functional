@@ -63,6 +63,10 @@ class Cons extends Array {
     return flatten(this);
   }
 
+  flatMap(fn) {
+    return this.chain(fn);
+  }
+
   fold(fn, initial) {
     return this.reduce(fn, initial);
   }
