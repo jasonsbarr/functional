@@ -9,6 +9,10 @@ const recordProto = {
     return this.constructor.of({ ...this, [key]: value });
   },
 
+  has(key) {
+    return Object.keys(this).includes(key);
+  }
+
   toObject() {
     return { ...this };
   },
