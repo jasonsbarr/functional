@@ -38,6 +38,7 @@ class Cons extends Array {
     return chain(fn, this);
   }
 
+  // works with any iterable in this library, but assumption is all args are lists
   concat(...lists) {
     return concat(this, ...lists);
   }
@@ -72,6 +73,10 @@ class Cons extends Array {
 
   foldRight(fn, initial) {
     return this.reduceRight(fn, initial);
+  }
+
+  forEach(fn) {
+    this.eachWithIndex(fn);
   }
 
   isCons() {
