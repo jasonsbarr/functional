@@ -1,3 +1,5 @@
+import objectHash from "object-hash";
+
 const keys = Object.keys;
 const symbols = Object.getOwnPropertySymbols;
 const defineProperty = Object.defineProperty;
@@ -26,3 +28,5 @@ export const extend = (target, ...sources) => {
   });
   return target;
 };
+
+export const hash = (object) => objectHash(object);

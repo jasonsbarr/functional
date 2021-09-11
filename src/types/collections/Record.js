@@ -1,4 +1,4 @@
-import objectHash from "object-hash";
+import { hash } from "../../utils/object.js";
 import { equal } from "../../utils/equal.js";
 import { Option } from "../monads/Option.js";
 
@@ -21,11 +21,11 @@ const recordProto = {
   },
 
   hash() {
-    return objectHash(this);
+    return hash(this);
   },
 
   hashEquals(other) {
-    return objectHash(this) === objectHash(other);
+    return hash(this) === hash(other);
   },
 
   hasValue(value) {
