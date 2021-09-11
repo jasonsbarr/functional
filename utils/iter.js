@@ -1,3 +1,4 @@
+import { Option } from "../types/monads/Option.js";
 import { curry } from "./functions.js";
 import { isNil } from "./nil.js";
 
@@ -10,6 +11,11 @@ export const isIterable = (obj) =>
   !isNil(obj) && typeof obj[Symbol.iterator] === "function";
 
 export const append = curry((item, iter) => iter.constructor(item, ...iter));
+
+export const at = curry((i, iter) => {
+  const temp = [...iter];
+  return Option.of(i < 0 ? temp[temp.length - i] : temp[i]);
+});
 
 export const chain = curry((fn, iter) => map(fn, flatten(iter)));
 
@@ -44,10 +50,16 @@ export const filter = curry((pred, iter) => {
   return temp.length ? iter.constructor(...temp) : iter.constructor();
 });
 
+export const first = at(1);
+
 export const flatMap = chain;
 
 // flattens by one level only
 export const flatten = (iter) => iter.constructor(concatToArray(...iter));
+
+export const get = at;
+
+export const last = (iter) => at(iter.length - 1, iter);
 
 export const map = curry((fn, iter) => {
   let temp = [];
@@ -56,6 +68,8 @@ export const map = curry((fn, iter) => {
   }
   return iter.constructor(...temp);
 });
+
+pop = last;
 
 export const prepend = curry((item, iter) => iter.constructor(item, ...iter));
 
@@ -88,6 +102,8 @@ export const reject = curry((pred, iter) => {
   }
   return temp.length ? iter.constructor(...temp) : iter.constructor();
 });
+
+export const shift = first;
 
 export const toArray = (iter) => [...iter];
 

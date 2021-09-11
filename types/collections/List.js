@@ -105,6 +105,7 @@ class Cons extends Array {
     return prepend(item, this);
   }
 
+  // unlike the array method, this does NOT mutate the current object
   push(item) {
     return this.append(item);
   }
@@ -135,6 +136,7 @@ class Cons extends Array {
     return str;
   }
 
+  // unlike the array method, this does NOT mutate the current object
   unshift(item) {
     return this.prepend(item);
   }
