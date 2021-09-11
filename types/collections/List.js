@@ -128,6 +128,10 @@ class Cons extends Array {
     return first(this);
   }
 
+  flat() {
+    return this.flatten();
+  }
+
   flatten() {
     return flatten(this);
   }

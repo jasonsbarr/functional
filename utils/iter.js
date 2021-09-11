@@ -98,6 +98,7 @@ export const first = at(0);
 export const flatMap = chain;
 
 // flattens by one level only
+export const flat = flatten;
 export const flatten = (iter) => iter.constructor(concatToArray(...iter));
 
 export const forEach = each;
