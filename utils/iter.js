@@ -117,6 +117,18 @@ export const includes = curry((value, iter) => {
   return false;
 });
 
+// data-first because of optional argument, returns Option, works with any value including objects
+export const indexOf = (iter, value, start = 0) => {
+  let i = 0;
+  for (let item of iter) {
+    if (i <= start && equal(item, value)) {
+      return Some(i);
+    }
+    i++;
+  }
+  return None(null);
+};
+
 // returns option
 export const last = (iter) => at(length(iter) - 1, iter);
 

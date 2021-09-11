@@ -25,6 +25,7 @@ import {
   find,
   findIndex,
   includes,
+  indexOf,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -164,6 +165,10 @@ class Cons extends Array {
 
   includes(value) {
     return includes(value);
+  }
+
+  indexOf(value, start = 0) {
+    return indexOf(this, value, start);
   }
 
   isCons() {
