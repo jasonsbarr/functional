@@ -44,6 +44,16 @@ const recordProto = {
   toObject() {
     return { ...this };
   },
+
+  // takes function to update value, function takes
+  update(key, updater) {
+    // null if key not found, which is fine because unknown key will not be inserted
+    const value = this.get(key).fold(
+      () => null,
+      (x) => x
+    );
+    return this.constructor.of({ ...this, [key]: updater(value) });
+  },
 };
 
 Object.setPrototypeOf(recordProto, null);
@@ -77,6 +87,7 @@ export const Record = (...keys) => {
       record[key] = undefined;
     }
 
+    // unspecified keys will have their values discarded
     for (let key of Object.keys(object)) {
       if (key in record) {
         record[key] = object[key];
