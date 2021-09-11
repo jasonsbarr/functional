@@ -33,6 +33,13 @@ class Cons extends Array {
       writable: true,
       value: cons,
     });
+
+    Object.defineProperty(this, "length", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: [...this].length,
+    });
   }
 
   // can use either a fluent method interface or use the iterable functions used here directly
