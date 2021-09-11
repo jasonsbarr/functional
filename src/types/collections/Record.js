@@ -3,6 +3,7 @@ import { equal } from "../../utils/equal.js";
 import { Option } from "../monads/Option.js";
 
 const recordProto = {
+  // returns a Record with the same keys but all values set to undefined
   clear() {
     let copy = this.toObject();
     for (let key in Object.keys(copy)) {
@@ -30,6 +31,10 @@ const recordProto = {
 
   get(key) {
     return Option.of(this[key]);
+  },
+
+  getWithDefault(key, defaultValue) {
+    return this[key] ?? defaultValue;
   },
 
   has(key) {
