@@ -4,6 +4,27 @@ class Tuple extends Array {
   constructor(...args) {
     super(...args);
     Object.freeze(this);
+
+    Object.defineProperty(this, "kind", {
+      configurable: false,
+      enumerable: false,
+      writable: true,
+      value: "Tuple",
+    });
+
+    Object.defineProperty(this, "constructor", {
+      configurable: false,
+      enumerable: false,
+      writable: true,
+      value: tuple,
+    });
+
+    Object.defineProperty(this, "size", {
+      configurable: false,
+      enumerable: false,
+      writable: true,
+      value: this.length,
+    });
   }
 
   toString() {
@@ -16,3 +37,5 @@ class Tuple extends Array {
 }
 
 export const tuple = (...args) => new Tuple(...args);
+
+Tuple.of = (iter) => tuple(...iter);
