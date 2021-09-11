@@ -218,12 +218,12 @@ export const sort = (iter, { key = "", fn = null, reversed = false } = {}) => {
   } else if (typeof temp[0] === "number") {
     temp.sort((a, b) => a - b);
   } else if (typeof temp[0] === "boolean") {
-    temp.sort((a, b) => (a === b ? 0 : a ? 1 : -1));
+    temp.sort((a, b) => (a === b ? 0 : a ? -1 : 1));
   } else if (key) {
     if (typeof temp[0][key] === "number") {
       temp.sort((a, b) => a[key] - b[key]);
     } else if (typeof temp[0][key] === "boolean") {
-      temp.sort((a, b) => (a[key] === b[key] ? 0 : a[key] ? 1 : -1));
+      temp.sort((a, b) => (a[key] === b[key] ? 0 : a[key] ? -1 : 1));
     } else if (typeof temp[0][key] === "string") {
       temp.sort((a, b) => (a[key] > b[key] ? 1 : a[key] === b[key] ? 0 : -1));
     }
