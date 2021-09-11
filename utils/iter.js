@@ -12,6 +12,7 @@ export const isIterable = (obj) =>
 
 export const append = curry((item, iter) => iter.constructor(item, ...iter));
 
+// Returns Option, not value
 export const at = curry((i, iter) => {
   const temp = [...iter];
   return Option.of(i < 0 ? temp[temp.length - i] : temp[i]);
@@ -50,6 +51,7 @@ export const filter = curry((pred, iter) => {
   return temp.length ? iter.constructor(...temp) : iter.constructor();
 });
 
+// Returns Option
 export const first = at(1);
 
 export const flatMap = chain;
@@ -57,9 +59,11 @@ export const flatMap = chain;
 // flattens by one level only
 export const flatten = (iter) => iter.constructor(concatToArray(...iter));
 
+// returns Option
 export const get = at;
 
-export const last = (iter) => at(iter.length - 1, iter);
+// returns option
+export const last = (iter) => at(length(iter) - 1, iter);
 
 export const length = (iter) => [...iter].length;
 
@@ -71,6 +75,7 @@ export const map = curry((fn, iter) => {
   return iter.constructor(...temp);
 });
 
+// returns Option
 export const pop = last;
 
 export const prepend = curry((item, iter) => iter.constructor(item, ...iter));
@@ -105,6 +110,7 @@ export const reject = curry((pred, iter) => {
   return temp.length ? iter.constructor(...temp) : iter.constructor();
 });
 
+// returns Option
 export const shift = first;
 
 export const toArray = (iter) => [...iter];

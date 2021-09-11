@@ -1,12 +1,15 @@
 import {
   append,
+  at,
   chain,
   concat,
   concatToArray,
   each,
   eachWithIndex,
   filter,
+  first,
   flatten,
+  last,
   length,
   map,
   prepend,
@@ -48,6 +51,11 @@ class Cons extends Array {
     return append(item, this);
   }
 
+  // returns Option, not simple value
+  at(i) {
+    return at(i, this);
+  }
+
   chain(fn) {
     return chain(fn, this);
   }
@@ -71,6 +79,11 @@ class Cons extends Array {
 
   filter(pred) {
     return filter(pred, this);
+  }
+
+  // returns Option, not value
+  first() {
+    return first(this);
   }
 
   flatten() {
@@ -97,6 +110,11 @@ class Cons extends Array {
     this.eachWithIndex(fn);
   }
 
+  // returns Option, not value
+  get(i) {
+    return this.at(i);
+  }
+
   isCons() {
     return true;
   }
@@ -105,8 +123,18 @@ class Cons extends Array {
     return this.kind === "List";
   }
 
+  // returns Option, not value
+  last() {
+    return last(this);
+  }
+
   map(fn) {
     return map(fn, this);
+  }
+
+  // returns Option, not value
+  pop() {
+    return this.last();
   }
 
   prepend(item) {
@@ -128,6 +156,11 @@ class Cons extends Array {
 
   reject(pred) {
     return reject(pred, this);
+  }
+
+  // returns Option, not value
+  shift() {
+    return this.first();
   }
 
   toArray() {
