@@ -178,6 +178,10 @@ class Cons extends Array {
     return indexOf(this, value, start);
   }
 
+  inspect() {
+    return this.toString();
+  }
+
   isCons() {
     return true;
   }
