@@ -22,6 +22,8 @@ import {
   reject,
   toArray,
   any,
+  find,
+  findIndex,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -109,6 +111,16 @@ class Cons extends Array {
 
   filter(pred) {
     return filter(pred, this);
+  }
+
+  // returns Option
+  find(pred) {
+    return find(pred, this);
+  }
+
+  // returns Option
+  findIndex(pred) {
+    return findIndex(pred, this);
   }
 
   // returns Option, not value

@@ -1,4 +1,4 @@
-import { Option } from "../types/monads/Option.js";
+import { Option, None, Some } from "../types/monads/Option.js";
 import { curry } from "./functions.js";
 import { isNil } from "./nil.js";
 
@@ -68,6 +68,28 @@ export const filter = curry((pred, iter) => {
     }
   }
   return temp.length ? iter.constructor(...temp) : iter.constructor();
+});
+
+// returns Option
+export const find = curry((pred, iter) => {
+  for (let item of iter) {
+    if (pred(item)) {
+      return Some(item);
+    }
+  }
+  return None(null);
+});
+
+// returns Option
+export const findIndex = curry((pred, iter) => {
+  let i = 0;
+  for (let item of iter) {
+    if (pred(item)) {
+      return Some(i);
+    }
+    i++;
+  }
+  return None(null);
 });
 
 // Returns Option
