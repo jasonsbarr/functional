@@ -1,7 +1,7 @@
 {
-  "name": "@jasonsbarr/types",
+  "name": "@jasonsbarr/functional",
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "description": "A collection of functional-ish data types",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jasonsbarr/types.git"
+    "url": "git+https://github.com/jasonsbarr/functional.git"
   },
   "keywords": [
     "adts",
