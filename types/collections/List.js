@@ -24,6 +24,7 @@ import {
   any,
   find,
   findIndex,
+  includes,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -159,6 +160,10 @@ class Cons extends Array {
   // returns Option, not value
   get(i) {
     return this.at(i);
+  }
+
+  includes(value) {
+    return includes(value);
   }
 
   isCons() {

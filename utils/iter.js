@@ -1,6 +1,7 @@
 import { Option, None, Some } from "../types/monads/Option.js";
 import { curry } from "./functions.js";
 import { isNil } from "./nil.js";
+import { equal } from "./equal.js";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
@@ -98,13 +99,23 @@ export const first = at(0);
 export const flatMap = chain;
 
 // flattens by one level only
-export const flat = flatten;
 export const flatten = (iter) => iter.constructor(concatToArray(...iter));
+export const flat = flatten;
 
 export const forEach = each;
 
 // returns Option
 export const get = at;
+
+// works with any value, including objects
+export const includes = curry((value, iter) => {
+  for (let item of iter) {
+    if (equal(item, value)) {
+      return true;
+    }
+  }
+  return false;
+});
 
 // returns option
 export const last = (iter) => at(length(iter) - 1, iter);
