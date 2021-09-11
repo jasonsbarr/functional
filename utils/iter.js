@@ -61,6 +61,8 @@ export const get = at;
 
 export const last = (iter) => at(iter.length - 1, iter);
 
+export const length = (iter) => [...iter].length;
+
 export const map = curry((fn, iter) => {
   let temp = [];
   for (let item of iter) {

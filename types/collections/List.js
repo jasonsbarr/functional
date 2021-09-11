@@ -7,6 +7,7 @@ import {
   eachWithIndex,
   filter,
   flatten,
+  length,
   map,
   prepend,
   reduce,
@@ -34,11 +35,11 @@ class Cons extends Array {
       value: cons,
     });
 
-    Object.defineProperty(this, "length", {
+    Object.defineProperty(this, "size", {
       configurable: false,
       enumerable: false,
-      writable: false,
-      value: [...this].length,
+      writable: true,
+      value: length(this),
     });
   }
 
@@ -213,6 +214,12 @@ export const List = (...args) => {
     enumerable: false,
     writable: false,
     value: List,
+  });
+  Object.defineProperty(l, "size", {
+    configurable: false,
+    enumerable: false,
+    writable: false,
+    value: length(l),
   });
 
   return l;
