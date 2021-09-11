@@ -5,6 +5,7 @@ import {
   map,
   reduce,
   reduceRight,
+  reject,
   toArray,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
@@ -53,6 +54,10 @@ class Cons extends Array {
 
   reduceRight(fn, initial) {
     return reduceRight(fn, initial, this);
+  }
+
+  reject(pred) {
+    return reject(pred, this);
   }
 
   toString() {
