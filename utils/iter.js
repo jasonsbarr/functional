@@ -9,6 +9,8 @@ import { isNil } from "./nil.js";
 export const isIterable = (obj) =>
   !isNil(obj) && typeof obj[Symbol.iterator] === "function";
 
+export const append = curry((item, iter) => iter.constructor(item, ...iter));
+
 export const chain = curry((fn, iter) => map(fn, flatten(iter)));
 
 // assumes all iterables are of the same kind
@@ -55,6 +57,10 @@ export const map = curry((fn, iter) => {
   return iter.constructor(...temp);
 });
 
+export const prepend = curry((item, iter) => iter.constructor(item, ...iter));
+
+export const push = append;
+
 export const reduce = curry((fn, initial, iter) => {
   let acc = initial;
   for (let item of iter) {
@@ -84,3 +90,5 @@ export const reject = curry((pred, iter) => {
 });
 
 export const toArray = (iter) => [...iter];
+
+export const unshift = append;
