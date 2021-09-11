@@ -239,7 +239,7 @@ class Cons extends Array {
     return this.first();
   }
 
-  slice(start = 0, end = this.size - 1, step = 1) {
+  slice(start, end, step) {
     return slice(this, start, end, step);
   }
 
