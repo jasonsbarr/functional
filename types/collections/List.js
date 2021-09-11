@@ -26,6 +26,8 @@ import {
   findIndex,
   includes,
   indexOf,
+  join,
+  lastIndexOf,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -167,6 +169,7 @@ class Cons extends Array {
     return includes(value);
   }
 
+  // returns Option
   indexOf(value, start = 0) {
     return indexOf(this, value, start);
   }
@@ -179,9 +182,17 @@ class Cons extends Array {
     return this.kind === "List";
   }
 
+  join(sep = "") {
+    return join(sep, this);
+  }
+
   // returns Option, not value
   last() {
     return last(this);
+  }
+
+  lastIndexOf(value, startIndex = this.size) {
+    return lastIndexOf(this, value, startIndex);
   }
 
   map(fn) {

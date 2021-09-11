@@ -129,8 +129,21 @@ export const indexOf = (iter, value, start = 0) => {
   return None(null);
 };
 
+export const join = curry((sep, iter) => [...iter].join(sep));
+
 // returns option
 export const last = (iter) => at(length(iter) - 1, iter);
+
+// returns Option, data-first because of optional argument
+export const lastIndexOf = (iter, value, startIndex = length(iter) - 1) => {
+  const temp = [...iter];
+  for (let i = startIndex; i >= 0; i--) {
+    if (equal(temp[i], value)) {
+      return Some(i);
+    }
+  }
+  return None(null);
+};
 
 export const length = (iter) => [...iter].length;
 
