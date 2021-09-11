@@ -30,6 +30,8 @@ import {
   lastIndexOf,
   reverse,
   sort,
+  splice,
+  slice,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -237,12 +239,20 @@ class Cons extends Array {
     return this.first();
   }
 
+  slice(start = 0, end = this.size - 1, step = 1) {
+    return slice(this, start, end, step);
+  }
+
   some(pred) {
     return this.any(pred);
   }
 
   sort({ key = "", fn = null, reversed = false } = {}) {
     return sort(this, { key, fn, reversed });
+  }
+
+  splice(start, deleteCount, ...items) {
+    return splice(this, start, deleteCount, ...items);
   }
 
   toArray() {
