@@ -165,5 +165,7 @@ export const List = (...args) => {
   return l;
 };
 
+export const list = List;
+
 // constructs a list from any iterable
 List.of = (iter) => List(...iter);
