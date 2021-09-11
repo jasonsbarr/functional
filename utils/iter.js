@@ -210,7 +210,7 @@ export const some = any;
 
 // assumes all items in iterable are of same type, based on first item in iterable
 // because why would you want to sort a list of different types? That would be dumb.
-// Give either a key or a function, but not both.
+// Give either a key or a function, but not both. If you give both, it will use the function.
 export const sort = (iter, { key = "", fn = null, reversed = false } = {}) => {
   let temp = [...iter];
   if (fn) {
