@@ -8,6 +8,10 @@ const recordProto = {
   set(key, value) {
     return this.constructor.of({ ...this, [key]: value });
   },
+
+  toObject() {
+    return { ...this };
+  },
 };
 
 Object.setPrototypeOf(recordProto, null);
@@ -61,6 +65,7 @@ export const Record = (...keys) => {
   return constructor;
 };
 
+// create ad-hoc records
 export const record = (object) => {
   const keys = Object.keys(object);
   const constructor = Record(...keys);

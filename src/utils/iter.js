@@ -1,5 +1,5 @@
 import { Option, None, Some } from "../types/monads/Option.js";
-import { curry } from "./functions.js";
+import { curry } from "./function.js";
 import { isNil } from "./nil.js";
 import { equal } from "./equal.js";
 
