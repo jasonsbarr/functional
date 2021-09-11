@@ -9,7 +9,7 @@ import { isNil } from "./nil.js";
 export const isIterable = (obj) =>
   !isNil(obj) && typeof obj[Symbol.iterator] === "function";
 
-export const chain = (fn, iter) => map(fn, flatten(iter));
+export const chain = curry((fn, iter) => map(fn, flatten(iter)));
 
 // assumes all iterables are of the same kind
 export const concat = (...iters) =>
