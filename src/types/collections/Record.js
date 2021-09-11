@@ -3,8 +3,24 @@ import { equal } from "../../utils/equal.js";
 import { Option } from "../monads/Option.js";
 
 const recordProto = {
-  isRecord() {
-    return true;
+  clear() {
+    let copy = this.toObject();
+    for (let key in Object.keys(copy)) {
+      copy[key] = undefined;
+    }
+    return this.constructor.of(copy);
+  },
+
+  copy() {
+    return this.constructor.of({ ...this });
+  },
+
+  delete(key) {
+    let copy = this.toObject();
+    if (key in copy) {
+      copy[key] = undefined;
+    }
+    return this.constructor.of(copy);
   },
 
   // checks for deep equality
@@ -37,6 +53,10 @@ const recordProto = {
     return false;
   },
 
+  isRecord() {
+    return true;
+  },
+
   // overwrites properties from right to left,
   // so last object with a certain key will have its value assigned to the new Record
   // will merge any object, not just a Record, but returns a Record
@@ -52,13 +72,10 @@ const recordProto = {
     return { ...this };
   },
 
-  // takes function to update value, function takes
+  // takes function to update value, function takes Option.of(currentValue) so must unpack the Option
+  // unknown keys will not be assigned to the new Record
   update(key, updater) {
-    // null if key not found, which is fine because unknown key will not be inserted
-    const value = this.get(key).fold(
-      () => null,
-      (x) => x
-    );
+    const value = this.get(key);
     return this.constructor.of({ ...this, [key]: updater(value) });
   },
 };
