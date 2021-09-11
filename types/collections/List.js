@@ -29,6 +29,7 @@ import {
   join,
   lastIndexOf,
   reverse,
+  sort,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -238,6 +239,10 @@ class Cons extends Array {
 
   some(pred) {
     return this.any(pred);
+  }
+
+  sort({ key = "", fn = null, reversed = false } = {}) {
+    return sort(this, { key, fn, reversed });
   }
 
   toArray() {
