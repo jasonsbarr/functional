@@ -98,8 +98,19 @@ export const first = at(0);
 
 export const flatMap = chain;
 
-// flattens by one level only
-export const flatten = (iter) => iter.constructor(concatToArray(...iter));
+// flattens completely or to specified level of depth
+export const flatten = (iter, level = Infinity, current = 0) => {
+  // iter.constructor(concatToArray(...iter));
+  let result = [];
+  each((item) => {
+    if (isIterable(item) && typeof item !== "string" && current < level) {
+      result = concatToArray(result, flatten(item, level, current + 1));
+    } else {
+      result.push(item);
+    }
+  }, iter);
+  return iter.constructor(...result);
+};
 export const flat = flatten;
 
 export const forEach = each;
@@ -189,6 +200,8 @@ export const reject = curry((pred, iter) => {
   }
   return temp.length ? iter.constructor(...temp) : iter.constructor();
 });
+
+export const reverse = (iter) => [...iter].reverse();
 
 // returns Option
 export const shift = first;

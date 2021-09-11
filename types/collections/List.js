@@ -28,6 +28,7 @@ import {
   indexOf,
   join,
   lastIndexOf,
+  reverse,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -132,12 +133,12 @@ class Cons extends Array {
     return first(this);
   }
 
-  flat() {
-    return this.flatten();
+  flat(level = Infinity) {
+    return this.flatten(level);
   }
 
-  flatten() {
-    return flatten(this);
+  flatten(level = Infinity) {
+    return flatten(this, level);
   }
 
   flatMap(fn) {
@@ -191,6 +192,7 @@ class Cons extends Array {
     return last(this);
   }
 
+  // returns Option
   lastIndexOf(value, startIndex = this.size) {
     return lastIndexOf(this, value, startIndex);
   }
@@ -223,6 +225,10 @@ class Cons extends Array {
 
   reject(pred) {
     return reject(pred, this);
+  }
+
+  reverse() {
+    return reverse(this);
   }
 
   // returns Option, not value
