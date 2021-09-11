@@ -60,3 +60,9 @@ export const Record = (...keys) => {
 
   return constructor;
 };
+
+export const record = (object) => {
+  const keys = Object.keys(object);
+  const constructor = Record(...keys);
+  return constructor.of(object);
+};
