@@ -37,6 +37,13 @@ const recordProto = {
     return false;
   },
 
+  // overwrites properties from right to left,
+  // so last object with a certain key will have its value assigned to the new Record
+  // will merge any object, not just a Record, but returns a Record
+  merge(...others) {
+    return record(Object.assign(this, ...others));
+  },
+
   set(key, value) {
     return this.constructor.of({ ...this, [key]: value });
   },
