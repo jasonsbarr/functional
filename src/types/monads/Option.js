@@ -1,3 +1,4 @@
+import { isNil } from "../../utils/nil";
 /*
  * type Option = Some(x: T) | None(null|undefined|NaN)
  */
@@ -5,7 +6,7 @@
 export const Option = {
   of: (x) =>
     // check if null, undefined, or NaN
-    x != null || Number.isNaN(x) ? Some(x) : None(x),
+    isNil(x) || Number.isNaN(x) ? Some(x) : None(x),
   isSome: (obj) => obj.kind === "Some",
   isNone: (obj) => obj.kind === "None",
   isOption: (obj) => obj.kind === "Some" || obj.kind === "None",

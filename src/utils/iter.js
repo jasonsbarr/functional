@@ -255,8 +255,6 @@ export const pop = last;
 
 export const prepend = curry((item, iter) => iter.constructor(item, ...iter));
 
-export const product = (iter) => {};
-
 export const push = append;
 
 export const reduce = curry((fn, initial, iter) => {
@@ -272,17 +270,23 @@ export const foldLeft = reduce;
 
 // returns Option
 export const average = (iter) =>
-  Option.of(reduce((sum, i) => sum + i, 0, iter) / length(iter));
+  length(iter) === 0
+    ? None(null)
+    : Some(reduce((sum, i) => sum + i, 0, iter) / length(iter));
 
 // returns Option
 export const max = (iter) =>
-  Option.of(reduce((big, cur) => (big > cur ? big : cur), -Infinity, iter));
+  length(iter) === 0
+    ? None(null)
+    : Some(reduce((big, cur) => (big > cur ? big : cur), -Infinity, iter));
 
-// returns Option
 export const min = (iter) =>
-  Option.of(
-    reduce((small, cur) => (small < cur ? small : cur), Infinity, iter)
-  );
+  length(iter) === 0
+    ? None(null)
+    : Some(reduce((small, cur) => (small < cur ? small : cur), Infinity, iter));
+
+export const product = (iter) =>
+  Option.of(reduce((prod, cur) => prod * cur, 1, iter));
 
 export const reduceRight = curry((fn, initial, iter) => {
   const temp = [...iter];
