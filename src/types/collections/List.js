@@ -35,6 +35,7 @@ import {
   pluck,
   average,
   unique,
+  count,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -101,6 +102,10 @@ class Cons extends Array {
 
   concatToArray(...lists) {
     return concatToArray(this, ...lists);
+  }
+
+  count(search) {
+    return count(search, this);
   }
 
   // makes a shallow copy

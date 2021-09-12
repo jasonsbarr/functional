@@ -33,7 +33,17 @@ export const at = curry((i, iter) => {
 export const average = (iter) =>
   iter.reduce((sum, i) => sum + i, 0) / length(iter);
 
-export const count = (search, iter) => {};
+export const count = (search, iter) => {
+  let count = 0;
+  for (let item of iter) {
+    if (typeof search === "function") {
+      count += search(item) ? 1 : 0;
+    } else {
+      count += equals(item, search) ? 1 : 0;
+    }
+  }
+  return count;
+};
 
 // assumes all iterables are of the same kind, otherwise will construct an iterable of the same type as the first
 export const concat = (...iters) =>

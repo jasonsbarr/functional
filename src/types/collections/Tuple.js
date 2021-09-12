@@ -35,6 +35,7 @@ import {
   pluck,
   average,
   unique,
+  count,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -104,6 +105,10 @@ class Tuple extends Array {
 
   concatToArray(...lists) {
     return concatToArray(this, ...lists);
+  }
+
+  count(search) {
+    return count(search, this);
   }
 
   // makes a shallow copy

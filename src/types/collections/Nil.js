@@ -44,6 +44,10 @@ class Nil {
     return list(...first).concat(...rest);
   }
 
+  count(search) {
+    return 0;
+  }
+
   copy() {
     return this;
   }
