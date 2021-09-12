@@ -190,6 +190,10 @@ class Cons extends Array {
     return this.kind === "List";
   }
 
+  isNil() {
+    return false;
+  }
+
   join(sep = "") {
     return join(sep, this);
   }
