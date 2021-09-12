@@ -143,8 +143,6 @@ export const flatMap = chain;
 
 export const forEach = each;
 
-export const from = (i, iter) => {};
-
 // returns Option
 export const get = at;
 
@@ -302,6 +300,8 @@ export function slice(iter, start, end, step) {
 
   return iter.constructor(...result);
 }
+
+export const from = (i, iter) => slice(iter, i, length(iter) - 1, 1);
 
 export const pluck = (numItems, iter) => slice(iter, 0, numItems, 1);
 

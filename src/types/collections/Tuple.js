@@ -37,6 +37,7 @@ import {
   unique,
   count,
   difference,
+  from,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -190,6 +191,10 @@ class Tuple extends Array {
 
   forEach(fn) {
     this.eachWithIndex(fn);
+  }
+
+  from(i) {
+    return from(i, this);
   }
 
   // returns Option, not value

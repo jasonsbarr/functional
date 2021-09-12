@@ -118,6 +118,10 @@ class Nil {
 
   forEach(fn) {}
 
+  from(i) {
+    return this;
+  }
+
   get(i) {
     return None(null);
   }

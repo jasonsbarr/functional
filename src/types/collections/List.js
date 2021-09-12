@@ -37,6 +37,7 @@ import {
   unique,
   count,
   difference,
+  from,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -187,6 +188,10 @@ class Cons extends Array {
 
   forEach(fn) {
     this.eachWithIndex(fn);
+  }
+
+  from(i) {
+    return from(i, this);
   }
 
   // returns Option, not value
