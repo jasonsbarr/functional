@@ -487,7 +487,10 @@ export const unique = (iter) => iter.constructor(...[...new Set([...iter])]);
 
 export const unshift = prepend;
 
-// export const update = () => {}
+// updater should take an Option
+export const update = curry((updater, i, iter) =>
+  splice(iter, i, 1, updater(get(i, iter)))
+);
 
 // unsafe - can return null values
 // use only when you know all iters are the same length

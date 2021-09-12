@@ -58,6 +58,7 @@ import {
   mapWithIndex,
   zip,
   zipUnsafe,
+  update,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -411,6 +412,10 @@ class Tuple extends Array {
   // unlike the array method, this does NOT mutate the current object
   unshift(item) {
     return this.prepend(item);
+  }
+
+  update(updater, i) {
+    return update(updater, i, this);
   }
 
   // unsafe - may contain null values

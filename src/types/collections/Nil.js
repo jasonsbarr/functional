@@ -322,6 +322,10 @@ class Nil {
     return list(item);
   }
 
+  update(updater, i) {
+    return this;
+  }
+
   // unsafe - can contain null values
   zip(...iters) {
     return zip(...iters);

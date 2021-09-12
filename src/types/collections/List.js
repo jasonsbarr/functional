@@ -58,6 +58,7 @@ import {
   mapWithIndex,
   zip,
   zipUnsafe,
+  update,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -422,6 +423,10 @@ class Cons extends Array {
   // unlike the array method, this does NOT mutate the current object
   unshift(item) {
     return this.prepend(item);
+  }
+
+  update(i, updater) {
+    return update(updater, i, this);
   }
 
   // unsafe - may contain null values
