@@ -288,4 +288,9 @@ class Tuple extends Array {
 export const tuple = (...args) => new Tuple(...args);
 
 Tuple.of = (iter) => tuple(...iter);
+Tuple.from = Tuple.of;
 Tuple.isTuple = (obj) => obj.kind === "Tuple";
+
+tuple.of = Tuple.of;
+tuple.from = Tuple.from;
+tuple.isTuple = Tuple.isTuple;

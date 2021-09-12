@@ -373,6 +373,7 @@ const List = (...args) => {
 
 // constructs a list from any iterable
 List.of = (iter) => List(...iter);
+List.from = List.of;
 
 List.isList = (obj) => obj.kind === "List";
 
