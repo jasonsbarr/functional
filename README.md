@@ -28,3 +28,4 @@ I'm pretty sure there are still tons of bugs, so if you find any feel free to le
 - Implement full Fantasy Land interfaces
 - A larger collection of utility functions and helpers
 - Lazy collections
+- Tagged unions and pattern matching?
