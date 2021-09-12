@@ -12,6 +12,8 @@ import { equals } from "./equals.js";
 export const isIterable = (obj) =>
   !isNil(obj) && typeof obj[Symbol.iterator] === "function";
 
+export const isArray = (obj) => Array.isArray(obj);
+
 export const all = curry((pred, iter) =>
   [...iter].reduce((acc, v) => acc && pred(v), true)
 );
