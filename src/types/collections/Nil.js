@@ -250,6 +250,10 @@ class Nil {
     return None(null);
   }
 
+  shuffle() {
+    return this;
+  }
+
   slice(start, end, step) {
     return this;
   }

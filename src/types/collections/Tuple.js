@@ -50,6 +50,7 @@ import {
   remove,
   removeAt,
   sample,
+  shuffle,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -334,6 +335,10 @@ class Tuple extends Array {
   // returns Option, not value
   shift() {
     return this.first();
+  }
+
+  shuffle() {
+    return shuffle(this);
   }
 
   slice(start, end, step) {

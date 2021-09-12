@@ -50,6 +50,7 @@ import {
   remove,
   removeAt,
   sample,
+  shuffle,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -339,6 +340,10 @@ class Cons extends Array {
   // returns Option, not value
   shift() {
     return this.first();
+  }
+
+  shuffle() {
+    return shuffle(this);
   }
 
   slice(start, end, step) {

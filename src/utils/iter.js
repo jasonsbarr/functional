@@ -334,7 +334,22 @@ export const sample = (iter) => at(randInt(0, length(iter) - 1));
 // returns Option
 export const shift = first;
 
-export const shuffle = (iter) => {};
+// Fisher-Yates shuffle algorithm, from https://stackoverflow.com/a/2450976
+export const shuffle = (iter) => {
+  let temp = [...iter];
+  let currentIndex = length(iter),
+    randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [temp[currentIndex], temp[randomIndex]] = [
+      temp[randomIndex],
+      temp[currentIndex],
+    ];
+  }
+  return iter.constructor(...temp);
+};
 
 export function slice(iter, start, end, step) {
   const args = compact([...arguments]).slice(1);
