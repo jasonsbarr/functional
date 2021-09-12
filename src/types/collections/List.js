@@ -41,6 +41,7 @@ import {
   insert,
   intersection,
   isEmpty,
+  isEqual,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -229,6 +230,10 @@ class Cons extends Array {
 
   isEmpty() {
     return isEmpty(this);
+  }
+
+  isEqual(other) {
+    return isEqual(this, other);
   }
 
   isList() {

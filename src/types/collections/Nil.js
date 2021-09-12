@@ -154,6 +154,10 @@ class Nil {
     return true;
   }
 
+  isEqual(other) {
+    return other.constructor.name === "Nil";
+  }
+
   isList() {
     return true;
   }

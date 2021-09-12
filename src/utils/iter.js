@@ -177,7 +177,7 @@ export const intersection = (iter1, iter2) => {
   return iter1.constructor(...result);
 };
 
-export const isEqual = (iter1, iter2) => {};
+export const isEqual = curry((iter1, iter2) => equals(iter1, iter2));
 
 export const join = curry((sep, iter) => [...iter].join(sep));
 
