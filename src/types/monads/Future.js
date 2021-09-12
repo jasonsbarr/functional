@@ -258,7 +258,22 @@ Future.fromCallback =
 Future.resolve = Future.of;
 Future.reject = Future.rejected;
 
-Future.all = (futures) => {};
+Future.all = (futures) => {
+  let results = [];
+  let all = new Future();
+  for (let future of futures) {
+    future.listen({
+      onCancelled: noop,
+      onRejected: (reason) => all.reject(reason),
+      onResolved: (value) => results.push(value),
+    });
+  }
+  return all.listen({
+    onCancelled: () => all.cancel(),
+    onRejected: (reason) => all.reject(reason),
+    onResolved: () => all.resolve(futures.constructor(...results)),
+  });
+};
 
 Future.allSettled = (futures) => {};
 
