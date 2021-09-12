@@ -448,7 +448,14 @@ export const to = curry((index, iter) => slice(0, index, 1, iter));
 
 export const toArray = (iter) => [...iter];
 
-export const union = (iter1, iter2) => {};
+export const union = (iter1, iter2) => {
+  let set1 = new Set([...iter1]);
+  let set2 = new Set([...iter2]);
+  for (let item of set2) {
+    set1.add(item);
+  }
+  return iter1.constructor(...set1);
+};
 
 export const unique = (iter) => iter.constructor(...[...new Set([...iter])]);
 

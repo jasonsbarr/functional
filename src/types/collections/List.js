@@ -54,6 +54,7 @@ import {
   sum,
   symmetricDifference,
   to,
+  union,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -401,6 +402,10 @@ class Cons extends Array {
         ? "'(" + strArr.join(" . ") + ")"
         : "'(" + strArr.join(" ") + ")";
     return str;
+  }
+
+  union(other) {
+    return union(this, other);
   }
 
   unique() {

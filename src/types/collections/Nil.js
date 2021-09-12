@@ -305,6 +305,10 @@ class Nil {
     return "Nil()";
   }
 
+  union(other) {
+    return other;
+  }
+
   unique() {
     return this;
   }

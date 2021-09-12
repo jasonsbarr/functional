@@ -54,6 +54,7 @@ import {
   sum,
   symmetricDifference,
   to,
+  union,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -390,6 +391,10 @@ class Tuple extends Array {
 
   toString() {
     return `Tuple(${super.toString().split(",").join(", ")})`;
+  }
+
+  union(other) {
+    return union(this, other);
   }
 
   unique() {
