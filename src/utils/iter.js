@@ -30,9 +30,6 @@ export const at = curry((i, iter) => {
   return Option.of(i < 0 ? temp[temp.length - i] : temp[i]);
 });
 
-export const average = (iter) =>
-  iter.reduce((sum, i) => sum + i, 0) / length(iter);
-
 export const count = (search, iter) => {
   let count = 0;
   for (let item of iter) {
@@ -180,8 +177,6 @@ export const intersection = (iter1, iter2) => {
   return iter1.constructor(...result);
 };
 
-export const isEmpty = (iter) => {};
-
 export const isEqual = (iter1, iter2) => {};
 
 export const join = curry((sep, iter) => [...iter].join(sep));
@@ -206,6 +201,10 @@ export const length = (iter) => [...iter].length;
 
 export const average = (iter) =>
   iter.reduce((sum, i) => sum + i, 0) / length(iter);
+
+export const isEmpty = (iter) => {
+  return length(iter) === 0;
+};
 
 export const map = curry((fn, iter) => {
   let temp = [];

@@ -40,6 +40,7 @@ import {
   from,
   insert,
   intersection,
+  isEmpty,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -223,6 +224,10 @@ class Tuple extends Array {
 
   intersection(other) {
     return intersection(this, other);
+  }
+
+  isEmpty() {
+    return isEmpty(this);
   }
 
   isTuple() {

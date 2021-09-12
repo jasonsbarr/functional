@@ -150,6 +150,10 @@ class Nil {
     return false;
   }
 
+  isEmpty() {
+    return true;
+  }
+
   isList() {
     return true;
   }
