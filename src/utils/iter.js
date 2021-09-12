@@ -489,7 +489,17 @@ export const unshift = prepend;
 
 // updater should take an Option
 export const update = curry((updater, i, iter) =>
-  splice(iter, i, 1, updater(get(i, iter)))
+  splice(
+    iter,
+    i,
+    1,
+    updater(
+      get(i, iter).fold(
+        (x) => x,
+        (x) => x
+      )
+    )
+  )
 );
 
 // unsafe - can return null values
