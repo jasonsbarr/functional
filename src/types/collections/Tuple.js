@@ -48,6 +48,7 @@ import {
   none,
   product,
   remove,
+  removeAt,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -315,6 +316,10 @@ class Tuple extends Array {
 
   remove(search) {
     return remove(search, this);
+  }
+
+  removeAt(start, end) {
+    return removeAt(this, start, end);
   }
 
   reverse() {

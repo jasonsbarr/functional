@@ -234,6 +234,10 @@ class Nil {
     return this;
   }
 
+  removeAt(start, end) {
+    return this;
+  }
+
   reverse() {
     return this;
   }

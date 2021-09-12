@@ -48,6 +48,7 @@ import {
   none,
   product,
   remove,
+  removeAt,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -320,6 +321,10 @@ class Cons extends Array {
 
   remove(search) {
     return remove(search, this);
+  }
+
+  removeAt(start, end) {
+    return removeAt(this, start, end);
   }
 
   reverse() {

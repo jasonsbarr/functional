@@ -324,8 +324,6 @@ export const remove = (search, iter) => {
   return iter.constructor(...result);
 };
 
-export const removeAt = (start, end, iter) => {};
-
 export const reverse = (iter) => iter.constructor([...iter].reverse());
 
 export const sample = (iter) => {};
@@ -348,7 +346,7 @@ export function slice(iter, start, end, step) {
   step = step || 1;
   if (start < 0) start = length(iter) + start;
   if (end < 0) end = length(iter) + end;
-  if (end > length(iter)) end = length(iter) - 1;
+  if (end > length(iter) - 1) end = length(iter) - 1;
   if (end < start) throw new Error("Start of slice must come before end");
   const tempStep = step > 0 ? step : -step;
   const temp = [...iter];
@@ -399,6 +397,11 @@ export const splice = (iter, start = 0, deleteCount = 0, ...items) => {
   let temp = [...iter];
   temp.splice(start, deleteCount, ...items);
   return iter.constructor(...temp);
+};
+
+export const removeAt = (iter, start, end = length(iter) - 1) => {
+  if (end > length(iter) - 1) end = length(iter) - 1;
+  return splice(iter, start, end - start);
 };
 
 export const insert = curry((item, i, iter) => splice(iter, i, 0, item));
