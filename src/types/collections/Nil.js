@@ -27,6 +27,10 @@ class Nil {
     return None(null);
   }
 
+  average() {
+    return 0;
+  }
+
   chain(fn) {
     return this;
   }

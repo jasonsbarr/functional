@@ -33,6 +33,7 @@ import {
   splice,
   slice,
   pluck,
+  average,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -78,6 +79,10 @@ class Cons extends Array {
   // returns Option, not simple value
   at(i) {
     return at(i, this);
+  }
+
+  average() {
+    return average(this);
   }
 
   chain(fn) {
