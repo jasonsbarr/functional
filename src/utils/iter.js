@@ -485,32 +485,22 @@ export const unique = (iter) => iter.constructor(...[...new Set([...iter])]);
 
 export const unshift = prepend;
 
-// returns an iterable full of Options
-export const zip = (iter, ...iters) =>
-  mapWithIndex(
-    (el, i) =>
-      concat(
-        iter.constructor(el),
-        map((k) => get(i, k), iter.constructor(...iters))
-      ),
-    iter
-  );
+// returns an iterable full of iterables full of Options
+export const zip = (...iters) =>
+  mapWithIndex((el, i) => {
+    return map((iter) => get(i, iter), iters);
+  }, iters[0]);
 
 // unsafe - can return null values
 // use only when you know all iters are the same length
-export const zipUnsafe = (iter, ...iters) =>
-  mapWithIndex(
-    (el, i) =>
-      concat(
-        iter.constructor(el),
-        map(
-          (k) =>
-            get(i, k).fold(
-              (x) => x,
-              (x) => x
-            ),
-          iter.constructor(...iters)
-        )
-      ),
-    iter
-  );
+export const zipUnsafe = (...iters) =>
+  mapWithIndex((el, i) => {
+    return map(
+      (iter) =>
+        get(i, iter).fold(
+          (x) => x,
+          (x) => x
+        ),
+      iters
+    );
+  }, iters[0]);
