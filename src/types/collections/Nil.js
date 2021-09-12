@@ -11,11 +11,11 @@ class Nil {
     });
   }
 
-  all(pred) {
+  all(search) {
     return false;
   }
 
-  any(pred) {
+  any(search) {
     return false;
   }
 

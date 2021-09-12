@@ -14,13 +14,31 @@ export const isIterable = (obj) =>
 
 export const isArray = (obj) => Array.isArray(obj);
 
-export const all = curry((pred, iter) =>
-  [...iter].reduce((acc, v) => acc && pred(v), true)
-);
+export const all = curry((search, iter) => {
+  for (let item in iter) {
+    if (typeof search === "function") {
+      if (!search(item)) return false;
+    } else if (search instanceof RegExp) {
+      if (!search.test(item)) return false;
+    } else {
+      if (!equals(search, item)) return false;
+    }
+  }
+  return true;
+});
 
-export const any = curry((pred, iter) =>
-  [...iter].reduce((acc, v) => acc || pred(v), false)
-);
+export const any = curry((search, iter) => {
+  for (let item in iter) {
+    if (typeof search === "function") {
+      if (search(item)) return true;
+    } else if (search instanceof RegExp) {
+      if (search.test(item)) return true;
+    } else {
+      if (equals(search, item)) return true;
+    }
+  }
+  return false;
+});
 
 export const append = curry((item, iter) => iter.constructor(item, ...iter));
 

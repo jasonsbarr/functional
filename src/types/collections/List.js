@@ -75,12 +75,12 @@ class Cons extends Array {
   }
 
   // can use either a fluent method interface or use the iterable functions used here directly
-  all(pred) {
-    return all(this, pred);
+  all(search) {
+    return all(search, this);
   }
 
-  any(pred) {
-    return any(this, pred);
+  any(search) {
+    return any(search, this);
   }
 
   append(item) {
