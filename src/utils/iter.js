@@ -172,6 +172,8 @@ export const forEach = eachWithIndex;
 // returns Option
 export const get = at;
 
+// export const groupBy = () => {};
+
 // works with any value, including objects
 export const includes = curry((value, iter) => {
   for (let item of iter) {
