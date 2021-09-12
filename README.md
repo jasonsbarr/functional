@@ -6,6 +6,8 @@ This library is my attempt to have my functional cake and eat a fluent-style obj
 
 Most people who are deeply familiar with functional programming are probably ok with not having a fluent object interface, but I think it might be helpful for people who are new to the functional programming world or just want to be able to do something like use Option for better null checking. I personally prefer having chained methods especially in the absence of a JavaScript pipeline operator.
 
+The [documentation](https://github.com/jasonsbarr/functional/wiki) is a work in progress.
+
 ## Features
 
 - Option, Result, and Either types to eliminate null checks and provide better error handling
