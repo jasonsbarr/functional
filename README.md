@@ -22,5 +22,4 @@ Most people who are deeply familiar with functional programming are probably ok 
 - Persistent, immutable collection types
 - More types
 - A larger collection of utility functions and helpers
-- Parity between Future and Promise interfaces
 - Lazy collections
