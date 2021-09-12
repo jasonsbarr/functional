@@ -60,7 +60,14 @@ export const clone = copy;
 export const copyWithin = (iter, target, start, end) =>
   iter.constructor(...[...iter].copyWithin(target, start, end));
 
-export const difference = (iter1, iter2) => {};
+export const difference = (iter1, iter2) => {
+  const set1 = new Set(...iter1);
+  const set2 = new Set(...iter2);
+  for (let item of set2) {
+    set1.delete(item);
+  }
+  return iter1.constructor(...set1);
+};
 
 export const each = curry((fn, iter) => {
   for (let item of iter) {

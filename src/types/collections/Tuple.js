@@ -36,6 +36,7 @@ import {
   average,
   unique,
   count,
+  difference,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -118,6 +119,10 @@ class Tuple extends Array {
 
   copyWithin(target, start, end) {
     return copyWithin(this, target, start, end);
+  }
+
+  difference(other) {
+    return difference(this, other);
   }
 
   each(fn) {

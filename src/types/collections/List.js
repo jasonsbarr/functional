@@ -36,6 +36,7 @@ import {
   average,
   unique,
   count,
+  difference,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -115,6 +116,10 @@ class Cons extends Array {
 
   copyWithin(target, start, end) {
     return copyWithin(this, target, start, end);
+  }
+
+  difference(other) {
+    return difference(this, other);
   }
 
   each(fn) {

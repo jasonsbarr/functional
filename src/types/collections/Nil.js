@@ -56,6 +56,10 @@ class Nil {
     return this;
   }
 
+  difference(other) {
+    return this;
+  }
+
   each(fn) {}
 
   eachWithIndex(fn) {}
