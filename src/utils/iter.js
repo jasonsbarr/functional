@@ -483,6 +483,7 @@ export const zip = (iter, ...iters) =>
   );
 
 // unsafe - can return null values
+// use only when you know all iters are the same length
 export const zipUnsafe = (iter, ...iters) =>
   mapWithIndex(
     (el, i) =>
