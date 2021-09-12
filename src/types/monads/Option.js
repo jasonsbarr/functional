@@ -14,6 +14,7 @@ export const Option = {
 
 export const Some = (x) => ({
   kind: "Some",
+  value: x,
   map: (f) => Option.of(f(x)),
   chain: (f) => f(x),
   fold: (f, g) => g(x),
@@ -29,6 +30,7 @@ export const Some = (x) => ({
 
 export const None = (x) => ({
   kind: "None",
+  value: x,
   map: (f) => None(x),
   chain: (f) => None(x),
   fold: (f, g) => f(x),

@@ -11,6 +11,7 @@ export const Either = {
 
 export const Right = (x) => ({
   kind: "Right",
+  value: x,
   map: (f) => Right(f(x)),
   chain: (f) => f(x),
   fold: (f, g) => g(x),
@@ -26,6 +27,7 @@ export const Right = (x) => ({
 
 export const Left = (x) => ({
   kind: "Left",
+  value: x,
   map: (f) => Left(x),
   chain: (f) => Left(x),
   fold: (f, g) => f(x),

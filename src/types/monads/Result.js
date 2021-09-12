@@ -11,6 +11,7 @@ export const Result = {
 
 export const Ok = (x) => ({
   kind: "Ok",
+  value: x,
   map: (f) => Result.of(f(x)),
   chain: (f) => f(x),
   fold: (f, g) => g(x),
@@ -26,6 +27,7 @@ export const Ok = (x) => ({
 
 export const Err = (x) => ({
   kind: "Err",
+  value: x,
   map: (f) => Err(x),
   chain: (f) => Err(x),
   fold: (f, g) => f(x),

@@ -1,5 +1,6 @@
 export const Identity = (x) => ({
   kind: "Identity",
+  value: x,
   map: (fn) => Identity(fn(x)),
   chain: (fn) => fn(x),
   fold: (fn) => fn(x),
