@@ -487,6 +487,8 @@ export const unique = (iter) => iter.constructor(...[...new Set([...iter])]);
 
 export const unshift = prepend;
 
+// export const update = () => {}
+
 // unsafe - can return null values
 // use only when you know all iters are the same length
 export const zip = (...iters) =>
