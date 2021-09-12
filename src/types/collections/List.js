@@ -39,6 +39,7 @@ import {
   difference,
   from,
   insert,
+  intersection,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -215,6 +216,10 @@ class Cons extends Array {
 
   inspect() {
     return this.toString();
+  }
+
+  intersection(other) {
+    return intersection(this, other);
   }
 
   isCons() {

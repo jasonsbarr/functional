@@ -142,6 +142,10 @@ class Nil {
     return this.toString();
   }
 
+  intersection(other) {
+    return this;
+  }
+
   isCons() {
     return false;
   }

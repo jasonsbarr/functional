@@ -39,6 +39,7 @@ import {
   difference,
   from,
   insert,
+  intersection,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -218,6 +219,10 @@ class Tuple extends Array {
 
   inspect() {
     return this.toString();
+  }
+
+  intersection(other) {
+    return intersection(this, other);
   }
 
   isTuple() {
