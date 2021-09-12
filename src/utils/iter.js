@@ -424,9 +424,8 @@ export const removeAt = (iter, start, end = length(iter) - 1) => {
 
 export const insert = curry((item, i, iter) => splice(iter, i, 0, item));
 
-export const subtract = (item, iter) => {};
-
-export const sum = (iter) => {};
+export const sum = (iter) =>
+  length(iter) === 0 ? None(null) : Some(reduce((s, c) => s + c, 0, iter));
 
 export const symmetricDifference = (iter1, iter2) => {};
 

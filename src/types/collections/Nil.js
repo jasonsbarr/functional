@@ -273,6 +273,10 @@ class Nil {
     return list.of(items);
   }
 
+  sum() {
+    return None(null);
+  }
+
   take(numItems) {
     return this.pluck(numItems);
   }

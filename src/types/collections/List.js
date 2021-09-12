@@ -51,6 +51,7 @@ import {
   removeAt,
   sample,
   shuffle,
+  sum,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -360,6 +361,10 @@ class Cons extends Array {
 
   splice(start, deleteCount, ...items) {
     return splice(this, start, deleteCount, ...items);
+  }
+
+  sum() {
+    return sum(this);
   }
 
   take(numItems) {

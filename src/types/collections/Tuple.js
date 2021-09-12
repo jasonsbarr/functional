@@ -51,6 +51,7 @@ import {
   removeAt,
   sample,
   shuffle,
+  sum,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -355,6 +356,10 @@ class Tuple extends Array {
 
   splice(start, deleteCount, ...items) {
     return splice(this, start, deleteCount, ...items);
+  }
+
+  sum() {
+    return sum(this);
   }
 
   take(numItems) {
