@@ -263,7 +263,7 @@ Future.all = (futures) => {
   let all = new Future();
   for (let future of futures) {
     future.listen({
-      onCancelled: noop,
+      onCancelled: () => future.cancel(),
       onRejected: (reason) => all.reject(reason),
       onResolved: (value) => results.push(value),
     });
@@ -275,8 +275,64 @@ Future.all = (futures) => {
   });
 };
 
-Future.allSettled = (futures) => {};
+Future.allSettled = (futures) => {
+  let results = [];
+  let all = new Future();
+  for (let future of futures) {
+    future.listen({
+      onCancelled: () => future.cancel(),
+      onRejected: (reason) => results.push(reason),
+      onResolved: (value) => results.push(value),
+    });
+  }
+  return all.listen({
+    onCancelled: () => all.cancel(),
+    onRejected: (reason) => all.reject(reason),
+    onResolved: () => all.resolve(futures.constructor(...results)),
+  });
+};
 
-Future.any = (futures) => {};
+Future.any = (futures) => {
+  let errors = [];
+  let any = new Future();
+  for (let future of futures) {
+    future.listen({
+      onCancelled: () => future.cancel(),
+      onRejected: (reason) => errors.push(reason),
+      onResolved: (value) => {
+        if (any.state === "Pending") {
+          return any.resolve(value);
+        }
+      },
+    });
+  }
+  return any.listen({
+    onCancelled: () => any.cancel(),
+    onRejected: () => any.reject(futures.constructor(...errors)),
+    onResolved: (value) => any.resolve(value),
+  });
+};
 
-Future.race = (futures) => {};
+Future.race = (futures) => {
+  let race = new Future();
+  for (let future of futures) {
+    future.listen({
+      onCancelled: () => future.cancel(),
+      onRejected: (reason) => {
+        if (race.state === "Pending") {
+          return race.reject(reason);
+        }
+      },
+      onResolved: (value) => {
+        if (race.state === "Pending") {
+          return race.resolve(value);
+        }
+      },
+    });
+    return race.listen({
+      onCancelled: () => race.cancel(),
+      onRejected: (reason) => race.cancel(reason),
+      onResolved: (value) => race.resolve(value),
+    });
+  }
+};
