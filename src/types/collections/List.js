@@ -49,6 +49,7 @@ import {
   product,
   remove,
   removeAt,
+  sample,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -329,6 +330,10 @@ class Cons extends Array {
 
   reverse() {
     return reverse(this);
+  }
+
+  sample() {
+    return sample(this);
   }
 
   // returns Option, not value

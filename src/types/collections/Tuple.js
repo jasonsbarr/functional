@@ -49,6 +49,7 @@ import {
   product,
   remove,
   removeAt,
+  sample,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -324,6 +325,10 @@ class Tuple extends Array {
 
   reverse() {
     return reverse(this);
+  }
+
+  sample() {
+    return sample(this);
   }
 
   // returns Option, not value

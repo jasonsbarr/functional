@@ -2,6 +2,7 @@ import { Option, None, Some } from "../types/monads/Option.js";
 import { curry } from "./function.js";
 import { isNil } from "./nil.js";
 import { equals } from "./equals.js";
+import { randInt } from "./random";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
@@ -328,7 +329,7 @@ export const remove = (search, iter) => {
 
 export const reverse = (iter) => iter.constructor([...iter].reverse());
 
-export const sample = (iter) => {};
+export const sample = (iter) => at(randInt(0, length(iter) - 1));
 
 // returns Option
 export const shift = first;

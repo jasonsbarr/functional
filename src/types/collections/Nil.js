@@ -242,6 +242,10 @@ class Nil {
     return this;
   }
 
+  sample() {
+    return this;
+  }
+
   shift() {
     return None(null);
   }
