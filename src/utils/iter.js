@@ -166,6 +166,8 @@ export const map = curry((fn, iter) => {
   return iter.constructor(...temp);
 });
 
+export const pluck = (numItems, iter) => slice(iter, 0, numItems, 1);
+
 // returns Option
 export const pop = last;
 
@@ -224,7 +226,6 @@ export function slice(iter, start, end, step) {
   if (end < 0) end = length(iter) + end;
   if (end > length(iter)) end = length(iter) - 1;
   if (end < start) throw new Error("Start of slice must come before end");
-  if (step === 0) throw new Error("Step value cannot be zero");
   const tempStep = step > 0 ? step : -step;
   const temp = [...iter];
 
@@ -271,6 +272,8 @@ export const splice = (iter, start = 0, deleteCount = 0, ...items) => {
   temp.splice(start, deleteCount, ...items);
   return iter.constructor(...temp);
 };
+
+export const take = pluck;
 
 export const toArray = (iter) => [...iter];
 

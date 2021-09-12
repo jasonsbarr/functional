@@ -32,6 +32,7 @@ import {
   sort,
   splice,
   slice,
+  pluck,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -212,6 +213,10 @@ class Cons extends Array {
     return map(fn, this);
   }
 
+  pluck(numItems) {
+    return pluck(numItems, this);
+  }
+
   // returns Option, not value
   pop() {
     return this.last();
@@ -261,6 +266,10 @@ class Cons extends Array {
 
   splice(start, deleteCount, ...items) {
     return splice(this, start, deleteCount, ...items);
+  }
+
+  take(numItems) {
+    return this.pluck(numItems);
   }
 
   toArray() {

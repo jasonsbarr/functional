@@ -23,3 +23,4 @@ Most people who are deeply familiar with functional programming are probably ok 
 - More types
 - A larger collection of utility functions and helpers
 - Parity between Future and Promise interfaces
+- Lazy collections

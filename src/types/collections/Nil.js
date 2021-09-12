@@ -142,6 +142,10 @@ class Nil {
     return this;
   }
 
+  pluck(numItems) {
+    return this;
+  }
+
   pop() {
     return None(null);
   }
@@ -191,6 +195,10 @@ class Nil {
       return this;
     }
     return list.of(items);
+  }
+
+  take(numItems) {
+    return this.pluck(numItems);
   }
 
   toArray() {
