@@ -21,5 +21,6 @@ Most people who are deeply familiar with functional programming are probably ok 
 - Functions that will let you treat objects like iterables
 - Persistent, immutable collection types
 - More types
+- Implement full Fantasy Land interfaces
 - A larger collection of utility functions and helpers
 - Lazy collections
