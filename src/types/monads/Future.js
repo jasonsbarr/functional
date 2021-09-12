@@ -216,6 +216,10 @@ export class Future extends Deferred {
       this.listeners.length
     } listeners`;
   }
+
+  inspect() {
+    return this.toString();
+  }
 }
 
 export const future = ({ onCancelled = noop, onRejected, onResolved }) => {
