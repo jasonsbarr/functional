@@ -126,6 +126,10 @@ class Nil {
     return None(null);
   }
 
+  has(value) {
+    return this.includes();
+  }
+
   includes(value) {
     return false;
   }

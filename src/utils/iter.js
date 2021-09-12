@@ -172,6 +172,8 @@ export const includes = curry((value, iter) => {
   return false;
 });
 
+export const has = includes;
+
 // data-first because of optional argument, returns Option, works with any value including objects
 export const indexOf = (iter, value, start = 0) => {
   let i = 0;

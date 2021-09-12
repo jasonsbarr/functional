@@ -215,8 +215,12 @@ class Cons extends Array {
     return this.at(i);
   }
 
+  has(value) {
+    return this.includes(value);
+  }
+
   includes(value) {
-    return includes(value);
+    return includes(value, this);
   }
 
   // returns Option
