@@ -351,7 +351,11 @@ export const remove = curry((search, iter) => {
 
 export const reverse = (iter) => iter.constructor([...iter].reverse());
 
-export const sample = (iter) => at(randInt(0, length(iter) - 1));
+export const sample = (iter) =>
+  at(randInt(0, length(iter) - 1)).fold(
+    (x) => x,
+    (x) => x
+  );
 
 // returns Option
 export const shift = first;
