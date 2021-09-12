@@ -236,6 +236,10 @@ export class Future extends Deferred {
   isResolved() {
     return this.state === "Resolved";
   }
+
+  isFuture() {
+    return true;
+  }
 }
 
 export const future = ({ onCancelled = noop, onRejected, onResolved }) => {
@@ -245,6 +249,8 @@ export const future = ({ onCancelled = noop, onRejected, onResolved }) => {
     onResolved: (value) => onResolved(value),
   });
 };
+
+Future.isFuture = (obj) => typeof obj.isFuture === "function" && obj.isFuture();
 
 Future.of = (value) => {
   return new Future().resolve(value);
