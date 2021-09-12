@@ -483,7 +483,7 @@ export const union = (iter1, iter2) => {
 
 export const unique = (iter) => iter.constructor(...[...new Set([...iter])]);
 
-export const unshift = append;
+export const unshift = prepend;
 
 // returns an iterable full of Options
 export const zip = (iter, ...iters) =>
