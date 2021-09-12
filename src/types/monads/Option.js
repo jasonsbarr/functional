@@ -6,7 +6,7 @@ import { isNil } from "../../utils/nil.js";
 export const Option = {
   of: (x) =>
     // check if null, undefined, or NaN
-    isNil(x) || Number.isNaN(x) ? Some(x) : None(x),
+    isNil(x) || Number.isNaN(x) ? None(x) : Some(x),
   isSome: (obj) => obj.kind === "Some",
   isNone: (obj) => obj.kind === "None",
   isOption: (obj) => obj.kind === "Some" || obj.kind === "None",
