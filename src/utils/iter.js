@@ -77,8 +77,8 @@ export const copyWithin = (iter, target, start, end) =>
   iter.constructor(...[...iter].copyWithin(target, start, end));
 
 export const difference = (iter1, iter2) => {
-  const set1 = new Set(...iter1);
-  const set2 = new Set(...iter2);
+  const set1 = new Set([...iter1]);
+  const set2 = new Set([...iter2]);
   for (let item of set2) {
     set1.delete(item);
   }
@@ -185,8 +185,8 @@ export const indexOf = (iter, value, start = 0) => {
 };
 
 export const intersection = (iter1, iter2) => {
-  let set1 = new Set(iter1);
-  let set2 = new Set(iter2);
+  let set1 = new Set([...iter1]);
+  let set2 = new Set([...iter2]);
   let result = [];
   for (let item of set2) {
     if (set1.has(item)) {
@@ -427,7 +427,18 @@ export const insert = curry((item, i, iter) => splice(iter, i, 0, item));
 export const sum = (iter) =>
   length(iter) === 0 ? None(null) : Some(reduce((s, c) => s + c, 0, iter));
 
-export const symmetricDifference = (iter1, iter2) => {};
+export const symmetricDifference = (iter1, iter2) => {
+  let set1 = new Set([...iter1]);
+  let set2 = new Set([...iter2]);
+  for (let item of set2) {
+    if (set1.has(item)) {
+      set1.delete(item);
+    } else {
+      set1.add(item);
+    }
+  }
+  return iter1.constructor(...set1);
+};
 
 export const take = pluck;
 

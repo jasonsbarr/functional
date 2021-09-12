@@ -52,6 +52,7 @@ import {
   sample,
   shuffle,
   sum,
+  symmetricDifference,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -365,6 +366,10 @@ class Cons extends Array {
 
   sum() {
     return sum(this);
+  }
+
+  symmetricDifference(other) {
+    return symmetricDifference(this, other);
   }
 
   take(numItems) {

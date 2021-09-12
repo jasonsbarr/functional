@@ -277,6 +277,10 @@ class Nil {
     return None(null);
   }
 
+  symmetricDifference(other) {
+    return this;
+  }
+
   take(numItems) {
     return this.pluck(numItems);
   }
