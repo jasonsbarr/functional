@@ -53,6 +53,7 @@ import {
   shuffle,
   sum,
   symmetricDifference,
+  to,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -374,6 +375,10 @@ class Cons extends Array {
 
   take(numItems) {
     return this.pluck(numItems);
+  }
+
+  to(index) {
+    return to(index, this);
   }
 
   toArray() {

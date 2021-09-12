@@ -442,7 +442,7 @@ export const symmetricDifference = (iter1, iter2) => {
 
 export const take = pluck;
 
-export const to = (index, iter) => {};
+export const to = curry((index, iter) => slice(0, index, 1, iter));
 
 export const toArray = (iter) => [...iter];
 

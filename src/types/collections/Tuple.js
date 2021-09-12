@@ -53,6 +53,7 @@ import {
   shuffle,
   sum,
   symmetricDifference,
+  to,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -369,6 +370,10 @@ class Tuple extends Array {
 
   take(numItems) {
     return this.pluck(numItems);
+  }
+
+  to(index) {
+    return to(index, this);
   }
 
   toArray() {

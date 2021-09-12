@@ -285,6 +285,10 @@ class Nil {
     return this.pluck(numItems);
   }
 
+  to(index) {
+    return this;
+  }
+
   toArray() {
     return [];
   }
