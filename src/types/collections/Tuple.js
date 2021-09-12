@@ -93,6 +93,10 @@ class Tuple extends Array {
     return chain(fn, this);
   }
 
+  clone() {
+    return this.copy();
+  }
+
   // works with any iterable in this library, but assumption is all args are lists
   concat(...lists) {
     return concat(this, ...lists);

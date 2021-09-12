@@ -35,6 +35,10 @@ class Nil {
     return this;
   }
 
+  clone() {
+    return this;
+  }
+
   concat(...others) {
     const [first, ...rest] = others;
     return list(...first).concat(...rest);

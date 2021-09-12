@@ -33,8 +33,6 @@ export const at = curry((i, iter) => {
 export const average = (iter) =>
   iter.reduce((sum, i) => sum + i, 0) / length(iter);
 
-export const clone = (iter) => {};
-
 export const count = (search, iter) => {};
 
 // assumes all iterables are of the same kind, otherwise will construct an iterable of the same type as the first
@@ -45,6 +43,8 @@ export const concatToArray = (...iters) =>
   iters.reduce((arr, iter) => arr.concat([...iter]), []);
 
 export const copy = (iter) => iter.constructor(...[...iter]);
+
+export const clone = copy;
 
 // have to do data-first due to optional arguments
 export const copyWithin = (iter, target, start, end) =>
