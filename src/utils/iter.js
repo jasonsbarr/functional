@@ -286,7 +286,9 @@ export const min = (iter) =>
     : Some(reduce((small, cur) => (small < cur ? small : cur), Infinity, iter));
 
 export const product = (iter) =>
-  length(iter) ? None(null) : Some(reduce((prod, cur) => prod * cur, 1, iter));
+  length(iter) === 0
+    ? None(null)
+    : Some(reduce((prod, cur) => prod * cur, 1, iter));
 
 export const reduceRight = curry((fn, initial, iter) => {
   const temp = [...iter];
