@@ -1,4 +1,4 @@
-import { isNil } from "../../utils/nil";
+import { isNil } from "../../utils/nil.js";
 /*
  * type Option = Some(x: T) | None(null|undefined|NaN)
  */

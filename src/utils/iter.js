@@ -2,7 +2,7 @@ import { Option, None, Some } from "../types/monads/Option.js";
 import { curry } from "./function.js";
 import { isNil } from "./nil.js";
 import { equals } from "./equals.js";
-import { randInt } from "./random";
+import { randInt } from "./random.js";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
@@ -16,7 +16,7 @@ export const isIterable = (obj) =>
 export const isArray = (obj) => Array.isArray(obj);
 
 export const all = curry((search, iter) => {
-  for (let item in iter) {
+  for (let item of iter) {
     if (typeof search === "function") {
       if (!search(item)) return false;
     } else if (search instanceof RegExp) {
@@ -29,7 +29,7 @@ export const all = curry((search, iter) => {
 });
 
 export const any = curry((search, iter) => {
-  for (let item in iter) {
+  for (let item of iter) {
     if (typeof search === "function") {
       if (search(item)) return true;
     } else if (search instanceof RegExp) {
@@ -41,7 +41,7 @@ export const any = curry((search, iter) => {
   return false;
 });
 
-export const append = curry((item, iter) => iter.constructor(item, ...iter));
+export const append = curry((item, iter) => iter.constructor(...iter, item));
 
 // Returns Option, not value
 export const at = curry((i, iter) => {
@@ -63,7 +63,7 @@ export const count = (search, iter) => {
 
 // assumes all iterables are of the same kind, otherwise will construct an iterable of the same type as the first
 export const concat = (...iters) =>
-  iter[0].constructor(concatToArray(...iters));
+  iters[0].constructor(concatToArray(...iters));
 
 export const concatToArray = (...iters) =>
   iters.reduce((arr, iter) => arr.concat([...iter]), []);
