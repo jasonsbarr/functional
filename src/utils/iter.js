@@ -335,7 +335,7 @@ export const exclude = reject;
 export const compact = (iter) =>
   reject((item) => isNil(item) || Number.isNaN(item), iter);
 
-export const remove = (search, iter) => {
+export const remove = curry((search, iter) => {
   let result = [];
   for (let item of iter) {
     if (typeof search === "function") {
@@ -347,7 +347,7 @@ export const remove = (search, iter) => {
     }
   }
   return iter.constructor(...result);
-};
+});
 
 export const reverse = (iter) => iter.constructor([...iter].reverse());
 
