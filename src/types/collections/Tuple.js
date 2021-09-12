@@ -262,6 +262,10 @@ class Tuple extends Array {
     return toArray(this);
   }
 
+  toJSON() {
+    return JSON.stringify(this.toArray());
+  }
+
   toString() {
     return `Tuple(${super.toString().split(",").join(", ")})`;
   }
