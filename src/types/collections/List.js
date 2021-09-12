@@ -55,6 +55,7 @@ import {
   symmetricDifference,
   to,
   union,
+  mapWithIndex,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -277,6 +278,10 @@ class Cons extends Array {
 
   map(fn) {
     return map(fn, this);
+  }
+
+  mapWithIndex(fn) {
+    return mapWithIndex(fn, this);
   }
 
   max() {

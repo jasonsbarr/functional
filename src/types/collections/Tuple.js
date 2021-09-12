@@ -55,6 +55,7 @@ import {
   symmetricDifference,
   to,
   union,
+  mapWithIndex,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -272,6 +273,10 @@ class Tuple extends Array {
 
   map(fn) {
     return map(fn, this);
+  }
+
+  mapWithIndex(fn) {
+    return mapWithIndex(fn, this);
   }
 
   max() {

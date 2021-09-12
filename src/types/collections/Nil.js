@@ -186,6 +186,10 @@ class Nil {
     return this;
   }
 
+  mapWithIndex(fn) {
+    return this;
+  }
+
   max() {
     return None(null);
   }

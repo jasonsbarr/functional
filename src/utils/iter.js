@@ -230,6 +230,16 @@ export const map = curry((fn, iter) => {
   return iter.constructor(...temp);
 });
 
+export const mapWithIndex = curry((fn, iter) => {
+  let temp = [];
+  let i = 0;
+  for (let item of iter) {
+    temp.push(fn(item, i));
+    i++;
+  }
+  return iter.constructor(...temp);
+});
+
 // returns Option
 export const median = (iter) => {
   const temp = [...iter];
@@ -460,5 +470,3 @@ export const union = (iter1, iter2) => {
 export const unique = (iter) => iter.constructor(...[...new Set([...iter])]);
 
 export const unshift = append;
-
-export const zip = (...iters) => {};
