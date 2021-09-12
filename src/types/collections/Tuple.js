@@ -413,14 +413,9 @@ class Tuple extends Array {
     return this.prepend(item);
   }
 
-  // returns an iter full of iters of Options
+  // unsafe - may contain null values
   zip(...iters) {
     return zip(this, ...iters);
-  }
-
-  // can return null values in iters
-  zipUnsafe(...iters) {
-    return zipUnsafe(this, ...iters);
   }
 }
 

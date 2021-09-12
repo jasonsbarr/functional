@@ -322,16 +322,9 @@ class Nil {
     return list(item);
   }
 
-  // returns an iter of iters full of Options
+  // unsafe - can contain null values
   zip(...iters) {
-    const [iter, ...rest] = iters;
-    return zip(iter, ...rest);
-  }
-
-  // can return iters with null values in them
-  zipUnsafe(...iters) {
-    const [iter, ...rest] = iters;
-    return zipUnsafe(iter, ...rest);
+    return zip(...iters);
   }
 
   [Symbol.iterator]() {
