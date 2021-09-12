@@ -498,7 +498,7 @@ export const zipUnsafe = (...iters) =>
     return map(
       (iter) =>
         get(i, iter).fold(
-          (x) => x,
+          (_) => null,
           (x) => x
         ),
       iters
