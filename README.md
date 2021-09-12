@@ -8,6 +8,8 @@ Most people who are deeply familiar with functional programming are probably ok 
 
 The [documentation](https://github.com/jasonsbarr/functional/wiki) is a work in progress.
 
+I'm pretty sure there are still tons of bugs, so if you find any feel free to let me know or submit a pull request.
+
 ## Features
 
 - Option, Result, and Either types to eliminate null checks and provide better error handling
