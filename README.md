@@ -17,5 +17,6 @@ This library is my attempt to have my functional cake and eat a fluent-style obj
 
 - Functions that will let you treat objects like iterables
 - Persistent, immutable collection types
-- More types (currently I've just implemented the ones I needed for a work project)
+- More types
 - A larger collection of utility functions and helpers
+- Parity between Future and Promise interfaces
