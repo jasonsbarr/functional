@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
-  "homepage": "https://github.com/jasonsbarr/functional#readme",
+  "homepage": "https://github.com/jasonsbarr/functional/wiki/Fluent-Functional-Programming-in-JavaScript",
   "dependencies": {
     "object-hash": "^2.2.0"
   }
