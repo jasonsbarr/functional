@@ -220,6 +220,22 @@ export class Future extends Deferred {
   inspect() {
     return this.toString();
   }
+
+  isPending() {
+    return this.state === "Pending";
+  }
+
+  isCancelled() {
+    return this.state === "Cancelled";
+  }
+
+  isRejected() {
+    return this.state === "Rejected";
+  }
+
+  isResolved() {
+    return this.state === "Resolved";
+  }
 }
 
 export const future = ({ onCancelled = noop, onRejected, onResolved }) => {
