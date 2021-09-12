@@ -30,7 +30,8 @@ export const at = curry((i, iter) => {
   return Option.of(i < 0 ? temp[temp.length - i] : temp[i]);
 });
 
-export const average = (iter) => {};
+export const average = (iter) =>
+  iter.reduce((sum, i) => sum + i, 0) / length(iter);
 
 export const clone = (iter) => {};
 
@@ -181,6 +182,9 @@ export const lastIndexOf = (iter, value, startIndex = length(iter) - 1) => {
 export const least = (map, iter) => {};
 
 export const length = (iter) => [...iter].length;
+
+export const average = (iter) =>
+  iter.reduce((sum, i) => sum + i, 0) / length(iter);
 
 export const map = curry((fn, iter) => {
   let temp = [];
