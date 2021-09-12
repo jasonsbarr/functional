@@ -4,9 +4,11 @@ I love functional programming, but I have to use JavaScript for my projects at w
 
 This library is my attempt to have my functional cake and eat a fluent-style object interface too.
 
+Most people who are deeply familiar with functional programming are probably ok with not having a fluent object interface, but I think it might be helpful for people who are new to the functional programming world or just want to be able to do something like use Option for better null checking. I personally prefer having chained methods especially in the absence of a JavaScript pipeline operator.
+
 ## Features
 
-- Optional, Result, and Either types to eliminate null checks and provide better error handling
+- Option, Result, and Either types to eliminate null checks and provide better error handling
 - Functional helpers for composition, currying, and more
 - Collection types with more functionality than what JS arrays give you out-of-the-box
 - All monadic types have a fluent interface that lets you chain methods like a boss
