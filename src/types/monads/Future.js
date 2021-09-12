@@ -5,7 +5,7 @@ import axios from "axios";
 // Match execution state to resolver function
 const matchWith = (pattern, state) => {
   if (state.name in pattern) {
-    // this works because Cancelled doesn't take an argument, so undefined for it is fine
+    // this works because Cancelled doesn't take an argument, so it's fine if state.reason is undefined
     return pattern[state.name]("value" in state ? state.value : state.reason);
   }
   throw new Error(`${state.name} not found in pattern`);
@@ -173,6 +173,31 @@ export class Future extends Deferred {
     return pred(val) ? this.resolve(val) : this.reject(val);
   }
 
+  // Function order is changed for parity with Promise interface
+  then(resolveF, rejectF = noop) {
+    return this.listen({
+      onCancelled: noop,
+      onRejected: rejectF,
+      onResolved: resolveF,
+    });
+  }
+
+  catch(rejectF) {
+    return this.listen({
+      onCancelled: noop,
+      onRejected: rejectF,
+      onResolved: noop,
+    });
+  }
+
+  finally(fn) {
+    return this.listen({
+      onCancelled: fn,
+      onRejected: fn,
+      onResolved: fn,
+    });
+  }
+
   promise() {
     return new Promise((resolve, reject) => {
       this.listen({
@@ -228,3 +253,15 @@ Future.fromCallback =
     });
     return deferred;
   };
+
+// For parity with Promise interface
+Future.resolve = Future.of;
+Future.reject = Future.rejected;
+
+Future.all = (futures) => {};
+
+Future.allSettled = (futures) => {};
+
+Future.any = (futures) => {};
+
+Future.race = (futures) => {};
