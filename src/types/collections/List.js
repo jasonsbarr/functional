@@ -47,6 +47,7 @@ import {
   min,
   none,
   product,
+  remove,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -315,6 +316,10 @@ class Cons extends Array {
 
   reject(pred) {
     return reject(pred, this);
+  }
+
+  remove(search) {
+    return remove(search, this);
   }
 
   reverse() {

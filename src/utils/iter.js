@@ -310,7 +310,19 @@ export const exclude = reject;
 export const compact = (iter) =>
   reject((item) => isNil(item) || Number.isNaN(item), iter);
 
-export const remove = (search, iter) => {};
+export const remove = (search, iter) => {
+  let result = [];
+  for (let item of iter) {
+    if (typeof search === "function") {
+      if (!search(item)) result.push(item);
+    } else if (search instanceof RegExp) {
+      if (!search.test(item)) result.push(item);
+    } else {
+      if (!equals(search, item)) result.push(item);
+    }
+  }
+  return iter.constructor(...result);
+};
 
 export const removeAt = (start, end, iter) => {};
 

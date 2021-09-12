@@ -230,6 +230,10 @@ class Nil {
     return this;
   }
 
+  remove(search) {
+    return this;
+  }
+
   reverse() {
     return this;
   }

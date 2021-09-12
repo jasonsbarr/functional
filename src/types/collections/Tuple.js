@@ -47,6 +47,7 @@ import {
   min,
   none,
   product,
+  remove,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -310,6 +311,10 @@ class Tuple extends Array {
 
   reject(pred) {
     return reject(pred, this);
+  }
+
+  remove(search) {
+    return remove(search, this);
   }
 
   reverse() {
