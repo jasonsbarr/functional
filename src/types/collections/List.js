@@ -56,6 +56,8 @@ import {
   to,
   union,
   mapWithIndex,
+  zip,
+  zipUnsafe,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -420,6 +422,14 @@ class Cons extends Array {
   // unlike the array method, this does NOT mutate the current object
   unshift(item) {
     return this.prepend(item);
+  }
+
+  zip(...iters) {
+    return zip(this, ...iters);
+  }
+
+  zipUnsafe(...iters) {
+    return zipUnsafe(this, ...iters);
   }
 
   [Symbol.iterator]() {

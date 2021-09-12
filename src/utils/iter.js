@@ -470,3 +470,32 @@ export const union = (iter1, iter2) => {
 export const unique = (iter) => iter.constructor(...[...new Set([...iter])]);
 
 export const unshift = append;
+
+// returns an iterable full of Options
+export const zip = (iter, ...iters) =>
+  mapWithIndex(
+    (el, i) =>
+      concat(
+        iter.constructor(el),
+        map((k) => get(i, k), iter.constructor(...iters))
+      ),
+    iter
+  );
+
+// unsafe - can return null values
+export const zipUnsafe = (iter, ...iters) =>
+  mapWithIndex(
+    (el, i) =>
+      concat(
+        iter.constructor(el),
+        map(
+          (k) =>
+            get(i, k).fold(
+              (x) => x,
+              (x) => x
+            ),
+          iter.constructor(...iters)
+        )
+      ),
+    iter
+  );

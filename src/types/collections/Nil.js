@@ -1,3 +1,4 @@
+import { zip, zipUnsafe } from "../../utils/iter";
 import { None } from "../monads/Option";
 import { list } from "./List";
 
@@ -319,6 +320,16 @@ class Nil {
 
   unshift(item) {
     return list(item);
+  }
+
+  zip(...iters) {
+    const [iter, ...rest] = iters;
+    return zip(iter, ...rest);
+  }
+
+  zipUnsafe(...iters) {
+    const [iter, ...rest] = iters;
+    return zipUnsafe(iter, ...rest);
   }
 
   [Symbol.iterator]() {

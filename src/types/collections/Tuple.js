@@ -56,6 +56,8 @@ import {
   to,
   union,
   mapWithIndex,
+  zip,
+  zipUnsafe,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -409,6 +411,14 @@ class Tuple extends Array {
   // unlike the array method, this does NOT mutate the current object
   unshift(item) {
     return this.prepend(item);
+  }
+
+  zip(...iters) {
+    return zip(this, ...iters);
+  }
+
+  zipUnsafe(...iters) {
+    return zipUnsafe(this, ...iters);
   }
 }
 
