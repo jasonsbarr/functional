@@ -45,6 +45,7 @@ import {
   max,
   median,
   min,
+  none,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -270,6 +271,10 @@ class Tuple extends Array {
 
   min() {
     return min(this);
+  }
+
+  none(search) {
+    return none(search, this);
   }
 
   pluck(numItems) {

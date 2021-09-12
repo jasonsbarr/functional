@@ -45,6 +45,7 @@ import {
   max,
   median,
   min,
+  none,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -275,6 +276,10 @@ class Cons extends Array {
 
   min() {
     return min(this);
+  }
+
+  none(search) {
+    return none(search, this);
   }
 
   pluck(numItems) {

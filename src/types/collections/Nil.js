@@ -194,6 +194,10 @@ class Nil {
     return None(null);
   }
 
+  none() {
+    return true;
+  }
+
   pluck(numItems) {
     return this;
   }
