@@ -38,6 +38,7 @@ import {
   count,
   difference,
   from,
+  insert,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -209,6 +210,10 @@ class Tuple extends Array {
   // returns Option
   indexOf(value, start = 0) {
     return indexOf(this, value, start);
+  }
+
+  insert(item, i) {
+    return insert(item, i, this);
   }
 
   inspect() {

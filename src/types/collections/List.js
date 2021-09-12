@@ -38,6 +38,7 @@ import {
   count,
   difference,
   from,
+  insert,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -206,6 +207,10 @@ class Cons extends Array {
   // returns Option
   indexOf(value, start = 0) {
     return indexOf(this, value, start);
+  }
+
+  insert(item, i) {
+    return insert(item, i, this);
   }
 
   inspect() {

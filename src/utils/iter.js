@@ -146,8 +146,6 @@ export const forEach = each;
 // returns Option
 export const get = at;
 
-export const groupBy = (map, iter) => {};
-
 // works with any value, including objects
 export const includes = curry((value, iter) => {
   for (let item of iter) {
@@ -169,8 +167,6 @@ export const indexOf = (iter, value, start = 0) => {
   }
   return None(null);
 };
-
-export const insert = curry((item, i, iter) => {});
 
 export const intersect = (iter1, iter2) => {};
 
@@ -339,6 +335,8 @@ export const splice = (iter, start = 0, deleteCount = 0, ...items) => {
   temp.splice(start, deleteCount, ...items);
   return iter.constructor(...temp);
 };
+
+export const insert = curry((item, i, iter) => splice(iter, i, 0, item));
 
 export const subtract = (item, iter) => {};
 

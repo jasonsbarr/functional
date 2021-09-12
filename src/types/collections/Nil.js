@@ -134,6 +134,10 @@ class Nil {
     return None(null);
   }
 
+  insert(item, i) {
+    return list(item);
+  }
+
   inspect() {
     return this.toString();
   }
