@@ -3,7 +3,7 @@
  */
 
 export const Result = {
-  of: (x) => (x instanceof Error ? Ok(x) : Err(x)),
+  of: (x) => (x instanceof Error ? Err(x) : Ok(x)),
   isOk: (obj) => obj.kind === "Ok",
   isErr: (obj) => obj.kind === "Err",
   isResult: (obj) => obj.kind === "Ok" || obj.kind === "Err",
