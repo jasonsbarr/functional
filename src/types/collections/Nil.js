@@ -210,6 +210,10 @@ class Nil {
     return list(item);
   }
 
+  product() {
+    return None(null);
+  }
+
   push(item) {
     return list(item);
   }

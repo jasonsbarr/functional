@@ -46,6 +46,7 @@ import {
   median,
   min,
   none,
+  product,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -288,6 +289,10 @@ class Tuple extends Array {
 
   prepend(item) {
     return prepend(item, this);
+  }
+
+  product() {
+    return product(this);
   }
 
   // unlike the array method, this does NOT mutate the current object

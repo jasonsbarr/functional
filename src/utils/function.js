@@ -44,12 +44,6 @@ export const defer =
 export const getArrayFromArgs = (...args) =>
   isIterable(args[0]) && typeof args[0] !== "string" ? [...args[0]] : args;
 
-export const sum = (...args) =>
-  getArrayFromArgs(args).reduce((acc, x) => acc + x, 0);
-
-export const product = (...args) =>
-  getArrayFromArgs(args).reduce((acc, x) => acc * x, 1);
-
 // curry functions and their dependencies stolen from Ramda
 const _arity = (n, fn) => {
   /* eslint-disable no-unused-vars */

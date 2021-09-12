@@ -46,6 +46,7 @@ import {
   median,
   min,
   none,
+  product,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -289,6 +290,10 @@ class Cons extends Array {
   // returns Option, not value
   pop() {
     return this.last();
+  }
+
+  product() {
+    return product(this);
   }
 
   prepend(item) {
