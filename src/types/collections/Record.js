@@ -58,6 +58,10 @@ const recordProto = {
     return false;
   },
 
+  inspect() {
+    return this.toString();
+  },
+
   isRecord() {
     return true;
   },
@@ -73,9 +77,17 @@ const recordProto = {
     return this.constructor.of({ ...this, [key]: value });
   },
 
+  toJSON() {
+    return JSON.stringify(this.toObject());
+  },
+
   toObject() {
     return { ...this };
   },
+
+  toString() {
+    return JSON.stringify(this.toObject(), null, 2);
+  }
 
   // takes function to update value, function takes Option.of(currentValue) so must unpack the Option
   // unknown keys will not be assigned to the new Record

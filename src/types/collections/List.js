@@ -267,6 +267,10 @@ class Cons extends Array {
     return toArray(this);
   }
 
+  toJSON() {
+    return JSON.stringify(this.toArray());
+  }
+
   toString() {
     let arrStr = [...this].toString();
     let strArr = arrStr.split(",");

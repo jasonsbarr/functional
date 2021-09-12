@@ -197,6 +197,10 @@ class Nil {
     return [];
   }
 
+  toJSON() {
+    return JSON.stringify(null);
+  }
+
   toString() {
     return "Nil()";
   }

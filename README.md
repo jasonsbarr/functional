@@ -12,6 +12,7 @@ This library is my attempt to have my functional cake and eat a fluent-style obj
 - All monadic types have a fluent interface that lets you chain methods like a boss
 - A Future type to represent asynchronous computations without some of the pitfalls of Promises
 - Lightweight, immutable Records
+- A Nil collection type that represents the empty List and lets you use the collection interface without having to worry about whether a value exists
 
 ## Roadmap features
 
