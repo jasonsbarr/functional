@@ -1,6 +1,5 @@
 import { define } from "../utils/object.js";
 import { noop } from "../utils/functions.js";
-import axios from "axios";
 
 // Match execution state to resolver function
 const matchWith = (pattern, state) => {
@@ -167,6 +166,10 @@ export class Future extends Deferred {
       default:
         throw new Error("Unknown state");
     }
+  }
+
+  fold({ onCancelled = noop, onRejected, onResolved }) {
+    return this.fork({ onCancelled, onRejected, onResolved });
   }
 
   finalize(pred, val) {
