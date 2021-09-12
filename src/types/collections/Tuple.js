@@ -34,6 +34,7 @@ import {
   slice,
   pluck,
   average,
+  unique,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -286,6 +287,10 @@ class Tuple extends Array {
 
   toString() {
     return `Tuple(${super.toString().split(",").join(", ")})`;
+  }
+
+  unique() {
+    return unique(this);
   }
 
   // unlike the array method, this does NOT mutate the current object

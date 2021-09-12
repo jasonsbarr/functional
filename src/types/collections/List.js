@@ -34,6 +34,7 @@ import {
   slice,
   pluck,
   average,
+  unique,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -297,6 +298,10 @@ class Cons extends Array {
         ? "'(" + strArr.join(" . ") + ")"
         : "'(" + strArr.join(" ") + ")";
     return str;
+  }
+
+  unique() {
+    return unique(this);
   }
 
   // unlike the array method, this does NOT mutate the current object

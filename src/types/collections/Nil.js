@@ -221,6 +221,10 @@ class Nil {
     return "Nil()";
   }
 
+  unique() {
+    return this;
+  }
+
   unshift(item) {
     return list(item);
   }

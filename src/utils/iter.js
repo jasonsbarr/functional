@@ -337,7 +337,7 @@ export const toArray = (iter) => [...iter];
 
 export const union = (iter1, iter2) => {};
 
-export const unique = (iter) => {};
+export const unique = (iter) => iter.constructor(...[...new Set([...iter])]);
 
 export const unshift = append;
 
