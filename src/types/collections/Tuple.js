@@ -121,6 +121,10 @@ class Tuple extends Array {
     return this.all(pred);
   }
 
+  exclude(pred) {
+    return this.reject(pred);
+  }
+
   filter(pred) {
     return filter(pred, this);
   }

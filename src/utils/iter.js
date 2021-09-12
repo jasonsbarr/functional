@@ -30,6 +30,12 @@ export const at = curry((i, iter) => {
   return Option.of(i < 0 ? temp[temp.length - i] : temp[i]);
 });
 
+export const average = (iter) => {};
+
+export const clone = (iter) => {};
+
+export const count = (search, iter) => {};
+
 // assumes all iterables are of the same kind, otherwise will construct an iterable of the same type as the first
 export const concat = (...iters) =>
   iter[0].constructor(concatToArray(...iters));
@@ -42,6 +48,8 @@ export const copy = (iter) => iter.constructor(...[...iter]);
 // have to do data-first due to optional arguments
 export const copyWithin = (iter, target, start, end) =>
   iter.constructor(...[...iter].copyWithin(target, start, end));
+
+export const difference = (iter1, iter2) => {};
 
 export const each = curry((fn, iter) => {
   for (let item of iter) {
@@ -117,8 +125,12 @@ export const flatMap = chain;
 
 export const forEach = each;
 
+export const from = (i, iter) => {};
+
 // returns Option
 export const get = at;
+
+export const groupBy = (map, iter) => {};
 
 // works with any value, including objects
 export const includes = curry((value, iter) => {
@@ -142,6 +154,14 @@ export const indexOf = (iter, value, start = 0) => {
   return None(null);
 };
 
+export const insert = curry((item, i, iter) => {});
+
+export const intersect = (iter1, iter2) => {};
+
+export const isEmpty = (iter) => {};
+
+export const isEqual = (iter1, iter2) => {};
+
 export const join = curry((sep, iter) => [...iter].join(sep));
 
 // returns option
@@ -158,6 +178,8 @@ export const lastIndexOf = (iter, value, startIndex = length(iter) - 1) => {
   return None(null);
 };
 
+export const least = (map, iter) => {};
+
 export const length = (iter) => [...iter].length;
 
 export const map = curry((fn, iter) => {
@@ -168,10 +190,22 @@ export const map = curry((fn, iter) => {
   return iter.constructor(...temp);
 });
 
+export const max = (iter) => {};
+
+export const median = (iter) => {};
+
+export const min = (iter) => {};
+
+export const most = (map, iter) => {};
+
+export const none = (search, iter) => {};
+
 // returns Option
 export const pop = last;
 
 export const prepend = curry((item, iter) => iter.constructor(item, ...iter));
+
+export const product = (iter) => {};
 
 export const push = append;
 
@@ -203,13 +237,23 @@ export const reject = curry((pred, iter) => {
   return temp.length ? iter.constructor(...temp) : iter.constructor();
 });
 
+export const exclude = reject;
+
 export const compact = (iter) =>
   reject((item) => isNil(item) || Number.isNaN(item), iter);
 
+export const remove = (search, iter) => {};
+
+export const removeAt = (start, end, iter) => {};
+
 export const reverse = (iter) => iter.constructor([...iter].reverse());
+
+export const sample = (iter) => {};
 
 // returns Option
 export const shift = first;
+
+export const shuffle = (iter) => {};
 
 export function slice(iter, start, end, step) {
   const args = compact([...arguments]).slice(1);
@@ -275,8 +319,22 @@ export const splice = (iter, start = 0, deleteCount = 0, ...items) => {
   return iter.constructor(...temp);
 };
 
+export const subtract = (item, iter) => {};
+
+export const sum = (iter) => {};
+
+export const symmetricDifference = (iter1, iter2) => {};
+
 export const take = pluck;
+
+export const to = (index, iter) => {};
 
 export const toArray = (iter) => [...iter];
 
+export const union = (iter1, iter2) => {};
+
+export const unique = (iter) => {};
+
 export const unshift = append;
+
+export const zip = (...iters) => {};

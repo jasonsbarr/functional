@@ -56,6 +56,10 @@ class Nil {
     return this.all(pred);
   }
 
+  exclude(pred) {
+    return this.reject(pred);
+  }
+
   filter(pred) {
     return this;
   }
