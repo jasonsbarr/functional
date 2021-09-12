@@ -28,9 +28,7 @@ export const at = curry((i, iter) => {
   return Option.of(i < 0 ? temp[temp.length - i] : temp[i]);
 });
 
-export const chain = curry((fn, iter) => map(fn, flatten(iter)));
-
-// assumes all iterables are of the same kind
+// assumes all iterables are of the same kind, otherwise will construct an iterable of the same type as the first
 export const concat = (...iters) =>
   iter[0].constructor(concatToArray(...iters));
 
@@ -96,8 +94,6 @@ export const findIndex = curry((pred, iter) => {
 // Returns Option
 export const first = at(0);
 
-export const flatMap = chain;
-
 // flattens completely or to specified level of depth
 export const flatten = (iter, level = Infinity, current = 0) => {
   // iter.constructor(concatToArray(...iter));
@@ -112,6 +108,10 @@ export const flatten = (iter, level = Infinity, current = 0) => {
   return iter.constructor(...result);
 };
 export const flat = flatten;
+
+export const chain = curry((fn, iter) => map(fn, flatten(iter)));
+
+export const flatMap = chain;
 
 export const forEach = each;
 
@@ -166,8 +166,6 @@ export const map = curry((fn, iter) => {
   return iter.constructor(...temp);
 });
 
-export const pluck = (numItems, iter) => slice(iter, 0, numItems, 1);
-
 // returns Option
 export const pop = last;
 
@@ -206,7 +204,7 @@ export const reject = curry((pred, iter) => {
 export const compact = (iter) =>
   reject((item) => isNil(item) || Number.isNaN(item), iter);
 
-export const reverse = (iter) => [...iter].reverse();
+export const reverse = (iter) => iter.constructor([...iter].reverse());
 
 // returns Option
 export const shift = first;
@@ -237,6 +235,8 @@ export function slice(iter, start, end, step) {
 
   return iter.constructor(...result);
 }
+
+export const pluck = (numItems, iter) => slice(iter, 0, numItems, 1);
 
 export const some = any;
 
