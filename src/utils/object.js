@@ -30,3 +30,11 @@ export const extend = (target, ...sources) => {
 };
 
 export const hash = (object) => objectHash(object);
+
+export const is = (obj1, obj2) => Object.is(obj1, obj2);
+
+export const getKeys = (obj) => Object.keys(obj);
+
+export const getValues = (obj) => Object.values(obj);
+
+export const getEntries = (obj) => Object.entries(obj);
