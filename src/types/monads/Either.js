@@ -9,30 +9,123 @@ export const Either = {
   isEither: (obj) => obj.kind === "Right" || obj.kind === "Left",
 };
 
-export const Right = (x) => ({
-  kind: "Right",
-  value: x,
-  map: (f) => Right(f(x)),
-  chain: (f) => f(x),
-  fold: (f, g) => g(x),
-  inspect: () => `Right(${x})`,
-  isLeft: () => false,
-  isRight: () => true,
-  concat: (o) =>
-    o.fold(
+class R {
+  constructor(value) {
+    Object.defineProperty(this, "_value", {
+      configurable: false,
+      enumerable: true,
+      writable: false,
+      value: value,
+    });
+
+    Object.defineProperty(this, "kind", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: "Right",
+    });
+
+    Object.defineProperty(this, "constructor", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: Right,
+    });
+  }
+
+  get value() {
+    return this._value;
+  }
+
+  map(f) {
+    return Right(f(x));
+  }
+
+  chain(f) {
+    return f(x);
+  }
+
+  fold(f, g) {
+    return g(x);
+  }
+  inspect() {
+    return `Right(${x})`;
+  }
+  isLeft() {
+    return false;
+  }
+  isRight() {
+    return true;
+  }
+  concat(o) {
+    return o.fold(
       (l) => Left(l),
       (r) => Right(x.concat(r))
-    ),
-});
+    );
+  }
 
-export const Left = (x) => ({
-  kind: "Left",
-  value: x,
-  map: (f) => Left(x),
-  chain: (f) => Left(x),
-  fold: (f, g) => f(x),
-  inspect: () => `Left(${x})`,
-  isLeft: () => true,
-  isRight: () => false,
-  concat: (o) => Left(x),
-});
+  toString() {
+    return this.inspect();
+  }
+}
+
+export const Right = (x) => new R(x);
+
+class L {
+  constructor(value) {
+    Object.defineProperty(this, "_value", {
+      configurable: false,
+      enumerable: true,
+      writable: false,
+      value: value,
+    });
+
+    Object.defineProperty(this, "kind", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: "Left",
+    });
+
+    Object.defineProperty(this, "constructor", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: Left,
+    });
+  }
+
+  get value() {
+    return this._value;
+  }
+
+  map(f) {
+    return Left(x);
+  }
+  chain(f) {
+    return Left(x);
+  }
+  fold(f, g) {
+    return f(x);
+  }
+  inspect() {
+    return `Left(${x})`;
+  }
+  isLeft() {
+    return true;
+  }
+  isRight() {
+    return false;
+  }
+  concat(o) {
+    return Left(x);
+  }
+
+  toString() {
+    return this.inspect();
+  }
+}
+
+export const Left = (x) => new L(x);
+
+console.log(Right(10));
