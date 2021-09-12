@@ -63,12 +63,12 @@ export const count = (search, iter) => {
   return count;
 };
 
-// assumes all iterables are of the same kind, otherwise will construct an iterable of the same type as the first
-export const concat = (...iters) =>
-  iters[0].constructor(concatToArray(...iters));
-
 export const concatToArray = (...iters) =>
   iters.reduce((arr, iter) => arr.concat([...iter]), []);
+
+// assumes all iterables are of the same kind, otherwise will construct an iterable of the same type as the first
+export const concat = (...iters) =>
+  iters[0].constructor(...concatToArray(...iters));
 
 export const copy = (iter) => iter.constructor(...[...iter]);
 
@@ -159,7 +159,7 @@ export const chain = curry((fn, iter) => map(fn, flatten(iter)));
 
 export const flatMap = chain;
 
-export const forEach = each;
+export const forEach = eachWithIndex;
 
 // returns Option
 export const get = at;
