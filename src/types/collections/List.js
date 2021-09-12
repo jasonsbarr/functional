@@ -42,6 +42,9 @@ import {
   intersection,
   isEmpty,
   isEqual,
+  max,
+  median,
+  min,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -260,6 +263,18 @@ class Cons extends Array {
 
   map(fn) {
     return map(fn, this);
+  }
+
+  max() {
+    return max(this);
+  }
+
+  median() {
+    return median(this);
+  }
+
+  min() {
+    return min(this);
   }
 
   pluck(numItems) {

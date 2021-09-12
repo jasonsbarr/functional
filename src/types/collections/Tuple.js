@@ -42,6 +42,9 @@ import {
   intersection,
   isEmpty,
   isEqual,
+  max,
+  median,
+  min,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -255,6 +258,18 @@ class Tuple extends Array {
 
   map(fn) {
     return map(fn, this);
+  }
+
+  max() {
+    return max(this);
+  }
+
+  median() {
+    return median(this);
+  }
+
+  min() {
+    return min(this);
   }
 
   pluck(numItems) {

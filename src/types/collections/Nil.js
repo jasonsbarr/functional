@@ -182,6 +182,18 @@ class Nil {
     return this;
   }
 
+  max() {
+    return None(null);
+  }
+
+  median() {
+    return None(null);
+  }
+
+  min() {
+    return None(null);
+  }
+
   pluck(numItems) {
     return this;
   }

@@ -195,12 +195,7 @@ export const lastIndexOf = (iter, value, startIndex = length(iter) - 1) => {
   return None(null);
 };
 
-export const least = (map, iter) => {};
-
 export const length = (iter) => [...iter].length;
-
-export const average = (iter) =>
-  iter.reduce((sum, i) => sum + i, 0) / length(iter);
 
 export const isEmpty = (iter) => {
   return length(iter) === 0;
@@ -214,13 +209,15 @@ export const map = curry((fn, iter) => {
   return iter.constructor(...temp);
 });
 
-export const max = (iter) => {};
-
-export const median = (iter) => {};
-
-export const min = (iter) => {};
-
-export const most = (map, iter) => {};
+// returns Option
+export const median = (iter) => {
+  const temp = [...iter];
+  const mid = Math.floor(temp.length / 2);
+  temp.sort((a, b) => a - b);
+  return Option.of(
+    temp.length % 2 === 0 ? (temp[mid - 1] + temp[mid]) / 2 : temp[mid]
+  );
+};
 
 export const none = (search, iter) => {};
 
@@ -243,6 +240,20 @@ export const reduce = curry((fn, initial, iter) => {
 
 export const fold = reduce;
 export const foldLeft = reduce;
+
+// returns Option
+export const average = (iter) =>
+  Option.of(reduce((sum, i) => sum + i, 0, iter) / length(iter));
+
+// returns Option
+export const max = (iter) =>
+  Option.of(reduce((big, cur) => (big > cur ? big : cur), -Infinity, iter));
+
+// returns Option
+export const min = (iter) =>
+  Option.of(
+    reduce((small, cur) => (small < cur ? small : cur), Infinity, iter)
+  );
 
 export const reduceRight = curry((fn, initial, iter) => {
   const temp = [...iter];
