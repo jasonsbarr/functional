@@ -1,7 +1,7 @@
 import { Option, None, Some } from "../types/monads/Option.js";
 import { curry } from "./function.js";
 import { isNil } from "./nil.js";
-import { equal } from "./equal.js";
+import { equals } from "./equals.js";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
@@ -121,7 +121,7 @@ export const get = at;
 // works with any value, including objects
 export const includes = curry((value, iter) => {
   for (let item of iter) {
-    if (equal(item, value)) {
+    if (equals(item, value)) {
       return true;
     }
   }
@@ -132,7 +132,7 @@ export const includes = curry((value, iter) => {
 export const indexOf = (iter, value, start = 0) => {
   let i = 0;
   for (let item of iter) {
-    if (i <= start && equal(item, value)) {
+    if (i <= start && equals(item, value)) {
       return Some(i);
     }
     i++;
@@ -149,7 +149,7 @@ export const last = (iter) => at(length(iter) - 1, iter);
 export const lastIndexOf = (iter, value, startIndex = length(iter) - 1) => {
   const temp = [...iter];
   for (let i = startIndex; i >= 0; i--) {
-    if (equal(temp[i], value)) {
+    if (equals(temp[i], value)) {
       return Some(i);
     }
   }

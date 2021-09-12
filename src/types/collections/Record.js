@@ -1,5 +1,5 @@
 import { hash } from "../../utils/object.js";
-import { equal } from "../../utils/equal.js";
+import { equals } from "../../utils/equals.js";
 import { Option } from "../monads/Option.js";
 
 const recordProto = {
@@ -26,7 +26,7 @@ const recordProto = {
 
   // checks for deep equality
   equals(other) {
-    return equal(this, other);
+    return equals(this, other);
   },
 
   get(key) {
@@ -51,7 +51,7 @@ const recordProto = {
 
   hasValue(value) {
     for (let key in Object.keys(this)) {
-      if (equal(this[key], value)) {
+      if (equals(this[key], value)) {
         return true;
       }
     }
