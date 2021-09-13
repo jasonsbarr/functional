@@ -9,7 +9,7 @@ class Eff {
 
     Object.defineProperty(this, "kind", {
       configurable: false,
-      enumerable: false,
+      enumerable: true,
       writable: false,
       value: "Effect",
     });

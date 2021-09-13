@@ -25,7 +25,7 @@ class S {
 
     Object.defineProperty(this, "kind", {
       configurable: false,
-      enumerable: false,
+      enumerable: true,
       writable: false,
       value: "Some",
     });
@@ -97,7 +97,7 @@ class N {
 
     Object.defineProperty(this, "kind", {
       configurable: false,
-      enumerable: false,
+      enumerable: true,
       writable: false,
       value: "None",
     });

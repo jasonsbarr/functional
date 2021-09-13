@@ -77,6 +77,15 @@ class Deferred {
 }
 
 export class Future extends Deferred {
+  constructor() {
+    Object.defineProperty(this, "kind", {
+      configurable: false,
+      enumerable: true,
+      writable: false,
+      value: "Future",
+    });
+  }
+
   get state() {
     return this._state;
   }
