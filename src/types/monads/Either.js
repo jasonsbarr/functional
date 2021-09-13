@@ -48,20 +48,28 @@ class R {
   fold(f, g) {
     return g(x);
   }
+
   inspect() {
     return `Right(${x})`;
   }
+
   isLeft() {
     return false;
   }
+
   isRight() {
     return true;
   }
+
   concat(o) {
     return o.fold(
       (l) => Left(l),
       (r) => Right(x.concat(r))
     );
+  }
+
+  ap(o) {
+    return o.chain((f) => this.map(f));
   }
 
   toString() {
@@ -102,23 +110,33 @@ class L {
   map(f) {
     return Left(x);
   }
+
   chain(f) {
     return Left(x);
   }
+
   fold(f, g) {
     return f(x);
   }
+
   inspect() {
     return `Left(${x})`;
   }
+
   isLeft() {
     return true;
   }
+
   isRight() {
     return false;
   }
+
   concat(o) {
     return Left(x);
+  }
+
+  ap(o) {
+    return o.chain((f) => this.map(f));
   }
 
   toString() {

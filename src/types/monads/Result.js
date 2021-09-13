@@ -9,33 +9,146 @@ export const Result = {
   isResult: (obj) => obj.kind === "Ok" || obj.kind === "Err",
 };
 
-export const Ok = (x) => ({
-  kind: "Ok",
-  value: x,
-  map: (f) => Result.of(f(x)),
-  chain: (f) => f(x),
-  fold: (f, g) => g(x),
-  inspect: () => `Ok(${x})`,
-  isErr: () => false,
-  isOk: () => true,
-  concat: (o) =>
-    o.fold(
+class O {
+  constructor(value) {
+    this._value = value;
+
+    Object.defineProperty(this, "_value", {
+      configurable: false,
+      enumerable: true,
+      writable: false,
+      value: value,
+    });
+
+    Object.defineProperty(this, "kind", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: "Ok",
+    });
+
+    Object.defineProperty(this, "constructor", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: Ok,
+    });
+  }
+
+  get value() {
+    return this._value;
+  }
+
+  map(f) {
+    return Result.of(f(x));
+  }
+
+  chain(f) {
+    return f(x);
+  }
+
+  fold(f, g) {
+    return g(x);
+  }
+
+  inspect() {
+    return `Ok(${x})`;
+  }
+
+  isErr() {
+    return false;
+  }
+
+  isOk() {
+    return true;
+  }
+
+  concat(o) {
+    return o.fold(
       (e) => Err(e),
       (ok) => Ok(x.concat(ok))
-    ),
-});
+    );
+  }
 
-export const Err = (x) => ({
-  kind: "Err",
-  value: x,
-  map: (f) => Err(x),
-  chain: (f) => Err(x),
-  fold: (f, g) => f(x),
-  inspect: () => `Err(${x})`,
-  isErr: () => true,
-  isOk: () => false,
-  concat: (o) => Err(x),
-});
+  ap(o) {
+    return o.chain((f) => this.map(f));
+  }
+
+  toString() {
+    return this.inspect();
+  }
+}
+
+export const Ok = (x) => new O(x);
+
+class E {
+  constructor(value) {
+    this._value = value;
+
+    Object.defineProperty(this, "_value", {
+      configurable: false,
+      enumerable: true,
+      writable: false,
+      value: value,
+    });
+
+    Object.defineProperty(this, "kind", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: "Err",
+    });
+
+    Object.defineProperty(this, "constructor", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: Err,
+    });
+  }
+
+  get value() {
+    return this._value;
+  }
+
+  map(f) {
+    return Err(x);
+  }
+
+  chain(f) {
+    return Err(x);
+  }
+
+  fold(f, g) {
+    return f(x);
+  }
+
+  inspect() {
+    return `Err(${x})`;
+  }
+
+  isErr() {
+    return true;
+  }
+
+  isOk() {
+    return false;
+  }
+
+  concat(o) {
+    return Err(x);
+  }
+
+  ap(o) {
+    return o.chain((f) => this.map(f));
+  }
+
+  toString() {
+    return this.inspect();
+  }
+}
+
+export const Err = (x) => new E(x);
 
 export const tryCatch = (f) => {
   try {

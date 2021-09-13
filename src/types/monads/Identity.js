@@ -24,6 +24,10 @@ class I {
     });
   }
 
+  get value() {
+    return this._value;
+  }
+
   map(fn) {
     return Identity(fn(x));
   }
@@ -38,6 +42,10 @@ class I {
   }
   concat(o) {
     return Identity(x.concat(o));
+  }
+
+  ap(i) {
+    return i.chain((f) => this.map(f));
   }
 
   toString() {

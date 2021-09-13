@@ -172,6 +172,10 @@ export class Future extends Deferred {
     return this.fork({ onCancelled, onRejected, onResolved });
   }
 
+  ap(other) {
+    return other.chain((f) => this.map(f));
+  }
+
   finalize(pred, val) {
     return pred(val) ? this.resolve(val) : this.reject(val);
   }
