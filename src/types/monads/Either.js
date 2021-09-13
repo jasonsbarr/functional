@@ -108,11 +108,11 @@ class L {
   }
 
   map(f) {
-    return Left(this.value);
+    return this;
   }
 
   chain(f) {
-    return Left(this.value);
+    return this;
   }
 
   fold(f, g) {
@@ -132,7 +132,7 @@ class L {
   }
 
   concat(o) {
-    return Left(this.value);
+    return this;
   }
 
   ap(o) {

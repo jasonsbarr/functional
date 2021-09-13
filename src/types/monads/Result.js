@@ -112,11 +112,11 @@ class E {
   }
 
   map(f) {
-    return Err(this.value);
+    return this;
   }
 
   chain(f) {
-    return Err(this.value);
+    return this;
   }
 
   fold(f, g) {
@@ -136,7 +136,7 @@ class E {
   }
 
   concat(o) {
-    return Err(this.value);
+    return this;
   }
 
   ap(o) {

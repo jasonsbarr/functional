@@ -115,11 +115,11 @@ class N {
   }
 
   map(f) {
-    return None(this.value);
+    return this;
   }
 
   chain(f) {
-    return None(this.value);
+    return this;
   }
 
   fold(f, g) {
@@ -139,7 +139,7 @@ class N {
   }
 
   concat(o) {
-    return Left(this.value);
+    return this;
   }
 
   ap(o) {
