@@ -44,8 +44,8 @@ class I {
     return Identity(this.value.concat(o));
   }
 
-  ap(i) {
-    return i.chain((f) => this.map(f));
+  ap(o) {
+    return this;
   }
 
   toString() {

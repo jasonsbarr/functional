@@ -136,7 +136,7 @@ class L {
   }
 
   ap(o) {
-    return o.chain((f) => this.map(f));
+    return this;
   }
 
   toString() {
