@@ -45,7 +45,7 @@ class I {
   }
 
   ap(o) {
-    return this;
+    return this.map(o.value);
   }
 
   toString() {
