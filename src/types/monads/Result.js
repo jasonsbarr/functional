@@ -40,19 +40,19 @@ class O {
   }
 
   map(f) {
-    return Result.of(f(x));
+    return Result.of(f(this.value));
   }
 
   chain(f) {
-    return f(x);
+    return f(this.value);
   }
 
   fold(f, g) {
-    return g(x);
+    return g(this.value);
   }
 
   inspect() {
-    return `Ok(${x})`;
+    return `Ok(${this.value})`;
   }
 
   isErr() {
@@ -66,7 +66,7 @@ class O {
   concat(o) {
     return o.fold(
       (e) => Err(e),
-      (ok) => Ok(x.concat(ok))
+      (ok) => Ok(this.value.concat(ok))
     );
   }
 
@@ -112,19 +112,19 @@ class E {
   }
 
   map(f) {
-    return Err(x);
+    return Err(this.value);
   }
 
   chain(f) {
-    return Err(x);
+    return Err(this.value);
   }
 
   fold(f, g) {
-    return f(x);
+    return f(this.value);
   }
 
   inspect() {
-    return `Err(${x})`;
+    return `Err(${this.value})`;
   }
 
   isErr() {
@@ -136,7 +136,7 @@ class E {
   }
 
   concat(o) {
-    return Err(x);
+    return Err(this.value);
   }
 
   ap(o) {

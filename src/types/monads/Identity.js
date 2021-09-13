@@ -29,19 +29,19 @@ class I {
   }
 
   map(fn) {
-    return Identity(fn(x));
+    return Identity(fn(this.value));
   }
   chain(fn) {
-    return fn(x);
+    return fn(this.value);
   }
   fold(fn) {
-    return fn(x);
+    return fn(this.value);
   }
   inspect() {
-    return `Identity(${x})`;
+    return `Identity(${this.value})`;
   }
   concat(o) {
-    return Identity(x.concat(o));
+    return Identity(this.value.concat(o));
   }
 
   ap(i) {

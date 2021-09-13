@@ -43,19 +43,19 @@ class S {
   }
 
   map(f) {
-    return Option.of(f(x));
+    return Option.of(f(this.value));
   }
 
   chain(f) {
-    return f(x);
+    return f(this.value);
   }
 
   fold(f, g) {
-    return g(x);
+    return g(this.value);
   }
 
   inspect() {
-    return `Some(${x})`;
+    return `Some(${this.value})`;
   }
 
   isNone() {
@@ -69,7 +69,7 @@ class S {
   concat(x) {
     return o.fold(
       (n) => None(n),
-      (s) => Some(x.concat(s))
+      (s) => Some(this.value.concat(s))
     );
   }
 
@@ -115,15 +115,15 @@ class N {
   }
 
   map(f) {
-    return None(x);
+    return None(this.value);
   }
 
   chain(f) {
-    return None(x);
+    return None(this.value);
   }
 
   fold(f, g) {
-    return f(x);
+    return f(this.value);
   }
 
   inspect() {
@@ -139,7 +139,7 @@ class N {
   }
 
   concat(o) {
-    return Left(x);
+    return Left(this.value);
   }
 
   ap(o) {

@@ -38,19 +38,19 @@ class R {
   }
 
   map(f) {
-    return Right(f(x));
+    return Right(f(this.value));
   }
 
   chain(f) {
-    return f(x);
+    return f(this.value);
   }
 
   fold(f, g) {
-    return g(x);
+    return g(this.value);
   }
 
   inspect() {
-    return `Right(${x})`;
+    return `Right(${this.value})`;
   }
 
   isLeft() {
@@ -64,7 +64,7 @@ class R {
   concat(o) {
     return o.fold(
       (l) => Left(l),
-      (r) => Right(x.concat(r))
+      (r) => Right(this.value.concat(r))
     );
   }
 
@@ -108,19 +108,19 @@ class L {
   }
 
   map(f) {
-    return Left(x);
+    return Left(this.value);
   }
 
   chain(f) {
-    return Left(x);
+    return Left(this.value);
   }
 
   fold(f, g) {
-    return f(x);
+    return f(this.value);
   }
 
   inspect() {
-    return `Left(${x})`;
+    return `Left(${this.value})`;
   }
 
   isLeft() {
@@ -132,7 +132,7 @@ class L {
   }
 
   concat(o) {
-    return Left(x);
+    return Left(this.value);
   }
 
   ap(o) {
@@ -145,5 +145,3 @@ class L {
 }
 
 export const Left = (x) => new L(x);
-
-console.log(Right(10));
