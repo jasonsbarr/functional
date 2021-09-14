@@ -83,12 +83,10 @@ export class Future extends Deferred {
     return this.fork({ onCancelled, onRejected, onResolved });
   }
 
-  ap(other) {
-    return other.chain((f) => this.map(f));
-  }
+  ap(other) {}
 
-  finalize(pred, val) {
-    return pred(val) ? this.resolve(val) : this.reject(val);
+  finalize(pred, value, reason = null) {
+    return pred(value) ? this.resolve(value) : this.reject(reason ?? value);
   }
 
   // Function order is changed for parity with Promise interface
