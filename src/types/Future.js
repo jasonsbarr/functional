@@ -174,26 +174,26 @@ Future.rejected = (reason) => {
 };
 
 Future.fromPromise = (promise) => {
-  let deferred = new Future();
+  let f = new Future();
   promise.then(
-    (value) => deferred.resolve(value),
-    (error) => deferred.reject(error)
+    (value) => f.resolve(value),
+    (error) => f.reject(error)
   );
-  return deferred;
+  return f;
 };
 
 Future.fromCallback =
   (fn) =>
   (...args) => {
-    let deferred = new Future();
+    let f = new Future();
     fn(...args, (err, data) => {
       if (err) {
-        deferred.reject(err);
+        f.reject(err);
       } else {
-        deferred.resolve(data);
+        f.resolve(data);
       }
     });
-    return deferred;
+    return f;
   };
 
 // For parity with Promise interface
