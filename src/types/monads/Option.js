@@ -66,7 +66,7 @@ class S {
     return true;
   }
 
-  concat(x) {
+  concat(o) {
     return o.fold(
       (n) => None(n),
       (s) => Some(this.value.concat(s))
