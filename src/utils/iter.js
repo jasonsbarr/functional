@@ -1,4 +1,4 @@
-import { Option, None, Some } from "../types/monads/Option.js";
+import { Option, None, Some } from "../types/Option.js";
 import { curry } from "./function.js";
 import { isNil } from "./nil.js";
 import { equals } from "./equals.js";

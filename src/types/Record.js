@@ -1,6 +1,6 @@
 import { hash } from "../utils/object.js";
 import { equals } from "../utils/equals.js";
-import { Option } from "./monads/Option.js";
+import { Option } from "./Option.js";
 
 const recordProto = {
   // returns a Record with the same keys but all values set to undefined

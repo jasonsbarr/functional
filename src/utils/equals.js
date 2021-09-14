@@ -1,6 +1,4 @@
 // stolen from https://github.com/epoberezkin/fast-deep-equal
-const envHasBigInt64Array = typeof BigInt64Array !== "undefined";
-
 export const equals = (a, b) => {
   if (a === b) return true;
 
