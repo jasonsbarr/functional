@@ -30,6 +30,9 @@ export class Deferred {
   _listeners = [];
 
   constructor() {
+    if (this.constructor.name === "Deferred") {
+      throw new Error("Abstract class Deferred must be inherited");
+    }
     define(this, "_state", Pending());
     define(this, "_listeners", []);
   }
