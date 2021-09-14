@@ -60,6 +60,7 @@ import {
   zipUnsafe,
   update,
   ap,
+  atUnsafe,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -109,6 +110,11 @@ class Cons extends Array {
   // returns Option, not simple value
   at(i) {
     return at(i, this);
+  }
+
+  // may return null or undefined value
+  atUnsafe(i) {
+    return atUnsafe(i, this);
   }
 
   average() {

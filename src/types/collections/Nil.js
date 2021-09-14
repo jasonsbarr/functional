@@ -32,6 +32,10 @@ class Nil {
     return None(null);
   }
 
+  atUnsafe(i) {
+    return null;
+  }
+
   average() {
     return 0;
   }
