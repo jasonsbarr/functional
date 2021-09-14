@@ -1,5 +1,5 @@
-import { define } from "../utils/object.js";
-import { noop } from "../utils/functions.js";
+import { define } from "../../utils/object.js";
+import { noop } from "../../utils/function.js";
 
 // Match execution state to resolver function
 const matchWith = (pattern, state) => {
@@ -74,10 +74,24 @@ class Deferred {
     }
     return this;
   }
+
+  listen(pattern) {
+    matchWith(
+      {
+        Pending: () => this.listeners.push(pattern),
+        Cancelled: () => pattern.onCancelled() ?? noop,
+        Rejected: (reason) => pattern.onRejected(reason),
+        Resolved: (value) => pattern.onResolved(value),
+      },
+      this.state
+    );
+    return this;
+  }
 }
 
 export class Future extends Deferred {
   constructor() {
+    super();
     Object.defineProperty(this, "kind", {
       configurable: false,
       enumerable: true,
@@ -102,18 +116,18 @@ export class Future extends Deferred {
     this._listeners = arr;
   }
 
-  listen(pattern) {
-    matchWith(
-      {
-        Pending: () => this.listeners.push(pattern),
-        Cancelled: () => pattern.onCancelled() ?? noop,
-        Rejected: (reason) => pattern.onRejected(reason),
-        Resolved: (value) => pattern.onResolved(value),
-      },
-      this.state
-    );
-    return this;
-  }
+  // listen(pattern) {
+  //   matchWith(
+  //     {
+  //       Pending: () => this.listeners.push(pattern),
+  //       Cancelled: () => pattern.onCancelled() ?? noop,
+  //       Rejected: (reason) => pattern.onRejected(reason),
+  //       Resolved: (value) => pattern.onResolved(value),
+  //     },
+  //     this.state
+  //   );
+  //   return this;
+  // }
 
   // f should return a Future
   chain(f) {
@@ -378,3 +392,12 @@ Future.race = (futures) => {
     });
   }
 };
+
+const f = new Future().listen({
+  onCancelled: () => {},
+  onRejected: () => {},
+  onResolved: () => console.log("Hello"),
+});
+
+console.log(f);
+console.log(f.listeners);
