@@ -62,6 +62,7 @@ import {
   ap,
   atUnsafe,
 } from "../../utils/iter.js";
+import { isNil } from "../../utils/nil.js";
 import { NIL } from "./Nil.js";
 
 class Cons extends Array {
@@ -478,12 +479,17 @@ class Cons extends Array {
 
 Cons.isCons = (obj) => typeof obj.isCons === "function" && obj.isCons();
 
-export const cons = (car, cdr) => new Cons(car, cdr);
+export const cons = (car, cdr) => {
+  let c = new Cons(car, cdr);
+  if (cdr.kind === "List") {
+    c.kind === "List";
+  }
+};
 
 export const List = (...args) => {
   if (
     args.length === 0 ||
-    args[0] == null ||
+    isNil(args[0]) ||
     args[0].constructor.name === "Nil"
   ) {
     return NIL;
@@ -525,6 +531,6 @@ export const List = (...args) => {
 List.of = (iter) => List(...iter);
 List.from = List.of;
 
-List.isList = (obj) => obj instanceof Cons && length(obj) > 0;
+List.isList = (obj) => obj.kind === "List";
 
 export const list = List;

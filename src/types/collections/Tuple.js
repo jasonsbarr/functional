@@ -57,7 +57,6 @@ import {
   union,
   mapWithIndex,
   zip,
-  zipUnsafe,
   update,
   ap,
   atUnsafe,
@@ -72,15 +71,15 @@ class Tpl extends Array {
     Object.defineProperty(this, "kind", {
       configurable: false,
       enumerable: false,
-      writable: true,
+      writable: false,
       value: "Tuple",
     });
 
     Object.defineProperty(this, "constructor", {
       configurable: false,
       enumerable: false,
-      writable: true,
-      value: tuple,
+      writable: false,
+      value: Tuple,
     });
 
     Object.defineProperty(this, "size", {
