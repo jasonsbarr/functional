@@ -38,7 +38,7 @@ class R {
   }
 
   map(f) {
-    return Right(f(this.value));
+    return Either.of(f(this.value));
   }
 
   chain(f) {
