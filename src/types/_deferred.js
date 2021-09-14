@@ -37,6 +37,22 @@ export class Deferred {
     define(this, "_listeners", []);
   }
 
+  get state() {
+    return this._state;
+  }
+
+  set state(state) {
+    this._state = state;
+  }
+
+  get listeners() {
+    return this._listeners;
+  }
+
+  set listeners(arr) {
+    this._listeners = arr;
+  }
+
   resolve(value) {
     moveToState(this, Resolved(value));
     return this;

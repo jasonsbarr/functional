@@ -1,3 +1,7 @@
+/**
+ * Implements Functor, Applicative, Monad, Bifunctor
+ */
+
 import { noop } from "../utils/function.js";
 import { Pending, Cancelled, Rejected, Resolved } from "./_executionStates.js";
 import { Deferred } from "./_deferred.js";
@@ -11,22 +15,6 @@ export class Future extends Deferred {
       writable: false,
       value: "Future",
     });
-  }
-
-  get state() {
-    return this._state;
-  }
-
-  set state(state) {
-    this._state = state;
-  }
-
-  get listeners() {
-    return this._listeners;
-  }
-
-  set listeners(arr) {
-    this._listeners = arr;
   }
 
   // f should return a Future
