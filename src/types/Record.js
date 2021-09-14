@@ -1,4 +1,4 @@
-import { hash } from "../utils/object.js";
+// import { hash } from "../utils/object.js";
 import { equals } from "../utils/equals.js";
 import { Option } from "./Option.js";
 
@@ -41,13 +41,13 @@ const recordProto = {
     return Object.keys(this).includes(key);
   },
 
-  hash() {
-    return hash(this);
-  },
+  // hash() {
+  //   return hash(this);
+  // },
 
-  hashEquals(other) {
-    return hash(this) === hash(other);
-  },
+  // hashEquals(other) {
+  //   return hash(this) === hash(other);
+  // },
 
   hasValue(value) {
     for (let key in Object.keys(this)) {

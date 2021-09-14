@@ -1,4 +1,4 @@
-import objectHash from "object-hash";
+// import objectHash from "object-hash";
 
 const keys = Object.keys;
 const symbols = Object.getOwnPropertySymbols;
@@ -29,7 +29,7 @@ export const extend = (target, ...sources) => {
   return target;
 };
 
-export const hash = (object) => objectHash(object);
+// export const hash = (object) => objectHash(object);
 
 export const is = (obj1, obj2) => Object.is(obj1, obj2);
 
