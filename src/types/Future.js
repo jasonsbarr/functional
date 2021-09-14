@@ -1,93 +1,6 @@
-import { define } from "../utils/object.js";
 import { noop } from "../utils/function.js";
-
-// Match execution state to resolver function
-const matchWith = (pattern, state) => {
-  if (state.name in pattern) {
-    // this works because Cancelled doesn't take an argument, so it's fine if state.reason is undefined
-    return pattern[state.name]("value" in state ? state.value : state.reason);
-  }
-  throw new Error(`${state.name} not found in pattern`);
-};
-
-// Execution states
-const { Pending, Cancelled, Rejected, Resolved } = {
-  Pending: () => ({ name: "Pending" }),
-  Cancelled: () => ({ name: "Cancelled" }),
-  Rejected: (reason) => ({ name: "Rejected", reason }),
-  Resolved: (value) => ({ name: "Resolved", value }),
-};
-
-const describeState = (state) =>
-  matchWith(
-    {
-      Pending: (_) => "Pending",
-      Cancelled: (_) => "Cancelled",
-      Rejected: (_) => "Rejected",
-      Resolved: (_) => "Resolved",
-    },
-    state
-  );
-
-const moveToState = (deferred, newState) => {
-  deferred._state = newState;
-  const listeners = deferred.listeners;
-  for (let listener of listeners) {
-    matchWith(
-      {
-        Cancelled: () => listener.onCancelled(),
-        Rejected: (reason) => listener.onRejected(reason),
-        Resolved: (value) => listener.onResolved(value),
-      },
-      deferred.state
-    );
-  }
-};
-
-class Deferred {
-  _state = null;
-  _listeners = [];
-
-  constructor() {
-    define(this, "_state", Pending());
-    define(this, "_listeners", []);
-  }
-
-  resolve(value) {
-    moveToState(this, Resolved(value));
-    return this;
-  }
-
-  reject(reason) {
-    moveToState(this, Rejected(reason));
-    return this;
-  }
-
-  cancel() {
-    moveToState(this, Cancelled());
-    return this;
-  }
-
-  maybeCancel() {
-    if (this._state.name === "Pending") {
-      moveToState(this, Cancelled());
-    }
-    return this;
-  }
-
-  listen(pattern) {
-    matchWith(
-      {
-        Pending: () => this.listeners.push(pattern),
-        Cancelled: () => pattern.onCancelled() ?? noop,
-        Rejected: (reason) => pattern.onRejected(reason),
-        Resolved: (value) => pattern.onResolved(value),
-      },
-      this.state
-    );
-    return this;
-  }
-}
+import { Pending, Cancelled, Rejected, Resolved } from "./_executionStates.js";
+import { Deferred } from "./_deferred.js";
 
 export class Future extends Deferred {
   constructor() {
@@ -226,9 +139,7 @@ export class Future extends Deferred {
   }
 
   toString() {
-    return `Future: ${describeState(this.state)}, ${
-      this.listeners.length
-    } listeners`;
+    return `Future: ${this.state.name}, ${this.listeners.length} listeners`;
   }
 
   inspect() {
@@ -379,12 +290,3 @@ Future.race = (futures) => {
     });
   }
 };
-
-const f = new Future().listen({
-  onCancelled: () => {},
-  onRejected: () => {},
-  onResolved: () => console.log("Hello"),
-});
-
-console.log(f);
-console.log(f.listeners);
