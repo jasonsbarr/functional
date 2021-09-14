@@ -250,6 +250,7 @@ export const map = curry((fn, iter) => {
   return iter.constructor(...temp);
 });
 
+// other is an iterable full of functions
 export const ap = curry((other, iter) => {
   let results = [];
   for (let func of other) {
