@@ -41,14 +41,6 @@ export const any = curry((search, iter) => {
   return false;
 });
 
-export const ap = curry((other, iter) => {
-  const results = [];
-  for (let func of other) {
-    results.push(iter.map(func));
-  }
-  return iter.constructor(...results);
-});
-
 export const append = curry((item, iter) => iter.constructor(...iter, item));
 
 // Returns Option, not value
@@ -256,6 +248,14 @@ export const map = curry((fn, iter) => {
     temp.push(fn(item));
   }
   return iter.constructor(...temp);
+});
+
+export const ap = curry((other, iter) => {
+  let results = [];
+  for (let func of other) {
+    results = iter.constructor(...concat(map(func, iter), results));
+  }
+  return results;
 });
 
 export const mapWithIndex = curry((fn, iter) => {
