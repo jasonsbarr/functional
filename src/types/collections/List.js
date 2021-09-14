@@ -480,7 +480,7 @@ Cons.isCons = (obj) => typeof obj.isCons === "function" && obj.isCons();
 
 export const cons = (car, cdr) => new Cons(car, cdr);
 
-const List = (...args) => {
+export const List = (...args) => {
   if (
     args.length === 0 ||
     args[0] == null ||
@@ -525,6 +525,6 @@ const List = (...args) => {
 List.of = (iter) => List(...iter);
 List.from = List.of;
 
-List.isList = (obj) => obj.kind === "List";
+List.isList = (obj) => obj instanceof Cons && length(obj) > 0;
 
 export const list = List;

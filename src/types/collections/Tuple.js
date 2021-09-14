@@ -65,7 +65,7 @@ import {
 
 // A tuple is immutable, like in Python.
 // Objects inside it, however (not primitives!), can be mutated.
-class Tuple extends Array {
+class Tpl extends Array {
   constructor(...args) {
     super(...args);
 
@@ -435,12 +435,9 @@ class Tuple extends Array {
   }
 }
 
-export const tuple = (...args) => new Tuple(...args);
+export const Tuple = (...args) => new Tuple(...args);
+export const tuple = Tuple;
 
 Tuple.of = (iter) => tuple(...iter);
 Tuple.from = Tuple.of;
 Tuple.isTuple = (obj) => obj.kind === "Tuple";
-
-tuple.of = Tuple.of;
-tuple.from = Tuple.from;
-tuple.isTuple = Tuple.isTuple;
