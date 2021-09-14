@@ -60,6 +60,8 @@ import {
   update,
   ap,
   atUnsafe,
+  keys,
+  values,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -274,6 +276,10 @@ class Tpl extends Array {
     return join(sep, this);
   }
 
+  keys() {
+    return keys(this);
+  }
+
   // returns Option, not value
   last() {
     return last(this);
@@ -426,6 +432,10 @@ class Tpl extends Array {
 
   update(updater, i) {
     return update(updater, i, this);
+  }
+
+  values() {
+    return values(this);
   }
 
   // unsafe - may contain null values

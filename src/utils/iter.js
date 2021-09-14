@@ -222,6 +222,8 @@ export const isEqual = curry((iter1, iter2) => equals(iter1, iter2));
 
 export const join = curry((sep, iter) => [...iter].join(sep));
 
+export const keys = (iter) => [...iter].keys();
+
 // returns option
 export const last = (iter) => at(length(iter) - 1, iter);
 
@@ -518,6 +520,8 @@ export const update = curry((updater, i, iter) =>
     )
   )
 );
+
+export const values = (iter) => [...iter].values();
 
 // unsafe - can return null values
 // use only when you know all iters are the same length

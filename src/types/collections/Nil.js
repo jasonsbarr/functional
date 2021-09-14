@@ -1,4 +1,4 @@
-import { zip, zipUnsafe } from "../../utils/iter";
+import { zip } from "../../utils/iter";
 import { None } from "../monads/Option";
 import { list } from "./List";
 
@@ -183,6 +183,10 @@ class Nil {
     return "";
   }
 
+  keys() {
+    return [];
+  }
+
   last() {
     return None(null);
   }
@@ -332,6 +336,10 @@ class Nil {
 
   update(updater, i) {
     return this;
+  }
+
+  values() {
+    return [];
   }
 
   // unsafe - can contain null values

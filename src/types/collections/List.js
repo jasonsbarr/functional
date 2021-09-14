@@ -61,6 +61,8 @@ import {
   update,
   ap,
   atUnsafe,
+  keys,
+  values,
 } from "../../utils/iter.js";
 import { isNil } from "../../utils/nil.js";
 import { NIL } from "./Nil.js";
@@ -281,6 +283,10 @@ class Cons extends Array {
     return join(sep, this);
   }
 
+  keys() {
+    return keys(this);
+  }
+
   // returns Option, not value
   last() {
     return last(this);
@@ -439,6 +445,10 @@ class Cons extends Array {
 
   update(i, updater) {
     return update(updater, i, this);
+  }
+
+  values() {
+    return values(this);
   }
 
   // unsafe - may contain null values
