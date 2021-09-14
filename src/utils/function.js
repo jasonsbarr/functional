@@ -1,5 +1,3 @@
-import { isIterable } from "./iter.js";
-
 export const identity = (x) => x;
 
 export const noop = () => {};
@@ -41,9 +39,9 @@ export const defer =
     ? (f) => process.nextTick(f)
     : (f) => setTimeout(f, 0);
 
-// Returns a single array of the function args based on whether the first arg is an iterable object
+// Returns a single array of the function args based on whether the first arg is an Array
 export const getArrayFromArgs = (...args) =>
-  isIterable(args[0]) && typeof args[0] !== "string" ? [...args[0]] : args;
+  Array.isArray(args[0]) && typeof args[0] !== "string" ? [...args[0]] : args;
 
 // curry functions and their dependencies stolen from Ramda
 const _arity = (n, fn) => {
