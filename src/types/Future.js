@@ -1,5 +1,5 @@
-import { define } from "../../utils/object.js";
-import { noop } from "../../utils/function.js";
+import { define } from "../utils/object.js";
+import { noop } from "../utils/function.js";
 
 // Match execution state to resolver function
 const matchWith = (pattern, state) => {
@@ -115,19 +115,6 @@ export class Future extends Deferred {
   set listeners(arr) {
     this._listeners = arr;
   }
-
-  // listen(pattern) {
-  //   matchWith(
-  //     {
-  //       Pending: () => this.listeners.push(pattern),
-  //       Cancelled: () => pattern.onCancelled() ?? noop,
-  //       Rejected: (reason) => pattern.onRejected(reason),
-  //       Resolved: (value) => pattern.onResolved(value),
-  //     },
-  //     this.state
-  //   );
-  //   return this;
-  // }
 
   // f should return a Future
   chain(f) {
