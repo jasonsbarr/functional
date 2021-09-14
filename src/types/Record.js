@@ -24,6 +24,10 @@ const recordProto = {
     return this.constructor.of(copy);
   },
 
+  entries() {
+    return Object.entries(this);
+  },
+
   // checks for deep equality
   equals(other) {
     return equals(this, other);
@@ -66,6 +70,10 @@ const recordProto = {
     return true;
   },
 
+  keys() {
+    return Object.keys(this);
+  },
+
   // overwrites properties from right to left,
   // so last object with a certain key will have its value assigned to the new Record
   // will merge any object, not just a Record, but returns a Record
@@ -94,6 +102,10 @@ const recordProto = {
   update(key, updater) {
     const value = this.get(key);
     return this.constructor.of({ ...this, [key]: updater(value) });
+  },
+
+  values() {
+    return Object.values(this);
   },
 };
 
