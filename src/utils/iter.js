@@ -41,7 +41,13 @@ export const any = curry((search, iter) => {
   return false;
 });
 
-export const ap = curry((functor, iter) => iter.map(functor.value));
+export const ap = curry((other, iter) => {
+  const results = [];
+  for (let func of other) {
+    results.push(iter.map(func));
+  }
+  return iter.constructor(...results);
+});
 
 export const append = curry((item, iter) => iter.constructor(...iter, item));
 
@@ -50,6 +56,14 @@ export const at = curry((i, iter) => {
   const temp = [...iter];
   return Option.of(i < 0 ? temp[temp.length - i] : temp[i]);
 });
+
+// unsafe - may return null value
+export const atUnsafe = curry((i, iter) =>
+  at(i, iter).fold(
+    (x) => x,
+    (x) => x
+  )
+);
 
 export const count = (search, iter) => {
   let count = 0;
