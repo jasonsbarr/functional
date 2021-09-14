@@ -59,6 +59,7 @@ import {
   zip,
   zipUnsafe,
   update,
+  ap,
 } from "../../utils/iter.js";
 
 // A tuple is immutable, like in Python.
@@ -98,6 +99,10 @@ class Tuple extends Array {
 
   any(search) {
     return any(search, this);
+  }
+
+  ap(functor) {
+    return ap(functor, this);
   }
 
   append(item) {

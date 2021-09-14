@@ -59,6 +59,7 @@ import {
   zip,
   zipUnsafe,
   update,
+  ap,
 } from "../../utils/iter.js";
 import { NIL } from "./Nil.js";
 
@@ -95,6 +96,10 @@ class Cons extends Array {
 
   any(search) {
     return any(search, this);
+  }
+
+  ap(functor) {
+    return ap(functor, this);
   }
 
   append(item) {

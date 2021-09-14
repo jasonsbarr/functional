@@ -41,6 +41,8 @@ export const any = curry((search, iter) => {
   return false;
 });
 
+export const ap = curry((functor, iter) => iter.map(functor.value));
+
 export const append = curry((item, iter) => iter.constructor(...iter, item));
 
 // Returns Option, not value

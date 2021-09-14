@@ -20,6 +20,10 @@ class Nil {
     return false;
   }
 
+  ap(functor) {
+    return this;
+  }
+
   append(item) {
     return list(item);
   }
