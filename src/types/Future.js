@@ -152,6 +152,7 @@ Future.rejected = (reason) => {
 
 Future.fromPromise = (promise) => {
   let f = new Futur();
+  // for some reason, not returning from these callbacks makes it work
   promise.then(
     (value) => {
       f.resolve(value);
