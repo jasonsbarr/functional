@@ -31,15 +31,19 @@ class I {
   map(fn) {
     return Identity(fn(this.value));
   }
+
   chain(fn) {
     return fn(this.value);
   }
+
   fold(fn) {
     return fn(this.value);
   }
+
   inspect() {
     return `Identity(${this.value})`;
   }
+
   concat(o) {
     return Identity(this.value.concat(o));
   }
