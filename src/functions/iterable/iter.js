@@ -3,6 +3,7 @@ import { curry } from "../lambda/curry.js";
 import { isNil } from "../helpers/isNil.js";
 import { equals } from "../object/equals.js";
 import { randInt } from "../helpers/randInt.js";
+import { allFuncs } from "./allFuncs.js";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
@@ -254,6 +255,9 @@ export const map = curry((fn, iter) => {
 
 // other is an iterable full of functions
 export const ap = curry((other, iter) => {
+  if (!length(other) || !allFuncs(other)) {
+    throw new TypeError("First iterable must be all functions");
+  }
   let results = [];
   for (let func of other) {
     results = iter.constructor(...concat(map(func, iter), results));
