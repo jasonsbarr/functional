@@ -132,12 +132,8 @@ class Futur extends Deferred {
   }
 }
 
-export const Future = (onRejected, onResolved, onCancelled = noop) => {
-  return new Futur().listen({
-    onCancelled: () => onCancelled(),
-    onRejected: (reason) => onRejected(reason),
-    onResolved: (value) => onResolved(value),
-  });
+export const Future = () => {
+  return new Futur();
 };
 
 Future.isFuture = (obj) => typeof obj.isFuture === "function" && obj.isFuture();
@@ -200,6 +196,14 @@ Future.all = (futures) => {
     }
   });
   return all;
+};
+
+const Db = {
+  find: (id) => {
+    const f = Future();
+    setTimeout(() => f.resolve({ id, title: `Project ${id}` }), 100);
+    return f;
+  },
 };
 
 // these don't work
@@ -265,4 +269,5 @@ Future.all = (futures) => {
 //   }
 // };
 
-export const future = Future;
+export const future = (onRejected, onResolved, onCancelled = noop) =>
+  Future().listen({ onRejected, onResolved, onCancelled });
