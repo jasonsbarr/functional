@@ -74,7 +74,7 @@ class S {
   }
 
   ap(o) {
-    return this.map(o.value);
+    return o.map(this.value);
   }
 
   toString() {
