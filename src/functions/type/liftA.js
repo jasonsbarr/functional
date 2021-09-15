@@ -1,4 +1,4 @@
-import { curry } from "./function";
+import { curry } from "../lambda/function";
 
 export const liftA2 = curry((f, a, b) => b.ap(a.map(f)));
 

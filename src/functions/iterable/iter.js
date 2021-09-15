@@ -1,8 +1,8 @@
-import { Option, None, Some } from "../types/Option.js";
-import { curry } from "./function.js";
-import { isNil } from "./nil.js";
-import { equals } from "./equals.js";
-import { randInt } from "./random.js";
+import { Option, None, Some } from "../../types/Option.js";
+import { curry } from "../lambda/curry.js";
+import { isNil } from "../helpers/isNil.js";
+import { equals } from "../object/equals.js";
+import { randInt } from "../helpers/randInt.js";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library

@@ -64,7 +64,7 @@ import {
   keys,
   values,
 } from "../../functions/iter.js";
-import { isNil } from "../../functions/nil.js";
+import { isNil } from "../../functions/helpers/isNil.js";
 import { NIL } from "./Nil.js";
 
 class Cons extends Array {

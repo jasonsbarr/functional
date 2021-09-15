@@ -1,5 +1,5 @@
 // import { hash } from "../utils/object.js";
-import { equals } from "../functions/equals.js";
+import { equals } from "../functions/object/equals.js";
 import { Option } from "./Option.js";
 
 const recordProto = {
