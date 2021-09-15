@@ -78,13 +78,13 @@ export class Future extends Deferred {
   }
 
   finally(fn) {
-    const f = new Future();
+    const final = new Future();
     this.listen({
-      onCancelled: () => f.cancel(),
-      onRejected: () => f.reject(fn()),
-      onResolved: () => f.resolve(fn()),
+      onCancelled: () => final.cancel(),
+      onRejected: () => final.reject(fn()),
+      onResolved: () => final.resolve(fn()),
     });
-    return f;
+    return final;
   }
 
   promise() {
