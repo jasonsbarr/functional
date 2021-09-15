@@ -2,7 +2,7 @@ import { noop } from "../functions/helpers/noop.js";
 import { Cancelled } from "./_executionStates.js";
 import { Deferred } from "./_deferred.js";
 
-export class Future extends Deferred {
+class Futur extends Deferred {
   constructor() {
     super();
     Object.defineProperty(this, "kind", {
@@ -15,7 +15,7 @@ export class Future extends Deferred {
 
   // f should return a Future
   chain(f) {
-    const result = new Future();
+    const result = new Futur();
     this.listen({
       onCancelled: () => result.cancel(),
       onRejected: (reason) => result.reject(reason),
@@ -31,7 +31,7 @@ export class Future extends Deferred {
   }
 
   map(f) {
-    const result = new Future();
+    const result = new Futur();
     this.listen({
       onCancelled: () => result.cancel(),
       onRejected: (reason) => result.reject(reason),
@@ -41,7 +41,7 @@ export class Future extends Deferred {
   }
 
   mapRejected(f) {
-    const reject = new Future();
+    const reject = new Futur();
     this.listen({
       onCancelled: () => reject.cancel(),
       onRejected: (reason) => reject.reject(f(reason)),
@@ -51,7 +51,7 @@ export class Future extends Deferred {
   }
 
   bimap(rejectF, resolveF) {
-    const mapped = new Future();
+    const mapped = new Futur();
     this.listen({
       onCancelled: () => mapped.cancel(),
       onRejected: (reason) => mapped.reject(rejectF(reason)),
@@ -78,7 +78,7 @@ export class Future extends Deferred {
   }
 
   finally(fn) {
-    const final = new Future();
+    const final = new Futur();
     this.listen({
       onCancelled: () => final.cancel(),
       onRejected: () => final.reject(fn()),
@@ -126,8 +126,8 @@ export class Future extends Deferred {
   }
 }
 
-export const future = (onRejected, onResolved, onCancelled = noop) => {
-  return new Future().listen({
+export const Future = (onRejected, onResolved, onCancelled = noop) => {
+  return new Futur().listen({
     onCancelled: () => onCancelled(),
     onRejected: (reason) => onRejected(reason),
     onResolved: (value) => onResolved(value),
@@ -137,15 +137,15 @@ export const future = (onRejected, onResolved, onCancelled = noop) => {
 Future.isFuture = (obj) => typeof obj.isFuture === "function" && obj.isFuture();
 
 Future.of = (value) => {
-  return new Future().resolve(value);
+  return new Futur().resolve(value);
 };
 
 Future.rejected = (reason) => {
-  return new Future().reject(reason);
+  return new Futur().reject(reason);
 };
 
 Future.fromPromise = (promise) => {
-  let f = new Future();
+  let f = new Futur();
   promise.then(
     (value) => f.resolve(value),
     (error) => f.reject(error)
@@ -156,7 +156,7 @@ Future.fromPromise = (promise) => {
 Future.fromCallback =
   (fn) =>
   (...args) => {
-    let f = new Future();
+    let f = new Futur();
     fn(...args, (err, data) => {
       if (err) {
         f.reject(err);
@@ -173,7 +173,7 @@ Future.reject = Future.rejected;
 
 Future.all = (futures) => {
   let results = [];
-  let all = new Future();
+  let all = new Futur();
   for (let future of futures) {
     future.listen({
       onCancelled: () => future.cancel(),
@@ -190,7 +190,7 @@ Future.all = (futures) => {
 
 Future.allSettled = (futures) => {
   let results = [];
-  let all = new Future();
+  let all = new Futur();
   for (let future of futures) {
     future.listen({
       onCancelled: () => future.cancel(),
@@ -207,7 +207,7 @@ Future.allSettled = (futures) => {
 
 Future.any = (futures) => {
   let errors = [];
-  let any = new Future();
+  let any = new Futur();
   for (let future of futures) {
     future.listen({
       onCancelled: () => future.cancel(),
@@ -227,7 +227,7 @@ Future.any = (futures) => {
 };
 
 Future.race = (futures) => {
-  let race = new Future();
+  let race = new Futur();
   for (let future of futures) {
     future.listen({
       onCancelled: () => future.cancel(),
