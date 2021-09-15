@@ -126,9 +126,9 @@ export class Future extends Deferred {
   }
 }
 
-export const future = (onRejected, onResolved) => {
+export const future = (onRejected, onResolved, onCancelled = noop) => {
   return new Future().listen({
-    onCancelled: () => noop(),
+    onCancelled: () => onCancelled(),
     onRejected: (reason) => onRejected(reason),
     onResolved: (value) => onResolved(value),
   });
