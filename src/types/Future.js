@@ -70,27 +70,21 @@ export class Future extends Deferred {
 
   // Function order is changed for parity with Promise interface
   then(resolveF, rejectF = noop) {
-    return this.listen({
-      onCancelled: noop,
-      onRejected: rejectF,
-      onResolved: resolveF,
-    });
+    return this.bimap(rejectF, resolveF);
   }
 
   catch(rejectF) {
-    return this.listen({
-      onCancelled: noop,
-      onRejected: rejectF,
-      onResolved: noop,
-    });
+    return this.mapRejected(rejectF);
   }
 
   finally(fn) {
-    return this.listen({
-      onCancelled: fn,
-      onRejected: fn,
-      onResolved: fn,
+    const f = new Future();
+    this.listen({
+      onCancelled: () => f.cancel(),
+      onRejected: () => f.reject(fn()),
+      onResolved: () => f.resolve(fn()),
     });
+    return f;
   }
 
   promise() {
