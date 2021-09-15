@@ -1,6 +1,8 @@
 import { noop } from "../functions/helpers/noop.js";
 import { Cancelled } from "./_executionStates.js";
 import { Deferred } from "./_deferred.js";
+import { length } from "../functions/iterable/iter.js";
+import { defer } from "../functions/lambda/defer.js";
 
 class Futur extends Deferred {
   constructor() {
@@ -175,24 +177,25 @@ Future.fromCallback =
 Future.resolve = Future.of;
 Future.reject = Future.rejected;
 
-// these don't work
-// Future.all = (futures) => {
-//   let results = [];
-//   let all = new Futur();
-//   for (let future of futures) {
-//     future.listen({
-//       onCancelled: () => future.cancel(),
-//       onRejected: (reason) => all.reject(reason),
-//       onResolved: (value) => results.push(value),
-//     });
-//   }
-//   return all.listen({
-//     onCancelled: () => all.cancel(),
-//     onRejected: (reason) => all.reject(reason),
-//     onResolved: () => all.resolve(futures.constructor(...results)),
-//   });
-// };
+Future.all = (futures) => {
+  let all = new Futur();
+  defer(() => {
+    all._results = [];
+    for (let future of futures) {
+      future.listen({
+        onCancelled: () => all.cancel(),
+        onRejected: (reason) => all.reject(reason),
+        onResolved: (value) => all._results.push(value),
+      });
+    }
+    if (length(all._results) === length(futures)) {
+      all.resolve(futures.constructor(...all._results));
+    }
+  });
+  return all;
+};
 
+// these don't work
 // Future.allSettled = (futures) => {
 //   let results = [];
 //   let all = new Futur();
