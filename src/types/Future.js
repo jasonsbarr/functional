@@ -1,7 +1,3 @@
-/**
- * Implements Functor, Applicative, Monad, Bifunctor
- */
-
 import { noop } from "../functions/helpers/noop.js";
 import { Cancelled } from "./_executionStates.js";
 import { Deferred } from "./_deferred.js";
