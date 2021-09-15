@@ -249,3 +249,5 @@ Future.race = (futures) => {
     });
   }
 };
+
+export const future = Future;
