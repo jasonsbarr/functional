@@ -2,8 +2,10 @@
  * type Either = Right(x: R) | Left(x: L)
  */
 
+import { curry } from "../functions/lambda/curry";
+
 export const Either = {
-  of: (pred) => (x) => pred(x) ? Right(x) : Left(x),
+  of: curry((pred, x) => (pred(x) ? Right(x) : Left(x))),
   isRight: (obj) => obj.kind === "Right",
   isLeft: (obj) => obj.kind === "Left",
   isEither: (obj) => obj.kind === "Right" || obj.kind === "Left",
@@ -38,7 +40,7 @@ class R {
   }
 
   map(f) {
-    return Either.of(f(this.value));
+    return Right(f(this.value));
   }
 
   chain(f) {
@@ -69,15 +71,13 @@ class R {
   }
 
   ap(o) {
-    return this.map(o.value);
+    return o.map(this.value);
   }
 
   toString() {
     return this.inspect();
   }
 }
-
-export const Right = (x) => new R(x);
 
 class L {
   constructor(value) {
