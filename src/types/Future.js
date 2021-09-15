@@ -60,6 +60,10 @@ class Futur extends Deferred {
     return mapped;
   }
 
+  fork(onRejected, onResolved, onCancelled = noop) {
+    return this.listen({ onCancelled, onRejected, onResolved });
+  }
+
   ap(future) {
     return this.chain((f) => future.map(f));
   }
