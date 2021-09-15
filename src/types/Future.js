@@ -153,8 +153,12 @@ Future.rejected = (reason) => {
 Future.fromPromise = (promise) => {
   let f = new Futur();
   promise.then(
-    (value) => f.resolve(value),
-    (error) => f.reject(error)
+    (value) => {
+      f.resolve(value);
+    },
+    (error) => {
+      f.reject(error);
+    }
   );
   return f;
 };
