@@ -64,26 +64,9 @@ export class Future extends Deferred {
     return mapped;
   }
 
-  fork({ onCancelled = noop, onRejected, onResolved }) {
-    switch (this.state.name) {
-      case "Pending":
-        throw new Error("Future is still pending");
-      case "Cancelled":
-        return onCancelled();
-      case "Rejected":
-        return onRejected(this.state.reason);
-      case "Resolved":
-        return onResolved(this.state.value);
-      default:
-        throw new Error("Unknown state");
-    }
+  ap(future) {
+    return this.chain((f) => future.map(f));
   }
-
-  fold({ onCancelled = noop, onRejected, onResolved }) {
-    return this.fork({ onCancelled, onRejected, onResolved });
-  }
-
-  ap(other) {}
 
   finalize(pred, value, reason = null) {
     return pred(value) ? this.resolve(value) : this.reject(reason ?? value);
@@ -153,9 +136,9 @@ export class Future extends Deferred {
   }
 }
 
-export const future = ({ onCancelled = noop, onRejected, onResolved }) => {
+export const future = (onRejected, onResolved) => {
   return new Future().listen({
-    onCancelled: () => onCancelled(),
+    onCancelled: () => noop(),
     onRejected: (reason) => onRejected(reason),
     onResolved: (value) => onResolved(value),
   });
