@@ -2,7 +2,7 @@
  * Implements Functor, Applicative, Monad, Bifunctor
  */
 
-import { noop } from "../utils/function.js";
+import { noop } from "../functions/function.js";
 import { Pending, Cancelled, Rejected, Resolved } from "./_executionStates.js";
 import { Deferred } from "./_deferred.js";
 

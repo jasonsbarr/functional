@@ -1,4 +1,4 @@
-import { zip } from "../../utils/iter";
+import { zip } from "../../functions/iter";
 import { None } from "../monads/Option";
 import { list } from "./List";
 

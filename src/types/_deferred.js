@@ -1,4 +1,4 @@
-import { define } from "../utils/object.js";
+import { define } from "../functions/object.js";
 import { Pending, Cancelled, Rejected, Resolved } from "./_executionStates.js";
 
 // Match execution state to resolver function

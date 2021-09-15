@@ -63,8 +63,8 @@ import {
   atUnsafe,
   keys,
   values,
-} from "../../utils/iter.js";
-import { isNil } from "../../utils/nil.js";
+} from "../../functions/iter.js";
+import { isNil } from "../../functions/nil.js";
 import { NIL } from "./Nil.js";
 
 class Cons extends Array {

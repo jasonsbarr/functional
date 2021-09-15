@@ -62,7 +62,7 @@ import {
   atUnsafe,
   keys,
   values,
-} from "../../utils/iter.js";
+} from "../../functions/iter.js";
 
 // A tuple is immutable, like in Python.
 // Objects inside it, however (not primitives!), can be mutated.
