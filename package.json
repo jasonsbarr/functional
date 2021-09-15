@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
-  "homepage": "https://github.com/jasonsbarr/functional/wiki"
+  "homepage": "https://github.com/jasonsbarr/functional/wiki",
+  "dependencies": {
+    "object-hash": "^2.2.0"
+  }
 }
