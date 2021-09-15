@@ -38,8 +38,8 @@ class Eff {
     return (x) => f(this.value(x));
   }
 
-  ap(f) {
-    return f.map((g) => g(this.value()));
+  ap(o) {
+    return o.map((g) => g(this.value()));
   }
 
   run(x) {
