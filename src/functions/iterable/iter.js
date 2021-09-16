@@ -3,52 +3,11 @@ import { curry } from "../lambda/curry.js";
 import { isNil } from "../helpers/isNil.js";
 import { equals } from "../object/equals.js";
 import { randInt } from "../math/randInt.js";
-import { all as allI } from "./all.js";
-import { any as anyI } from "./any.js";
-import { ap as apply } from "./ap.js";
-import { append as appendI } from "./append.js";
-import { at as atI } from "./at.js";
-import { atUnsafe as atUnsafeI } from "./atUnsafe.js";
-import { clone as cloneI } from "./clone.js";
-import { concat as concatI } from "./concat.js";
-import { concatToArray as concatToArrayI } from "./concatToArray.js";
-import { copy as copyI } from "./copy.js";
-import { copyWithin as copyWithinI } from "./copyWithin.js";
-import { count as countI } from "./count.js";
-import { difference as differenceI } from "./difference.js";
-import { each as eachI } from "./each.js";
-import { eachWithIndex as eachWithIndexI } from "./eachWithIndex.js";
-import { isIterable as isIterableI } from "./isIterable.js";
-import { length as lengthI } from "./length.js";
-import { map as mapI } from "./map.js";
-import { reduce as reduceI } from "./reduce.js";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
 // These work because return value is created with iter.constructor
 // Most functions that take multiple arguments are curried
-
-// temporary exports for the sake of current project
-
-export const all = allI;
-export const any = anyI;
-export const ap = apply;
-export const append = appendI;
-export const at = atI;
-export const atUnsafe = atUnsafeI;
-export const clone = cloneI;
-export const concat = concatI;
-export const concatToArray = concatToArrayI;
-export const copy = copyI;
-export const copyWithin = copyWithinI;
-export const count = countI;
-export const difference = differenceI;
-export const each = eachI;
-export const eachWithIndex = eachWithIndexI;
-export const isIterable = isIterableI;
-export const length = lengthI;
-export const map = mapI;
-export const reduce = reduceI;
 
 export const entries = (iter) => [...iter].entries();
 
