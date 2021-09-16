@@ -1,6 +1,6 @@
-import { zip } from "../../functions/iter";
-import { None } from "../monads/Option";
-import { list } from "./List";
+import { zip } from "../../functions/iterable/iter.js";
+import { None } from "../Option.js";
+import { list } from "./List.js";
 
 class Nil {
   constructor() {
@@ -37,7 +37,7 @@ class Nil {
   }
 
   average() {
-    return 0;
+    return None(null);
   }
 
   chain(fn) {
