@@ -4,6 +4,7 @@ import { isNil } from "../helpers/isNil.js";
 import { equals } from "../object/equals.js";
 import { randInt } from "../math/randInt.js";
 import { all as allI } from "./all.js";
+import { any as anyI } from "./any.js";
 import { ap as apply } from "./ap.js";
 import { at as atI } from "./at.js";
 import { concat as concatI } from "./concat.js";
@@ -19,24 +20,12 @@ import { map as mapI } from "./map.js";
 // temporary exports for the sake of current project
 
 export const all = allI;
+export const any = anyI;
 export const ap = apply;
 export const at = atI;
 export const concat = concatI;
 export const concatToArray = concatToArrayI;
 export const map = mapI;
-
-export const any = curry((search, iter) => {
-  for (let item of iter) {
-    if (typeof search === "function") {
-      if (search(item)) return true;
-    } else if (search instanceof RegExp) {
-      if (search.test(item)) return true;
-    } else {
-      if (equals(search, item)) return true;
-    }
-  }
-  return false;
-});
 
 export const append = curry((item, iter) => iter.constructor(...iter, item));
 

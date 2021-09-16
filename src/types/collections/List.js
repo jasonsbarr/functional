@@ -1,4 +1,5 @@
 import { all } from "../../functions/iterable/all.js";
+import { any } from "../../functions/iterable/any.js";
 import { ap } from "../../functions/iterable/ap.js";
 import { at } from "../../functions/iterable/at.js";
 import { atWithDefault } from "../../functions/iterable/atWithDefault.js";
@@ -23,7 +24,6 @@ import {
   reduceRight,
   reject,
   toArray,
-  any,
   find,
   findIndex,
   includes,
