@@ -1,11 +1,14 @@
+import { ap } from "../../functions/iterable/ap.js";
 import { at } from "../../functions/iterable/at.js";
 import { atWithDefault } from "../../functions/iterable/atWithDefault.js";
+import { concat } from "../../functions/iterable/concat.js";
+import { concatToArray } from "../../functions/iterable/concatToArray.js";
+import { length } from "../../functions/iterable/length.js";
+import { map } from "../../functions/iterable/map.js";
 import {
   append,
   all,
   chain,
-  concat,
-  concatToArray,
   copy,
   copyWithin,
   each,
@@ -15,8 +18,6 @@ import {
   first,
   flatten,
   last,
-  length,
-  map,
   prepend,
   reduce,
   reduceRight,
@@ -58,7 +59,6 @@ import {
   union,
   mapWithIndex,
   zip,
-  zipUnsafe,
   update,
   ap,
   atUnsafe,

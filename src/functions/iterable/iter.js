@@ -3,6 +3,12 @@ import { curry } from "../lambda/curry.js";
 import { isNil } from "../helpers/isNil.js";
 import { equals } from "../object/equals.js";
 import { randInt } from "../math/randInt.js";
+import { ap } from "./ap.js";
+import { at } from "./at.js";
+import { concat } from "./concat.js";
+import { concatToArray } from "./concatToArray.js";
+import { length } from "./length.js";
+import { map } from "./map.js";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
