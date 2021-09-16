@@ -385,7 +385,7 @@ class Tpl extends Array {
     return sort(this, { key, fn, reversed });
   }
 
-  splice(start, deleteCount, ...items) {
+  splice(start, deleteCount = 0, ...items) {
     return splice(this, start, deleteCount, ...items);
   }
 

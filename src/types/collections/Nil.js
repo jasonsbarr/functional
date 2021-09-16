@@ -287,7 +287,7 @@ class Nil {
     return this;
   }
 
-  splice(start, deleteCount, ...items) {
+  splice(start, deleteCount = 0, ...items) {
     if (!items.length) {
       return this;
     }
