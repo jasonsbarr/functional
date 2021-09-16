@@ -2,6 +2,7 @@ import { all } from "../../functions/iterable/all.js";
 import { any } from "../../functions/iterable/any.js";
 import { ap } from "../../functions/iterable/ap.js";
 import { at } from "../../functions/iterable/at.js";
+import { atUnsafe } from "../../functions/iterable/atUnsafe.js";
 import { atWithDefault } from "../../functions/iterable/atWithDefault.js";
 import { concat } from "../../functions/iterable/concat.js";
 import { concatToArray } from "../../functions/iterable/concatToArray.js";
@@ -61,7 +62,6 @@ import {
   zip,
   update,
   ap,
-  atUnsafe,
   keys,
   values,
 } from "../../functions/iter.js";

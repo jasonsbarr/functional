@@ -7,6 +7,7 @@ import { all as allI } from "./all.js";
 import { any as anyI } from "./any.js";
 import { ap as apply } from "./ap.js";
 import { at as atI } from "./at.js";
+import { atUnsafe as atUnsafeI } from "./atUnsafe.js";
 import { concat as concatI } from "./concat.js";
 import { concatToArray as concatToArrayI } from "./concatToArray.js";
 import { length as lengthI } from "./length.js";
@@ -23,19 +24,12 @@ export const all = allI;
 export const any = anyI;
 export const ap = apply;
 export const at = atI;
+export const atUnsafe = atUnsafeI;
 export const concat = concatI;
 export const concatToArray = concatToArrayI;
 export const map = mapI;
 
 export const append = curry((item, iter) => iter.constructor(...iter, item));
-
-// unsafe - may return null value
-export const atUnsafe = curry((i, iter) =>
-  at(i, iter).fold(
-    (x) => x,
-    (x) => x
-  )
-);
 
 export const count = (search, iter) => {
   let count = 0;
