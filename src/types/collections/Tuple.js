@@ -22,6 +22,7 @@ import { first } from "../../functions/iterable/first.js";
 import { flatten } from "../../functions/iterable/flatten.js";
 import { includes } from "../../functions/iterable/includes.js";
 import { indexOf } from "../../functions/iterable/indexOf.js";
+import { intersection } from "../../functions/iterable/intersection.js";
 import { map } from "../../functions/iterable/map.js";
 import { reduce } from "../../functions/iterable/reduce.js";
 import {
@@ -41,7 +42,6 @@ import {
   unique,
   from,
   insert,
-  intersection,
   isEmpty,
   isEqual,
   max,

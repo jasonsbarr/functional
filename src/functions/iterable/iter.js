@@ -11,18 +11,6 @@ import { randInt } from "../math/randInt.js";
 
 // export const groupBy = () => {};
 
-export const intersection = (iter1, iter2) => {
-  let set1 = new Set([...iter1]);
-  let set2 = new Set([...iter2]);
-  let result = [];
-  for (let item of set2) {
-    if (set1.has(item)) {
-      result.push(item);
-    }
-  }
-  return iter1.constructor(...result);
-};
-
 export const isEqual = curry((iter1, iter2) => equals(iter1, iter2));
 
 export const join = curry((sep, iter) => [...iter].join(sep));
