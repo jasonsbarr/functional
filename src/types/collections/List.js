@@ -276,7 +276,7 @@ class Cons extends Array {
   }
 
   isNil() {
-    return false;
+    return length(this) !== 0;
   }
 
   join(sep = "") {

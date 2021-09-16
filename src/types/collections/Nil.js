@@ -136,7 +136,7 @@ class Nil {
   }
 
   has(value) {
-    return this.includes();
+    return this.includes(value);
   }
 
   includes(value) {
