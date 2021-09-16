@@ -201,6 +201,7 @@ Future.all = (futures) => {
       all.resolve(futures.constructor(...all._results));
     }
   });
+  // this return actually happens BEFORE the defer callback above runs
   return all;
 };
 
