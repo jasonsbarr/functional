@@ -13,12 +13,12 @@ import { count } from "../../functions/iterable/count.js";
 import { difference } from "../../functions/iterable/difference.js";
 import { each } from "../../functions/iterable/each.js";
 import { eachWithIndex } from "../../functions/iterable/eachWithIndex.js";
+import { entries } from "../../functions/iterable/entries.js";
 import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/iterable/map.js";
 import { reduce } from "../../functions/iterable/reduce.js";
 import {
   chain,
-  entries,
   filter,
   first,
   flatten,
