@@ -9,6 +9,7 @@ import { ap as apply } from "./ap.js";
 import { append as appendI } from "./append.js";
 import { at as atI } from "./at.js";
 import { atUnsafe as atUnsafeI } from "./atUnsafe.js";
+import { clone as cloneI } from "./clone.js";
 import { concat as concatI } from "./concat.js";
 import { concatToArray as concatToArrayI } from "./concatToArray.js";
 import { copy as copyI } from "./copy.js";
@@ -16,6 +17,7 @@ import { copyWithin as copyWithinI } from "./copyWithin.js";
 import { count as countI } from "./count.js";
 import { difference as differenceI } from "./difference.js";
 import { each as eachI } from "./each.js";
+import { eachWithIndex as eachWithIndexI } from "./eachWithIndex.js";
 import { length as lengthI } from "./length.js";
 import { map as mapI } from "./map.js";
 
@@ -32,6 +34,7 @@ export const ap = apply;
 export const append = appendI;
 export const at = atI;
 export const atUnsafe = atUnsafeI;
+export const clone = cloneI;
 export const concat = concatI;
 export const concatToArray = concatToArrayI;
 export const copy = copyI;
@@ -39,15 +42,8 @@ export const copyWithin = copyWithinI;
 export const count = countI;
 export const difference = differenceI;
 export const each = eachI;
+export const eachWithIndex = eachWithIndexI;
 export const map = mapI;
-
-export const eachWithIndex = curry((fn, iter) => {
-  let i = 0;
-  for (let item of iter) {
-    fn(item, i);
-    i++;
-  }
-});
 
 export const entries = (iter) => [...iter].entries();
 

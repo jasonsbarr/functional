@@ -12,6 +12,7 @@ import { copyWithin } from "../../functions/iterable/copyWithin.js";
 import { count } from "../../functions/iterable/count.js";
 import { difference } from "../../functions/iterable/difference.js";
 import { each } from "../../functions/iterable/each.js";
+import { eachWithIndex } from "../../functions/iterable/eachWithIndex.js";
 import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/iterable/map.js";
 import {
