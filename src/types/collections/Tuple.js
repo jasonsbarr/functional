@@ -17,8 +17,6 @@ import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/iterable/map.js";
 import {
   chain,
-  each,
-  eachWithIndex,
   entries,
   filter,
   first,
