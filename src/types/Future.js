@@ -187,8 +187,9 @@ Future.reject = Future.rejected;
 Future.all = (futures) => {
   let all = new Futur();
   defer(() => {
-    // hack to keep the array alive throughout execution due to defer sticking the callback
-    // in the task queue, whereas Promise callbacks go into the microtask queue
+    // Hack to keep the array alive throughout execution due to defer sticking the callback
+    // in the task queue, whereas Promise callbacks go into the microtask queue. This
+    // makes sure the method works as expected with Futures created from Promises.
     all._results = [];
     for (let future of futures) {
       future.listen({
