@@ -36,6 +36,10 @@ class Nil {
     return null;
   }
 
+  atWithDefault(i, defaultValue) {
+    return defaultValue;
+  }
+
   average() {
     return None(null);
   }

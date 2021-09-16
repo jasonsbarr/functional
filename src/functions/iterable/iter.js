@@ -44,12 +44,6 @@ export const any = curry((search, iter) => {
 
 export const append = curry((item, iter) => iter.constructor(...iter, item));
 
-// Returns Option, not value
-export const at = curry((i, iter) => {
-  const temp = [...iter];
-  return Option.of(i < 0 ? temp[temp.length - i] : temp[i]);
-});
-
 // unsafe - may return null value
 export const atUnsafe = curry((i, iter) =>
   at(i, iter).fold(
@@ -71,13 +65,6 @@ export const count = (search, iter) => {
   }
   return count;
 };
-
-export const concatToArray = (...iters) =>
-  iters.reduce((arr, iter) => arr.concat([...iter]), []);
-
-// assumes all iterables are of the same kind, otherwise will construct an iterable of the same type as the first
-export const concat = (...iters) =>
-  iters[0].constructor(...concatToArray(...iters));
 
 export const copy = (iter) => iter.constructor(...[...iter]);
 
@@ -239,31 +226,9 @@ export const lastIndexOf = (iter, value, startIndex = length(iter) - 1) => {
   return None(null);
 };
 
-export const length = (iter) => [...iter].length;
-
 export const isEmpty = (iter) => {
   return length(iter) === 0;
 };
-
-export const map = curry((fn, iter) => {
-  let temp = [];
-  for (let item of iter) {
-    temp.push(fn(item));
-  }
-  return iter.constructor(...temp);
-});
-
-// other is an iterable full of functions
-export const ap = curry((other, iter) => {
-  if (!length(other) || !allFuncs(other)) {
-    throw new TypeError("First iterable must be all functions");
-  }
-  let results = [];
-  for (let func of other) {
-    results = iter.constructor(...concat(map(func, iter), results));
-  }
-  return results;
-});
 
 export const mapWithIndex = curry((fn, iter) => {
   let temp = [];

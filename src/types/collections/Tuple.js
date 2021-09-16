@@ -1,7 +1,8 @@
+import { at } from "../../functions/iterable/at.js";
+import { atWithDefault } from "../../functions/iterable/atWithDefault.js";
 import {
   append,
   all,
-  at,
   chain,
   concat,
   concatToArray,
@@ -119,6 +120,10 @@ class Tpl extends Array {
   // unsafe - may return null or undefined value
   atUnsafe(i) {
     return atUnsafe(i, this);
+  }
+
+  atWithDefault(i, defaultValue) {
+    return atWithDefault(i, defaultValue, this);
   }
 
   average() {
