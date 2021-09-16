@@ -1,3 +1,3 @@
-import { Future } from "../../types/Future";
+import { Future } from "../../types/Future.js";
 
 export const resultToFuture = (result) => result.fold(Future.reject, Future.of);
