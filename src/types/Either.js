@@ -79,6 +79,8 @@ class R {
   }
 }
 
+export const Right = (x) => new R(x);
+
 class L {
   constructor(value) {
     Object.defineProperty(this, "_value", {
