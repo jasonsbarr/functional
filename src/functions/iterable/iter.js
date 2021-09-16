@@ -15,6 +15,7 @@ import { copy as copyI } from "./copy.js";
 import { copyWithin as copyWithinI } from "./copyWithin.js";
 import { count as countI } from "./count.js";
 import { difference as differenceI } from "./difference.js";
+import { each as eachI } from "./each.js";
 import { length as lengthI } from "./length.js";
 import { map as mapI } from "./map.js";
 
@@ -37,13 +38,8 @@ export const copy = copyI;
 export const copyWithin = copyWithinI;
 export const count = countI;
 export const difference = differenceI;
+export const each = eachI;
 export const map = mapI;
-
-export const each = curry((fn, iter) => {
-  for (let item of iter) {
-    fn(item);
-  }
-});
 
 export const eachWithIndex = curry((fn, iter) => {
   let i = 0;
