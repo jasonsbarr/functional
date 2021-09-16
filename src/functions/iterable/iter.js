@@ -9,16 +9,6 @@ import { randInt } from "../math/randInt.js";
 // These work because return value is created with iter.constructor
 // Most functions that take multiple arguments are curried
 
-export const filter = curry((pred, iter) => {
-  let temp = [];
-  for (let item of iter) {
-    if (pred(item)) {
-      temp.push(item);
-    }
-  }
-  return temp.length ? iter.constructor(...temp) : iter.constructor();
-});
-
 // returns Option
 export const find = curry((pred, iter) => {
   for (let item of iter) {

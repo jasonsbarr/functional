@@ -14,11 +14,11 @@ import { difference } from "../../functions/iterable/difference.js";
 import { each } from "../../functions/iterable/each.js";
 import { eachWithIndex } from "../../functions/iterable/eachWithIndex.js";
 import { entries } from "../../functions/iterable/entries.js";
+import { filter } from "../../functions/iterable/filter.js";
 import { map } from "../../functions/iterable/map.js";
 import { reduce } from "../../functions/iterable/reduce.js";
 import {
   chain,
-  filter,
   first,
   flatten,
   last,
