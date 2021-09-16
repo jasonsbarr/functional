@@ -22,8 +22,6 @@ export const concat = concatI;
 export const concatToArray = concatToArrayI;
 export const map = mapI;
 
-export const isArray = (obj) => Array.isArray(obj);
-
 export const all = curry((search, iter) => {
   for (let item of iter) {
     if (typeof search === "function") {
