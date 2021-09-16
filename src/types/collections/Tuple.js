@@ -8,12 +8,13 @@ import { atWithDefault } from "../../functions/iterable/atWithDefault.js";
 import { concat } from "../../functions/iterable/concat.js";
 import { concatToArray } from "../../functions/iterable/concatToArray.js";
 import { copy } from "../../functions/iterable/copy.js";
+import { copyWithin } from "../../functions/iterable/copyWithin.js";
 import { count } from "../../functions/iterable/count.js";
+import { difference } from "../../functions/iterable/difference.js";
 import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/iterable/map.js";
 import {
   chain,
-  copyWithin,
   each,
   eachWithIndex,
   entries,
@@ -39,7 +40,6 @@ import {
   pluck,
   average,
   unique,
-  difference,
   from,
   insert,
   intersection,

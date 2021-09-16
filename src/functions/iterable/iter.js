@@ -12,7 +12,9 @@ import { atUnsafe as atUnsafeI } from "./atUnsafe.js";
 import { concat as concatI } from "./concat.js";
 import { concatToArray as concatToArrayI } from "./concatToArray.js";
 import { copy as copyI } from "./copy.js";
+import { copyWithin as copyWithinI } from "./copyWithin.js";
 import { count as countI } from "./count.js";
+import { difference as differenceI } from "./difference.js";
 import { length as lengthI } from "./length.js";
 import { map as mapI } from "./map.js";
 
@@ -32,21 +34,10 @@ export const atUnsafe = atUnsafeI;
 export const concat = concatI;
 export const concatToArray = concatToArrayI;
 export const copy = copyI;
+export const copyWithin = copyWithinI;
 export const count = countI;
+export const difference = differenceI;
 export const map = mapI;
-
-// have to do data-first due to optional arguments
-export const copyWithin = (iter, target, start, end) =>
-  iter.constructor(...[...iter].copyWithin(target, start, end));
-
-export const difference = (iter1, iter2) => {
-  const set1 = new Set([...iter1]);
-  const set2 = new Set([...iter2]);
-  for (let item of set2) {
-    set1.delete(item);
-  }
-  return iter1.constructor(...set1);
-};
 
 export const each = curry((fn, iter) => {
   for (let item of iter) {
