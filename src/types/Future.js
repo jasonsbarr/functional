@@ -204,24 +204,26 @@ Future.all = (futures) => {
   return all;
 };
 
-// these don't work
-// Future.allSettled = (futures) => {
-//   let results = [];
-//   let all = new Futur();
-//   for (let future of futures) {
-//     future.listen({
-//       onCancelled: () => future.cancel(),
-//       onRejected: (reason) => results.push(reason),
-//       onResolved: (value) => results.push(value),
-//     });
-//   }
-//   return all.listen({
-//     onCancelled: () => all.cancel(),
-//     onRejected: (reason) => all.reject(reason),
-//     onResolved: () => all.resolve(futures.constructor(...results)),
-//   });
-// };
+Future.allSettled = (futures) => {
+  let all = new Futur();
+  defer(() => {
+    all._results = [];
+    for (let future of futures) {
+      future.listen({
+        onCancelled: () => all.cancel(),
+        onRejected: (reason) =>
+          all._results.push({ status: "Rejected", reason }),
+        onResolved: (value) => all._results.push({ status: "Resolved", value }),
+      });
+    }
+    if (length(all._results) === length(futures)) {
+      all.resolve(futures.constructor(...all._results));
+    }
+  });
+  return all;
+};
 
+// these don't work
 // Future.any = (futures) => {
 //   let errors = [];
 //   let any = new Futur();
