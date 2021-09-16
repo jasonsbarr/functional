@@ -9,8 +9,6 @@ import { randInt } from "../math/randInt.js";
 // These work because return value is created with iter.constructor
 // Most functions that take multiple arguments are curried
 
-export const forEach = eachWithIndex;
-
 // returns Option
 export const get = at;
 
