@@ -5,6 +5,7 @@ import { append } from "../../functions/iterable/append.js";
 import { at } from "../../functions/iterable/at.js";
 import { atUnsafe } from "../../functions/iterable/atUnsafe.js";
 import { atWithDefault } from "../../functions/iterable/atWithDefault.js";
+import { chain } from "../../functions/iterable/chain.js";
 import { concat } from "../../functions/iterable/concat.js";
 import { concatToArray } from "../../functions/iterable/concatToArray.js";
 import { copy } from "../../functions/iterable/copy.js";

@@ -9,8 +9,6 @@ import { randInt } from "../math/randInt.js";
 // These work because return value is created with iter.constructor
 // Most functions that take multiple arguments are curried
 
-export const chain = curry((fn, iter) => map(fn, flatten(iter)));
-
 export const flatMap = chain;
 
 export const forEach = eachWithIndex;
