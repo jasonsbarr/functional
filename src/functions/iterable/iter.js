@@ -11,8 +11,6 @@ import { randInt } from "../math/randInt.js";
 
 // export const groupBy = () => {};
 
-export const has = includes;
-
 // data-first because of optional argument, returns Option, works with any value including objects
 export const indexOf = (iter, value, start = 0) => {
   let i = 0;
