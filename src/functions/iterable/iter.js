@@ -200,9 +200,6 @@ export const reverse = (iter) => iter.constructor([...iter].reverse());
 
 export const sample = (iter) => at(randInt(0, length(iter) - 1), iter);
 
-// returns Option
-export const shift = first;
-
 // Fisher-Yates shuffle algorithm, from https://stackoverflow.com/a/2450976
 export const shuffle = (iter) => {
   let temp = [...iter];

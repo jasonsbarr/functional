@@ -15,19 +15,19 @@ import { each } from "../../functions/iterable/each.js";
 import { eachWithIndex } from "../../functions/iterable/eachWithIndex.js";
 import { entries } from "../../functions/iterable/entries.js";
 import { filter } from "../../functions/iterable/filter.js";
+import { find } from "../../functions/iterable/find.js";
+import { findIndex } from "../../functions/iterable/findIndex.js";
+import { first } from "../../functions/iterable/first.js";
 import { map } from "../../functions/iterable/map.js";
 import { reduce } from "../../functions/iterable/reduce.js";
 import {
   chain,
-  first,
   flatten,
   last,
   prepend,
   reduceRight,
   reject,
   toArray,
-  find,
-  findIndex,
   includes,
   indexOf,
   join,
