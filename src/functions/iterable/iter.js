@@ -11,16 +11,6 @@ import { randInt } from "../math/randInt.js";
 
 // export const groupBy = () => {};
 
-// works with any value, including objects
-export const includes = curry((value, iter) => {
-  for (let item of iter) {
-    if (equals(item, value)) {
-      return true;
-    }
-  }
-  return false;
-});
-
 export const has = includes;
 
 // data-first because of optional argument, returns Option, works with any value including objects

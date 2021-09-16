@@ -20,6 +20,7 @@ import { find } from "../../functions/iterable/find.js";
 import { findIndex } from "../../functions/iterable/findIndex.js";
 import { first } from "../../functions/iterable/first.js";
 import { flatten } from "../../functions/iterable/flatten.js";
+import { includes } from "../../functions/iterable/includes.js";
 import { map } from "../../functions/iterable/map.js";
 import { reduce } from "../../functions/iterable/reduce.js";
 import {
@@ -28,7 +29,6 @@ import {
   reduceRight,
   reject,
   toArray,
-  includes,
   indexOf,
   join,
   lastIndexOf,
