@@ -9,9 +9,6 @@ import { randInt } from "../math/randInt.js";
 // These work because return value is created with iter.constructor
 // Most functions that take multiple arguments are curried
 
-// Returns Option
-export const first = at(0);
-
 // flattens completely or to specified level of depth
 export const flatten = (iter, level = Infinity, current = 0) => {
   // iter.constructor(concatToArray(...iter));
