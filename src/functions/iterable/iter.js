@@ -11,6 +11,7 @@ import { at as atI } from "./at.js";
 import { atUnsafe as atUnsafeI } from "./atUnsafe.js";
 import { concat as concatI } from "./concat.js";
 import { concatToArray as concatToArrayI } from "./concatToArray.js";
+import { copy as copyI } from "./copy.js";
 import { count as countI } from "./count.js";
 import { length as lengthI } from "./length.js";
 import { map as mapI } from "./map.js";
@@ -30,10 +31,9 @@ export const at = atI;
 export const atUnsafe = atUnsafeI;
 export const concat = concatI;
 export const concatToArray = concatToArrayI;
+export const copy = copyI;
 export const count = countI;
 export const map = mapI;
-
-export const copy = (iter) => iter.constructor(...[...iter]);
 
 export const clone = copy;
 
