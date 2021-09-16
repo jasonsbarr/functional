@@ -66,10 +66,10 @@ class Futur extends Deferred {
     return this.listen({ onCancelled, onRejected, onResolved });
   }
 
-  fold(onRejected, onResolved, onCancelled = noop) {
+  fold(onRejected, onResolved, onCancelled = noop, onPending = noop) {
     switch (this.state.name) {
       case "Pending":
-        return null;
+        return onPending();
       case "Cancelled":
         return onCancelled();
       case "Rejected":
