@@ -9,22 +9,6 @@ import { randInt } from "../math/randInt.js";
 // These work because return value is created with iter.constructor
 // Most functions that take multiple arguments are curried
 
-// returns Option
-export const findIndex = curry((pred, iter) => {
-  let i = 0;
-  for (let item of iter) {
-    if (typeof pred === "function") {
-      if (pred(item)) return Some(i);
-    } else if (pred instanceof RegExp) {
-      if (pred.test(item)) return Some(i);
-    } else {
-      if (equals(pred, item)) return Some(i);
-    }
-    i++;
-  }
-  return None(null);
-});
-
 // Returns Option
 export const first = at(0);
 
