@@ -9,9 +9,6 @@ import { randInt } from "../math/randInt.js";
 // These work because return value is created with iter.constructor
 // Most functions that take multiple arguments are curried
 
-// returns Option
-export const get = at;
-
 // export const groupBy = () => {};
 
 // works with any value, including objects
