@@ -18,11 +18,11 @@ import { filter } from "../../functions/iterable/filter.js";
 import { find } from "../../functions/iterable/find.js";
 import { findIndex } from "../../functions/iterable/findIndex.js";
 import { first } from "../../functions/iterable/first.js";
+import { flatten } from "../../functions/iterable/flatten.js";
 import { map } from "../../functions/iterable/map.js";
 import { reduce } from "../../functions/iterable/reduce.js";
 import {
   chain,
-  flatten,
   last,
   prepend,
   reduceRight,

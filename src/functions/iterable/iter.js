@@ -9,19 +9,6 @@ import { randInt } from "../math/randInt.js";
 // These work because return value is created with iter.constructor
 // Most functions that take multiple arguments are curried
 
-// flattens completely or to specified level of depth
-export const flatten = (iter, level = Infinity, current = 0) => {
-  // iter.constructor(concatToArray(...iter));
-  let result = [];
-  each((item) => {
-    if (isIterable(item) && typeof item !== "string" && current < level) {
-      result = concatToArray(result, flatten(item, level, current + 1));
-    } else {
-      result.push(item);
-    }
-  }, iter);
-  return iter.constructor(...result);
-};
 export const flat = flatten;
 
 export const chain = curry((fn, iter) => map(fn, flatten(iter)));
