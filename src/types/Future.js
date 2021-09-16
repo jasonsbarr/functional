@@ -104,7 +104,13 @@ class Futur extends Deferred {
   }
 
   toString() {
-    return `Future: ${this.state.name}, ${this.listeners.length} listeners`;
+    return `Future: ${this.state.name}${
+      this.state.value
+        ? ", value = " + this.state.value.toString()
+        : this.state.reason
+        ? ", reason = " + this.state.reason.toString()
+        : ""
+    }`;
   }
 
   inspect() {
