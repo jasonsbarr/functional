@@ -11,6 +11,7 @@ import { at as atI } from "./at.js";
 import { atUnsafe as atUnsafeI } from "./atUnsafe.js";
 import { concat as concatI } from "./concat.js";
 import { concatToArray as concatToArrayI } from "./concatToArray.js";
+import { count as countI } from "./count.js";
 import { length as lengthI } from "./length.js";
 import { map as mapI } from "./map.js";
 
@@ -29,21 +30,8 @@ export const at = atI;
 export const atUnsafe = atUnsafeI;
 export const concat = concatI;
 export const concatToArray = concatToArrayI;
+export const count = countI;
 export const map = mapI;
-
-export const count = (search, iter) => {
-  let count = 0;
-  for (let item of iter) {
-    if (typeof search === "function") {
-      count += search(item) ? 1 : 0;
-    } else if (search instanceof RegExp) {
-      count += search.test(item) ? 1 : 0;
-    } else {
-      count += equals(item, search) ? 1 : 0;
-    }
-  }
-  return count;
-};
 
 export const copy = (iter) => iter.constructor(...[...iter]);
 

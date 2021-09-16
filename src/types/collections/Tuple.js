@@ -7,6 +7,7 @@ import { atUnsafe } from "../../functions/iterable/atUnsafe.js";
 import { atWithDefault } from "../../functions/iterable/atWithDefault.js";
 import { concat } from "../../functions/iterable/concat.js";
 import { concatToArray } from "../../functions/iterable/concatToArray.js";
+import { count } from "../../functions/iterable/count.js";
 import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/iterable/map.js";
 import {
@@ -38,7 +39,6 @@ import {
   pluck,
   average,
   unique,
-  count,
   difference,
   from,
   insert,
