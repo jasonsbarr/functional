@@ -23,7 +23,6 @@ import { flatten } from "../../functions/iterable/flatten.js";
 import { map } from "../../functions/iterable/map.js";
 import { reduce } from "../../functions/iterable/reduce.js";
 import {
-  chain,
   last,
   prepend,
   reduceRight,
