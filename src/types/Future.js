@@ -66,6 +66,21 @@ class Futur extends Deferred {
     return this.listen({ onCancelled, onRejected, onResolved });
   }
 
+  fold(onRejected, onResolved, onCancelled = noop) {
+    switch (this.state.name) {
+      case "Pending":
+        return null;
+      case "Cancelled":
+        return onCancelled();
+      case "Rejected":
+        return onRejected(this.state.reason);
+      case "Resolved":
+        return onResolved(this.state.value);
+      default:
+        throw new Error("Invalid Future state");
+    }
+  }
+
   ap(future) {
     return this.chain((f) => future.map(f));
   }
