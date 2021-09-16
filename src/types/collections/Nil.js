@@ -299,7 +299,7 @@ class Nil {
   }
 
   symmetricDifference(other) {
-    return this;
+    return other;
   }
 
   take(numItems) {
