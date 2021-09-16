@@ -283,7 +283,7 @@ class Nil {
     return false;
   }
 
-  sort({ key = "", fn = null, reversed = false }) {
+  sort({ key = "", fn = null, reversed = false } = {}) {
     return this;
   }
 
