@@ -1,3 +1,4 @@
+import { all } from "../../functions/iterable/all.js";
 import { ap } from "../../functions/iterable/ap.js";
 import { at } from "../../functions/iterable/at.js";
 import { atWithDefault } from "../../functions/iterable/atWithDefault.js";
@@ -7,7 +8,6 @@ import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/iterable/map.js";
 import {
   append,
-  all,
   chain,
   copy,
   copyWithin,

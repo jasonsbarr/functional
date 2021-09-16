@@ -3,6 +3,7 @@ import { curry } from "../lambda/curry.js";
 import { isNil } from "../helpers/isNil.js";
 import { equals } from "../object/equals.js";
 import { randInt } from "../math/randInt.js";
+import { all as allI } from "./all.js";
 import { ap as apply } from "./ap.js";
 import { at as atI } from "./at.js";
 import { concat as concatI } from "./concat.js";
@@ -16,24 +17,13 @@ import { map as mapI } from "./map.js";
 // Most functions that take multiple arguments are curried
 
 // temporary exports for the sake of current project
+
+export const all = allI;
 export const ap = apply;
 export const at = atI;
 export const concat = concatI;
 export const concatToArray = concatToArrayI;
 export const map = mapI;
-
-export const all = curry((search, iter) => {
-  for (let item of iter) {
-    if (typeof search === "function") {
-      if (!search(item)) return false;
-    } else if (search instanceof RegExp) {
-      if (!search.test(item)) return false;
-    } else {
-      if (!equals(search, item)) return false;
-    }
-  }
-  return true;
-});
 
 export const any = curry((search, iter) => {
   for (let item of iter) {
