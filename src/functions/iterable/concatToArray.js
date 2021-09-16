@@ -1,2 +1,4 @@
+import { reduce } from "./reduce.js";
+
 export const concatToArray = (...iters) =>
-  iters.reduce((arr, iter) => arr.concat([...iter]), []);
+  reduce((arr, iter) => arr.concat([...iter]), [], iters);

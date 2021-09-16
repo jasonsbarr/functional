@@ -21,6 +21,7 @@ import { eachWithIndex as eachWithIndexI } from "./eachWithIndex.js";
 import { isIterable as isIterableI } from "./isIterable.js";
 import { length as lengthI } from "./length.js";
 import { map as mapI } from "./map.js";
+import { reduce as reduceI } from "./reduce.js";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
@@ -47,6 +48,7 @@ export const eachWithIndex = eachWithIndexI;
 export const isIterable = isIterableI;
 export const length = lengthI;
 export const map = mapI;
+export const reduce = reduceI;
 
 export const entries = (iter) => [...iter].entries();
 
@@ -220,14 +222,6 @@ export const pop = last;
 export const prepend = curry((item, iter) => iter.constructor(item, ...iter));
 
 export const push = append;
-
-export const reduce = curry((fn, initial, iter) => {
-  let acc = initial;
-  for (let item of iter) {
-    acc = fn(acc, item);
-  }
-  return acc;
-});
 
 export const fold = reduce;
 export const foldLeft = reduce;

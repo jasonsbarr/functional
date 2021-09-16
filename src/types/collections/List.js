@@ -15,6 +15,7 @@ import { each } from "../../functions/iterable/each.js";
 import { eachWithIndex } from "../../functions/iterable/eachWithIndex.js";
 import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/iterable/map.js";
+import { reduce } from "../../functions/iterable/reduce.js";
 import {
   chain,
   entries,
@@ -23,7 +24,6 @@ import {
   flatten,
   last,
   prepend,
-  reduce,
   reduceRight,
   reject,
   toArray,
