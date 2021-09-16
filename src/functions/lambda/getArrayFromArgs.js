@@ -1,4 +1,4 @@
-import { isIterable } from "../iterable/iter.js";
+import { isIterable } from "../iterable/isIterable";
 
 // Returns a single array of the function args based on whether the first arg is an iterable
 export const getArrayFromArgs = (...args) =>

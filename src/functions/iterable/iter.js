@@ -22,10 +22,6 @@ export const concat = concatI;
 export const concatToArray = concatToArrayI;
 export const map = mapI;
 
-// stolen from https://stackoverflow.com/a/32538867
-export const isIterable = (obj) =>
-  !isNil(obj) && typeof obj[Symbol.iterator] === "function";
-
 export const isArray = (obj) => Array.isArray(obj);
 
 export const all = curry((search, iter) => {
