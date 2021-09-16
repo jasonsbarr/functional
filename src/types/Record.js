@@ -1,6 +1,7 @@
 import { hash } from "../utils/object.js";
 import { equals } from "../functions/object/equals.js";
 import { Option } from "./Option.js";
+import { extend } from "../functions/object/extend.js";
 
 const recordProto = {
   // returns a Record with the same keys but all values set to undefined
@@ -78,7 +79,7 @@ const recordProto = {
   // so last object with a certain key will have its value assigned to the new Record
   // will merge any object, not just a Record, but returns a Record
   merge(...others) {
-    return record(Object.assign(this, ...others));
+    return record(extend(Object.create(null), this, ...others));
   },
 
   set(key, value) {
