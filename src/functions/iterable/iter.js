@@ -10,20 +10,6 @@ import { randInt } from "../math/randInt.js";
 // Most functions that take multiple arguments are curried
 
 // returns Option
-export const find = curry((pred, iter) => {
-  for (let item of iter) {
-    if (typeof pred === "function") {
-      if (pred(item)) return Some(item);
-    } else if (pred instanceof RegExp) {
-      if (pred.test(item)) return Some(item);
-    } else {
-      if (equals(pred, item)) return Some(item);
-    }
-  }
-  return None(null);
-});
-
-// returns Option
 export const findIndex = curry((pred, iter) => {
   let i = 0;
   for (let item of iter) {
