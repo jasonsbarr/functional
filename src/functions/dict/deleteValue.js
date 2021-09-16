@@ -1,5 +1,5 @@
-import { curry } from "../lambda/curry";
-import { copy } from "./copy";
+import { curry } from "../lambda/curry.js";
+import { copy } from "./copy.js";
 
 export const deleteValue = curry((key, hash) => {
   let c = copy(hash);

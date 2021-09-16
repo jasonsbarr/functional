@@ -1,6 +1,6 @@
-import { curry } from "../lambda/curry";
-import { keys } from "../object/keys";
-import { copy } from "./copy";
+import { curry } from "../lambda/curry.js";
+import { keys } from "../object/keys.js";
+import { copy } from "./copy.js";
 
 export const map = curry((fn, hash) => {
   let c = copy(hash);

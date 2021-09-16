@@ -1,10 +1,11 @@
-import { curry } from "../lambda/curry";
-import { keys } from "../object/keys";
+import { curry } from "../lambda/curry.js";
+import { keys } from "../object/keys.js";
+import { copy } from "./copy.js";
 
 export const mapWithKey = curry((fn, hash) => {
-  let copy = Object.create(null);
+  let c = copy(hash);
   for (let key of keys(hash)) {
-    copy[key] = fn(hash[key], key);
+    c[key] = fn(hash[key], key);
   }
-  return copy;
+  return c;
 });

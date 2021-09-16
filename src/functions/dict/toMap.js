@@ -1,4 +1,4 @@
-import { keys } from "../object/keys";
+import { keys } from "../object/keys.js";
 
 export const toMap = (hash) => {
   let m = new Map();
