@@ -198,14 +198,6 @@ Future.all = (futures) => {
   return all;
 };
 
-const Db = {
-  find: (id) => {
-    const f = Future();
-    setTimeout(() => f.resolve({ id, title: `Project ${id}` }), 100);
-    return f;
-  },
-};
-
 // these don't work
 // Future.allSettled = (futures) => {
 //   let results = [];
