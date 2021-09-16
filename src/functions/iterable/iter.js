@@ -3,17 +3,24 @@ import { curry } from "../lambda/curry.js";
 import { isNil } from "../helpers/isNil.js";
 import { equals } from "../object/equals.js";
 import { randInt } from "../math/randInt.js";
-import { ap } from "./ap.js";
-import { at } from "./at.js";
-import { concat } from "./concat.js";
-import { concatToArray } from "./concatToArray.js";
-import { length } from "./length.js";
-import { map } from "./map.js";
+import { ap as apply } from "./ap.js";
+import { at as atI } from "./at.js";
+import { concat as concatI } from "./concat.js";
+import { concatToArray as concatToArrayI } from "./concatToArray.js";
+import { length as lengthI } from "./length.js";
+import { map as mapI } from "./map.js";
 
 // Iterable functions used for iterable collection types
 // Only guaranteed to work with arrays and iterable collections from this library
 // These work because return value is created with iter.constructor
 // Most functions that take multiple arguments are curried
+
+// temporary exports for the sake of current project
+export const ap = apply;
+export const at = atI;
+export const concat = concatI;
+export const concatToArray = concatToArrayI;
+export const map = mapI;
 
 // stolen from https://stackoverflow.com/a/32538867
 export const isIterable = (obj) =>
