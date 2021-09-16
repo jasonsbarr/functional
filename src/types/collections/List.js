@@ -1,6 +1,7 @@
 import { all } from "../../functions/iterable/all.js";
 import { any } from "../../functions/iterable/any.js";
 import { ap } from "../../functions/iterable/ap.js";
+import { append } from "../../functions/iterable/append.js";
 import { at } from "../../functions/iterable/at.js";
 import { atUnsafe } from "../../functions/iterable/atUnsafe.js";
 import { atWithDefault } from "../../functions/iterable/atWithDefault.js";
@@ -9,7 +10,6 @@ import { concatToArray } from "../../functions/iterable/concatToArray.js";
 import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/iterable/map.js";
 import {
-  append,
   chain,
   copy,
   copyWithin,

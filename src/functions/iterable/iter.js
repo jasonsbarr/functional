@@ -6,6 +6,7 @@ import { randInt } from "../math/randInt.js";
 import { all as allI } from "./all.js";
 import { any as anyI } from "./any.js";
 import { ap as apply } from "./ap.js";
+import { append as appendI } from "./append.js";
 import { at as atI } from "./at.js";
 import { atUnsafe as atUnsafeI } from "./atUnsafe.js";
 import { concat as concatI } from "./concat.js";
@@ -23,13 +24,12 @@ import { map as mapI } from "./map.js";
 export const all = allI;
 export const any = anyI;
 export const ap = apply;
+export const append = appendI;
 export const at = atI;
 export const atUnsafe = atUnsafeI;
 export const concat = concatI;
 export const concatToArray = concatToArrayI;
 export const map = mapI;
-
-export const append = curry((item, iter) => iter.constructor(...iter, item));
 
 export const count = (search, iter) => {
   let count = 0;
