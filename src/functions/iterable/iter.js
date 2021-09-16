@@ -11,18 +11,6 @@ import { randInt } from "../math/randInt.js";
 
 // export const groupBy = () => {};
 
-// data-first because of optional argument, returns Option, works with any value including objects
-export const indexOf = (iter, value, start = 0) => {
-  let i = 0;
-  for (let item of iter) {
-    if (i <= start && equals(item, value)) {
-      return Some(i);
-    }
-    i++;
-  }
-  return None(null);
-};
-
 export const intersection = (iter1, iter2) => {
   let set1 = new Set([...iter1]);
   let set2 = new Set([...iter2]);
