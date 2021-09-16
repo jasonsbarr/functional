@@ -13,7 +13,6 @@ import { count } from "../../functions/iterable/count.js";
 import { difference } from "../../functions/iterable/difference.js";
 import { each } from "../../functions/iterable/each.js";
 import { eachWithIndex } from "../../functions/iterable/eachWithIndex.js";
-import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/iterable/map.js";
 import {
   chain,
@@ -61,10 +60,9 @@ import {
   mapWithIndex,
   zip,
   update,
-  ap,
   keys,
   values,
-} from "../../functions/iter.js";
+} from "../../functions/iterable/iter.js";
 
 // A tuple is immutable, like in Python.
 // Objects inside it, however (not primitives!), can be mutated.
@@ -450,7 +448,7 @@ class Tpl extends Array {
   }
 }
 
-export const Tuple = (...args) => new Tuple(...args);
+export const Tuple = (...args) => new Tpl(...args);
 export const tuple = Tuple;
 
 Tuple.of = (iter) => tuple(...iter);

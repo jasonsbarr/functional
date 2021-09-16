@@ -1,3 +1,6 @@
+import { curry } from "../lambda/curry.js";
+import { equals } from "../object/equals.js";
+
 export const any = curry((search, iter) => {
   for (let item of iter) {
     if (typeof search === "function") {

@@ -18,6 +18,7 @@ import { count as countI } from "./count.js";
 import { difference as differenceI } from "./difference.js";
 import { each as eachI } from "./each.js";
 import { eachWithIndex as eachWithIndexI } from "./eachWithIndex.js";
+import { isIterable as isIterableI } from "./isIterable.js";
 import { length as lengthI } from "./length.js";
 import { map as mapI } from "./map.js";
 
@@ -43,6 +44,8 @@ export const count = countI;
 export const difference = differenceI;
 export const each = eachI;
 export const eachWithIndex = eachWithIndexI;
+export const isIterable = isIterableI;
+export const length = lengthI;
 export const map = mapI;
 
 export const entries = (iter) => [...iter].entries();

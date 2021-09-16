@@ -1,4 +1,4 @@
-import { hash } from "../utils/object.js";
+import { hash } from "../functions/object/hash.js";
 import { equals } from "../functions/object/equals.js";
 import { Option } from "./Option.js";
 import { extend } from "../functions/object/extend.js";

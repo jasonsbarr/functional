@@ -1,3 +1,5 @@
+import { equals } from "../object/equals.js";
+
 export const count = (search, iter) => {
   let count = 0;
   for (let item of iter) {

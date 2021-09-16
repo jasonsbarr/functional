@@ -1,3 +1,5 @@
+import { curry } from "../lambda/curry.js";
+
 export const eachWithIndex = curry((fn, iter) => {
   let i = 0;
   for (let item of iter) {

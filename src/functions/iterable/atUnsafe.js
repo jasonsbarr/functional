@@ -1,3 +1,6 @@
+import { curry } from "../lambda/curry.js";
+import { at } from "./at.js";
+
 // unsafe - may return null value
 export const atUnsafe = curry((i, iter) =>
   at(i, iter).fold(
