@@ -1,3 +1,4 @@
+import { concatValues } from "../functions/helpers/concatValues.js";
 import { isNil } from "../functions/helpers/isNil.js";
 /*
  * type Option = Some(x: T) | None(null|undefined|NaN)
@@ -69,7 +70,7 @@ class S {
   concat(o) {
     return o.fold(
       (n) => None(n),
-      (s) => Some(this.value.concat(s))
+      (s) => Some(concatValues(this.value, s))
     );
   }
 

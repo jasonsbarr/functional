@@ -2,6 +2,8 @@
  * type Result = Success(x: Ok) | Failure(x: Error)
  */
 
+import { concatValues } from "../functions/helpers/concatValues.js";
+
 export const Result = {
   of: (x) => (x instanceof Error ? Err(x) : Ok(x)),
   isOk: (obj) => obj.kind === "Ok",
@@ -66,7 +68,7 @@ class O {
   concat(o) {
     return o.fold(
       (e) => Err(e),
-      (ok) => Ok(this.value.concat(ok))
+      (ok) => Ok(concatValues(this.value, ok))
     );
   }
 

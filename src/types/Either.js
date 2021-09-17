@@ -66,8 +66,8 @@ class R {
 
   concat(o) {
     return o.fold(
-      (l) => Left(l.value),
-      (r) => Right(concatValues(this.value, r.value))
+      (l) => Left(l),
+      (r) => Right(concatValues(this.value, r))
     );
   }
 

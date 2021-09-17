@@ -15,6 +15,6 @@ export const concatValues = (value1, value2) => {
   } else if (typeof value1 === "symbol") {
     value1 = Symbol(value1.description + value2.description);
   }
-  // add cases for Maps and Sets?
+  // add cases for Maps, Sets, and functions?
   return value1.concat(value2);
 };
