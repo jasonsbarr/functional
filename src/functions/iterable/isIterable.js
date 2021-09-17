@@ -1,4 +1,4 @@
-import { isNil } from "../helpers/isNil.js";
+import { isNil } from "../type/isNil.js";
 
 // stolen from https://stackoverflow.com/a/32538867
 export const isIterable = (obj) =>
