@@ -207,7 +207,7 @@ Future.all = (futures) => {
 };
 
 Future.allSettled = (futures) => {
-  const all = new Futur();
+  const all = Future();
   let results = [];
   defer(async () => {
     for (let future of futures) {
@@ -226,7 +226,7 @@ Future.allSettled = (futures) => {
 };
 
 Future.any = (futures) => {
-  const any = new Futur();
+  const any = Future();
   let errors = [];
   defer(async () => {
     for (let future of futures) {
@@ -246,29 +246,22 @@ Future.any = (futures) => {
   return any;
 };
 
-// Future.race = (futures) => {
-//   let race = new Futur();
-//   for (let future of futures) {
-//     future.listen({
-//       onCancelled: () => future.cancel(),
-//       onRejected: (reason) => {
-//         if (race.state === "Pending") {
-//           return race.reject(reason);
-//         }
-//       },
-//       onResolved: (value) => {
-//         if (race.state === "Pending") {
-//           return race.resolve(value);
-//         }
-//       },
-//     });
-//     return race.listen({
-//       onCancelled: () => race.cancel(),
-//       onRejected: (reason) => race.cancel(reason),
-//       onResolved: (value) => race.resolve(value),
-//     });
-//   }
-// };
+Future.race = (futures) => {
+  let race = Future();
+  defer(async () => {
+    try {
+      for await (let value of futures) {
+        if (race.state.name !== "Pending") break;
+        race.resolve(value);
+      }
+    } catch (e) {
+      if (race.state.name === "Pending") {
+        race.reject(e);
+      }
+    }
+  });
+  return race;
+};
 
 export const future = (onRejected, onResolved, onCancelled = noop) =>
   Future().listen({ onRejected, onResolved, onCancelled });
