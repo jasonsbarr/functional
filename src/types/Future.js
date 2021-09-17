@@ -3,6 +3,7 @@ import { Cancelled } from "./_executionStates.js";
 import { Deferred } from "./_deferred.js";
 import { length } from "../functions/iterable/length.js";
 import { defer } from "../functions/lambda/defer.js";
+import { curry } from "../functions/lambda/curry.js";
 
 class Futur extends Deferred {
   constructor() {
@@ -262,6 +263,18 @@ Future.race = (futures) => {
   });
   return race;
 };
+
+Future.resolveAfter = curry((ms, value) => {
+  const f = Future();
+  setTimeout(() => f.resolve(value), ms);
+  return f;
+});
+
+Future.rejectAfter = curry((ms, reason) => {
+  const f = Future();
+  setTimeout(() => f.reject(reason), ms);
+  return f;
+});
 
 export const future = (onRejected, onResolved, onCancelled = noop) =>
   Future().listen({ onRejected, onResolved, onCancelled });
