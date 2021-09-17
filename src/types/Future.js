@@ -101,6 +101,17 @@ class Futur extends Deferred {
   // first Resolved Future or the _last_ Rejected/Cancelled Future.
   alt(future) {
     const f = Future();
+    this.listen({
+      onCancelled: () => f.cancel(),
+      onRejected: () =>
+        future.listen({
+          onCancelled: () => f.cancel(),
+          onRejected: (reason2) => f.reject(reason2),
+          onResolved: (value) => f.resolve(value),
+        }),
+      onResolved: (value) => f.resolve(value),
+    });
+    return f;
   }
 
   // Function order is changed for parity with Promise interface
