@@ -66,21 +66,6 @@ class Futur extends Deferred {
     return this.listen({ onCancelled, onRejected, onResolved });
   }
 
-  fold(onRejected, onResolved, onCancelled = noop, onPending = noop) {
-    switch (this.state.name) {
-      case "Pending":
-        return onPending();
-      case "Cancelled":
-        return onCancelled();
-      case "Rejected":
-        return onRejected(this.state.reason);
-      case "Resolved":
-        return onResolved(this.state.value);
-      default:
-        throw new Error("Invalid Future state");
-    }
-  }
-
   ap(future) {
     return this.chain((f) => future.map(f));
   }
@@ -201,20 +186,23 @@ Future.reject = Future.rejected;
 
 Future.all = (futures) => {
   let all = new Futur();
-  defer(() => {
-    // Hack to keep the array alive throughout execution due to defer sticking the callback
-    // in the task queue, whereas Promise callbacks go into the microtask queue. This
-    // makes sure the method works as expected with Futures created from Promises.
-    all._results = [];
+  let results = [];
+  // Hack to keep the array alive throughout execution due to defer sticking the callback
+  // in the task queue, whereas Promise callbacks go into the microtask queue. This
+  // makes sure the method works as expected with Futures created from Promises.
+  defer(async () => {
     for (let future of futures) {
       future.listen({
         onCancelled: () => all.cancel(),
         onRejected: (reason) => all.reject(reason),
-        onResolved: (value) => all._results.push(value),
+        onResolved: (value) => results.push(value),
       });
     }
-    if (length(all._results) === length(futures)) {
-      all.resolve(futures.constructor(...all._results));
+    // REALLY ugly hack to keep function execution alive long enough to resolve network requests
+    for await (let _ of futures) {
+    }
+    if (length(results) === length(futures)) {
+      all.resolve(futures.constructor(...results));
     }
   });
   // this return actually happens BEFORE the defer callback above runs
