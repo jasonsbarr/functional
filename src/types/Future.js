@@ -63,6 +63,27 @@ class Futur extends Deferred {
     return mapped;
   }
 
+  bichain(rejectF, resolveF) {
+    const result = Future();
+    this.listen({
+      onCancelled: () => result.cancel(),
+      onRejected: (reason) => {
+        rejectF(reason).listen({
+          onCancelled: () => result.cancel(),
+          onRejected: (reason2) => result.reject(reason2),
+          onResolved: (value) => result.resolve(value),
+        });
+      },
+      onResolved: (value) => {
+        resolveF(value).listen({
+          onCancelled: () => result.cancel(),
+          onRejected: (reason) => result.reject(reason),
+          onResolved: (value2) => result.resolve(value2),
+        });
+      },
+    });
+  }
+
   fork(onRejected, onResolved, onCancelled = noop) {
     return this.listen({ onCancelled, onRejected, onResolved });
   }
@@ -74,6 +95,10 @@ class Futur extends Deferred {
   finalize(pred, value, reason = null) {
     return pred(value) ? this.resolve(value) : this.reject(reason ?? value);
   }
+
+  // Takes a Future-returning function. Chained alts will return the
+  // first Resolved Future or the _last_ Rejected/Cancelled Future.
+  alt(future) {}
 
   // Function order is changed for parity with Promise interface
   then(resolveF, rejectF = noop) {
