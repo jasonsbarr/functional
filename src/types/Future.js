@@ -185,27 +185,24 @@ Future.resolve = Future.of;
 Future.reject = Future.rejected;
 
 Future.all = (futures) => {
-  let all = new Futur();
+  let all = Future();
   let results = [];
   // Hack to keep the array alive throughout execution due to defer sticking the callback
   // in the task queue, whereas Promise callbacks go into the microtask queue. This
   // makes sure the method works as expected with Futures created from Promises.
   defer(async () => {
-    for (let future of futures) {
-      future.listen({
-        onCancelled: () => all.cancel(),
-        onRejected: (reason) => all.reject(reason),
-        onResolved: (value) => results.push(value),
-      });
-    }
-    // REALLY ugly hack to keep function execution alive long enough to resolve network requests
-    for await (let _ of futures) {
-    }
-    if (length(results) === length(futures)) {
+    // for await keeps function execution context alive long enough to resolve asynchronous actions
+    // it's still asynchronous, so it doesn't block the main thread
+    try {
+      for await (let value of futures) {
+        results.push(value);
+      }
       all.resolve(futures.constructor(...results));
+    } catch (e) {
+      all.reject(e);
     }
   });
-  // this return actually happens BEFORE the defer callback above runs
+  // This return actually happens BEFORE the defer callback above runs. Isn't that neat?
   return all;
 };
 
