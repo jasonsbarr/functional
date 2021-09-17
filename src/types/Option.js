@@ -1,5 +1,5 @@
 import { concatValues } from "../functions/helpers/concatValues.js";
-import { nullish } from "../functions/type/nullish.js";
+import { nullish } from "../functions/predicates/isNullish.js";
 /*
  * type Option = Some(x: T) | None(null|undefined|NaN)
  */
