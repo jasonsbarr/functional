@@ -25,6 +25,7 @@ import { flatten } from "../../functions/iterable/flatten.js";
 import { from } from "../../functions/iterable/from.js";
 import { includes } from "../../functions/iterable/includes.js";
 import { indexOf } from "../../functions/iterable/indexOf.js";
+import { insert } from "../../functions/iterable/insert.js";
 import { intersection } from "../../functions/iterable/intersection.js";
 import { isEmpty } from "../../functions/iterable/isEmpty.js";
 import { isEqual } from "../../functions/iterable/isEqual.js";
@@ -45,26 +46,22 @@ import { reduce } from "../../functions/iterable/reduce.js";
 import { reduceRight } from "../../functions/iterable/reduceRight.js";
 import { reject } from "../../functions/iterable/reject.js";
 import { remove } from "../../functions/iterable/remove.js";
+import { removeAt } from "../../functions/iterable/removeAt.js";
 import { reverse } from "../../functions/iterable/reverse.js";
 import { sample } from "../../functions/iterable/sample.js";
 import { shuffle } from "../../functions/iterable/shuffle.js";
 import { slice } from "../../functions/iterable/slice.js";
-import {
-  toArray,
-  sort,
-  splice,
-  pluck,
-  unique,
-  insert,
-  removeAt,
-  sum,
-  symmetricDifference,
-  to,
-  union,
-  zip,
-  update,
-  values,
-} from "../../functions/iterable/iter.js";
+import { sort } from "../../functions/iterable/sort.js";
+import { splice } from "../../functions/iterable/splice.js";
+import { sum } from "../../functions/iterable/sum.js";
+import { symmetricDifference } from "../../functions/iterable/symmetricDifference.js";
+import { to } from "../../functions/iterable/to.js";
+import { toArray } from "../../functions/iterable/toArray.js";
+import { union } from "../../functions/iterable/union.js";
+import { unique } from "../../functions/iterable/unique.js";
+import { update } from "../../functions/iterable/update.js";
+import { values } from "../../functions/iterable/values.js";
+import { zip } from "../../functions/iterable/iter.js";
 
 // A tuple is immutable, like in Python.
 // Objects inside it, however (not primitives!), can be mutated.
