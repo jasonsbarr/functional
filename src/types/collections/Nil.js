@@ -1,4 +1,4 @@
-import { zip } from "../../functions/iterable/iter.js";
+import { zip } from "../../functions/iterable/zip.js";
 import { None } from "../Option.js";
 import { list } from "./List.js";
 

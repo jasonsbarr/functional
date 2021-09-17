@@ -61,7 +61,7 @@ import { union } from "../../functions/iterable/union.js";
 import { unique } from "../../functions/iterable/unique.js";
 import { update } from "../../functions/iterable/update.js";
 import { values } from "../../functions/iterable/values.js";
-import { zip } from "../../functions/iterable/iter.js";
+import { zip } from "../../functions/iterable/zip.js";
 
 // A tuple is immutable, like in Python.
 // Objects inside it, however (not primitives!), can be mutated.

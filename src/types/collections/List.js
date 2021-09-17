@@ -499,8 +499,9 @@ Cons.isCons = (obj) => typeof obj.isCons === "function" && obj.isCons();
 export const cons = (car, cdr) => {
   let c = new Cons(car, cdr);
   if (cdr.kind === "List") {
-    c.kind === "List";
+    c.kind = "List";
   }
+  return c;
 };
 
 export const List = (...args) => {
