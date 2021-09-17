@@ -225,27 +225,26 @@ Future.allSettled = (futures) => {
   return all;
 };
 
-// these don't work
-// Future.any = (futures) => {
-//   let errors = [];
-//   let any = new Futur();
-//   for (let future of futures) {
-//     future.listen({
-//       onCancelled: () => future.cancel(),
-//       onRejected: (reason) => errors.push(reason),
-//       onResolved: (value) => {
-//         if (any.state === "Pending") {
-//           return any.resolve(value);
-//         }
-//       },
-//     });
-//   }
-//   return any.listen({
-//     onCancelled: () => any.cancel(),
-//     onRejected: () => any.reject(futures.constructor(...errors)),
-//     onResolved: (value) => any.resolve(value),
-//   });
-// };
+Future.any = (futures) => {
+  const any = new Futur();
+  let errors = [];
+  defer(async () => {
+    for (let future of futures) {
+      try {
+        for await (let value of [future]) {
+          any.resolve(value);
+        }
+      } catch (e) {
+        errors.push(e);
+      }
+      if (any.state.name === "Resolved") break;
+    }
+    if (length(errors) === length(futures)) {
+      any.reject(new AggregateError(errors, "All Futures rejected"));
+    }
+  });
+  return any;
+};
 
 // Future.race = (futures) => {
 //   let race = new Futur();
