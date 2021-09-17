@@ -33,6 +33,22 @@ class Futur extends Deferred {
     return result;
   }
 
+  chainRejected(f) {
+    const result = Future();
+    this.listen({
+      onCancelled: () => result.cancel(),
+      onRejected: (reason) => {
+        f(reason).listen({
+          onCancelled: () => result.cancel(),
+          onRejected: (reason2) => result.reject(reason2),
+          onResolved: (value) => result.resolve(value),
+        });
+      },
+      onResolved: (value) => result.resolve(value),
+    });
+    return result;
+  }
+
   map(f) {
     const result = Future();
     this.listen({
