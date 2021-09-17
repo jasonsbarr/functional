@@ -76,11 +76,11 @@ class Futur extends Deferred {
 
   // Function order is changed for parity with Promise interface
   then(resolveF, rejectF = noop) {
-    return this.bimap(rejectF, resolveF);
+    return this.fork(rejectF, resolveF);
   }
 
   catch(rejectF) {
-    return this.mapRejected(rejectF);
+    return this.fork(rejectF, noop);
   }
 
   finally(fn) {
