@@ -185,7 +185,7 @@ Future.resolve = Future.of;
 Future.reject = Future.rejected;
 
 Future.all = (futures) => {
-  let all = Future();
+  const all = Future();
   let results = [];
   // Hack to keep the array alive throughout execution due to defer sticking the callback
   // in the task queue, whereas Promise callbacks go into the microtask queue. This
@@ -207,20 +207,20 @@ Future.all = (futures) => {
 };
 
 Future.allSettled = (futures) => {
-  let all = new Futur();
-  defer(() => {
-    all._results = [];
+  const all = new Futur();
+  let results = [];
+  defer(async () => {
     for (let future of futures) {
-      future.listen({
-        onCancelled: () => all.cancel(),
-        onRejected: (reason) =>
-          all._results.push({ status: "Rejected", reason }),
-        onResolved: (value) => all._results.push({ status: "Resolved", value }),
-      });
+      try {
+        // Hacky, but it works
+        for await (let value of [future]) {
+          results.push(value);
+        }
+      } catch (e) {
+        results.push(e);
+      }
     }
-    if (length(all._results) === length(futures)) {
-      all.resolve(futures.constructor(...all._results));
-    }
+    all.resolve(futures.constructor(...results));
   });
   return all;
 };
