@@ -1,4 +1,3 @@
-import { keys } from "../object/keys.js";
 import { isNil } from "./isNil.js";
 
 export const concatValues = (value1, value2) => {
@@ -7,13 +6,13 @@ export const concatValues = (value1, value2) => {
     typeof value1 === "number" ||
     typeof value1 === "bigint"
   ) {
-    value1 = value1 + value2;
+    return value1 + value2;
   } else if (typeof value1 === "boolean") {
-    value1 = value1 && value2;
+    return value1 && value2;
   } else if (isNil(value1)) {
-    value1 = value2;
+    return value2;
   } else if (typeof value1 === "symbol") {
-    value1 = Symbol(value1.description + value2.description);
+    return Symbol(value1.description + value2.description);
   }
   // add cases for Maps, Sets, and functions?
   return value1.concat(value2);
