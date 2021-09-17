@@ -1,7 +1,7 @@
 import { keys } from "../object/keys.js";
 import { isNil } from "./isNil.js";
 
-export const concat = (value1, value2) => {
+export const concatValues = (value1, value2) => {
   if (
     typeof value1 === "string" ||
     typeof value1 === "number" ||

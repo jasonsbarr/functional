@@ -1,3 +1,5 @@
+import { concatValues } from "../functions/helpers/concatValues.js";
+
 class I {
   constructor(value) {
     this._value = value;
@@ -45,7 +47,7 @@ class I {
   }
 
   concat(o) {
-    return Identity(this.value.concat(o));
+    return Identity(concatValues(this.value, o.value));
   }
 
   ap(o) {

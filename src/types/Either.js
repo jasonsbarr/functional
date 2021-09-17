@@ -2,7 +2,8 @@
  * type Either = Right(x: R) | Left(x: L)
  */
 
-import { curry } from "../functions/lambda/curry";
+import { concat } from "../functions/helpers/concatValues.js";
+import { curry } from "../functions/lambda/curry.js";
 
 export const Either = {
   of: curry((pred, x) => (pred(x) ? Right(x) : Left(x))),
@@ -65,8 +66,8 @@ class R {
 
   concat(o) {
     return o.fold(
-      (l) => Left(l),
-      (r) => Right(this.value.concat(r))
+      (l) => Left(l.value),
+      (r) => Right(concatValues(this.value, r.value))
     );
   }
 
