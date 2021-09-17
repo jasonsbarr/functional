@@ -17,7 +17,7 @@ class Futur extends Deferred {
 
   // f should return a Future
   chain(f) {
-    const result = new Futur();
+    const result = Future();
     this.listen({
       onCancelled: () => result.cancel(),
       onRejected: (reason) => result.reject(reason),
@@ -33,7 +33,7 @@ class Futur extends Deferred {
   }
 
   map(f) {
-    const result = new Futur();
+    const result = Future();
     this.listen({
       onCancelled: () => result.cancel(),
       onRejected: (reason) => result.reject(reason),
@@ -43,7 +43,7 @@ class Futur extends Deferred {
   }
 
   mapRejected(f) {
-    const reject = new Futur();
+    const reject = Future();
     this.listen({
       onCancelled: () => reject.cancel(),
       onRejected: (reason) => reject.reject(f(reason)),
@@ -53,7 +53,7 @@ class Futur extends Deferred {
   }
 
   bimap(rejectF, resolveF) {
-    const mapped = new Futur();
+    const mapped = Future();
     this.listen({
       onCancelled: () => mapped.cancel(),
       onRejected: (reason) => mapped.reject(rejectF(reason)),
@@ -84,7 +84,7 @@ class Futur extends Deferred {
   }
 
   finally(fn) {
-    const final = new Futur();
+    const final = Future();
     this.listen({
       onCancelled: () => final.cancel(),
       onRejected: () => final.reject(fn()),
@@ -145,15 +145,15 @@ export const Future = () => {
 Future.isFuture = (obj) => typeof obj.isFuture === "function" && obj.isFuture();
 
 Future.of = (value) => {
-  return new Futur().resolve(value);
+  return Future().resolve(value);
 };
 
 Future.rejected = (reason) => {
-  return new Futur().reject(reason);
+  return Future().reject(reason);
 };
 
 Future.fromPromise = (promise) => {
-  let f = new Futur();
+  let f = Future();
   // for some reason, not returning from these callbacks makes it work
   promise.then(
     (value) => {
@@ -169,7 +169,7 @@ Future.fromPromise = (promise) => {
 Future.fromCallback =
   (fn) =>
   (...args) => {
-    let f = new Futur();
+    let f = Future();
     fn(...args, (err, data) => {
       if (err) {
         f.reject(err);
