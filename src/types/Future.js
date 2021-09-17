@@ -82,6 +82,7 @@ class Futur extends Deferred {
         });
       },
     });
+    return result;
   }
 
   fork(onRejected, onResolved, onCancelled = noop) {
@@ -98,7 +99,9 @@ class Futur extends Deferred {
 
   // Takes a Future-returning function. Chained alts will return the
   // first Resolved Future or the _last_ Rejected/Cancelled Future.
-  alt(future) {}
+  alt(future) {
+    const f = Future();
+  }
 
   // Function order is changed for parity with Promise interface
   then(resolveF, rejectF = noop) {
