@@ -1,5 +1,5 @@
 import { concatValues } from "../functions/helpers/concatValues.js";
-import { isNil } from "../functions/helpers/isNil.js";
+import { nullish } from "../functions/type/nullish.js";
 /*
  * type Option = Some(x: T) | None(null|undefined|NaN)
  */
@@ -7,7 +7,7 @@ import { isNil } from "../functions/helpers/isNil.js";
 export const Option = {
   of: (x) =>
     // check if null, undefined, or NaN
-    isNil(x) || Number.isNaN(x) ? None(x) : Some(x),
+    nullish(x) ? None(x) : Some(x),
   isSome: (obj) => obj.kind === "Some",
   isNone: (obj) => obj.kind === "None",
   isOption: (obj) => obj.kind === "Some" || obj.kind === "None",
