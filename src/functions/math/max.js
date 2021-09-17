@@ -5,11 +5,11 @@ import { reduce } from "../iterable/reduce.js";
 export const max = (...args) => {
   if (isIterable(args[0])) {
     return (
-      args.reduce((acc, arr) => {
+      args.reduce((acc, iter) => {
         const m = reduce(
           (acc2, num) => (acc2 > num ? acc2 : num),
           -Infinity,
-          arr
+          iter
         );
         return m > acc ? m : acc;
       }),

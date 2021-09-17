@@ -5,7 +5,9 @@ import { append } from "../../functions/iterable/append.js";
 import { at } from "../../functions/iterable/at.js";
 import { atUnsafe } from "../../functions/iterable/atUnsafe.js";
 import { atWithDefault } from "../../functions/iterable/atWithDefault.js";
+import { average } from "../../functions/iterable/average.js";
 import { chain } from "../../functions/iterable/chain.js";
+import { compact } from "../../functions/iterable/compact.js";
 import { concat } from "../../functions/iterable/concat.js";
 import { concatToArray } from "../../functions/iterable/concatToArray.js";
 import { copy } from "../../functions/iterable/copy.js";
@@ -20,49 +22,48 @@ import { find } from "../../functions/iterable/find.js";
 import { findIndex } from "../../functions/iterable/findIndex.js";
 import { first } from "../../functions/iterable/first.js";
 import { flatten } from "../../functions/iterable/flatten.js";
+import { from } from "../../functions/iterable/from.js";
 import { includes } from "../../functions/iterable/includes.js";
 import { indexOf } from "../../functions/iterable/indexOf.js";
 import { intersection } from "../../functions/iterable/intersection.js";
+import { isEmpty } from "../../functions/iterable/isEmpty.js";
 import { isEqual } from "../../functions/iterable/isEqual.js";
 import { join } from "../../functions/iterable/join.js";
+import { keys } from "../../functions/iterable/keys.js";
+import { last } from "../../functions/iterable/last.js";
+import { lastIndexOf } from "../../functions/iterable/lastIndexOf.js";
 import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/iterable/map.js";
+import { mapWithIndex } from "../../functions/iterable/mapWithIndex.js";
+import { max } from "../../functions/iterable/max.js";
+import { median } from "../../functions/iterable/median.js";
+import { min } from "../../functions/iterable/min.js";
+import { none } from "../../functions/iterable/none.js";
+import { pluck } from "../../functions/iterable/pluck.js";
+import { prepend } from "../../functions/iterable/prepend.js";
+import { product } from "../../functions/iterable/product.js";
 import { reduce } from "../../functions/iterable/reduce.js";
+import { reduceRight } from "../../functions/iterable/reduceRight.js";
+import { reject } from "../../functions/iterable/reject.js";
+import { remove } from "../../functions/iterable/remove.js";
+import { reverse } from "../../functions/iterable/reverse.js";
+import { sample } from "../../functions/iterable/sample.js";
+import { shuffle } from "../../functions/iterable/shuffle.js";
+import { slice } from "../../functions/iterable/slice.js";
 import {
-  last,
-  prepend,
-  reduceRight,
-  reject,
   toArray,
-  lastIndexOf,
-  reverse,
   sort,
   splice,
-  slice,
-  pluck,
-  average,
   unique,
-  from,
   insert,
-  isEmpty,
-  max,
-  median,
-  min,
-  none,
-  product,
-  remove,
   removeAt,
-  sample,
-  shuffle,
   sum,
   symmetricDifference,
   to,
   union,
-  mapWithIndex,
   zip,
   update,
   ap,
-  keys,
   values,
 } from "../../functions/iter.js";
 import { isNil } from "../../functions/helpers/isNil.js";
@@ -135,6 +136,10 @@ class Cons extends Array {
 
   clone() {
     return this.copy();
+  }
+
+  compact() {
+    return compact(this);
   }
 
   // works with any iterable in this library, but assumption is all args are lists
