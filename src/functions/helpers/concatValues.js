@@ -1,4 +1,4 @@
-import { isNil } from "../type/isNil.js";
+import { isNil } from "../predicates/isNil.js";
 
 export const concatValues = (value1, value2) => {
   if (
