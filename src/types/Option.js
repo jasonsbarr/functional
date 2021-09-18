@@ -1,5 +1,6 @@
 import { concatValues } from "../functions/helpers/concatValues.js";
 import { nullish } from "../functions/predicates/isNullish.js";
+import { ifElse } from "../functions/helpers/ifElse.js";
 /*
  * type Option = Some(x: T) | None(null|undefined|NaN)
  */
@@ -11,6 +12,7 @@ export const Option = {
   isSome: (obj) => obj.kind === "Some",
   isNone: (obj) => obj.kind === "None",
   isOption: (obj) => obj.kind === "Some" || obj.kind === "None",
+  safe: (pred) => ifElse(pred, Some, None),
 };
 
 class S {
