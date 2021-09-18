@@ -29,7 +29,7 @@ import { insert } from "../../functions/iterable/insert.js";
 import { intersection } from "../../functions/iterable/intersection.js";
 import { isEmpty } from "../../functions/iterable/isEmpty.js";
 import { isEqual } from "../../functions/iterable/isEqual.js";
-import { isNil } from "../../functions/type/isNil.js";
+import { isNil } from "../../functions/predicates/isNil.js";
 import { join } from "../../functions/iterable/join.js";
 import { keys } from "../../functions/iterable/keys.js";
 import { last } from "../../functions/iterable/last.js";
