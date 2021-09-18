@@ -104,10 +104,6 @@ class N {
     });
   }
 
-  get value() {
-    return this._value;
-  }
-
   map(f) {
     return this;
   }
@@ -117,7 +113,7 @@ class N {
   }
 
   fold(f, g) {
-    return f(this.value);
+    return f();
   }
 
   inspect() {
@@ -145,4 +141,4 @@ class N {
   }
 }
 
-export const None = (x) => new N(x);
+export const None = () => new N();
