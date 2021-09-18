@@ -1,5 +1,5 @@
 import { concatValues } from "../functions/helpers/concatValues.js";
-import { nullish } from "../functions/predicates/isNullish.js";
+import { isNullish } from "../functions/predicates/isNullish.js";
 import { ifElse } from "../functions/helpers/ifElse.js";
 /*
  * type Option = Some(x: T) | None(null|undefined|NaN)
@@ -8,11 +8,12 @@ import { ifElse } from "../functions/helpers/ifElse.js";
 export const Option = {
   of: (x) =>
     // check if null, undefined, or NaN
-    nullish(x) ? None(x) : Some(x),
+    isNullish(x) ? None(x) : Some(x),
   isSome: (obj) => obj.kind === "Some",
   isNone: (obj) => obj.kind === "None",
   isOption: (obj) => obj.kind === "Some" || obj.kind === "None",
   safe: (pred) => ifElse(pred, Some, None),
+  zero: () => None(),
 };
 
 class S {

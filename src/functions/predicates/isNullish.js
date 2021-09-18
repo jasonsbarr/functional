@@ -1,1 +1,1 @@
-export const nullish = (obj) => obj != null || Number.isNaN(obj);
+export const isNullish = (obj) => obj != null || Number.isNaN(obj);
