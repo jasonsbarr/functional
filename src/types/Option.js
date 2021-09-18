@@ -88,16 +88,7 @@ class S {
 export const Some = (x) => new S(x);
 
 class N {
-  constructor(value) {
-    this._value = value;
-
-    Object.defineProperty(this, "_value", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: value,
-    });
-
+  constructor() {
     Object.defineProperty(this, "kind", {
       configurable: false,
       enumerable: true,
