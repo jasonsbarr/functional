@@ -8,7 +8,7 @@ import { ifElse } from "../functions/helpers/ifElse.js";
 export const Option = {
   of: (x) =>
     // check if null, undefined, or NaN
-    isNullish(x) ? None(x) : Some(x),
+    isNullish(x) ? None() : Some(x),
   isSome: (obj) => obj.kind === "Some",
   isNone: (obj) => obj.kind === "None",
   isOption: (obj) => obj.kind === "Some" || obj.kind === "None",
