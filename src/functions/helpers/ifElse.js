@@ -1,5 +1,5 @@
-import { curryN } from "../lambda/curryN.js";
+import { curry } from "../lambda/curry.js";
 
-export const ifElse = curryN(3, (pred, ifCase, elseCase, value) =>
+export const ifElse = curry((pred, ifCase, elseCase, value) =>
   pred(value) ? ifCase : elseCase
 );
