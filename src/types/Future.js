@@ -101,6 +101,17 @@ class Futur extends Deferred {
     return result;
   }
 
+  // Maps a resolved value to a rejected Future and vice-versa
+  swap(rejToRes, resToRej) {
+    let result = Future();
+    this.listen({
+      onCancelled: result.cancel(),
+      onRejected: (reason) => result.resolve(rejToRes(value)),
+      onResolved: (value) => result.reject(resToRej(value)),
+    });
+    return result;
+  }
+
   fork(onRejected, onResolved, onCancelled = noop) {
     return this.listen({ onCancelled, onRejected, onResolved });
   }
