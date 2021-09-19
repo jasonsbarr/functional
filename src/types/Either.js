@@ -3,10 +3,9 @@
  */
 
 import { concat } from "../functions/helpers/concatValues.js";
-import { curry } from "../functions/lambda/curry.js";
 
 export const Either = {
-  of: curry((pred, x) => (pred(x) ? Right(x) : Left(x))),
+  of: (x) => Right(x),
   isRight: (obj) => obj.kind === "Right",
   isLeft: (obj) => obj.kind === "Left",
   isEither: (obj) => obj.kind === "Right" || obj.kind === "Left",
