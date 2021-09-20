@@ -76,6 +76,10 @@ class O {
     return o.map(this.value);
   }
 
+  alt(other) {
+    return this;
+  }
+
   toString() {
     return this.inspect();
   }
@@ -143,6 +147,10 @@ class E {
 
   ap(o) {
     return this;
+  }
+
+  alt(other) {
+    return Result.isOk(other) ? other : this;
   }
 
   toString() {

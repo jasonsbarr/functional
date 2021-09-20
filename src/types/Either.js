@@ -74,6 +74,10 @@ class R {
     return o.map(this.value);
   }
 
+  alt(other) {
+    return this;
+  }
+
   toString() {
     return this.inspect();
   }
@@ -139,6 +143,10 @@ class L {
 
   ap(o) {
     return this;
+  }
+
+  alt(other) {
+    return Either.isRight(other) ? other : this;
   }
 
   toString() {
