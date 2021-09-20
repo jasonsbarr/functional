@@ -128,7 +128,7 @@ class N {
   }
 
   inspect() {
-    return "None";
+    return `None(${this.value})`;
   }
 
   isNone() {
