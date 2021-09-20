@@ -124,7 +124,7 @@ class N {
   }
 
   fold(f, g) {
-    return f();
+    return f(this.value);
   }
 
   inspect() {
