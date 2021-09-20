@@ -15,7 +15,8 @@ export function slice(iter, start, end, step) {
   if (start < 0) start = length(iter) + start;
   if (end < 0) end = length(iter) + end;
   if (end > length(iter)) end = length(iter);
-  if (end < start) throw new Error("Start of slice must come before end");
+  if (end < start)
+    throw new Error("Start index cannot be higher than end index");
   const tempStep = step > 0 ? step : -step;
   const temp = [...iter];
 
