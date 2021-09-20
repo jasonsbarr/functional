@@ -1,5 +1,6 @@
 import { concatValues } from "../functions/helpers/concatValues.js";
-import { nullish } from "../functions/predicates/isNullish.js";
+import { isNullish } from "../functions/predicates/isNullish.js";
+import { ifElse } from "../functions/helpers/ifElse.js";
 /*
  * type Option = Some(x: T) | None(null|undefined|NaN)
  */
@@ -7,10 +8,12 @@ import { nullish } from "../functions/predicates/isNullish.js";
 export const Option = {
   of: (x) =>
     // check if null, undefined, or NaN
-    nullish(x) ? None(x) : Some(x),
+    isNullish(x) ? None() : Some(x),
   isSome: (obj) => obj.kind === "Some",
   isNone: (obj) => obj.kind === "None",
   isOption: (obj) => obj.kind === "Some" || obj.kind === "None",
+  safe: (pred) => ifElse(pred, Some, None),
+  zero: () => None(),
 };
 
 class S {
@@ -78,6 +81,10 @@ class S {
     return o.map(this.value);
   }
 
+  alt(other) {
+    return this;
+  }
+
   toString() {
     return this.inspect();
   }
@@ -86,16 +93,7 @@ class S {
 export const Some = (x) => new S(x);
 
 class N {
-  constructor(value) {
-    this._value = value;
-
-    Object.defineProperty(this, "_value", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: value,
-    });
-
+  constructor() {
     Object.defineProperty(this, "kind", {
       configurable: false,
       enumerable: true,
@@ -111,10 +109,6 @@ class N {
     });
   }
 
-  get value() {
-    return this._value;
-  }
-
   map(f) {
     return this;
   }
@@ -124,7 +118,7 @@ class N {
   }
 
   fold(f, g) {
-    return f(this.value);
+    return f();
   }
 
   inspect() {
@@ -147,9 +141,13 @@ class N {
     return this;
   }
 
+  alt(other) {
+    return other.isSome() ? other : this;
+  }
+
   toString() {
     return this.inspect();
   }
 }
 
-export const None = (x) => new N(x);
+export const None = () => new N();

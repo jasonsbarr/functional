@@ -1,4 +1,4 @@
-import { isNil } from "../helpers/isNil.js";
+import { isNil } from "../predicates/isNil.js";
 import { keys } from "../object/keys.js";
 import { copy } from "./copy.js";
 
