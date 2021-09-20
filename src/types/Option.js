@@ -8,7 +8,7 @@ import { ifElse } from "../functions/helpers/ifElse.js";
 export const Option = {
   of: (x) =>
     // check if null, undefined, or NaN
-    isNullish(x) ? None() : Some(x),
+    isNullish(x) ? None(x) : Some(x),
   isSome: (obj) => obj.kind === "Some",
   isNone: (obj) => obj.kind === "None",
   isOption: (obj) => obj.kind === "Some" || obj.kind === "None",
@@ -93,7 +93,9 @@ class S {
 export const Some = (x) => new S(x);
 
 class N {
-  constructor() {
+  constructor(value) {
+    this._value = value;
+
     Object.defineProperty(this, "kind", {
       configurable: false,
       enumerable: true,
@@ -107,6 +109,10 @@ class N {
       writable: false,
       value: None,
     });
+  }
+
+  get value() {
+    return this._value;
   }
 
   map(f) {
