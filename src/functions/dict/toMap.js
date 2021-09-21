@@ -1,9 +1,13 @@
 import { keys } from "../object/keys.js";
+import { symbols } from "../object/symbols.js";
 
-export const toMap = (hash) => {
+export const toMap = (dict) => {
   let m = new Map();
-  for (let key of keys(hash)) {
-    m.set(key, hash[key]);
+  for (let key of keys(dict)) {
+    m.set(key, dict[key]);
+  }
+  for (let key of symbols(dict)) {
+    m.set(key, dict[key]);
   }
   return m;
 };

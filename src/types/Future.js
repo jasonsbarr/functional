@@ -105,8 +105,8 @@ class Futur extends Deferred {
   swap(rejToRes, resToRej) {
     let result = Future();
     this.listen({
-      onCancelled: result.cancel(),
-      onRejected: (reason) => result.resolve(rejToRes(value)),
+      onCancelled: () => result.cancel(),
+      onRejected: (reason) => result.resolve(rejToRes(reason)),
       onResolved: (value) => result.reject(resToRej(value)),
     });
     return result;

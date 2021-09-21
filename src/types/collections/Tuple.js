@@ -22,6 +22,7 @@ import { find } from "../../functions/iterable/find.js";
 import { findIndex } from "../../functions/iterable/findIndex.js";
 import { first } from "../../functions/iterable/first.js";
 import { flatten } from "../../functions/iterable/flatten.js";
+import { freeze } from "../../functions/object/freeze.js";
 import { from } from "../../functions/iterable/from.js";
 import { includes } from "../../functions/iterable/includes.js";
 import { indexOf } from "../../functions/iterable/indexOf.js";
@@ -92,7 +93,7 @@ class Tpl extends Array {
       value: this.length,
     });
 
-    Object.freeze(this);
+    freeze(this);
   }
 
   // can use either a fluent method interface or use the iterable functions used here directly

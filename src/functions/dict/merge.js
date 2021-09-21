@@ -1,4 +1,5 @@
+import { create } from "../object/create.js";
 import { extend } from "../object/extend.js";
 
 export const merge = (target, ...sources) =>
-  extend(Object.create(null), target, ...sources);
+  extend(create(null), target, ...sources);

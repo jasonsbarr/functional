@@ -2,19 +2,32 @@ import { hash } from "../functions/object/hash.js";
 import { equals } from "../functions/object/equals.js";
 import { Option } from "./Option.js";
 import { extend } from "../functions/object/extend.js";
+import { entries } from "../functions/iterable/entries.js";
+import { keys } from "../functions/object/keys.js";
+import { values } from "../functions/object/values.js";
+import { clone } from "../functions/object/clone.js";
+import { freeze } from "../functions/object/freeze.js";
+import { includes } from "../functions/iterable/includes.js";
+import { create } from "../functions/object/create.js";
 
 const recordProto = {
   // returns a Record with the same keys but all values set to undefined
   clear() {
     let copy = this.toObject();
-    for (let key in Object.keys(copy)) {
+    for (let key in keys(copy)) {
       copy[key] = undefined;
     }
     return this.constructor.of(copy);
   },
 
+  // clones all properties, including objects
+  clone() {
+    return this.constructor.of(clone(this));
+  },
+
+  // shallow copy
   copy() {
-    return this.constructor.of({ ...this });
+    return this.constructor.of(this);
   },
 
   delete(key) {
@@ -26,7 +39,7 @@ const recordProto = {
   },
 
   entries() {
-    return Object.entries(this);
+    return entries(this);
   },
 
   // checks for deep equality
@@ -43,19 +56,20 @@ const recordProto = {
   },
 
   has(key) {
-    return Object.keys(this).includes(key);
+    return includes(key, keys(this));
   },
 
   hash() {
     return hash(this);
   },
 
+  // may be faster than the deep equals algorithm used by this.equals
   hashEquals(other) {
     return hash(this) === hash(other);
   },
 
   hasValue(value) {
-    for (let key in Object.keys(this)) {
+    for (let key in keys(this)) {
       if (equals(this[key], value)) {
         return true;
       }
@@ -72,14 +86,14 @@ const recordProto = {
   },
 
   keys() {
-    return Object.keys(this);
+    return keys(this);
   },
 
   // overwrites properties from right to left,
   // so last object with a certain key will have its value assigned to the new Record
   // will merge any object, not just a Record, but returns a Record
   merge(...others) {
-    return record(extend(Object.create(null), this, ...others));
+    return record(extend({}, this, ...others));
   },
 
   set(key, value) {
@@ -106,7 +120,11 @@ const recordProto = {
   },
 
   values() {
-    return Object.values(this);
+    return values(this);
+  },
+
+  valueOf() {
+    return this.toObject();
   },
 };
 
@@ -115,12 +133,12 @@ Object.setPrototypeOf(recordProto, null);
 // Note that values must be passed in the same order as the keys are defined,
 // and only the keys specified to the constructor constructor will get values
 // Keys can be either strings or symbols
-export const Record = (...keys) => {
+export const Record = (...recKeys) => {
   const constructor = (...values) => {
-    let record = Object.create(recordProto);
+    let record = create(recordProto);
 
-    for (let i = 0; i < keys.length; i++) {
-      record[keys[i]] = values[i];
+    for (let i = 0; i < recKeys.length; i++) {
+      record[recKeys[i]] = values[i];
     }
 
     Object.defineProperty(record, "constructor", {
@@ -130,19 +148,19 @@ export const Record = (...keys) => {
       value: constructor,
     });
 
-    Object.freeze(record);
+    freeze(record);
     return record;
   };
 
   constructor.of = (object) => {
     let record = Object.create(recordProto);
 
-    for (let key of keys) {
+    for (let key of recKeys) {
       record[key] = undefined;
     }
 
     // unspecified keys will have their values discarded
-    for (let key of Object.keys(object)) {
+    for (let key of keys(object)) {
       if (key in record) {
         record[key] = object[key];
       }
@@ -155,7 +173,7 @@ export const Record = (...keys) => {
       value: constructor,
     });
 
-    Object.freeze(record);
+    freeze(record);
     return record;
   };
 
