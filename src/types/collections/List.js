@@ -51,6 +51,7 @@ import { remove } from "../../functions/iterable/remove.js";
 import { removeAt } from "../../functions/iterable/removeAt.js";
 import { reverse } from "../../functions/iterable/reverse.js";
 import { sample } from "../../functions/iterable/sample.js";
+import { sequence } from "../../functions/iterable/sequence.js";
 import { shuffle } from "../../functions/iterable/shuffle.js";
 import { slice } from "../../functions/iterable/slice.js";
 import { sort } from "../../functions/iterable/sort.js";
@@ -381,6 +382,10 @@ class Cons extends Array {
 
   sample() {
     return sample(this);
+  }
+
+  sequence(point) {
+    return sequence(point, this);
   }
 
   // returns Option, not value

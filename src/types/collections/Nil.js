@@ -275,6 +275,10 @@ class Nil {
     return None(null);
   }
 
+  sequence(point) {
+    return this;
+  }
+
   shift() {
     return None(null);
   }
