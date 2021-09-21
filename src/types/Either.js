@@ -9,6 +9,8 @@ export const Either = {
   isRight: (obj) => obj.kind === "Right",
   isLeft: (obj) => obj.kind === "Left",
   isEither: (obj) => obj.kind === "Right" || obj.kind === "Left",
+  zero: () => Left(null),
+  empty: () => Left(null),
 };
 
 class R {

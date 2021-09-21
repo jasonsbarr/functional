@@ -9,6 +9,8 @@ export const Result = {
   isOk: (obj) => obj.kind === "Ok",
   isErr: (obj) => obj.kind === "Err",
   isResult: (obj) => obj.kind === "Ok" || obj.kind === "Err",
+  zero: () => Err(new Error("Zero")),
+  empty: () => Err(new Error("Empty")),
 };
 
 class O {

@@ -13,7 +13,8 @@ export const Option = {
   isNone: (obj) => obj.kind === "None",
   isOption: (obj) => obj.kind === "Some" || obj.kind === "None",
   safe: (pred) => ifElse(pred, Some, None),
-  zero: () => None(),
+  zero: () => None(null),
+  empty: () => None(null),
 };
 
 class S {
