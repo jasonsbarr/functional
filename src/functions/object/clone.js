@@ -1,37 +1,54 @@
+import { isMap } from "../predicates/isMap.js";
+import { isSet } from "../predicates/isSet.js";
+import { names } from "./names.js";
+import { symbols } from "./symbols.js";
+import { isArray } from "../predicates/isArray.js";
+import { isDate } from "../predicates/isDate.js";
+import { isRegExp } from "../predicates/isRegExp.js";
+import { isObject } from "../predicates/isObject.js";
+import { copyProto } from "./copyProto.js";
+
+// clone copies all own properties, symbol and string, recursively then sets the target prototype to that of the source
+// may not work with Object versions of primitives
 export const clone = (obj) => {
-  let result = Array.isArray(obj)
+  let result = isArray(obj)
     ? []
-    : obj instanceof Map
+    : isMap(obj)
     ? new Map()
-    : obj instanceof Set
+    : isSet(obj)
     ? new Set()
-    : Object.create(null);
-  if (obj instanceof Map) {
+    : isDate(obj)
+    ? new Date(obj.getTime())
+    : isRegExp(obj)
+    ? new RegExp(obj.source, getRegExpFlags(obj))
+    : isObject(obj)
+    ? Object.create(null)
+    : // is primitive
+      obj;
+  if (isMap(obj)) {
     for (let [key, _] of obj.entries()) {
       result.set(key, clone(obj.get(key)));
     }
-  } else if (obj instanceof Set) {
+  } else if (isSet(obj)) {
     for (let value of obj.values()) {
       result.add(clone(value));
     }
-  } else if (Array.isArray(obj)) {
-    for (let [key, value] of obj.entries()) {
-      result[key] = clone(value);
-    }
-  } else if (obj instanceof Date) {
+  } else if (isArray(obj)) {
+    result = cloneArray(obj);
+  } else if (isDate(obj)) {
     result = new Date(obj.getTime());
-  } else if (obj instanceof RegExp) {
+  } else if (isRegExp(obj)) {
     result = new RegExp(obj.source, getRegExpFlags(obj));
-  } else if (typeof obj === "object" && obj !== null) {
+  } else if (isObject(obj)) {
     // is actual object, not null
-    for (let key of Object.getOwnPropertyNames(obj)) {
+    for (let key of names(obj)) {
       result[key] = getValue(key, obj);
     }
-    for (let key of Object.getOwnPropertySymbols(obj)) {
+    for (let key of symbols(obj)) {
       result[key] = getValue(key, obj);
     }
     // set proto because I used Object.create(null) above
-    Object.setPrototypeOf(result, obj.__proto__);
+    copyProto(obj, result);
   } else {
     // obj is a primitive value or function
     result = obj;
@@ -43,26 +60,31 @@ const getValue = (key, obj) => {
   let value = obj[key];
   let result;
 
-  if (value instanceof Map) {
+  if (isMap(value)) {
     result = cloneMap(value);
   }
-  if (value instanceof Set) {
+  if (isSet(value)) {
     result = cloneSet(value);
   }
-  if (Array.isArray(value)) {
-    result = [];
-    for (let v of value) {
-      result.push(clone(v));
-    }
-  } else if (value instanceof Date) {
+  if (isArray(value)) {
+    result = cloneArray(value);
+  } else if (isDate(value)) {
     result = new Date(value.getTime());
-  } else if (value instanceof RegExp) {
+  } else if (isRegExp(value)) {
     result = RegExp(value.source, getRegExpFlags(value));
-  } else if (typeof value === "object") {
+  } else if (isObject(value)) {
     result = clone(value);
   } else {
     // is primitive or function
     result = value;
+  }
+  return result;
+};
+
+const cloneArray = (arr) => {
+  let result = [];
+  for (let value of obj) {
+    result.push(clone(value));
   }
   return result;
 };
