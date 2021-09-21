@@ -7,6 +7,7 @@ import { keys } from "../functions/object/keys.js";
 import { values } from "../functions/object/values.js";
 import { clone } from "../functions/object/clone.js";
 import { freeze } from "../functions/object/freeze.js";
+import { includes } from "../functions/iterable/includes.js";
 
 const recordProto = {
   // returns a Record with the same keys but all values set to undefined
@@ -54,7 +55,7 @@ const recordProto = {
   },
 
   has(key) {
-    return keys(this).includes(key);
+    return includes(key, keys(this));
   },
 
   hash() {
