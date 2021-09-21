@@ -1,4 +1,5 @@
 import { Option } from "../../types/Option.js";
 import { curry } from "../lambda/curry.js";
 
-export const get = curry((key, hash) => Option.of(hash[key]));
+// returns Option
+export const get = curry((key, dict) => Option.of(dict[key]));
