@@ -1,5 +1,6 @@
 import { curry } from "../lambda/curry.js";
+import { setProto } from "./setProto.js";
 
 export const copyProto = curry((source, target) =>
-  Object.setPrototypeOf(target, source.__proto__)
+  setProto(source.__proto__, target)
 );
