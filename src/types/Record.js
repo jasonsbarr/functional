@@ -8,6 +8,7 @@ import { values } from "../functions/object/values.js";
 import { clone } from "../functions/object/clone.js";
 import { freeze } from "../functions/object/freeze.js";
 import { includes } from "../functions/iterable/includes.js";
+import { create } from "../functions/object/create.js";
 
 const recordProto = {
   // returns a Record with the same keys but all values set to undefined
@@ -92,7 +93,7 @@ const recordProto = {
   // so last object with a certain key will have its value assigned to the new Record
   // will merge any object, not just a Record, but returns a Record
   merge(...others) {
-    return record(extend(Object.create(null), this, ...others));
+    return record(extend({}, this, ...others));
   },
 
   set(key, value) {
@@ -134,7 +135,7 @@ Object.setPrototypeOf(recordProto, null);
 // Keys can be either strings or symbols
 export const Record = (...recKeys) => {
   const constructor = (...values) => {
-    let record = Object.create(recordProto);
+    let record = create(recordProto);
 
     for (let i = 0; i < recKeys.length; i++) {
       record[recKeys[i]] = values[i];
