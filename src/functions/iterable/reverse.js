@@ -1,1 +1,1 @@
-export const reverse = (iter) => iter.constructor([...iter].reverse());
+export const reverse = (iter) => iter.constructor(...[...iter].reverse());
