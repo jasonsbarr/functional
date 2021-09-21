@@ -59,6 +59,7 @@ import { sum } from "../../functions/iterable/sum.js";
 import { symmetricDifference } from "../../functions/iterable/symmetricDifference.js";
 import { to } from "../../functions/iterable/to.js";
 import { toArray } from "../../functions/iterable/toArray.js";
+import { traverse } from "../../functions/iterable/traverse.js";
 import { union } from "../../functions/iterable/union.js";
 import { unique } from "../../functions/iterable/unique.js";
 import { update } from "../../functions/iterable/update.js";
@@ -439,6 +440,10 @@ class Cons extends Array {
         ? "'(" + strArr.join(" . ") + ")"
         : "'(" + strArr.join(" ") + ")";
     return str;
+  }
+
+  traverse(point, fn) {
+    return traverse(point, fn, this);
   }
 
   union(other) {

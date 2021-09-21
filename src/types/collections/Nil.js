@@ -330,6 +330,10 @@ class Nil {
     return "Nil()";
   }
 
+  traverse() {
+    return this;
+  }
+
   union(other) {
     return other;
   }
