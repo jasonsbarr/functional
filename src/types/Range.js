@@ -84,5 +84,7 @@ class RangeClass {
 
 export const Range = curryN(
   2,
-  (start, end, step) => new RangeClass(start, end, step)
+  (start, end, step = 1) => new RangeClass(start, end, step)
 );
+
+export const range = Range;
