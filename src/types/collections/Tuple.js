@@ -174,6 +174,10 @@ class Tpl extends Array {
     eachWithIndex(fn, this);
   }
 
+  empty() {
+    return Tuple.empty();
+  }
+
   entries() {
     return entries(this);
   }

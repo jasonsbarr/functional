@@ -77,6 +77,10 @@ class Nil {
 
   eachWithIndex(fn) {}
 
+  empty() {
+    return Nil.empty();
+  }
+
   entries() {
     return [];
   }

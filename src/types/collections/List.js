@@ -173,6 +173,10 @@ class Cons extends Array {
     eachWithIndex(fn, this);
   }
 
+  empty() {
+    return List.empty();
+  }
+
   entries() {
     return entries(this);
   }
