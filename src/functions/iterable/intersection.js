@@ -1,4 +1,6 @@
-export const intersection = (iter1, iter2) => {
+import { curry } from "../lambda/curry.js";
+
+export const intersection = curry((iter1, iter2) => {
   let set1 = new Set([...iter1]);
   let set2 = new Set([...iter2]);
   let result = [];
@@ -8,4 +10,4 @@ export const intersection = (iter1, iter2) => {
     }
   }
   return iter1.constructor(...result);
-};
+});
