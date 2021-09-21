@@ -13,7 +13,7 @@ const recordProto = {
   // returns a Record with the same keys but all values set to undefined
   clear() {
     let copy = this.toObject();
-    for (let key in Object.keys(copy)) {
+    for (let key in keys(copy)) {
       copy[key] = undefined;
     }
     return this.constructor.of(copy);
@@ -68,7 +68,7 @@ const recordProto = {
   },
 
   hasValue(value) {
-    for (let key in Object.keys(this)) {
+    for (let key in keys(this)) {
       if (equals(this[key], value)) {
         return true;
       }
@@ -132,12 +132,12 @@ Object.setPrototypeOf(recordProto, null);
 // Note that values must be passed in the same order as the keys are defined,
 // and only the keys specified to the constructor constructor will get values
 // Keys can be either strings or symbols
-export const Record = (...keys) => {
+export const Record = (...recKeys) => {
   const constructor = (...values) => {
     let record = Object.create(recordProto);
 
-    for (let i = 0; i < keys.length; i++) {
-      record[keys[i]] = values[i];
+    for (let i = 0; i < recKeys.length; i++) {
+      record[recKeys[i]] = values[i];
     }
 
     Object.defineProperty(record, "constructor", {
@@ -154,12 +154,12 @@ export const Record = (...keys) => {
   constructor.of = (object) => {
     let record = Object.create(recordProto);
 
-    for (let key of keys) {
+    for (let key of recKeys) {
       record[key] = undefined;
     }
 
     // unspecified keys will have their values discarded
-    for (let key of Object.keys(object)) {
+    for (let key of keys(object)) {
       if (key in record) {
         record[key] = object[key];
       }
