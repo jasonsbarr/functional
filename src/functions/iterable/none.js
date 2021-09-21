@@ -1,6 +1,7 @@
+import { curry } from "../lambda/curry.js";
 import { equals } from "../object/equals.js";
 
-export const none = (search, iter) => {
+export const none = curry((search, iter) => {
   for (let item of iter) {
     if (typeof search === "function") {
       if (search(item)) return false;
@@ -11,4 +12,4 @@ export const none = (search, iter) => {
     }
   }
   return true;
-};
+});
