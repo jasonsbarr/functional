@@ -360,4 +360,6 @@ class Nil {
   }
 }
 
+Nil.empty = () => NIL;
+
 export const NIL = new Nil();

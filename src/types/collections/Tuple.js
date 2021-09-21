@@ -457,3 +457,4 @@ export const tuple = Tuple;
 Tuple.of = (iter) => tuple(...iter);
 Tuple.from = Tuple.of;
 Tuple.isTuple = (obj) => obj.kind === "Tuple";
+Tuple.empty = () => Tuple.of([]);
