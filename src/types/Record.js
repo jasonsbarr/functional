@@ -2,6 +2,11 @@ import { hash } from "../functions/object/hash.js";
 import { equals } from "../functions/object/equals.js";
 import { Option } from "./Option.js";
 import { extend } from "../functions/object/extend.js";
+import { entries } from "../functions/iterable/entries.js";
+import { keys } from "../functions/object/keys.js";
+import { values } from "../functions/object/values.js";
+import { clone } from "../functions/object/clone.js";
+import { freeze } from "../functions/object/freeze.js";
 
 const recordProto = {
   // returns a Record with the same keys but all values set to undefined
@@ -13,8 +18,14 @@ const recordProto = {
     return this.constructor.of(copy);
   },
 
+  // clones all properties, including objects
+  clone() {
+    return this.constructor.of(clone(this));
+  },
+
+  // shallow copy
   copy() {
-    return this.constructor.of({ ...this });
+    return this.constructor.of(this);
   },
 
   delete(key) {
@@ -26,7 +37,7 @@ const recordProto = {
   },
 
   entries() {
-    return Object.entries(this);
+    return entries(this);
   },
 
   // checks for deep equality
@@ -43,13 +54,14 @@ const recordProto = {
   },
 
   has(key) {
-    return Object.keys(this).includes(key);
+    return keys(this).includes(key);
   },
 
   hash() {
     return hash(this);
   },
 
+  // may be faster than the deep equals algorithm used by this.equals
   hashEquals(other) {
     return hash(this) === hash(other);
   },
@@ -72,7 +84,7 @@ const recordProto = {
   },
 
   keys() {
-    return Object.keys(this);
+    return keys(this);
   },
 
   // overwrites properties from right to left,
@@ -106,7 +118,11 @@ const recordProto = {
   },
 
   values() {
-    return Object.values(this);
+    return values(this);
+  },
+
+  valueOf() {
+    return this.toObject();
   },
 };
 
@@ -130,7 +146,7 @@ export const Record = (...keys) => {
       value: constructor,
     });
 
-    Object.freeze(record);
+    freeze(record);
     return record;
   };
 
@@ -155,7 +171,7 @@ export const Record = (...keys) => {
       value: constructor,
     });
 
-    Object.freeze(record);
+    freeze(record);
     return record;
   };
 
