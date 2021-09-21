@@ -1,6 +1,7 @@
+import { curry } from "../lambda/curry.js";
 import { equals } from "../object/equals.js";
 
-export const count = (search, iter) => {
+export const count = curry((search, iter) => {
   let count = 0;
   for (let item of iter) {
     if (typeof search === "function") {
@@ -12,4 +13,4 @@ export const count = (search, iter) => {
     }
   }
   return count;
-};
+});
