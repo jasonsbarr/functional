@@ -25,6 +25,7 @@ import { mapEntries } from "../../functions/dict/mapEntries.js";
 import { mapKeys } from "../../functions/dict/mapKeys.js";
 import { mapWithKey } from "../../functions/dict/mapWithKey.js";
 import { merge } from "../../functions/dict/merge.js";
+import { reduce } from "../../functions/dict/reduce.js";
 import { reject } from "../../functions/dict/reject.js";
 import { reverse } from "../../functions/dict/reverse.js";
 import { set } from "../../functions/dict/set.js";
@@ -170,6 +171,10 @@ class Dictionary {
 
   merge(...others) {
     return Dict.of(merge(this, ...others));
+  }
+
+  reduce(fn, initial) {
+    return reduce(fn, initial, this);
   }
 
   reject(pred) {
