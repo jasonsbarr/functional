@@ -29,6 +29,7 @@ import { equals } from "../functions/object/equals.js";
 import { hash } from "../functions/object/hash.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
+// like any JS object, keys can only be strings or symbols
 class Dictionary {
   constructor(entries) {
     // entries can be any object that works with this iteration
@@ -173,6 +174,10 @@ class Dictionary {
     return values(this);
   }
 
+  valueOf() {
+    return this.toObject();
+  }
+
   toString() {
     let str = "Dictionary: {\n";
     let i = 0;
@@ -213,11 +218,4 @@ export const Dict = (entries) => new Dictionary(entries);
 Dict.of = (obj) => new Dictionary(entries(obj));
 Dict.isDict = (obj) => obj.kind === "Dictionary";
 
-console.log(
-  Dict([
-    ["a", "hi"],
-    ["b", "bye"],
-  ])
-);
-
-console.log(Dict.of({ a: "hi", b: "bye" }).toString());
+export const dict = Dict;
