@@ -1,8 +1,10 @@
+import { concatValues } from "../functions/helpers/concatValues.js";
+
 export const Pair = (x, y) => ({
   kind: "Pair",
   x,
   y,
-  concat: ({ x: x1, y: y1 }) => Pair(x.concat(x1), y.concat(y1)),
+  concat: ({ x: x1, y: y1 }) => Pair(concatValues(x, x1), concatValues(y, y1)),
   inspect: () => `Pair(${x}, ${y})`,
 });
 

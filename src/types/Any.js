@@ -5,6 +5,7 @@ export const Any = (x) => ({
   inspect: () => `Any(${x})`,
   fold: (f) => f(x),
   map: (f) => Any(f(x)),
+  ap: (o) => o.map(x),
   chain: (f) => f(x),
 });
 

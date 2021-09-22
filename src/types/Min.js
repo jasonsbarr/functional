@@ -5,6 +5,7 @@ export const Min = (x) => ({
   inspect: () => `Min(${x})`,
   fold: (f) => f(x),
   map: (f) => Min(f(x)),
+  ap: (o) => o.map(x),
   chain: (f) => f(x),
 });
 

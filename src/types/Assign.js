@@ -7,6 +7,7 @@ export const Assign = (x) => ({
   inspect: () => `Assign(${x})`,
   fold: (f) => f(x),
   map: (f) => Assign(f(x)),
+  ap: (o) => o.map(x),
   chain: (f) => f(x),
 });
 

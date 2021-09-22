@@ -5,6 +5,7 @@ export const All = (x) => ({
   inspect: () => `All(${x})`,
   fold: (f) => f(x),
   map: (f) => All(f(x)),
+  ap: (o) => o.map(x),
   chain: (f) => f(x),
 });
 

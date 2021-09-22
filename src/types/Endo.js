@@ -7,6 +7,7 @@ export const Endo = (x) => ({
   inspect: () => `Endo(${x})`,
   fold: (f) => f(x),
   map: (f) => Endo(f(x)),
+  ap: (o) => o.map(x),
   chain: (f) => f(x),
   run: (v) => x(v),
 });

@@ -9,6 +9,7 @@ export const Last = (x) => {
     fold: (f) => f(value),
     option: (f, g) => value.fold(f, g),
     map: (f) => Last(f(value)),
+    ap: (o) => o.map(x.value),
     chain: (f) => f(value),
   };
 };

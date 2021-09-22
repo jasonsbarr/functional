@@ -6,6 +6,7 @@ export const Sum = (x) => ({
   inspect: () => `Sum(${x})`,
   fold: (f) => f(x),
   map: (f) => Sum(f(x)),
+  ap: (o) => o.map(x),
   chain: (f) => f(x),
 });
 
