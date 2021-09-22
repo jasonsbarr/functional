@@ -27,7 +27,6 @@ import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/dict/map.js";
 import { mapEntries } from "../../functions/dict/mapEntries.js";
 import { mapKeys } from "../../functions/dict/mapKeys.js";
-import { mapWithKey } from "../../functions/dict/mapWithKey.js";
 import { merge } from "../../functions/dict/merge.js";
 import { reduce } from "../../functions/dict/reduce.js";
 import { reduceRight } from "../../functions/dict/reduceRight.js";
@@ -223,6 +222,10 @@ class Dictionary {
   // returns Option
   index(value) {
     return index(value, this);
+  }
+
+  isEmpty() {
+    return equals(this, Dict.empty());
   }
 
   join(sep = "") {
