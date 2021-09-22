@@ -9,6 +9,7 @@ import { clone } from "../functions/object/clone.js";
 import { freeze } from "../functions/object/freeze.js";
 import { includes } from "../functions/iterable/includes.js";
 import { create } from "../functions/object/create.js";
+import { toQueryString } from "../functions/dict/toQueryString.js";
 
 const recordProto = {
   // returns a Record with the same keys but all values set to undefined
@@ -106,6 +107,10 @@ const recordProto = {
 
   toObject() {
     return { ...this };
+  },
+
+  toQueryString() {
+    return toQueryString(this);
   },
 
   toString() {
