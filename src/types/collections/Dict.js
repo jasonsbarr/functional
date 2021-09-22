@@ -47,6 +47,7 @@ import { findEntry } from "../../functions/dict/findEntry.js";
 import { join } from "../../functions/dict/join.js";
 import { none } from "../../functions/dict/none.js";
 import { pluck } from "../../functions/dict/pluck.js";
+import { prepend } from "../../functions/dict/prepend.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -264,6 +265,10 @@ class Dictionary {
 
   pluck(numItems) {
     return Dict.of(pluck(numItems, this));
+  }
+
+  prepend(item) {
+    return Dict.of(prepend(item, this));
   }
 
   reduce(fn, initial) {
