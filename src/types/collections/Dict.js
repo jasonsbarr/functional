@@ -45,6 +45,7 @@ import { count } from "../../functions/dict/count.js";
 import { find } from "../../functions/dict/find.js";
 import { findKey } from "../../functions/dict/findKey.js";
 import { findEntry } from "../../functions/dict/findEntry.js";
+import { join } from "../../functions/dict/join.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -220,6 +221,10 @@ class Dictionary {
     return index(value, this);
   }
 
+  join(sep = "") {
+    return join(sep, this);
+  }
+
   keys() {
     return keys(this);
   }
@@ -238,10 +243,6 @@ class Dictionary {
 
   mapKeys(fn) {
     return Dict.of(mapKeys(fn, this));
-  }
-
-  mapWithKey(fn) {
-    return Dict.of(mapWithKey(fn, this));
   }
 
   merge(...others) {
