@@ -340,5 +340,6 @@ class Dictionary {
 export const Dict = (entries) => new Dictionary(entries);
 Dict.of = (obj) => new Dictionary(entries(obj));
 Dict.isDict = (obj) => obj.kind === "Dictionary";
+Dict.empty = () => Dict.of({});
 
 export const dict = Dict;
