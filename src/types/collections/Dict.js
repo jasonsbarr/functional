@@ -76,6 +76,13 @@ class Dictionary {
       value: "Dictionary",
     });
 
+    definePropWithOpts("constructor", this, {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: Dict,
+    });
+
     freeze(this);
   }
 
