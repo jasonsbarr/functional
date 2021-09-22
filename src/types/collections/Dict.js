@@ -263,7 +263,7 @@ class Dictionary {
   }
 
   pluck(numItems) {
-    return pluck(numItems, this);
+    return Dict.of(pluck(numItems, this));
   }
 
   reduce(fn, initial) {
