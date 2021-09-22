@@ -1,6 +1,7 @@
 import { all } from "../../functions/dict/all.js";
 import { any } from "../../functions/dict/any.js";
 import { append } from "../../functions/dict/append.js";
+import { compact } from "../../functions/dict/compact.js";
 import { entries } from "../../functions/object/entries.js";
 import { definePropWithOpts } from "../../functions/object/definePropWithOpts.js";
 import { freeze } from "../../functions/object/freeze.js";
@@ -88,6 +89,10 @@ class Dictionary {
   // deep copy
   clone() {
     return Dict.of(clone(this));
+  }
+
+  compact() {
+    return Dict.of(compact(this));
   }
 
   // shallow copy
