@@ -108,6 +108,10 @@ class Dictionary {
     return Dict.of(filterKeys(pred, this));
   }
 
+  forEach(fn) {
+    this.eachWithKey(fn);
+  }
+
   // returns Option
   get(key) {
     return get(key, this);
