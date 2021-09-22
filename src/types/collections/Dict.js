@@ -289,6 +289,16 @@ class Dictionary {
     return toQueryString(this);
   }
 
+  traverse(point, fn) {
+    return this.reduce(
+      (acc, v, k) =>
+        fn(v, k)
+          .map((x) => (y) => y.merge({ [k]: x }))
+          .ap(acc),
+      point(Dict.empty())
+    );
+  }
+
   unset(key) {
     return this.delete(key);
   }
