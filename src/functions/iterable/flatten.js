@@ -1,5 +1,5 @@
 import { each } from "./each.js";
-import { isIterable } from "./isIterable.js";
+import { isIterable } from "../predicates/isIterable.js";
 import { concatToArray } from "./concatToArray.js";
 import { isString } from "../predicates/isString.js";
 

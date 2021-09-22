@@ -570,6 +570,6 @@ List.from = List.of;
 
 List.isList = (obj) => obj.kind === "List";
 
-List.empty = () => List.of([]);
+List.empty = () => NIL;
 
 export const list = List;

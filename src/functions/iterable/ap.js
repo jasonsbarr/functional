@@ -1,6 +1,6 @@
 import { curry } from "../lambda/curry.js";
 import { length } from "./length.js";
-import { allFuncs } from "./allFuncs.js";
+import { allFuncs } from "../predicates/allFuncs.js";
 import { map } from "./map.js";
 import { concat } from "./concat.js";
 
