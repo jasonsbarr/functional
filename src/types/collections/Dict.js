@@ -139,7 +139,6 @@ class Dictionary {
   }
 
   flatten(level = Infinity) {
-    let current = 0;
     let result = flattenEntries(entries(this));
     return Dict.of(fromEntries(result));
 
