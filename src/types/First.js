@@ -6,6 +6,7 @@ export const First = (x) => {
     kind: "First",
     value,
     concat: ({ value: y }) => (Option.isSome(value) ? value : y),
+    // function arguments should accept an Option
     fold: (f) => f(value),
     option: (f, g) => value.fold(f, g),
     map: (f) => First(f(value)),

@@ -6,6 +6,7 @@ export const Last = (x) => {
     kind: "Last",
     value,
     concat: ({ value: y }) => (Option.isSome(y) ? y : value),
+    // function arguments should accept an Option
     fold: (f) => f(value),
     option: (f, g) => value.fold(f, g),
     map: (f) => Last(f(value)),
