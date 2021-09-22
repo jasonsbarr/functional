@@ -51,6 +51,7 @@ import { prepend } from "../../functions/dict/prepend.js";
 import { removeByKey } from "../../functions/dict/removeByKey.js";
 import { removeByValue } from "../../functions/dict/removeByValue.js";
 import { identity } from "../../functions/helpers/identity.js";
+import { sort } from "../../functions/dict/sort.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -304,6 +305,10 @@ class Dictionary {
 
   set(key, value) {
     return Dict.of(set(key, value, this));
+  }
+
+  sort({ key = "", fn = null, reverse = false } = {}) {
+    return sort(this, { key, fn, reverse });
   }
 
   toJSON() {
