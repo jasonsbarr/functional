@@ -80,6 +80,10 @@ class Dictionary {
     return Dict.of(append(item, this));
   }
 
+  chain(fn) {
+    return Dict.of(map(fn, this.flatten()));
+  }
+
   clear() {
     return Dict.of(clear(this));
   }
@@ -136,6 +140,10 @@ class Dictionary {
 
   first() {
     return first(this);
+  }
+
+  flatMap(fn) {
+    return this.chain(fn);
   }
 
   flatten(level = Infinity) {
@@ -309,7 +317,3 @@ Dict.of = (obj) => new Dictionary(entries(obj));
 Dict.isDict = (obj) => obj.kind === "Dictionary";
 
 export const dict = Dict;
-
-const d1 = Dict.of({ a: "hi", b: "bye" });
-const d2 = Dict.of({ sum: 10, product: 15 });
-const d3 = Dict.of({ c: "hola", d: Dict.of({ e: "hey" }) });
