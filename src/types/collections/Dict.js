@@ -1,5 +1,6 @@
 import { all } from "../../functions/dict/all.js";
 import { any } from "../../functions/dict/any.js";
+import { append } from "../../functions/dict/append.js";
 import { entries } from "../../functions/object/entries.js";
 import { definePropWithOpts } from "../../functions/object/definePropWithOpts.js";
 import { freeze } from "../../functions/object/freeze.js";
@@ -70,6 +71,10 @@ class Dictionary {
 
   any(search) {
     return any(search, this);
+  }
+
+  append(item) {
+    return Dict.of(append(item, this));
   }
 
   clear() {
