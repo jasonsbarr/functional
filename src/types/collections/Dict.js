@@ -84,10 +84,6 @@ class Dictionary {
     return Dict.of(clear(this));
   }
 
-  concat(other) {
-    return Dict.of(concat(this, other));
-  }
-
   // deep copy
   clone() {
     return Dict.of(clone(this));
@@ -95,6 +91,10 @@ class Dictionary {
 
   compact() {
     return Dict.of(compact(this));
+  }
+
+  concat(other) {
+    return Dict.of(concat(this, other));
   }
 
   // shallow copy
