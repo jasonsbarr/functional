@@ -1,5 +1,5 @@
-import { length } from "../../functions/iterable/length.js";
-import { keys } from "../../functions/object/keys.js";
+import { all } from "../../functions/dict/all.js";
+import { any } from "../../functions/dict/any.js";
 import { entries } from "../../functions/object/entries.js";
 import { definePropWithOpts } from "../../functions/object/definePropWithOpts.js";
 import { freeze } from "../../functions/object/freeze.js";
@@ -19,7 +19,9 @@ import { get } from "../../functions/dict/get.js";
 import { getWithDefault } from "../../functions/dict/getWithDefault.js";
 import { has } from "../../functions/dict/has.js";
 import { hash } from "../../functions/object/hash.js";
+import { keys } from "../../functions/object/keys.js";
 import { last } from "../../functions/dict/last.js";
+import { length } from "../../functions/iterable/length.js";
 import { map } from "../../functions/dict/map.js";
 import { mapEntries } from "../../functions/dict/mapEntries.js";
 import { mapKeys } from "../../functions/dict/mapKeys.js";
@@ -60,6 +62,14 @@ class Dictionary {
     });
 
     freeze(this);
+  }
+
+  all(search) {
+    return all(search, this);
+  }
+
+  any(search) {
+    return any(search, this);
   }
 
   clear() {
