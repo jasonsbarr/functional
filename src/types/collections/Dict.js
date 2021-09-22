@@ -171,8 +171,7 @@ class Dictionary {
   }
 
   flatten(level = Infinity) {
-    let result = flattenEntries(entries(this));
-    return Dict.of(fromEntries(result));
+    return Dict.of(fromEntries(flattenEntries(entries(this))));
 
     function flattenEntries(es, current = 0) {
       let result = [];
