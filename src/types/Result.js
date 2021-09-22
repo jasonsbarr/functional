@@ -82,6 +82,20 @@ class O {
     return this;
   }
 
+  bimap(errFunc, okFunc) {
+    return this.fold(
+      (e) => Err(errFunc(e)),
+      (ok) => Ok(okFunc(ok))
+    );
+  }
+
+  bichain(errFunc, okFunc) {
+    return this.fold(
+      (e) => errFunc(e),
+      (ok) => okFunc(ok)
+    );
+  }
+
   toString() {
     return this.inspect();
   }

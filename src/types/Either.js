@@ -80,6 +80,20 @@ class R {
     return this;
   }
 
+  bimap(lFunc, rFunc) {
+    return this.fold(
+      (l) => Left(lFunc(l)),
+      (r) => Right(rFunc(r))
+    );
+  }
+
+  bichain(lFunc, rFunc) {
+    return this.fold(
+      (l) => lFunc(l),
+      (r) => rFunc(r)
+    );
+  }
+
   toString() {
     return this.inspect();
   }

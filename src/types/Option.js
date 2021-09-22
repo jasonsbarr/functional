@@ -86,6 +86,20 @@ class S {
     return this;
   }
 
+  bimap(nFunc, sFunc) {
+    return this.fold(
+      (n) => None(nFunc(n)),
+      (s) => Some(sFunc(s))
+    );
+  }
+
+  bichain(nFunc, sFunc) {
+    return this.fold(
+      (n) => nFunc(n),
+      (s) => sFunc(s)
+    );
+  }
+
   toString() {
     return this.inspect();
   }
