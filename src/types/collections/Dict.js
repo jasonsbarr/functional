@@ -81,6 +81,10 @@ class Dictionary {
     return any(search, this);
   }
 
+  ap(other) {
+    return this.chain((f) => other.map(f));
+  }
+
   append(item) {
     return Dict.of(append(item, this));
   }
