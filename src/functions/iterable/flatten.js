@@ -4,7 +4,6 @@ import { concatToArray } from "./concatToArray.js";
 
 // flattens completely or to specified level of depth
 export const flatten = (iter, level = Infinity, current = 0) => {
-  // iter.constructor(concatToArray(...iter));
   let result = [];
   each((item) => {
     if (isIterable(item) && typeof item !== "string" && current < level) {
