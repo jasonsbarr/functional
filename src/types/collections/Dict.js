@@ -20,6 +20,8 @@ import { mapEntries } from "../../functions/dict/mapEntries.js";
 import { mapKeys } from "../../functions/dict/mapKeys.js";
 import { mapWithKey } from "../../functions/dict/mapWithKey.js";
 import { merge } from "../../functions/dict/merge.js";
+import { reject } from "../../functions/dict/reject.js";
+import { reverse } from "../../functions/dict/reverse.js";
 import { set } from "../../functions/dict/set.js";
 import { toMap } from "../../functions/dict/toMap.js";
 import { toObject } from "../../functions/dict/toObject.js";
@@ -28,7 +30,6 @@ import { update } from "../../functions/dict/update.js";
 import { values } from "../../functions/object/values.js";
 import { equals } from "../../functions/object/equals.js";
 import { hash } from "../../functions/object/hash.js";
-import { reverse } from "../../functions/dict/reverse.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -146,6 +147,10 @@ class Dictionary {
 
   merge(...others) {
     return Dict.of(merge(this, ...others));
+  }
+
+  reject(pred) {
+    return Dict.of(reject(pred, this));
   }
 
   reverse() {
