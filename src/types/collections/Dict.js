@@ -170,6 +170,7 @@ class Dictionary {
     return this.chain(fn);
   }
 
+  // items with the same key will resolve to the last item's value
   flatten(level = Infinity) {
     return Dict.of(fromEntries(flattenEntries(entries(this))));
 
