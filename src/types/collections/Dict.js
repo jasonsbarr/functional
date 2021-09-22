@@ -46,6 +46,7 @@ import { findKey } from "../../functions/dict/findKey.js";
 import { findEntry } from "../../functions/dict/findEntry.js";
 import { join } from "../../functions/dict/join.js";
 import { none } from "../../functions/dict/none.js";
+import { pluck } from "../../functions/dict/pluck.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -259,6 +260,10 @@ class Dictionary {
 
   none(search) {
     return none(search, this);
+  }
+
+  pluck(numItems) {
+    return pluck(numItems, this);
   }
 
   reduce(fn, initial) {
