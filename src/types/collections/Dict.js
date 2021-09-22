@@ -50,6 +50,7 @@ import { pluck } from "../../functions/dict/pluck.js";
 import { prepend } from "../../functions/dict/prepend.js";
 import { removeByKey } from "../../functions/dict/removeByKey.js";
 import { removeByValue } from "../../functions/dict/removeByValue.js";
+import { identity } from "../../functions/helpers/identity.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -295,6 +296,10 @@ class Dictionary {
 
   reverse() {
     return Dict.of(reverse(this));
+  }
+
+  sequence(point) {
+    return this.sequence(point, identity);
   }
 
   set(key, value) {
