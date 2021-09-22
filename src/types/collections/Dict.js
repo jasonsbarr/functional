@@ -13,6 +13,7 @@ import { each } from "../../functions/dict/each.js";
 import { eachWithKey } from "../../functions/dict/eachWithKey.js";
 import { filter } from "../../functions/dict/filter.js";
 import { filterKeys } from "../../functions/dict/filterKeys.js";
+import { first } from "../../functions/dict/first.js";
 import { get } from "../../functions/dict/get.js";
 import { getWithDefault } from "../../functions/dict/getWithDefault.js";
 import { has } from "../../functions/dict/has.js";
@@ -106,6 +107,10 @@ class Dictionary {
 
   filterKeys(pred) {
     return Dict.of(filterKeys(pred, this));
+  }
+
+  first() {
+    return first(this);
   }
 
   forEach(fn) {
