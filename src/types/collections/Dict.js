@@ -2,13 +2,12 @@ import { all } from "../../functions/dict/all.js";
 import { any } from "../../functions/dict/any.js";
 import { append } from "../../functions/dict/append.js";
 import { compact } from "../../functions/dict/compact.js";
-import { entries } from "../../functions/object/entries.js";
-import { definePropWithOpts } from "../../functions/object/definePropWithOpts.js";
-import { freeze } from "../../functions/object/freeze.js";
 import { clear } from "../../functions/dict/clear.js";
 import { concat } from "../../functions/dict/concat.js";
 import { copy } from "../../functions/dict/copy.js";
+import { definePropWithOpts } from "../../functions/object/definePropWithOpts.js";
 import { deleteValue } from "../../functions/dict/deleteValue.js";
+import { entries } from "../../functions/object/entries.js";
 import { equals } from "../../functions/object/equals.js";
 import { index } from "../../functions/dict/dictIndex.js";
 import { clone } from "../../functions/object/clone.js";
@@ -17,6 +16,7 @@ import { eachWithKey } from "../../functions/dict/eachWithKey.js";
 import { filter } from "../../functions/dict/filter.js";
 import { filterKeys } from "../../functions/dict/filterKeys.js";
 import { first } from "../../functions/dict/first.js";
+import { freeze } from "../../functions/object/freeze.js";
 import { get } from "../../functions/dict/get.js";
 import { getWithDefault } from "../../functions/dict/getWithDefault.js";
 import { has } from "../../functions/dict/has.js";
@@ -39,6 +39,8 @@ import { toObject } from "../../functions/dict/toObject.js";
 import { toQueryString } from "../../functions/dict/toQueryString.js";
 import { update } from "../../functions/dict/update.js";
 import { values } from "../../functions/object/values.js";
+import { concatToArray } from "../../functions/iterable/concatToArray.js";
+import { fromEntries } from "../../functions/object/fromEntries.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -134,6 +136,27 @@ class Dictionary {
 
   first() {
     return first(this);
+  }
+
+  flatten(level = Infinity) {
+    let current = 0;
+    let result = flattenEntries(entries(this));
+    return Dict.of(fromEntries(result));
+
+    function flattenEntries(es, current = 0) {
+      let result = [];
+      for (let [key, value] of es) {
+        if (Dict.isDict(value) && current < level) {
+          result = concatToArray(
+            result,
+            flattenEntries(entries(value), current + 1)
+          );
+        } else {
+          result.push([key, value]);
+        }
+      }
+      return result;
+    }
   }
 
   forEach(fn) {
@@ -287,3 +310,7 @@ Dict.of = (obj) => new Dictionary(entries(obj));
 Dict.isDict = (obj) => obj.kind === "Dictionary";
 
 export const dict = Dict;
+
+const d1 = Dict.of({ a: "hi", b: "bye" });
+const d2 = Dict.of({ sum: 10, product: 15 });
+const d3 = Dict.of({ c: "hola", d: Dict.of({ e: "hey" }) });
