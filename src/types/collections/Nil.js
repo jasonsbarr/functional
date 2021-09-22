@@ -85,6 +85,10 @@ class Nil {
     return [];
   }
 
+  equals(other) {
+    return typeof other.isNil === "function" && other.isNil();
+  }
+
   every(pred) {
     return this.all(pred);
   }

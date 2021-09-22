@@ -67,6 +67,7 @@ import { update } from "../../functions/iterable/update.js";
 import { values } from "../../functions/iterable/values.js";
 import { zip } from "../../functions/iterable/zip.js";
 import { NIL } from "./Nil.js";
+import { equals } from "../../functions/object/equals.js";
 
 class Cons extends Array {
   constructor(car, cdr) {
@@ -181,6 +182,10 @@ class Cons extends Array {
 
   entries() {
     return entries(this);
+  }
+
+  equals(other) {
+    return equals(this, other);
   }
 
   every(pred) {

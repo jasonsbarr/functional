@@ -65,6 +65,7 @@ import { unique } from "../../functions/iterable/unique.js";
 import { update } from "../../functions/iterable/update.js";
 import { values } from "../../functions/iterable/values.js";
 import { zip } from "../../functions/iterable/zip.js";
+import { equals } from "../../functions/object/equals.js";
 
 // A tuple is immutable, like in Python.
 // Objects inside it, however (not primitives!), can be mutated.
@@ -183,6 +184,10 @@ class Tpl extends Array {
 
   entries() {
     return entries(this);
+  }
+
+  equals(other) {
+    return equals(this, other);
   }
 
   every(pred) {
