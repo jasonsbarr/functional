@@ -4,6 +4,8 @@ export const Min = (x) => ({
   concat: ({ value: y }) => Min(x < y ? x : y),
   inspect: () => `Min(${x})`,
   fold: (f) => f(x),
+  map: (f) => Min(f(x)),
+  chain: (f) => f(x),
 });
 
 Min.isMin = (obj) => obj.kind === "Min";

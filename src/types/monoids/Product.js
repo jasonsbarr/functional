@@ -4,6 +4,8 @@ export const Product = (x) => ({
   concat: ({ value: y }) => Product(x * y),
   inspect: () => `Product(${x})`,
   fold: (f) => f(x),
+  map: (f) => Product(f(x)),
+  chain: (f) => f(x),
 });
 
 Product.isProduct = (obj) => obj.kind === "Product";

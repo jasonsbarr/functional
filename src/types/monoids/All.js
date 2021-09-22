@@ -4,6 +4,8 @@ export const All = (x) => ({
   concat: ({ value: y }) => All(x && y),
   inspect: () => `All(${x})`,
   fold: (f) => f(x),
+  map: (f) => All(f(x)),
+  chain: (f) => f(x),
 });
 
 All.isAll = (obj) => obj.kind === "All";
