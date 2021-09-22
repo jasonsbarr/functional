@@ -1,5 +1,6 @@
 import { concatValues } from "../functions/helpers/concatValues.js";
 
+// x and y must be Semigroups
 export const Pair = (x, y) => ({
   kind: "Pair",
   x,
