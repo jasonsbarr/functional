@@ -1,1 +1,1 @@
-export const number = (value) => Number(value);
+export const number = (x) => Number(x);

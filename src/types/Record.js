@@ -68,7 +68,7 @@ const recordProto = {
     return hash(this) === hash(other);
   },
 
-  hasValue(value) {
+  index(value) {
     for (let key in keys(this)) {
       if (equals(this[key], value)) {
         return true;
