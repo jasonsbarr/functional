@@ -41,6 +41,7 @@ import { update } from "../../functions/dict/update.js";
 import { values } from "../../functions/object/values.js";
 import { concatToArray } from "../../functions/iterable/concatToArray.js";
 import { fromEntries } from "../../functions/object/fromEntries.js";
+import { count } from "../../functions/dict/count.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -106,6 +107,10 @@ class Dictionary {
     return Dict.of(copy(this));
   }
 
+  count(search) {
+    return count(search, this);
+  }
+
   delete(key) {
     return Dict.of(deleteValue(key, this));
   }
@@ -116,6 +121,10 @@ class Dictionary {
 
   eachWithKey(fn) {
     eachWithKey(fn, this);
+  }
+
+  empty() {
+    return this.clear();
   }
 
   entries() {
