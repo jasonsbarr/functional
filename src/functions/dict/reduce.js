@@ -1,7 +1,11 @@
 import { curry } from "../lambda/curry.js";
-import { values } from "../object/values.js";
 import { reduce as reduceI } from "../iterable/reduce.js";
+import { entries } from "../object/entries.js";
 
-export const reduce = curry((fn, initial, dict) =>
-  reduceI(fn, initial, values(dict))
-);
+export const reduce = curry((fn, initial, dict) => {
+  let acc = initial;
+  for (let [k, v] of entries(dict)) {
+    acc = fn(acc, v, k);
+  }
+  return acc;
+});

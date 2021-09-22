@@ -1,7 +1,10 @@
 import { curry } from "../lambda/curry.js";
-import { reduceRight as reduceRightI } from "../iterable/reduceRight.js";
-import { values } from "../object/values.js";
+import { entries } from "../object/entries.js";
 
-export const reduceRight = curry((fn, initial, dict) =>
-  reduceRightI(fn, initial, values(dict))
-);
+export const reduceRight = curry((fn, initial, dict) => {
+  let acc = initial;
+  for (let [k, v] of entries(dict).reverse()) {
+    acc = fn(acc, v, k);
+  }
+  return acc;
+});
