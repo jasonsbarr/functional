@@ -5,7 +5,7 @@ import { entries } from "../object/entries.js";
 export const reject = curry((pred, dict) => {
   let result = create(null);
   for (let [k, v] of entries(dict)) {
-    if (!pred(v)) {
+    if (!pred(v, k)) {
       result[k] = v;
     }
   }

@@ -5,7 +5,7 @@ import { entries } from "../object/entries.js";
 export const filter = curry((pred, dict) => {
   let results = create(null);
   for (let [k, v] of entries(dict)) {
-    if (pred(v)) {
+    if (pred(v, k)) {
       results[k] = v;
     }
   }

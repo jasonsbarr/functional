@@ -48,6 +48,8 @@ import { join } from "../../functions/dict/join.js";
 import { none } from "../../functions/dict/none.js";
 import { pluck } from "../../functions/dict/pluck.js";
 import { prepend } from "../../functions/dict/prepend.js";
+import { removeByKey } from "../../functions/dict/removeByKey.js";
+import { removeByValue } from "../../functions/dict/removeByValue.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -281,6 +283,14 @@ class Dictionary {
 
   reject(pred) {
     return Dict.of(reject(pred, this));
+  }
+
+  removeByKey(key) {
+    return Dict.of(removeByKey(key, this));
+  }
+
+  removeByValue(value) {
+    return Dict.of(removeByValue(value, this));
   }
 
   reverse() {
