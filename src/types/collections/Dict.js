@@ -27,6 +27,7 @@ import { update } from "../../functions/dict/update.js";
 import { values } from "../../functions/object/values.js";
 import { equals } from "../../functions/object/equals.js";
 import { hash } from "../../functions/object/hash.js";
+import { reverse } from "../../functions/dict/reverse.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -140,6 +141,10 @@ class Dictionary {
 
   merge(...others) {
     return Dict.of(merge(this, ...others));
+  }
+
+  reverse() {
+    return Dict.of(reverse(this));
   }
 
   set(key, value) {

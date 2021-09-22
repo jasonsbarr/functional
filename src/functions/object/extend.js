@@ -1,7 +1,7 @@
 import { keys } from "./keys.js";
 import { property } from "./property.js";
 import { defineProperty } from "./defineProperty.js";
-import { symbols } from "./symbols";
+import { symbols } from "./symbols.js";
 
 export const extend = (target, ...sources) => {
   sources.forEach((source) => {
