@@ -7,6 +7,7 @@ import { clear } from "../../functions/dict/clear.js";
 import { concat } from "../../functions/dict/concat.js";
 import { copy } from "../../functions/dict/copy.js";
 import { deleteValue } from "../../functions/dict/deleteValue.js";
+import { equals } from "../../functions/object/equals.js";
 import { index } from "../../functions/dict/dictIndex.js";
 import { clone } from "../../functions/object/clone.js";
 import { each } from "../../functions/dict/each.js";
@@ -17,6 +18,8 @@ import { first } from "../../functions/dict/first.js";
 import { get } from "../../functions/dict/get.js";
 import { getWithDefault } from "../../functions/dict/getWithDefault.js";
 import { has } from "../../functions/dict/has.js";
+import { hash } from "../../functions/object/hash.js";
+import { last } from "../../functions/dict/last.js";
 import { map } from "../../functions/dict/map.js";
 import { mapEntries } from "../../functions/dict/mapEntries.js";
 import { mapKeys } from "../../functions/dict/mapKeys.js";
@@ -30,8 +33,6 @@ import { toObject } from "../../functions/dict/toObject.js";
 import { toQueryString } from "../../functions/dict/toQueryString.js";
 import { update } from "../../functions/dict/update.js";
 import { values } from "../../functions/object/values.js";
-import { equals } from "../../functions/object/equals.js";
-import { hash } from "../../functions/object/hash.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -145,6 +146,10 @@ class Dictionary {
 
   keys() {
     return keys(this);
+  }
+
+  last() {
+    return last(this);
   }
 
   map(fn) {
