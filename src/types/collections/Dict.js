@@ -11,6 +11,7 @@ import { index } from "../../functions/dict/dictIndex.js";
 import { clone } from "../../functions/object/clone.js";
 import { each } from "../../functions/dict/each.js";
 import { eachWithKey } from "../../functions/dict/eachWithKey.js";
+import { filter } from "../../functions/dict/filter.js";
 import { get } from "../../functions/dict/get.js";
 import { getWithDefault } from "../../functions/dict/getWithDefault.js";
 import { has } from "../../functions/dict/has.js";
@@ -91,6 +92,10 @@ class Dictionary {
 
   equals(other) {
     return equals(this, other);
+  }
+
+  filter(pred) {
+    return Dict.of(filter(pred, this));
   }
 
   // returns Option
