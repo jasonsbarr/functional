@@ -14,4 +14,4 @@ export const First = (x) => {
 };
 
 First.isFirst = (obj) => obj.kind === "First";
-First.isEmpty = () => First(None(null));
+First.empty = () => First(None(null));
