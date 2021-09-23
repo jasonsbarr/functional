@@ -1,5 +1,6 @@
 // Right typeclasses
 import { concatValues } from "../functions/helpers/concatValues.js";
+import { equals } from "../functions/object/equals.js";
 
 export const RightClass = {
   isRight() {
@@ -68,6 +69,16 @@ export const RightSemiGroup = {
     return o.fold(
       (l) => o.constructor(l),
       (r) => this.constructor(concatValues(this.value, r))
+    );
+  },
+};
+
+export const Setoid = {
+  equals(x) {
+    return (
+      this.type === x.type &&
+      this.variant === x.variant &&
+      equals(this.value, x.value)
     );
   },
 };
