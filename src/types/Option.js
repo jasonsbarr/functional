@@ -55,7 +55,7 @@ export const Option = createType(
     },
 
     empty() {
-      return Option.None(null);
+      return Option.None();
     },
 
     isOption(x) {
