@@ -1,6 +1,6 @@
 import { concatValues } from "../functions/helpers/concatValues.js";
 
-class I {
+class Identity {
   constructor(value) {
     this._value = value;
 
@@ -11,18 +11,18 @@ class I {
       value: value,
     });
 
-    Object.defineProperty(this, "kind", {
+    Object.defineProperty(this, "type", {
       configurable: false,
       enumerable: true,
       writable: false,
-      value: "Identity",
+      value: "Id",
     });
 
     Object.defineProperty(this, "constructor", {
       configurable: false,
       enumerable: false,
       writable: false,
-      value: Identity,
+      value: Id,
     });
   }
 
@@ -31,7 +31,7 @@ class I {
   }
 
   map(fn) {
-    return Identity(fn(this.value));
+    return Id(fn(this.value));
   }
 
   chain(fn) {
@@ -47,7 +47,7 @@ class I {
   }
 
   concat(o) {
-    return Identity(concatValues(this.value, o.value));
+    return Id(concatValues(this.value, o.value));
   }
 
   ap(o) {
@@ -59,7 +59,7 @@ class I {
   }
 }
 
-export const Identity = (x) => new I(x);
+export const Id = (x) => new Identity(x);
 
-Identity.of = (x) => Identity(x);
-Identity.isIdentity = (obj) => obj.kind === "Identity";
+Id.of = (x) => Id(x);
+Id.isId = (obj) => obj.type === "Id";
