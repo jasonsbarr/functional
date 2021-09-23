@@ -21,6 +21,7 @@ export const VariantInfo = (variantName, typeClasses = [], overrides = {}) => ({
  *
  * @param {String} typeName The name of the type representative
  * @param {VariantInfo} variantInfo The information used to create the variant
+ * @returns {Object} The constructed variant instance
  */
 const createVariantConstructor = (typeName, variantInfo, overrides = {}) => {
   const variantConstructor = (value) => {

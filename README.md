@@ -12,6 +12,8 @@ I'm pretty sure there are still tons of bugs, so if you find any feel free to le
 
 ## Features
 
+- The ability to create tagged union types with variants
+- Pattern matching on tagged unions with exhaustive variant checking
 - Option, Result, and Either types to eliminate null checks and provide better error handling
 - Functional helpers for composition, currying, and more
 - Collection types with more functionality than what JS arrays give you out-of-the-box
@@ -28,4 +30,3 @@ I'm pretty sure there are still tons of bugs, so if you find any feel free to le
 - Implement full Fantasy Land interfaces
 - A larger collection of utility functions and helpers
 - Lazy collections
-- Tagged unions and pattern matching?
