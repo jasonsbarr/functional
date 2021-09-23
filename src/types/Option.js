@@ -1,174 +1,67 @@
-import { concatValues } from "../functions/helpers/concatValues.js";
-import { isNullish } from "../functions/predicates/isNullish.js";
 import { ifElse } from "../functions/helpers/ifElse.js";
-/*
- * type Option = Some(x: T) | None(null|undefined|NaN)
- */
+import { isNullish } from "../functions/predicates/isNullish.js";
+import { VariantInfo, createType } from "./createType.js";
+import {
+  Alt,
+  Applicative,
+  Apply,
+  Bifunctor,
+  Functor,
+  LeftAlt,
+  LeftApply,
+  LeftBifunctor,
+  LeftClass,
+  LeftFold,
+  LeftFunctor,
+  LeftMonad,
+  LeftSemiGroup,
+  Monad,
+  Monoid,
+  RightClass,
+  RightFold,
+  RightSemiGroup,
+} from "./typeClasses.js";
 
-export const Option = {
-  of: (x) =>
-    // check if null, undefined, or NaN
-    isNullish(x) ? None(x) : Some(x),
-  isSome: (obj) => obj.kind === "Some",
-  isNone: (obj) => obj.kind === "None",
-  isOption: (obj) => obj.kind === "Some" || obj.kind === "None",
-  safe: (pred) => ifElse(pred, Some, None),
-  zero: () => None(null),
-  empty: () => None(null),
-};
+const variantInfos = [
+  VariantInfo("Some", [
+    RightClass,
+    RightFold,
+    Functor,
+    Apply,
+    Monad,
+    Bifunctor,
+    Alt,
+    RightSemiGroup,
+  ]),
+  VariantInfo("None", [
+    LeftClass,
+    LeftFold,
+    LeftFunctor,
+    LeftApply,
+    LeftMonad,
+    LeftBifunctor,
+    LeftAlt,
+    LeftSemiGroup,
+  ]),
+];
 
-class S {
-  constructor(value) {
-    this._value = value;
+export const Option = createType(
+  "Option",
+  variantInfos,
+  [Monoid, Applicative],
+  {
+    of(x) {
+      return isNullish(x) ? Option.None(x) : Option.Some(x);
+    },
 
-    Object.defineProperty(this, "_value", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: value,
-    });
-
-    Object.defineProperty(this, "kind", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: "Some",
-    });
-
-    Object.defineProperty(this, "constructor", {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: Some,
-    });
+    empty() {
+      return Option.None(null);
+    },
   }
+);
 
-  get value() {
-    return this._value;
-  }
+const { Some, None } = Option;
+export { Some };
+export { None };
 
-  map(f) {
-    return Option.of(f(this.value));
-  }
-
-  chain(f) {
-    return f(this.value);
-  }
-
-  fold(f, g) {
-    return g(this.value);
-  }
-
-  inspect() {
-    return `Some(${this.value})`;
-  }
-
-  isNone() {
-    return false;
-  }
-
-  isSome() {
-    return true;
-  }
-
-  concat(o) {
-    return o.fold(
-      (n) => None(n),
-      (s) => Some(concatValues(this.value, s))
-    );
-  }
-
-  ap(o) {
-    return o.map(this.value);
-  }
-
-  alt(other) {
-    return this;
-  }
-
-  bimap(nFunc, sFunc) {
-    return this.fold(
-      (n) => None(nFunc(n)),
-      (s) => Some(sFunc(s))
-    );
-  }
-
-  bichain(nFunc, sFunc) {
-    return this.fold(
-      (n) => nFunc(n),
-      (s) => sFunc(s)
-    );
-  }
-
-  toString() {
-    return this.inspect();
-  }
-}
-
-export const Some = (x) => new S(x);
-
-class N {
-  constructor(value) {
-    this._value = value;
-
-    Object.defineProperty(this, "kind", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: "None",
-    });
-
-    Object.defineProperty(this, "constructor", {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: None,
-    });
-  }
-
-  get value() {
-    return this._value;
-  }
-
-  map(f) {
-    return this;
-  }
-
-  chain(f) {
-    return this;
-  }
-
-  fold(f, g) {
-    return f(this.value);
-  }
-
-  inspect() {
-    return `None(${this.value})`;
-  }
-
-  isNone() {
-    return true;
-  }
-
-  isSome() {
-    return false;
-  }
-
-  concat(o) {
-    return this;
-  }
-
-  ap(o) {
-    return this;
-  }
-
-  alt(other) {
-    return other.isSome() ? other : this;
-  }
-
-  toString() {
-    return this.inspect();
-  }
-}
-
-export const None = () => new N();
+export const safe = (pred) => ifElse(pred, Option.Some, Option.None);

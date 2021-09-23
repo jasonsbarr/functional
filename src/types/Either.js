@@ -1,173 +1,62 @@
-/*
- * type Either = Right(x: R) | Left(x: L)
- */
+import { VariantInfo, createType } from "./createType.js";
+import {
+  Alt,
+  Applicative,
+  Apply,
+  Bifunctor,
+  Functor,
+  LeftAlt,
+  LeftApply,
+  LeftBifunctor,
+  LeftClass,
+  LeftFold,
+  LeftFunctor,
+  LeftMonad,
+  LeftSemiGroup,
+  Monad,
+  Monoid,
+  RightClass,
+  RightFold,
+  RightSemiGroup,
+} from "./typeClasses.js";
 
-import { concatValues } from "../functions/helpers/concatValues.js";
+const variantInfos = [
+  VariantInfo("Right", [
+    RightClass,
+    RightFold,
+    Functor,
+    Apply,
+    Monad,
+    Bifunctor,
+    Alt,
+    RightSemiGroup,
+  ]),
+  VariantInfo("Left", [
+    LeftClass,
+    LeftFold,
+    LeftFunctor,
+    LeftApply,
+    LeftMonad,
+    LeftBifunctor,
+    LeftAlt,
+    LeftSemiGroup,
+  ]),
+];
 
-export const Either = {
-  of: (x) => Right(x),
-  isRight: (obj) => obj.kind === "Right",
-  isLeft: (obj) => obj.kind === "Left",
-  isEither: (obj) => obj.kind === "Right" || obj.kind === "Left",
-  zero: () => Left(null),
-  empty: () => Left(null),
-};
-
-class R {
-  constructor(value) {
-    Object.defineProperty(this, "_value", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: value,
-    });
-
-    Object.defineProperty(this, "kind", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: "Right",
-    });
-
-    Object.defineProperty(this, "constructor", {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: Right,
-    });
+export const Either = createType(
+  "Either",
+  variantInfos,
+  [Monoid, Applicative],
+  {
+    of(x) {
+      return Either.Right(x);
+    },
+    empty() {
+      return Either.Left(null);
+    },
   }
+);
 
-  get value() {
-    return this._value;
-  }
-
-  map(f) {
-    return Right(f(this.value));
-  }
-
-  chain(f) {
-    return f(this.value);
-  }
-
-  fold(f, g) {
-    return g(this.value);
-  }
-
-  inspect() {
-    return `Right(${this.value})`;
-  }
-
-  isLeft() {
-    return false;
-  }
-
-  isRight() {
-    return true;
-  }
-
-  concat(o) {
-    return o.fold(
-      (l) => Left(l),
-      (r) => Right(concatValues(this.value, r))
-    );
-  }
-
-  ap(o) {
-    return o.map(this.value);
-  }
-
-  alt(other) {
-    return this;
-  }
-
-  bimap(lFunc, rFunc) {
-    return this.fold(
-      (l) => Left(lFunc(l)),
-      (r) => Right(rFunc(r))
-    );
-  }
-
-  bichain(lFunc, rFunc) {
-    return this.fold(
-      (l) => lFunc(l),
-      (r) => rFunc(r)
-    );
-  }
-
-  toString() {
-    return this.inspect();
-  }
-}
-
-export const Right = (x) => new R(x);
-
-class L {
-  constructor(value) {
-    Object.defineProperty(this, "_value", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: value,
-    });
-
-    Object.defineProperty(this, "kind", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: "Left",
-    });
-
-    Object.defineProperty(this, "constructor", {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: Left,
-    });
-  }
-
-  get value() {
-    return this._value;
-  }
-
-  map(f) {
-    return this;
-  }
-
-  chain(f) {
-    return this;
-  }
-
-  fold(f, g) {
-    return f(this.value);
-  }
-
-  inspect() {
-    return `Left(${this.value})`;
-  }
-
-  isLeft() {
-    return true;
-  }
-
-  isRight() {
-    return false;
-  }
-
-  concat(o) {
-    return this;
-  }
-
-  ap(o) {
-    return this;
-  }
-
-  alt(other) {
-    return Either.isRight(other) ? other : this;
-  }
-
-  toString() {
-    return this.inspect();
-  }
-}
-
-export const Left = (x) => new L(x);
+const { Left, Right } = Either;
+export { Left };
+export { Right };

@@ -1,185 +1,73 @@
-/*
- * type Result = Success(x: Ok) | Failure(x: Error)
- */
+import { VariantInfo, createType } from "./createType.js";
+import {
+  Alt,
+  Applicative,
+  Apply,
+  Bifunctor,
+  Functor,
+  LeftAlt,
+  LeftApply,
+  LeftBifunctor,
+  LeftClass,
+  LeftFold,
+  LeftFunctor,
+  LeftMonad,
+  LeftSemiGroup,
+  Monad,
+  Monoid,
+  RightClass,
+  RightFold,
+  RightSemiGroup,
+} from "./typeClasses.js";
 
-import { concatValues } from "../functions/helpers/concatValues.js";
+const variantInfos = [
+  VariantInfo("Ok", [
+    RightClass,
+    RightFold,
+    Functor,
+    Apply,
+    Monad,
+    Bifunctor,
+    Alt,
+    RightSemiGroup,
+  ]),
+  VariantInfo("Err", [
+    LeftClass,
+    LeftFold,
+    LeftFunctor,
+    LeftApply,
+    LeftMonad,
+    LeftBifunctor,
+    LeftAlt,
+    LeftSemiGroup,
+  ]),
+];
 
-export const Result = {
-  of: (x) => (x instanceof Error ? Err(x) : Ok(x)),
-  isOk: (obj) => obj.kind === "Ok",
-  isErr: (obj) => obj.kind === "Err",
-  isResult: (obj) => obj.kind === "Ok" || obj.kind === "Err",
-  zero: () => Err(new Error("Zero")),
-  empty: () => Err(new Error("Empty")),
-};
-
-class O {
-  constructor(value) {
-    this._value = value;
-
-    Object.defineProperty(this, "_value", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: value,
-    });
-
-    Object.defineProperty(this, "kind", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: "Ok",
-    });
-
-    Object.defineProperty(this, "constructor", {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: Ok,
-    });
+export const Result = createType(
+  "Result",
+  variantInfos,
+  [Monoid, Applicative],
+  {
+    of(x) {
+      if (x instanceof Error) {
+        return Result.Err(x);
+      }
+      return Result.Ok(x);
+    },
+    empty() {
+      return Result.Err(new Error("empty"));
+    },
   }
+);
 
-  get value() {
-    return this._value;
-  }
+const { Ok, Err } = Result;
+export { Ok };
+export { Err };
 
-  map(f) {
-    return Result.of(f(this.value));
-  }
-
-  chain(f) {
-    return f(this.value);
-  }
-
-  fold(f, g) {
-    return g(this.value);
-  }
-
-  inspect() {
-    return `Ok(${this.value})`;
-  }
-
-  isErr() {
-    return false;
-  }
-
-  isOk() {
-    return true;
-  }
-
-  concat(o) {
-    return o.fold(
-      (e) => Err(e),
-      (ok) => Ok(concatValues(this.value, ok))
-    );
-  }
-
-  ap(o) {
-    return o.map(this.value);
-  }
-
-  alt(other) {
-    return this;
-  }
-
-  bimap(errFunc, okFunc) {
-    return this.fold(
-      (e) => Err(errFunc(e)),
-      (ok) => Ok(okFunc(ok))
-    );
-  }
-
-  bichain(errFunc, okFunc) {
-    return this.fold(
-      (e) => errFunc(e),
-      (ok) => okFunc(ok)
-    );
-  }
-
-  toString() {
-    return this.inspect();
-  }
-}
-
-export const Ok = (x) => new O(x);
-
-class E {
-  constructor(value) {
-    this._value = value;
-
-    Object.defineProperty(this, "_value", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: value,
-    });
-
-    Object.defineProperty(this, "kind", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: "Err",
-    });
-
-    Object.defineProperty(this, "constructor", {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: Err,
-    });
-  }
-
-  get value() {
-    return this._value;
-  }
-
-  map(f) {
-    return this;
-  }
-
-  chain(f) {
-    return this;
-  }
-
-  fold(f, g) {
-    return f(this.value);
-  }
-
-  inspect() {
-    return `Err(${this.value})`;
-  }
-
-  isErr() {
-    return true;
-  }
-
-  isOk() {
-    return false;
-  }
-
-  concat(o) {
-    return this;
-  }
-
-  ap(o) {
-    return this;
-  }
-
-  alt(other) {
-    return Result.isOk(other) ? other : this;
-  }
-
-  toString() {
-    return this.inspect();
-  }
-}
-
-export const Err = (x) => new E(x);
-
-export const tryCatch = (f) => {
+export const tryCatch = (fn) => {
   try {
-    return Ok(f());
+    return Result.Ok(fn());
   } catch (e) {
-    return Err(e);
+    return Result.Err(e);
   }
 };
