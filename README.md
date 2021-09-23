@@ -16,11 +16,10 @@ I'm pretty sure there are still tons of bugs, so if you find any feel free to le
 - Pattern matching on tagged unions with exhaustive variant checking
 - Option, Result, and Either types to eliminate null checks and provide better error handling
 - Functional helpers for composition, currying, and more
-- Collection types with more functionality than what JS arrays give you out-of-the-box
+- Collection types with far more functionality than what JS arrays, objects, and maps give you out-of-the-box
 - All monadic types have a fluent interface that lets you chain methods like a boss
 - A Future type to represent asynchronous computations without some of the pitfalls of Promises
 - Lightweight, immutable Records
-- A Nil collection type that represents the empty List and implements the full collection interface
 
 ## Roadmap features
 
