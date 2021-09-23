@@ -22,25 +22,25 @@ export const VariantInfo = (variantName, typeClasses = [], overrides = {}) => ({
  * @param {VariantInfo} variantInfo The information used to create the variant
  */
 const createVariantConstructor = (typeName, variantInfo, overrides = {}) => {
-  let variant = {
-    type: typeName,
-    variant: variantInfo.variantName,
-    _value: undefined,
-    get value() {
-      return variant._value;
-    },
-  };
-
-  for (let className of variantInfo.typeClasses) {
-    variant = assign(variant, className);
-  }
-
-  variant = assign(variant, overrides);
-
   const variantConstructor = (value) => {
+    let variant = {
+      type: typeName,
+      variant: variantInfo.variantName,
+      _value: undefined,
+      get value() {
+        return this._value;
+      },
+    };
+
+    for (let className of variantInfo.typeClasses) {
+      variant = assign(variant, className);
+    }
+
+    variant = assign(variant, overrides);
+
     definePropWithOpts("_value", variant, {
       enumerable: false,
-      writable: true,
+      writable: false,
       configurable: false,
       value,
     });
