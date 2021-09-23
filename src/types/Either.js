@@ -74,6 +74,4 @@ export const Either = createType(
   }
 );
 
-const { Left, Right } = Either;
-export { Left };
-export { Right };
+export const { Left, Right } = Either;

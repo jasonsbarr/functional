@@ -76,9 +76,7 @@ export const Result = createType(
   }
 );
 
-const { Ok, Err } = Result;
-export { Ok };
-export { Err };
+export const { Ok, Err } = Result;
 
 export const tryCatch = (fn) => {
   try {
