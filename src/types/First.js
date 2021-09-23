@@ -21,10 +21,6 @@ const variantInfos = [
           ? this.value
           : Option.of(this.value);
       },
-
-      valueOf() {
-        return this.value;
-      },
     },
     {
       sTypeClasses: [Monoid],
