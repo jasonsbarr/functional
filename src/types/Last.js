@@ -1,19 +1,38 @@
-import { Option, Some, None } from "../Option.js";
+import { VariantInfo, createType } from "./createType.js";
+import { Fold, Monoid, SemiGroup, Setoid } from "./typeClasses.js";
+import { isFunction } from "../functions/predicates/isFunction.js";
+import { Option, None } from "./Option.js";
 
-export const Last = (x) => {
-  const value = Option.isOption(x) ? x : Some(x);
-  return {
-    kind: "Last",
-    value,
-    concat: ({ value: y }) => (Option.isSome(y) ? y : value),
-    // function arguments should accept an Option
-    fold: (f) => f(value),
-    option: (f, g) => value.fold(f, g),
-    map: (f) => Last(f(value)),
-    ap: (o) => o.map(x.value),
-    chain: (f) => f(value),
-  };
-};
+const variantInfos = [
+  VariantInfo(
+    "Last",
+    [Fold, SemiGroup, Setoid],
+    {
+      concat({ value: y }) {
+        return Option.isSome(y) ? y : this.value;
+      },
 
-Last.isLast = (obj) => obj.kind === "Last";
-Last.empty = () => Last(None(null));
+      inspect() {
+        return `Last(${this.value.inspect()})`;
+      },
+
+      init() {
+        this.value = Option.isOption(this.value)
+          ? this.value
+          : Option.of(this.value);
+      },
+    },
+    {
+      sTypeClasses: [Monoid],
+      methods: {
+        empty() {
+          return Last(None());
+        },
+
+        isLast(x) {
+          return x && isFunction(x.isLast) && x.isLast();
+        },
+      },
+    }
+  ),
+];
