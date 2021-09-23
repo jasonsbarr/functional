@@ -41,6 +41,9 @@ const createVariantConstructor = (typeName, variantInfo) => {
       get value() {
         return this._value;
       },
+      set value(v) {
+        this._value = v;
+      },
     };
 
     for (let className of variantInfo.typeClasses) {
@@ -54,7 +57,7 @@ const createVariantConstructor = (typeName, variantInfo) => {
 
     definePropWithOpts("_value", variant, {
       enumerable: false,
-      writable: false,
+      writable: true,
       configurable: false,
       value,
     });
@@ -65,6 +68,16 @@ const createVariantConstructor = (typeName, variantInfo) => {
       configurable: false,
       value: variantConstructor,
     });
+
+    if (variant.init) {
+      definePropWithOpts("init", variant, {
+        enumerable: false,
+        writable: false,
+        configurable: false,
+        value: variant.init,
+      });
+      variant.init();
+    }
 
     freeze(variant);
 

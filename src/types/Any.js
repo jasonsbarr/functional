@@ -1,6 +1,7 @@
 import { VariantInfo, createType } from "./createType.js";
 import { Fold, Monoid, SemiGroup, Setoid } from "./typeClasses.js";
 import { isFunction } from "../functions/predicates/isFunction.js";
+import { boolean } from "../functions/type/boolean.js";
 
 const variantInfos = [
   VariantInfo(
@@ -13,6 +14,10 @@ const variantInfos = [
 
       inspect() {
         return `Any(${this.value})`;
+      },
+
+      init() {
+        this.value = boolean(this.value);
       },
     },
     {
@@ -31,3 +36,5 @@ const variantInfos = [
 ];
 
 export const { Any } = createType("Any", variantInfos);
+
+const a = Any("hi");
