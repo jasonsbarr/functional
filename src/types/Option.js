@@ -64,8 +64,6 @@ export const Option = createType(
   }
 );
 
-const { Some, None } = Option;
-export { Some };
-export { None };
+export const { Some, None } = Option;
 
 export const safe = (pred) => ifElse(pred, Option.Some, Option.None);
