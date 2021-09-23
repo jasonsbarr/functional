@@ -7,7 +7,7 @@ import { definePropWithOpts } from "../functions/object/definePropWithOpts.js";
  * @property {Array} typeClasses An array of typeClass objects with default method implementations
  * @property {Object} overrides An object of methods that override or supplement the default methods
  */
-export const VariantInfo = (variantName, typeClasses, overrides = {}) => ({
+export const VariantInfo = (variantName, typeClasses = [], overrides = {}) => ({
   variantName,
   typeClasses,
   overrides,
