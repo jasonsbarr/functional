@@ -21,26 +21,42 @@ import {
 } from "./typeClasses.js";
 
 const variantInfos = [
-  VariantInfo("Ok", [
-    RightClass,
-    RightFold,
-    Functor,
-    Apply,
-    Monad,
-    Bifunctor,
-    Alt,
-    RightSemiGroup,
-  ]),
-  VariantInfo("Err", [
-    LeftClass,
-    LeftFold,
-    LeftFunctor,
-    LeftApply,
-    LeftMonad,
-    LeftBifunctor,
-    LeftAlt,
-    LeftSemiGroup,
-  ]),
+  VariantInfo(
+    "Ok",
+    [
+      RightClass,
+      RightFold,
+      Functor,
+      Apply,
+      Monad,
+      Bifunctor,
+      Alt,
+      RightSemiGroup,
+    ],
+    {
+      inspect() {
+        return `Ok(${this.value})`;
+      },
+    }
+  ),
+  VariantInfo(
+    "Err",
+    [
+      LeftClass,
+      LeftFold,
+      LeftFunctor,
+      LeftApply,
+      LeftMonad,
+      LeftBifunctor,
+      LeftAlt,
+      LeftSemiGroup,
+    ],
+    {
+      inspect() {
+        return `Err(${this.value})`;
+      },
+    }
+  ),
 ];
 
 export const Result = createType(
