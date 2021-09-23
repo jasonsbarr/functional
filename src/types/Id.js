@@ -13,22 +13,37 @@ import {
 } from "./typeClasses.js";
 
 const variantInfos = [
-  VariantInfo("Id", [Fold, Functor, Apply, Monad, Bifunctor, Alt, SemiGroup], {
-    isId() {
-      return true;
+  VariantInfo(
+    "Id",
+    [
+      Fold,
+      Functor,
+      Apply,
+      Monad,
+      Bifunctor,
+      Alt,
+      SemiGroup,
+      Monoid,
+      Applicative,
+    ],
+    {
+      isId() {
+        return true;
+      },
     },
-  }),
+    {
+      of(x) {
+        return Identity.Id(x);
+      },
+
+      empty() {
+        return Identity.Id();
+      },
+    }
+  ),
 ];
 
-const Identity = createType("Identity", variantInfos, [Monoid, Applicative], {
-  of(x) {
-    return Identity.Id(x);
-  },
-
-  empty() {
-    return Identity.Id();
-  },
-});
+const Identity = createType("Identity", variantInfos);
 
 const { Id } = Identity;
 Id.isId = (x) => isFunction(x.isId) && x.isId();
