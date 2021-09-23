@@ -52,6 +52,7 @@ const createVariantConstructor = (typeName, variantInfo) => {
 
     variant["is" + typeName] = () => true;
     variant["is" + variantInfo.variantName] = () => true;
+    variant.valueOf = () => variant.value;
 
     variant = assign(variant, variantInfo.overrides);
 
@@ -134,7 +135,7 @@ export const createType = (
 
   assign(typeRepresentative, overrides);
 
-  typeRepresentative["is" + typeName] = (x) => x.type === typeName;
+  typeRepresentative["is" + typeName] = (x) => x && x.type === typeName;
 
   return typeRepresentative;
 };
