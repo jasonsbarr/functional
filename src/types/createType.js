@@ -7,11 +7,18 @@ import { freeze } from "../functions/object/freeze.js";
  * @property {string} variantName The name of the variant
  * @property {Array} typeClasses An array of typeClass objects with default method implementations
  * @property {Object} overrides An object of methods that override or supplement the default methods
+ * @property {Object} statics Static methods to attach to the variant constructor, often used with single-variant types
  */
-export const VariantInfo = (variantName, typeClasses = [], overrides = {}) => ({
+export const VariantInfo = (
+  variantName,
+  typeClasses = [],
+  overrides = {},
+  statics = {}
+) => ({
   variantName,
   typeClasses,
   overrides,
+  statics,
 });
 
 /**
@@ -23,7 +30,7 @@ export const VariantInfo = (variantName, typeClasses = [], overrides = {}) => ({
  * @param {VariantInfo} variantInfo The information used to create the variant
  * @returns {Object} The constructed variant instance
  */
-const createVariantConstructor = (typeName, variantInfo, overrides = {}) => {
+const createVariantConstructor = (typeName, variantInfo) => {
   const variantConstructor = (value) => {
     let variant = {
       type: typeName,
@@ -38,7 +45,7 @@ const createVariantConstructor = (typeName, variantInfo, overrides = {}) => {
       variant = assign(variant, className);
     }
 
-    variant = assign(variant, overrides);
+    variant = assign(variant, variantInfo.overrides);
 
     definePropWithOpts("_value", variant, {
       enumerable: false,
@@ -58,6 +65,8 @@ const createVariantConstructor = (typeName, variantInfo, overrides = {}) => {
 
     return variant;
   };
+
+  variantConstructor = assign(variantConstructor, variantInfo.statics);
 
   return variantConstructor;
 };
