@@ -55,7 +55,7 @@ export const Result = createType(
       return Result.Ok(x);
     },
     empty() {
-      return Result.Err(null);
+      return Result.Err(new Error("empty"));
     },
   }
 );
