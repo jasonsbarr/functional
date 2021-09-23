@@ -15,38 +15,29 @@ import {
 const variantInfos = [
   VariantInfo(
     "Id",
-    [
-      Fold,
-      Functor,
-      Apply,
-      Monad,
-      Bifunctor,
-      Alt,
-      SemiGroup,
-      Monoid,
-      Applicative,
-    ],
+    [Fold, Functor, Apply, Monad, Bifunctor, Alt, SemiGroup],
     {
       isId() {
         return true;
       },
     },
     {
-      of(x) {
-        return Identity.Id(x);
-      },
+      typeClasses: [Monoid, Applicative],
+      methods: {
+        of(x) {
+          return Id(x);
+        },
 
-      empty() {
-        return Identity.Id();
+        empty() {
+          return Id();
+        },
+
+        isId(x) {
+          return isFunction(x.isId) && x.isId();
+        },
       },
     }
   ),
 ];
 
-const Identity = createType("Identity", variantInfos);
-
-const { Id } = Identity;
-Id.isId = (x) => isFunction(x.isId) && x.isId();
-Id.of = Identity.of;
-Id.empty = Identity.empty;
-export { Id };
+export const { Id } = createType("Identity", variantInfos);
