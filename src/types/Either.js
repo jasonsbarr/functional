@@ -74,11 +74,11 @@ export const Either = createType(
     },
 
     isLeft(x) {
-      return isFunction(x.isLeft) && x.isLeft();
+      return x && isFunction(x.isLeft) && x.isLeft();
     },
 
     isRight(x) {
-      return isFunction(x.isRight) && x.isRight();
+      return x && isFunction(x.isRight) && x.isRight();
     },
   }
 );

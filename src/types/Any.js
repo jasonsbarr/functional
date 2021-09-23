@@ -28,7 +28,7 @@ const variantInfos = [
         },
 
         isAny(x) {
-          return isFunction(x.isAny) && x.isAny();
+          return x && isFunction(x.isAny) && x.isAny();
         },
       },
     }

@@ -24,7 +24,7 @@ const variantInfos = [
         },
 
         isEndo(x) {
-          return isFunction(x.isEndo) && x.isEndo();
+          return x && isFunction(x.isEndo) && x.isEndo();
         },
       },
     }
