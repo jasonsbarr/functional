@@ -47,6 +47,8 @@ const createVariantConstructor = (typeName, variantInfo) => {
       variant = assign(variant, className);
     }
 
+    variant["is" + variantInfo.variantName] = () => true;
+
     variant = assign(variant, variantInfo.overrides);
 
     definePropWithOpts("_value", variant, {
