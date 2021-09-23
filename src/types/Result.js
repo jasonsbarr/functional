@@ -1,3 +1,4 @@
+import { isFunction } from "../functions/predicates/isFunction.js";
 import { VariantInfo, createType } from "./createType.js";
 import {
   Alt,
@@ -72,6 +73,14 @@ export const Result = createType(
     },
     empty() {
       return Result.Err(new Error());
+    },
+
+    isOk(x) {
+      return isFunction(x.isOk) && x.isOk();
+    },
+
+    isErr(x) {
+      return isFunction(x.isErr) && x.isErr();
     },
   }
 );

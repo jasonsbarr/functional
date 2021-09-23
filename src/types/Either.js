@@ -1,3 +1,4 @@
+import { isFunction } from "../functions/predicates/isFunction.js";
 import { VariantInfo, createType } from "./createType.js";
 import {
   Alt,
@@ -70,6 +71,14 @@ export const Either = createType(
 
     empty() {
       return Either.Left(null);
+    },
+
+    isLeft(x) {
+      return isFunction(x.isLeft) && x.isLeft();
+    },
+
+    isRight(x) {
+      return isFunction(x.isRight) && x.isRight();
     },
   }
 );
