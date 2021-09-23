@@ -2,6 +2,7 @@ import { VariantInfo, createType } from "./createType.js";
 import { Fold, Monoid, SemiGroup, Setoid } from "./typeClasses.js";
 import { isFunction } from "../functions/predicates/isFunction.js";
 import { assign } from "../functions/object/assign.js";
+import { isObject } from "../functions/predicates/isObject.js";
 
 const variantInfos = [
   VariantInfo(
@@ -14,6 +15,10 @@ const variantInfos = [
 
       inspect() {
         return `Assign(${this.value})`;
+      },
+
+      init() {
+        this.value = isObject(this.value) ? this.value : Object(this.value);
       },
     },
     {
