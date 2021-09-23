@@ -60,6 +60,10 @@ export const Result = createType(
   }
 );
 
+const { Ok, Err } = Result;
+export { Ok };
+export { Err };
+
 export const tryCatch = (fn) => {
   try {
     return Result.Ok(fn());
