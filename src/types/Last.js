@@ -36,3 +36,5 @@ const variantInfos = [
     }
   ),
 ];
+
+export const { Last } = createType("Last", variantInfos);
