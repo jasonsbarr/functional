@@ -121,5 +121,7 @@ export const createType = (
 
   assign(typeRepresentative, overrides);
 
+  typeRepresentative["is" + typeName] = (x) => x.type === typeName;
+
   return typeRepresentative;
 };

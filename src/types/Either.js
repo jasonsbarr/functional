@@ -55,10 +55,6 @@ export const Either = createType(
     empty() {
       return Either.Left(null);
     },
-
-    isEither(x) {
-      return x.type === "Either";
-    },
   }
 );
 
