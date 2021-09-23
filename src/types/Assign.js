@@ -1,15 +1,32 @@
-import { assign } from "../../functions/object/assign.js";
+import { VariantInfo, createType } from "./createType.js";
+import { Fold, Monoid, SemiGroup, Setoid } from "./typeClasses.js";
+import { isFunction } from "../functions/predicates/isFunction.js";
+import { assign } from "../functions/object/assign.js";
 
-export const Assign = (x) => ({
-  kind: "Assign",
-  value: x,
-  concat: ({ value: y }) => assign({}, x, y),
-  inspect: () => `Assign(${x})`,
-  fold: (f) => f(x),
-  map: (f) => Assign(f(x)),
-  ap: (o) => o.map(x),
-  chain: (f) => f(x),
-});
+const variantInfos = [
+  VariantInfo(
+    "Assign",
+    [Fold, SemiGroup, Setoid],
+    {
+      concat({ value: y }) {
+        return assign({}, this.value, y);
+      },
 
-Assign.isAssign = (obj) => obj.kind === "Assign";
-Assign.empty = () => ({});
+      inspect() {
+        return `Assign(${this.value})`;
+      },
+    },
+    {
+      sTypeClasses: [Monoid],
+      methods: {
+        empty() {
+          return {};
+        },
+
+        isAssign(x) {
+          return isFunction(x.isAssign) && x.isAssign();
+        },
+      },
+    }
+  ),
+];
