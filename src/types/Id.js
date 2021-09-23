@@ -32,4 +32,6 @@ const Identity = createType("Identity", variantInfos, [Monoid, Applicative], {
 
 const { Id } = Identity;
 Id.isId = (x) => isFunction(x.isId) && x.isId();
+Id.of = Identity.of;
+Id.empty = Identity.empty;
 export { Id };
