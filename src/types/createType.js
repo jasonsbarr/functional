@@ -8,17 +8,19 @@ import { freeze } from "../functions/object/freeze.js";
  * @property {Array} typeClasses An array of typeClass objects with default method implementations
  * @property {Object} overrides An object of methods that override or supplement the default methods
  * @property {Object} statics Static methods to attach to the variant constructor, often used with single-variant types
+ * @property {Array} statics.sTypeClasses Array of typeclasses the constructor itself must implement
+ * @property {Object} statics.methods Static methods to attach to the constructor
  */
 export const VariantInfo = (
   variantName,
   typeClasses = [],
   overrides = {},
-  statics = {}
+  { sTypeClasses = [], methods = {} } = {}
 ) => ({
   variantName,
   typeClasses,
   overrides,
-  statics,
+  statics: { sTypeClasses, methods },
 });
 
 /**
@@ -66,7 +68,12 @@ const createVariantConstructor = (typeName, variantInfo) => {
     return variant;
   };
 
-  variantConstructor = assign(variantConstructor, variantInfo.statics);
+  // assign statics to constructor
+  for (let className of variantInfo.statics.typeClasses) {
+    variantConstructor = assign(variantConstructor, className);
+  }
+
+  variantConstructor = assign(variantConstructor, variantInfo.statics.methods);
 
   return variantConstructor;
 };
