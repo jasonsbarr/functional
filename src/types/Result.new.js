@@ -49,10 +49,21 @@ export const Result = createType(
   [Monoid, Applicative],
   {
     of(x) {
-      return Result.Right(x);
+      if (x instanceof Error) {
+        return Result.Err(x);
+      }
+      return Result.Ok(x);
     },
     empty() {
-      return Result.Left(null);
+      return Result.Err(null);
     },
   }
 );
+
+export const tryCatch = (fn) => {
+  try {
+    return Result.Ok(fn());
+  } catch (e) {
+    return Result.Err(e);
+  }
+};
