@@ -1,4 +1,5 @@
 import { VariantInfo, createType } from "./createType.js";
+import { isFunction } from "../functions/predicates/isFunction.js";
 import {
   Alt,
   Applicative,
@@ -12,7 +13,11 @@ import {
 } from "./typeClasses.js";
 
 const variantInfos = [
-  VariantInfo("Id", [Fold, Functor, Apply, Monad, Bifunctor, Alt, SemiGroup]),
+  VariantInfo("Id", [Fold, Functor, Apply, Monad, Bifunctor, Alt, SemiGroup], {
+    isId() {
+      return true;
+    },
+  }),
 ];
 
 const Identity = createType("Identity", variantInfos, [Monoid, Applicative], {
@@ -25,4 +30,6 @@ const Identity = createType("Identity", variantInfos, [Monoid, Applicative], {
   },
 });
 
-export const { Id } = Identity;
+const { Id } = Identity;
+Id.isId = (x) => isFunction(x.isId) && x.isId();
+export { Id };
