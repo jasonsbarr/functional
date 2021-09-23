@@ -9,7 +9,7 @@ const variantInfos = [
     [Fold, SemiGroup, Setoid],
     {
       concat({ value: y }) {
-        return Option.isSome(this.value) ? value : y;
+        return Option.isSome(this.value) ? this.value : y;
       },
 
       inspect() {
@@ -34,5 +34,3 @@ const variantInfos = [
 ];
 
 export const { First } = createType("First", variantInfos);
-
-console.log(First("hello"));
