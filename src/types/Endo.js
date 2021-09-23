@@ -1,16 +1,34 @@
-import { identity } from "../../functions/helpers/identity.js";
+import { VariantInfo, createType } from "./createType.js";
+import { Fold, Monoid, SemiGroup, Setoid } from "./typeClasses.js";
+import { isFunction } from "../functions/predicates/isFunction.js";
+import { identity } from "../functions/helpers/identity.js";
 
-export const Endo = (x) => ({
-  kind: "Endo",
-  value: x, // must be a function
-  concat: ({ value: y }) => Endo(x(y)),
-  inspect: () => `Endo(${x})`,
-  fold: (f) => f(x),
-  map: (f) => Endo(f(x)),
-  ap: (o) => o.map(x),
-  chain: (f) => f(x),
-  run: (v) => x(v),
-});
+const variantInfos = [
+  VariantInfo(
+    "Endo",
+    [Fold, SemiGroup, Setoid],
+    {
+      concat({ value: y }) {
+        return Endo(this.value(y));
+      },
 
-Endo.isEndo = (obj) => obj.kind === "Endo";
-Endo.empty = () => Endo(identity);
+      inspect() {
+        return `Endo(${this.value.toString()})`;
+      },
+    },
+    {
+      sTypeClasses: [Monoid],
+      methods: {
+        empty() {
+          return Endo(identity);
+        },
+
+        isEndo(x) {
+          return isFunction(x.isEndo) && x.isEndo();
+        },
+      },
+    }
+  ),
+];
+
+export const { Endo } = createType("Endo", variantInfos);
