@@ -1,19 +1,42 @@
-import { Option, Some, None } from "../Option.js";
+import { VariantInfo, createType } from "./createType.js";
+import { Fold, Monoid, SemiGroup, Setoid } from "./typeClasses.js";
+import { isFunction } from "../functions/predicates/isFunction.js";
+import { Option, None } from "./Option.js";
 
-export const First = (x) => {
-  const value = Option.isOption(x) ? x : Some(x);
-  return {
-    kind: "First",
-    value,
-    concat: ({ value: y }) => (Option.isSome(value) ? value : y),
-    // function arguments should accept an Option
-    fold: (f) => f(value),
-    option: (f, g) => value.fold(f, g),
-    map: (f) => First(f(value)),
-    ap: (o) => o.map(x.value),
-    chain: (f) => f(value),
-  };
-};
+const variantInfos = [
+  VariantInfo(
+    "First",
+    [Fold, SemiGroup, Setoid],
+    {
+      concat({ value: y }) {
+        return Option.isSome(this.value) ? value : y;
+      },
 
-First.isFirst = (obj) => obj.kind === "First";
-First.empty = () => First(None(null));
+      inspect() {
+        return `First(${this.value})`;
+      },
+
+      init() {
+        this.value = Option.isOption(this.value)
+          ? this.value
+          : Option.of(this.value);
+      },
+
+      valueOf() {
+        return this.value;
+      },
+    },
+    {
+      sTypeClasses: [Monoid],
+      methods: {
+        empty() {
+          return First(None());
+        },
+      },
+    }
+  ),
+];
+
+export const { First } = createType("First", variantInfos);
+
+console.log(First("hello"));
