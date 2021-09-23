@@ -16,11 +16,7 @@ const variantInfos = [
   VariantInfo(
     "Id",
     [Fold, Functor, Apply, Monad, Bifunctor, Alt, SemiGroup],
-    {
-      isId() {
-        return true;
-      },
-    },
+    {},
     {
       typeClasses: [Monoid, Applicative],
       methods: {
