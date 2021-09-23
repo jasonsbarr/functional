@@ -18,7 +18,7 @@ const variantInfos = [
     [Fold, Functor, Apply, Monad, Bifunctor, Alt, SemiGroup],
     {},
     {
-      typeClasses: [Monoid, Applicative],
+      sTypeClasses: [Monoid, Applicative],
       methods: {
         of(x) {
           return Id(x);
