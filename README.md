@@ -23,7 +23,6 @@ I'm pretty sure there are still tons of bugs, so if you find any feel free to le
 
 ## Roadmap features
 
-- Functions that will let you treat objects like iterables
 - Persistent, immutable collection types
 - More types
 - Implement full Fantasy Land interfaces
