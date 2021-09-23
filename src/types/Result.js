@@ -57,6 +57,10 @@ export const Result = createType(
     empty() {
       return Result.Err(new Error("empty"));
     },
+
+    isResult(x) {
+      return x.type === "Result";
+    },
   }
 );
 

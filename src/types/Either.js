@@ -51,8 +51,13 @@ export const Either = createType(
     of(x) {
       return Either.Right(x);
     },
+
     empty() {
       return Either.Left(null);
+    },
+
+    isEither(x) {
+      return x.type === "Either";
     },
   }
 );

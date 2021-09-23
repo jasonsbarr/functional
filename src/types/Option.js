@@ -57,6 +57,10 @@ export const Option = createType(
     empty() {
       return Option.None(null);
     },
+
+    isOption(x) {
+      return x.type === "Option";
+    },
   }
 );
 
