@@ -13,7 +13,7 @@ const variantInfos = [
       },
 
       inspect() {
-        return `First(${this.value})`;
+        return `First(${this.value.inspect()})`;
       },
 
       init() {
@@ -27,6 +27,10 @@ const variantInfos = [
       methods: {
         empty() {
           return First(None());
+        },
+
+        isFirst(x) {
+          return x && isFunction(x.isFirst) && x.isFirst();
         },
       },
     }
