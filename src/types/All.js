@@ -1,13 +1,32 @@
-export const All = (x) => ({
-  kind: "All",
-  value: x,
-  concat: ({ value: y }) => All(x && y),
-  inspect: () => `All(${x})`,
-  fold: (f) => f(x),
-  map: (f) => All(f(x)),
-  ap: (o) => o.map(x),
-  chain: (f) => f(x),
-});
+import { VariantInfo, createType } from "./createType.js";
+import { SemiGroup, Monoid, Setoid, Fold } from "./typeClasses.js";
+import { isFunction } from "../functions/predicates/isFunction.js";
 
-All.isAll = (obj) => obj.kind === "All";
-All.empty = () => All(true);
+const variantInfos = [
+  VariantInfo(
+    "All",
+    [SemiGroup, Setoid, Fold],
+    {
+      concat({ value: y }) {
+        return All(this.value && y);
+      },
+      inspect() {
+        return `All(${this.value})`;
+      },
+    },
+    {
+      sTypeClasses: [Monoid],
+      methods: {
+        empty() {
+          return All(true);
+        },
+
+        isAll(x) {
+          return isFunction(x.isAll) && x.isAll();
+        },
+      },
+    }
+  ),
+];
+
+export const { All } = createType("All", variantInfos);
