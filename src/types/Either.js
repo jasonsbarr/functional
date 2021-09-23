@@ -2,7 +2,7 @@
  * type Either = Right(x: R) | Left(x: L)
  */
 
-import { concat } from "../functions/helpers/concatValues.js";
+import { concatValues } from "../functions/helpers/concatValues.js";
 
 export const Either = {
   of: (x) => Right(x),
