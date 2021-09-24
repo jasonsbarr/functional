@@ -1,7 +1,7 @@
 // Right typeclasses
-import { concatValues } from "../core/helpers/concatValues.js.js";
+import { concatValues } from "../core/helpers/concatValues.js.js.js";
 import { equals } from "../core/object/equals.js";
-import { identity } from "../core/helpers/identity.js.js";
+import { identity } from "../core/helpers/identity.js.js.js";
 
 export const Fold = {
   fold(f) {
