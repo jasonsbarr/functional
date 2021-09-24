@@ -9,7 +9,7 @@ const variantInfos = [
     [Fold, SemiGroup, Setoid],
     {
       concat({ value: y }) {
-        return Option.isSome(y) ? y : this.value;
+        return Last(Option.isSome(y) ? y : this.value);
       },
 
       inspect() {

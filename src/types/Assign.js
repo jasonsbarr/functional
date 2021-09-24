@@ -10,7 +10,7 @@ const variantInfos = [
     [Fold, SemiGroup, Setoid],
     {
       concat({ value: y }) {
-        return assign({}, this.value, y);
+        return Assign(assign({}, this.value, y));
       },
 
       inspect() {
