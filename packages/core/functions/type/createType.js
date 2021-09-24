@@ -1,6 +1,6 @@
-import { assign } from "../functions/object/assign.js";
-import { definePropWithOpts } from "../functions/object/definePropWithOpts.js";
-import { freeze } from "../functions/object/freeze.js";
+import { assign } from "../object/assign.js";
+import { definePropWithOpts } from "../object/definePropWithOpts.js";
+import { freeze } from "../object/freeze.js";
 
 /**
  * @typedef {Object} VariantInfo The info used to construct a type variant

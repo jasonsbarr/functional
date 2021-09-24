@@ -1,23 +1,23 @@
-import { ifElse } from "../core/helpers/ifElse.js.js.js";
-import { isFunction } from "../core/predicates/isFunction.js";
-import { isNullish } from "../core/predicates/isNullish.js.js.js";
-import { VariantInfo, createType } from "./createType.js.js.js.js";
+import { ifElse } from "../functions/helpers/ifElse.js";
+import { isFunction } from "../functions/predicates/isFunction.js";
+import { isNullish } from "../functions/predicates/isNullish.js";
+import { VariantInfo, createType } from "../functions/type/createType.js";
 import {
-  Alt,
+  RightAlt,
   Applicative,
   Apply,
   RightBifunctor,
-  RightBimonad,
+  RightBichain,
   Functor,
   LeftAlt,
   LeftApply,
   LeftBifunctor,
-  LeftBimonad,
+  LeftBichain,
   LeftFold,
   LeftFunctor,
-  LeftMonad,
+  LeftChain,
   LeftSemiGroup,
-  Monad,
+  Chain,
   Monoid,
   RightFold,
   RightSemiGroup,
@@ -28,19 +28,19 @@ const variantInfos = [
     RightFold,
     Functor,
     Apply,
-    Monad,
+    Chain,
     RightBifunctor,
-    RightBimonad,
-    Alt,
+    RightBichain,
+    RightAlt,
     RightSemiGroup,
   ]),
   VariantInfo("None", [
     LeftFold,
     LeftFunctor,
     LeftApply,
-    LeftMonad,
+    LeftChain,
     LeftBifunctor,
-    LeftBimonad,
+    LeftBichain,
     LeftAlt,
     LeftSemiGroup,
   ]),

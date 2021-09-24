@@ -1,5 +1,5 @@
-import { isFunction } from "../core/predicates/isFunction.js";
-import { VariantInfo, createType } from "./createType.js.js.js";
+import { isFunction } from "../functions/predicates/isFunction.js";
+import { VariantInfo, createType } from "../functions/type/createType.js";
 import {
   RightAlt,
   Applicative,

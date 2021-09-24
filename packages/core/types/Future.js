@@ -1,5 +1,5 @@
 import { noop } from "../functions/helpers/noop.js";
-import { Cancelled } from "./_executionStates.js";
+import { Cancelled } from "./internal/_executionStates.js";
 import { Deferred } from "./internal/_deferred.js";
 import { length } from "../functions/iterable/length.js";
 import { defer } from "../functions/lambda/defer.js";
