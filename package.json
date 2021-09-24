@@ -14,7 +14,6 @@
   "keywords": [
     "adts",
     "types",
-    "collections",
     "monads"
   ],
   "author": "Jason Barr <jason@jasonsbarr.com>",
@@ -28,5 +27,6 @@
   },
   "devDependencies": {
     "lerna": "^4.0.0"
-  }
+  },
+  "workspaces": ["./packages/*"]
 }
