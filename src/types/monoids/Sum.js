@@ -2,7 +2,6 @@ import { VariantInfo, createType } from "./createType.js";
 import { Fold, Monoid, Setoid, SemiGroup } from "./typeClasses.js";
 import { isFunction } from "../functions/predicates/isFunction.js";
 import { isNumber } from "../functions/predicates/isNumber.js";
-import { number } from "../functions/number/number.js";
 
 const variantInfos = [
   VariantInfo(
@@ -14,7 +13,9 @@ const variantInfos = [
       },
 
       init() {
-        this.value = isNumber(this.value) ? this.value : number(this.value);
+        if (!isNumber(this.value)) {
+          throw new Error("Value of Sum must be a number");
+        }
       },
     },
     {
