@@ -25,7 +25,7 @@ const variantInfos = [
       sTypeClasses: [Monoid],
       methods: {
         empty() {
-          return {};
+          return Assign({});
         },
 
         isAssign(x) {
