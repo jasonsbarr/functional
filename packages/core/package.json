@@ -1,6 +1,7 @@
 {
   "name": "@jasonsbarr/functional-core",
   "version": "0.0.1",
+  "type":"module",
   "description": "A function-based version of the JavaScript standard library plus additional awesome functions",
   "keywords": [
     "functional",

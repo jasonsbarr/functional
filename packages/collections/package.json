@@ -1,6 +1,7 @@
 {
   "name": "@jasonsbarr/collections",
   "version": "0.0.1",
+  "type":"module",
   "description": "Awesome collection types for fluent functional programming",
   "keywords": [
     "collections",
