@@ -1,5 +1,5 @@
 {
-  "name": "@jasonsbarr/functional-collections",
+  "name": "@jasonsbarr/collections",
   "version": "0.0.1",
   "description": "Awesome collection types for fluent functional programming",
   "keywords": [
@@ -29,5 +29,8 @@
   },
   "bugs": {
     "url": "https://github.com/jasonsbarr/functional/issues"
+  },
+  "dependencies": {
+    "@jasonsbarr/functional-core": "^0.0.1"
   }
 }
