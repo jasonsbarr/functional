@@ -1,8 +1,16 @@
-import { VariantInfo, createType } from "../../functions/type/createType.js";
-import { Fold, Monoid, Setoid, SemiGroup } from "../typeClasses.js";
-import { isFunction } from "../../functions/predicates/isFunction.js";
-import { isNumber } from "../../functions/predicates/isNumber.js";
-import { max } from "../../functions/math/max.js";
+import {
+  VariantInfo,
+  createType,
+} from "@jasonsbarr/functional-core/functions/type/createType.js";
+import {
+  Fold,
+  Monoid,
+  Setoid,
+  SemiGroup,
+} from "@jasonsbarr/functional-core/types/typeClasses.js";
+import { isFunction } from "@jasonsbarr/functional-core/functions/predicates/isFunction.js";
+import { isNumber } from "@jasonsbarr/functional-core/functions/predicates/isNumber.js";
+import { max } from "@jasonsbarr/functional-core/functions/math/max.js";
 
 const variantInfos = [
   VariantInfo(
