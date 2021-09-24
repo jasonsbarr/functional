@@ -16,5 +16,5 @@ export const switchType = (typeRepresentative, dispatcher, instance) => {
       );
     }
   }
-  return dispatcher[instance.variant](instance.value);
+  return dispatcher[instance.variant](instance);
 };
