@@ -4,7 +4,6 @@ import {
   Alt,
   Applicative,
   Apply,
-  Bifunctor,
   Functor,
   Monad,
   Monoid,
@@ -15,7 +14,7 @@ import {
 const variantInfos = [
   VariantInfo(
     "Id",
-    [Fold, Functor, Apply, Monad, Bifunctor, Alt, SemiGroup],
+    [Fold, Functor, Apply, Monad, Alt, SemiGroup],
     {
       inspect() {
         return `Id(${this.value})`;
