@@ -69,7 +69,7 @@ class Dictionary {
       value: length(keys(this)),
     });
 
-    definePropWithOpts("kind", this, {
+    definePropWithOpts("type", this, {
       enumerable: false,
       writable: false,
       configurable: false,
@@ -410,7 +410,7 @@ class Dictionary {
 
 export const Dict = (entries) => new Dictionary(entries);
 Dict.of = (obj) => new Dictionary(entries(obj));
-Dict.isDict = (obj) => obj.kind === "Dictionary";
+Dict.isDict = (obj) => obj.type === "Dictionary";
 Dict.empty = () => Dict.of({});
 
 export const dict = Dict;

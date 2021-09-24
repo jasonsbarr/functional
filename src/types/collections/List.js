@@ -73,7 +73,7 @@ class Cons extends Array {
   constructor(car, cdr) {
     super(car, cdr);
 
-    Object.defineProperty(this, "kind", {
+    Object.defineProperty(this, "type", {
       configurable: false,
       enumerable: false,
       writable: true,
@@ -290,7 +290,7 @@ class Cons extends Array {
   }
 
   isList() {
-    return this.kind === "List";
+    return this.type === "List";
   }
 
   isNil() {
@@ -517,8 +517,8 @@ Cons.isCons = (obj) => typeof obj.isCons === "function" && obj.isCons();
 
 export const cons = (car, cdr) => {
   let c = new Cons(car, cdr);
-  if (cdr.kind === "List") {
-    c.kind = "List";
+  if (cdr.type === "List") {
+    c.type = "List";
   }
   return c;
 };
@@ -542,7 +542,7 @@ export const List = (...args) => {
     i++;
   }
 
-  Object.defineProperty(l, "kind", {
+  Object.defineProperty(l, "type", {
     configurable: false,
     enumerable: false,
     writable: false,
@@ -568,7 +568,7 @@ export const List = (...args) => {
 List.of = (iter) => List(...iter);
 List.from = List.of;
 
-List.isList = (obj) => obj.kind === "List";
+List.isList = (obj) => obj.type === "List";
 
 List.empty = () => NIL;
 

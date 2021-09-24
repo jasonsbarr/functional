@@ -4,7 +4,7 @@ import { list } from "./List.js";
 
 class Nil {
   constructor() {
-    Object.defineProperty(this, "kind", {
+    Object.defineProperty(this, "type", {
       configurable: false,
       enumerable: false,
       writable: false,
