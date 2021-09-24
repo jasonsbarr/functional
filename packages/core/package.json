@@ -24,6 +24,9 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
+  "dependencies": {
+    "object-hash": "^2.2.0"
+  },
   "bugs": {
     "url": "https://github.com/jasonsbarr/functional/issues"
   }
