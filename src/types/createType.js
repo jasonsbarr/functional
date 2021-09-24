@@ -37,24 +37,28 @@ const createVariantConstructor = (typeName, variantInfo) => {
     let variant = {
       type: typeName,
       variant: variantInfo.variantName,
-      _value: undefined,
       get value() {
         return this._value;
       },
       set value(v) {
         this._value = v;
       },
+      ["is" + typeName]: () => true,
+      ["is" + variantInfo.variantName]: () => true,
+      valueOf() {
+        return this.value;
+      },
+      inspect() {
+        return `${variantInfo.variantName}(${this.value})`;
+      },
+      toString() {
+        return this.inspect();
+      },
     };
 
     for (let className of variantInfo.typeClasses) {
       variant = assign(variant, className);
     }
-
-    variant["is" + typeName] = () => true;
-    variant["is" + variantInfo.variantName] = () => true;
-    variant.valueOf = () => variant.value;
-    variant.inspect = () => `${variantInfo.variantName}(${variant.value})`;
-    variant.toString = variant.inspect;
 
     variant = assign(variant, variantInfo.overrides);
 
