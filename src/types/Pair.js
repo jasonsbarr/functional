@@ -154,3 +154,5 @@ const variantInfos = [
     }
   ),
 ];
+
+export const { Pair } = createType("Pair", variantInfos);
