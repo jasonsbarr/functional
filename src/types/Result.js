@@ -1,7 +1,7 @@
 import { isFunction } from "../functions/predicates/isFunction.js";
 import { VariantInfo, createType } from "./createType.js";
 import {
-  Alt,
+  RightAlt,
   Applicative,
   Apply,
   RightBifunctor,
@@ -13,7 +13,7 @@ import {
   LeftBichain,
   LeftFold,
   LeftFunctor,
-  LeftMonad,
+  LeftChain,
   LeftSemiGroup,
   Chain,
   Monoid,
@@ -29,14 +29,14 @@ const variantInfos = [
     Chain,
     RightBifunctor,
     RightBichain,
-    Alt,
+    RightAlt,
     RightSemiGroup,
   ]),
   VariantInfo("Err", [
     LeftFold,
     LeftFunctor,
     LeftApply,
-    LeftMonad,
+    LeftChain,
     LeftBifunctor,
     LeftBichain,
     LeftAlt,

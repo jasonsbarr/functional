@@ -1,7 +1,7 @@
 import { VariantInfo, createType } from "./createType.js";
 import { isFunction } from "../functions/predicates/isFunction.js";
 import {
-  Alt,
+  RightAlt,
   Applicative,
   Apply,
   Functor,
@@ -14,7 +14,7 @@ import {
 const variantInfos = [
   VariantInfo(
     "Id",
-    [Fold, Functor, Apply, Chain, Alt, SemiGroup],
+    [Fold, Functor, Apply, Chain, RightAlt, SemiGroup],
     {},
     {
       sTypeClasses: [Monoid, Applicative],

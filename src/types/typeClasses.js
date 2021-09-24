@@ -51,7 +51,7 @@ export const RightBichain = {
   },
 };
 
-export const Alt = {
+export const RightAlt = {
   alt(other) {
     return this;
   },
@@ -113,7 +113,7 @@ export const LeftApply = {
   },
 };
 
-export const LeftMonad = {
+export const LeftChain = {
   chain(f) {
     return this;
   },
