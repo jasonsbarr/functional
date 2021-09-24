@@ -15,6 +15,12 @@ const variantInfos = [
       inspect() {
         return `Endo(${this.value.toString()})`;
       },
+
+      init() {
+        if (!isFunction(this.value)) {
+          throw new Error("Value of Endo type must be a function");
+        }
+      },
     },
     {
       sTypeClasses: [Monoid],
