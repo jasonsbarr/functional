@@ -1,5 +1,5 @@
-import { zip } from "../core/iterable/zip.js.js";
-import { None } from "../types/Option.js";
+import { zip } from "@jasonsbarr/functional-core/functions/iterable/zip.js";
+import { None } from "@jasonsbarr/functional-core/types/Option.js";
 import { list } from "./List.js";
 
 class Nil {
