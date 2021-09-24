@@ -42,11 +42,13 @@ export const Monad = {
   },
 };
 
-export const Bifunctor = {
+export const RightBifunctor = {
   bimap(leftFunc, rightFunc) {
     return this.constructor(rightFunc(this.value));
   },
+};
 
+export const RightBimonad = {
   bichain(leftFunc, rightFunc) {
     return rightFunc(this.value);
   },
@@ -122,7 +124,9 @@ export const LeftBifunctor = {
   bimap(leftFunc, rightFunc) {
     return this.constructor(leftFunc(this.value));
   },
+};
 
+export const LeftBimonad = {
   bichain(leftFunc, rightFunc) {
     return leftFunc(this.value);
   },
