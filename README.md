@@ -1,10 +1,6 @@
-# Functional Programming in JavaScript, the Fluent Way
+# The Standard Library for Fluent, Functional Programming in JavaScript
 
-I love functional programming, but I have to use JavaScript for my projects at work. Plus when I use functional programming libraries I miss having a more fluent interface like you get with some object-oriented libraries.
-
-This library is my attempt to have my functional cake and eat a fluent-style object interface too.
-
-Most people who are deeply familiar with functional programming are probably ok with not having a fluent object interface, but I think it might be helpful for people who are new to the functional programming world or just want to be able to do something like use Option for better null checking. I personally prefer having chained methods especially in the absence of a JavaScript pipeline operator.
+I love functional programming, but I also love the fluent interface with chained method calls you get with a well-designed object-oriented library.
 
 The [documentation](https://github.com/jasonsbarr/functional/wiki) is a work in progress.
 
@@ -23,6 +19,7 @@ I'm pretty sure there are still tons of bugs, so if you find any feel free to le
 
 ## Roadmap features
 
+- Convert entire JS standard library into a functional interface
 - Persistent, immutable collection types
 - More types
 - Implement full Fantasy Land interfaces
