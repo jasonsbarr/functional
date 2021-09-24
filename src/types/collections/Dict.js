@@ -208,6 +208,18 @@ class Dictionary {
     }
   }
 
+  fold(fn, initial) {
+    return this.reduce(fn, initial);
+  }
+
+  foldLeft(fn, initial) {
+    return this.reduce(fn, initial);
+  }
+
+  foldRight(fn, initial) {
+    return this.reduceRight(fn, initial);
+  }
+
   forEach(fn) {
     this.eachWithKey(fn);
   }
