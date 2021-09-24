@@ -13,10 +13,6 @@ const variantInfos = [
         return Sum(this.value + y);
       },
 
-      inspect() {
-        return `Sum(${this.value})`;
-      },
-
       init() {
         this.value = isNumber(this.value) ? this.value : number(this.value);
       },

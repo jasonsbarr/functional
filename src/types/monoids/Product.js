@@ -13,10 +13,6 @@ const variantInfos = [
         return Product(this.value * y);
       },
 
-      inspect() {
-        return `Product(${this.value})`;
-      },
-
       init() {
         this.value = isNumber(this.value) ? this.value : number(this.value);
       },

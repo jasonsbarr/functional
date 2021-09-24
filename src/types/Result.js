@@ -11,55 +11,37 @@ import {
   LeftApply,
   LeftBifunctor,
   LeftBimonad,
-  LeftClass,
   LeftFold,
   LeftFunctor,
   LeftMonad,
   LeftSemiGroup,
   Monad,
   Monoid,
-  RightClass,
   RightFold,
   RightSemiGroup,
 } from "./typeClasses.js";
 
 const variantInfos = [
-  VariantInfo(
-    "Ok",
-    [
-      RightFold,
-      Functor,
-      Apply,
-      Monad,
-      RightBifunctor,
-      RightBimonad,
-      Alt,
-      RightSemiGroup,
-    ],
-    {
-      inspect() {
-        return `Ok(${this.value})`;
-      },
-    }
-  ),
-  VariantInfo(
-    "Err",
-    [
-      LeftFold,
-      LeftFunctor,
-      LeftApply,
-      LeftMonad,
-      LeftBifunctor,
-      LeftBimonad,
-      LeftAlt,
-      LeftSemiGroup,
-    ],
-    {
-      inspect() {
-        return `Err(${this.value})`;
-      },
-    }
-  ),
+  VariantInfo("Ok", [
+    RightFold,
+    Functor,
+    Apply,
+    Monad,
+    RightBifunctor,
+    RightBimonad,
+    Alt,
+    RightSemiGroup,
+  ]),
+  VariantInfo("Err", [
+    LeftFold,
+    LeftFunctor,
+    LeftApply,
+    LeftMonad,
+    LeftBifunctor,
+    LeftBimonad,
+    LeftAlt,
+    LeftSemiGroup,
+  ]),
 ];
 
 export const Result = createType(

@@ -12,10 +12,6 @@ const variantInfos = [
         return Any(this.value || y);
       },
 
-      inspect() {
-        return `Any(${this.value})`;
-      },
-
       init() {
         this.value = boolean(this.value);
       },

@@ -11,9 +11,6 @@ const variantInfos = [
       concat({ value: y }) {
         return All(this.value && y);
       },
-      inspect() {
-        return `All(${this.value})`;
-      },
 
       init() {
         this.value = boolean(this.value);

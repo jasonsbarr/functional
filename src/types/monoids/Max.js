@@ -14,10 +14,6 @@ const variantInfos = [
         return Max(max(this.value, y));
       },
 
-      inspect() {
-        return `Max(${this.value})`;
-      },
-
       init() {
         this.value = isNumber(this.value) ? this.value : number(this.value);
       },

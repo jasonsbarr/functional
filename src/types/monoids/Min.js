@@ -14,10 +14,6 @@ const variantInfos = [
         return Min(min(this.value, y));
       },
 
-      inspect() {
-        return `Min(${this.value})`;
-      },
-
       init() {
         this.value = isNumber(this.value) ? this.value : number(this.value);
       },

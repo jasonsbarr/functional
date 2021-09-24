@@ -13,10 +13,6 @@ const variantInfos = [
         return Assign(assign({}, this.value, y));
       },
 
-      inspect() {
-        return `Assign(${this.value})`;
-      },
-
       init() {
         this.value = isObject(this.value) ? this.value : Object(this.value);
       },
