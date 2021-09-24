@@ -4,8 +4,7 @@
   "type": "module",
   "description": "A function-based version of the JavaScript standard library plus additional awesome functions",
   "keywords": [
-    "functional",
-    "programming",
+    "functional programming",
     "functions"
   ],
   "author": "Jason Barr <jason.barr@metronetinc.com>",

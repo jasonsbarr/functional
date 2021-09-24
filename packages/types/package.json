@@ -1,19 +1,19 @@
 {
-  "name": "@jasonsbarr/collections",
+  "name": "@jasonsbarr/types",
   "version": "0.0.1",
-  "type": "module",
-  "description": "Awesome collection types for fluent functional programming",
+  "description": "A collection of algebraic data types for JavaScript",
   "keywords": [
-    "collections",
-    "functional programming",
-    "list",
-    "tuple",
-    "dictionary"
+    "monoids",
+    "types",
+    "adts",
+    "algebraic data types"
   ],
-  "author": "Jason Barr <jason.barr@metronetinc.com>",
+  "author": "Jason Barr <jason@jasonsbarr.com>",
   "homepage": "https://github.com/jasonsbarr/functional/wiki",
   "license": "MIT",
-  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jasonsbarr/functional.git"
@@ -23,8 +23,5 @@
   },
   "bugs": {
     "url": "https://github.com/jasonsbarr/functional/issues"
-  },
-  "dependencies": {
-    "@jasonsbarr/functional-core": "^0.0.1"
   }
 }
