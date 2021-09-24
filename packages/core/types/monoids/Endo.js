@@ -1,7 +1,7 @@
-import { VariantInfo, createType } from "./createType.js";
-import { Fold, Monoid, SemiGroup, Setoid } from "./typeClasses.js";
-import { isFunction } from "../functions/predicates/isFunction.js";
-import { identity } from "../functions/helpers/identity.js";
+import { VariantInfo, createType } from "../../functions/type/createType.js";
+import { Fold, Monoid, SemiGroup, Setoid } from "../typeClasses.js";
+import { isFunction } from "../../functions/predicates/isFunction.js";
+import { identity } from "../../functions/helpers/identity.js";
 
 const variantInfos = [
   VariantInfo(

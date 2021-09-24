@@ -1,4 +1,4 @@
-import { isIterable } from "../iterable/isIterable.js";
+import { isIterable } from "../predicates/isIterable.js";
 import { reduce } from "../iterable/reduce.js";
 
 // Gets the max of any number of numbers OR 1 or more iterables filled with numbers

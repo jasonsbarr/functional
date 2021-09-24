@@ -1,8 +1,8 @@
-import { VariantInfo, createType } from "./createType.js";
-import { Fold, Monoid, SemiGroup, Setoid } from "./typeClasses.js";
-import { isFunction } from "../functions/predicates/isFunction.js";
-import { assign } from "../functions/object/assign.js";
-import { isObject } from "../functions/predicates/isObject.js";
+import { VariantInfo, createType } from "../../functions/type/createType.js";
+import { Fold, Monoid, SemiGroup, Setoid } from "../typeClasses.js";
+import { isFunction } from "../../functions/predicates/isFunction.js";
+import { assign } from "../../functions/object/assign.js";
+import { isObject } from "../../functions/predicates/isObject.js";
 
 const variantInfos = [
   VariantInfo(
