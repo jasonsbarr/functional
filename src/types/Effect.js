@@ -4,7 +4,7 @@ import {
   Applicative,
   Apply,
   Functor,
-  Monad,
+  Chain,
   Monoid,
   Fold,
   SemiGroup,
@@ -13,7 +13,7 @@ import {
 const variantInfos = [
   VariantInfo(
     "Effect",
-    [Apply, Fold, Functor, Monad, SemiGroup],
+    [Apply, Fold, Functor, Chain, SemiGroup],
     {
       map(f) {
         return Effect((x) => f(this.value(x)));

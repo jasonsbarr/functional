@@ -5,7 +5,7 @@ import {
   Applicative,
   Apply,
   Functor,
-  Monad,
+  Chain,
   Monoid,
   Fold,
   SemiGroup,
@@ -14,7 +14,7 @@ import {
 const variantInfos = [
   VariantInfo(
     "Id",
-    [Fold, Functor, Apply, Monad, Alt, SemiGroup],
+    [Fold, Functor, Apply, Chain, Alt, SemiGroup],
     {},
     {
       sTypeClasses: [Monoid, Applicative],

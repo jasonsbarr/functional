@@ -26,9 +26,15 @@ export const Apply = {
   },
 };
 
-export const Monad = {
+export const Chain = {
   chain(f) {
     return f(this.value);
+  },
+};
+
+export const Bifunctor = {
+  bimap(f, g) {
+    throw new Error("bimap method must be implemented on the instance");
   },
 };
 
@@ -38,7 +44,7 @@ export const RightBifunctor = {
   },
 };
 
-export const RightBimonad = {
+export const RightBichain = {
   bichain(leftFunc, rightFunc) {
     return rightFunc(this.value);
   },
@@ -106,7 +112,7 @@ export const LeftBifunctor = {
   },
 };
 
-export const LeftBimonad = {
+export const LeftBichain = {
   bichain(leftFunc, rightFunc) {
     return leftFunc(this.value);
   },
