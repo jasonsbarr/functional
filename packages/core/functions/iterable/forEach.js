@@ -1,3 +1,3 @@
-import { eachWithIndex } from "./eachWithIndex";
+import { eachWithIndex } from "./eachWithIndex.js";
 
 export const forEach = eachWithIndex;
