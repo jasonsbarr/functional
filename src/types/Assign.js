@@ -35,3 +35,5 @@ const variantInfos = [
     }
   ),
 ];
+
+export const { Assign } = createType("Assign", variantInfos);
