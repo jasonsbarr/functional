@@ -1,10 +1,10 @@
-import { strLen } from "../string/strLen.js";
+import { length as lengthS } from "../string/length.js";
 import { length } from "../iterable/length.js";
 
 export const handleNegativeIndex = (index, seq) => {
   let len;
   if (typeof seq === "string") {
-    len = strLen(seq);
+    len = lengthS(seq);
   } else {
     len = length(seq);
   }
