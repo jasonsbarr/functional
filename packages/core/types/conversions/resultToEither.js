@@ -1,3 +1,3 @@
-import { Left, Right } from "../../types/Either.js";
+import { Left, Right } from "../Either.js";
 
 export const resultToEither = (result) => result.fold(Left, Right);

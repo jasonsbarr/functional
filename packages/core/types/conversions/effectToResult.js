@@ -1,3 +1,3 @@
-import { Ok } from "../../types/Result.js";
+import { Ok } from "../Result.js";
 
 export const effectToResult = (effect) => effect.fold(Ok);

@@ -1,3 +1,3 @@
-import { Identity } from "../../types/Identity.js";
+import { Identity } from "../Identity.js";
 
 export const resultToIdentity = (result) => result.fold(Identity, Identity);

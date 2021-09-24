@@ -1,3 +1,3 @@
-import { Err, Ok } from "../../types/Result.js";
+import { Err, Ok } from "../Result.js";
 
 export const eitherToResult = (either) => either.fold(Err, Ok);

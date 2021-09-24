@@ -1,3 +1,3 @@
-import { Some } from "../../types/Option.js";
+import { Some } from "../Option.js";
 
 export const effectToOption = (effect) => effect.fold(Some);
