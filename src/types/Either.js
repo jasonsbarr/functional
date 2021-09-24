@@ -27,7 +27,6 @@ const variantInfos = [
   VariantInfo(
     "Right",
     [
-      RightClass,
       RightFold,
       Functor,
       Apply,
@@ -46,7 +45,6 @@ const variantInfos = [
   VariantInfo(
     "Left",
     [
-      LeftClass,
       LeftFold,
       LeftFunctor,
       LeftApply,

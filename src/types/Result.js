@@ -27,7 +27,6 @@ const variantInfos = [
   VariantInfo(
     "Ok",
     [
-      RightClass,
       RightFold,
       Functor,
       Apply,
@@ -46,7 +45,6 @@ const variantInfos = [
   VariantInfo(
     "Err",
     [
-      LeftClass,
       LeftFold,
       LeftFunctor,
       LeftApply,
@@ -80,11 +78,11 @@ export const Result = createType(
     },
 
     isOk(x) {
-      return isFunction(x.isOk) && x.isOk();
+      return x && isFunction(x.isOk) && x.isOk();
     },
 
     isErr(x) {
-      return isFunction(x.isErr) && x.isErr();
+      return x && isFunction(x.isErr) && x.isErr();
     },
   }
 );

@@ -2,16 +2,6 @@
 import { concatValues } from "../functions/helpers/concatValues.js";
 import { equals } from "../functions/object/equals.js";
 
-export const RightClass = {
-  isRight() {
-    return true;
-  },
-
-  isLeft() {
-    return false;
-  },
-};
-
 export const Fold = {
   fold(f) {
     return f(this.value);
@@ -86,16 +76,6 @@ export const Setoid = {
 };
 
 // Left typeclasses
-export const LeftClass = {
-  isRight() {
-    return false;
-  },
-
-  isLeft() {
-    return true;
-  },
-};
-
 export const LeftFold = {
   fold(f, g) {
     return f(this.value);
