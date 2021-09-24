@@ -75,7 +75,7 @@ const variantInfos = [
 
       // SemiGroup
       concat({ left: l, right: r }) {
-        return Pair([concatValues(this.left, l), concatValues(this.right, r)]);
+        return Pair.of(concatValues(this.left, l), concatValues(this.right, r));
       },
 
       // Functor
