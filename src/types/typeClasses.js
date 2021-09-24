@@ -1,6 +1,7 @@
 // Right typeclasses
 import { concatValues } from "../functions/helpers/concatValues.js";
 import { equals } from "../functions/object/equals.js";
+import { identity } from "../functions/helpers/identity.js";
 
 export const Fold = {
   fold(f) {
@@ -78,6 +79,18 @@ export const Setoid = {
       this.variant === x.variant &&
       equals(this.value, x.value)
     );
+  },
+};
+
+export const Traversable = {
+  traverse(point, fn) {
+    throw new Error(
+      "Traverse method must be implemented individually for each type"
+    );
+  },
+
+  sequence(point) {
+    return this.traverse(point, identity);
   },
 };
 
