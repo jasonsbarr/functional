@@ -1,1 +1,1 @@
-export const toString = (obj) => obj.toString();
+export const toString = (obj) => String(obj);
