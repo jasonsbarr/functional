@@ -144,7 +144,7 @@ const variantInfos = [
 
         // Monoid
         empty() {
-          return Pair([null, null]);
+          return Pair.of(null, null);
         },
 
         isPair(x) {
