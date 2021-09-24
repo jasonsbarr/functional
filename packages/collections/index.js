@@ -1,6 +1,6 @@
 import { Dict } from "./Dict.js";
 import { List } from "./List.js";
-import { Nil } from "./Nil.js";
+import { Nil, NIL } from "./Nil.js";
 import { Tuple } from "./Tuple.js";
 
-export { Dict, List, Nil, Tuple };
+export { Dict, List, Nil, NIL, Tuple };

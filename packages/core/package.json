@@ -11,12 +11,10 @@
   "author": "Jason Barr <jason.barr@metronetinc.com>",
   "homepage": "https://github.com/jasonsbarr/functional/wiki",
   "license": "MIT",
-  "main": "lib/core.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "index.js",
   "files": [
-    "lib"
+    "functions",
+    "types"
   ],
   "repository": {
     "type": "git",

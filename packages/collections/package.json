@@ -15,12 +15,6 @@
   "homepage": "https://github.com/jasonsbarr/functional/wiki",
   "license": "MIT",
   "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "files": [
-    "lib"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jasonsbarr/functional.git"
