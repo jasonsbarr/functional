@@ -1,7 +1,6 @@
-'use strict';
+import { Dict } from "./Dict.js";
+import { List } from "./List.js";
+import { Nil } from "./Nil.js";
+import { Tuple } from "./Tuple.js";
 
-module.exports = collections;
-
-function collections() {
-    // TODO
-}
+export { Dict, List, Nil, Tuple };
