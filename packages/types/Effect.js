@@ -1,5 +1,8 @@
-import { VariantInfo, createType } from "../functions/type/createType.js";
-import { isFunction } from "../functions/predicates/isFunction.js";
+import {
+  VariantInfo,
+  createType,
+} from "@jasonsbarr/functional-core/functions/type/createType.js";
+import { isFunction } from "@jasonsbarr/functional-core/functions/predicates/isFunction.js";
 import {
   Applicative,
   Apply,
@@ -8,7 +11,7 @@ import {
   Monoid,
   Fold,
   SemiGroup,
-} from "./typeClasses.js";
+} from "@jasonsbarr/functional-core/types/typeClasses.js";
 
 const variantInfos = [
   VariantInfo(
