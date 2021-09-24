@@ -1,13 +1,40 @@
-export const Min = (x) => ({
-  kind: "Min",
-  value: x,
-  concat: ({ value: y }) => Min(x < y ? x : y),
-  inspect: () => `Min(${x})`,
-  fold: (f) => f(x),
-  map: (f) => Min(f(x)),
-  ap: (o) => o.map(x),
-  chain: (f) => f(x),
-});
+import { VariantInfo, createType } from "./createType.js";
+import { Fold, Monoid, Setoid, SemiGroup } from "./typeClasses.js";
+import { isFunction } from "../functions/predicates/isFunction.js";
+import { isNumber } from "../functions/predicates/isNumber.js";
+import { number } from "../functions/number/number.js";
+import { min } from "../functions/math/min.js";
 
-Min.isMin = (obj) => obj.kind === "Min";
-Min.empty = () => Min(Infinity);
+const variantInfos = [
+  VariantInfo(
+    "Min",
+    [Fold, SemiGroup, Setoid],
+    {
+      concat({ value: y }) {
+        return Min(min(this.value, y));
+      },
+
+      inspect() {
+        return `Min(${this.value})`;
+      },
+
+      init() {
+        this.value = isNumber(this.value) ? this.value : number(this.value);
+      },
+    },
+    {
+      sTypeClasses: [Monoid],
+      methods: {
+        empty() {
+          return Min(Infinity);
+        },
+
+        isMin(x) {
+          return x && isFunction(x.isMin) && x.isMin();
+        },
+      },
+    }
+  ),
+];
+
+export const { Min } = createType("Min", variantInfos);
