@@ -1,52 +1,71 @@
-class Eff {
-  constructor(value) {
-    Object.defineProperty(this, "_value", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: value,
-    });
+import { VariantInfo, createType } from "./createType.js";
+import { isFunction } from "../functions/predicates/isFunction.js";
+import {
+  Applicative,
+  Apply,
+  Functor,
+  Monad,
+  Monoid,
+  Fold,
+  SemiGroup,
+} from "./typeClasses.js";
 
-    Object.defineProperty(this, "kind", {
-      configurable: false,
-      enumerable: true,
-      writable: false,
-      value: "Effect",
-    });
+const variantInfos = [
+  VariantInfo(
+    "Effect",
+    [Apply, Fold, Functor, Monad, SemiGroup],
+    {
+      map(f) {
+        return Effect((x) => f(this.value(x)));
+      },
 
-    Object.defineProperty(this, "constructor", {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: Effect,
-    });
-  }
+      chain(f) {
+        return (x) => f(this.value(x));
+      },
 
-  get value() {
-    return this._value;
-  }
+      concat({ value: f }) {
+        return Effect(this.value(f));
+      },
 
-  map(f) {
-    return Effect((x) => f(this.value(x)));
-  }
+      ap(o) {
+        return o.map((g) => g(this.value()));
+      },
 
-  chain(f) {
-    return (x) => f(this.value(x));
-  }
+      fold(f) {
+        return (x) => f(this.value(x));
+      },
 
-  fold(f) {
-    return (x) => f(this.value(x));
-  }
+      run(x) {
+        return this.value(x);
+      },
 
-  ap(o) {
-    return o.map((g) => g(this.value()));
-  }
+      inspect() {
+        return `Effect(${this.value.toString()})`;
+      },
 
-  run(x) {
-    return this.value(x);
-  }
-}
+      init() {
+        if (!isFunction(this.value)) {
+          throw new Error("Value of Effect type must be a function");
+        }
+      },
+    },
+    {
+      sTypeClasses: [Applicative, Monoid],
+      methods: {
+        of(f) {
+          return Effect(f);
+        },
 
-const Effect = (f) => new Eff(f);
+        empty() {
+          return Effect(() => {});
+        },
 
-Effect.of = (v) => Effect(() => v);
+        isEffect(x) {
+          return x && isFunction(x.isEffect) && x.isEffect();
+        },
+      },
+    }
+  ),
+];
+
+export const { Effect } = createType("Effect", variantInfos);
