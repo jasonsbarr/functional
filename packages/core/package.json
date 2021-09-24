@@ -1,0 +1,30 @@
+{
+  "name": "@jasonsbarr/functional-core",
+  "version": "0.0.1",
+  "description": "A function-based version of the JavaScript standard library plus additional awesome functions",
+  "keywords": [
+    "functional",
+    "programming",
+    "functions"
+  ],
+  "author": "Jason Barr <jason.barr@metronetinc.com>",
+  "homepage": "https://github.com/jasonsbarr/functional/wiki",
+  "license": "MIT",
+  "main": "lib/core.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonsbarr/functional.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/jasonsbarr/functional/issues"
+  }
+}

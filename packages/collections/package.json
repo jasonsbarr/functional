@@ -1,0 +1,33 @@
+{
+  "name": "@jasonsbarr/functional-collections",
+  "version": "0.0.1",
+  "description": "Awesome collection types for fluent functional programming",
+  "keywords": [
+    "collections",
+    "functional",
+    "programming",
+    "list",
+    "tuple",
+    "dictionary"
+  ],
+  "author": "Jason Barr <jason.barr@metronetinc.com>",
+  "homepage": "https://github.com/jasonsbarr/functional/wiki",
+  "license": "MIT",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonsbarr/functional.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/jasonsbarr/functional/issues"
+  }
+}

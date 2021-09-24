@@ -25,5 +25,8 @@
   "homepage": "https://github.com/jasonsbarr/functional/wiki",
   "dependencies": {
     "object-hash": "^2.2.0"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
   }
 }
