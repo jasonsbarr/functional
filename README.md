@@ -1,7 +1,5 @@
 # The Standard Library for Fluent, Functional Programming in JavaScript
 
-I love functional programming, but I also love the fluent interface with chained method calls you get with a well-designed object-oriented library.
-
 The [documentation](https://github.com/jasonsbarr/functional/wiki) is a work in progress.
 
 I'm pretty sure there are still tons of bugs, so if you find any feel free to let me know or submit a pull request.
