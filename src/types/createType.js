@@ -53,6 +53,7 @@ const createVariantConstructor = (typeName, variantInfo) => {
     variant["is" + typeName] = () => true;
     variant["is" + variantInfo.variantName] = () => true;
     variant.valueOf = () => variant.value;
+    variant.inspect = () => `${variantInfo.variantName}(${variant.value})`;
 
     variant = assign(variant, variantInfo.overrides);
 
