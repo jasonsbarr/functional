@@ -1,5 +1,5 @@
-import { keys } from "../functions/object/keys.js";
-import { includes } from "../functions/iterable/includes.js";
+import { keys } from "../object/keys.js";
+import { includes } from "../iterable/includes.js";
 /**
  *
  * @param {Object} typeRepresentative The type representative object for a type
