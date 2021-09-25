@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@jasonsbarr/dict": "^0.0.1",
-    "@jasonsbarr/functional-core": "^0.0.1"
+    "@jasonsbarr/functional-core": "^0.0.1",
+    "@jasonsbarr/iterable": "^0.0.1"
   }
 }
