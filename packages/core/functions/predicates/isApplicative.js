@@ -1,1 +1,3 @@
-export const isApplicative = (obj) => typeof obj.ap === "function";
+import { isFunction } from "./isFunction.js";
+
+export const isApplicative = (type) => isFunction(type.of);
