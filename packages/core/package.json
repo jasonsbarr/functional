@@ -7,14 +7,16 @@
     "functional programming",
     "functions"
   ],
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
   "author": "Jason Barr <jason.barr@metronetinc.com>",
   "homepage": "https://github.com/jasonsbarr/functional/wiki",
   "license": "MIT",
   "main": "index.js",
-  "files": [
-    "functions",
-    "types"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jasonsbarr/functional.git"

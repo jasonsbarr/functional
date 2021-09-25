@@ -11,6 +11,12 @@
     "functions",
     "functional programming"
   ],
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
   "author": "Jason Barr <jason@jasonsbarr.com>",
   "homepage": "https://github.com/jasonsbarr/functional/wiki",
   "license": "MIT",

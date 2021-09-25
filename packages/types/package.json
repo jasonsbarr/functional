@@ -9,6 +9,12 @@
     "adts",
     "algebraic data types"
   ],
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
   "author": "Jason Barr <jason@jasonsbarr.com>",
   "homepage": "https://github.com/jasonsbarr/functional/wiki",
   "license": "MIT",

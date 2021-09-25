@@ -10,6 +10,12 @@
     "tuple",
     "dictionary"
   ],
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
   "author": "Jason Barr <jason.barr@metronetinc.com>",
   "homepage": "https://github.com/jasonsbarr/functional/wiki",
   "license": "MIT",
