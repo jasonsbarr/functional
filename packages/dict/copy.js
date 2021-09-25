@@ -1,6 +1,6 @@
-import { create } from "../object/create.js";
-import { keys } from "../object/keys.js";
-import { symbols } from "../object/symbols.js";
+import { create } from "@jasonsbarr/functional-core/functions/object/create.js";
+import { keys } from "@jasonsbarr/functional-core/functions/object/keys.js";
+import { symbols } from "@jasonsbarr/functional-core/functions/object/symbols.js";
 
 // Makes a shallow copy of a hash object's own keys to a hash object with null prototype.
 // If you want prototype properties or a non-null prototype use object/clone.

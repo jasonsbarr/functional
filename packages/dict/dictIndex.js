@@ -1,7 +1,7 @@
-import { None, Some } from "../../types/Option.js";
-import { entries } from "../iterable/entries.js";
-import { curry } from "../lambda/curry.js";
-import { equals } from "../object/equals.js";
+import { None, Some } from "@jasonsbarr/functional-core/types/Option.js";
+import { entries } from "@jasonsbarr/functional-core/functions/iterable/entries.js";
+import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
+import { equals } from "@jasonsbarr/functional-core/functions/object/equals.js";
 
 // returns Option
 export const index = curry((value, dict) => {

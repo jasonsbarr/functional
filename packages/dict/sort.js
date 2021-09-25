@@ -1,11 +1,11 @@
-import { entries } from "../object/entries.js";
-import { isNumber } from "../predicates/isNumber.js";
-import { isFunction } from "../predicates/isFunction.js";
-import { isString } from "../predicates/isString.js";
-import { localeCompare } from "../string/localeCompare.js";
-import { fromEntries } from "../object/fromEntries.js";
-import { isBool } from "../predicates/isBool.js";
-import { reverse as reverseI } from "../iterable/reverse.js";
+import { entries } from "@jasonsbarr/functional-core/functions/object/entries.js";
+import { isNumber } from "@jasonsbarr/functional-core/functions/predicates/isNumber.js";
+import { isFunction } from "@jasonsbarr/functional-core/functions/predicates/isFunction.js";
+import { isString } from "@jasonsbarr/functional-core/functions/predicates/isString.js";
+import { localeCompare } from "@jasonsbarr/functional-core/functions/string/localeCompare.js";
+import { fromEntries } from "@jasonsbarr/functional-core/functions/object/fromEntries.js";
+import { isBool } from "@jasonsbarr/functional-core/functions/predicates/isBool.js";
+import { reverse as reverseI } from "@jasonsbarr/functional-core/functions/iterable/reverse.js";
 
 export const sort = (dict, { key = "", fn = null, reverse = false } = {}) => {
   let es = entries(dict);
