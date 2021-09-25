@@ -1,7 +1,7 @@
 import { noop } from "../helpers/noop.js";
 import { Cancelled } from "./internal/_executionStates.js";
 import { Deferred } from "./internal/_deferred.js";
-import { length } from "../iterable/lib/length.js";
+import { length } from "../array/length.js";
 import { defer } from "../lambda/defer.js";
 import { curry } from "../lambda/curry.js";
 

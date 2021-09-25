@@ -1,1 +1,1 @@
-export const length = (arr) => arr.length;
+export const length = (arr) => [...arr].length;
