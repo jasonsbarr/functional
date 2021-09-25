@@ -1,6 +1,6 @@
 import { length } from "./length.js";
-import { floor } from "@jasonsbarr/functional-core/functions/math/floor.js";
-import { random } from "@jasonsbarr/functional-core/functions/math/random.js";
+import { floor } from "@jasonsbarr/functional-core/math/floor.js";
+import { random } from "@jasonsbarr/functional-core/math/random.js";
 
 // Fisher-Yates shuffle algorithm, from https://stackoverflow.com/a/2450976
 export const shuffle = (iter) => {

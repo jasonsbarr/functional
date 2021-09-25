@@ -1,4 +1,4 @@
-import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
+import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
 
 export const traverse = curry((point, fn, iter) =>
   iter.reduce(

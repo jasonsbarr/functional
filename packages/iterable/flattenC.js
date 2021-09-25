@@ -1,4 +1,4 @@
-import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
+import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
 import { flatten } from "./flatten.js";
 
 // curried version of flatten

@@ -1,4 +1,4 @@
-import { values } from "@jasonsbarr/functional-core/functions/object/values.js";
+import { values } from "@jasonsbarr/functional-core/object/values.js";
 import { at } from "@jasonsbarr/iterable/at.js";
 
 // returns Option

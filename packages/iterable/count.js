@@ -1,5 +1,5 @@
-import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
-import { equals } from "@jasonsbarr/functional-core/functions/object/equals.js";
+import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
+import { equals } from "@jasonsbarr/functional-core/object/equals.js";
 
 export const count = curry((search, iter) => {
   let count = 0;

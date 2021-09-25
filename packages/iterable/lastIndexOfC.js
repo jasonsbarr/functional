@@ -1,4 +1,4 @@
-import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
+import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
 import { indexOf } from "./indexOf.js";
 
 // curried version of lastIndexOf

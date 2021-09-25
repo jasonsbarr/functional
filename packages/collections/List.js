@@ -29,7 +29,7 @@ import { insert } from "@jasonsbarr/iterable/insert.js";
 import { intersection } from "@jasonsbarr/iterable/intersection.js";
 import { isEmpty } from "@jasonsbarr/iterable/isEmpty.js";
 import { isEqual } from "@jasonsbarr/iterable/isEqual.js";
-import { isNil } from "@jasonsbarr/functional-core/functions/predicates/isNil.js";
+import { isNil } from "@jasonsbarr/functional-core/predicates/isNil.js";
 import { join } from "@jasonsbarr/iterable/join.js";
 import { keys } from "@jasonsbarr/iterable/keys.js";
 import { last } from "@jasonsbarr/iterable/last.js";
@@ -67,7 +67,7 @@ import { update } from "@jasonsbarr/iterable/update.js";
 import { values } from "@jasonsbarr/iterable/values.js";
 import { zip } from "@jasonsbarr/iterable/zip.js";
 import { NIL } from "./Nil.js";
-import { equals } from "@jasonsbarr/functional-core/functions/object/equals.js";
+import { equals } from "@jasonsbarr/functional-core/object/equals.js";
 
 class Cons extends Array {
   constructor(car, cdr) {

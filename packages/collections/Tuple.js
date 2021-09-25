@@ -22,7 +22,7 @@ import { find } from "@jasonsbarr/iterable/find.js";
 import { findIndex } from "@jasonsbarr/iterable/findIndex.js";
 import { first } from "@jasonsbarr/iterable/first.js";
 import { flatten } from "@jasonsbarr/iterable/flatten.js";
-import { freeze } from "@jasonsbarr/functional-core/functions/object/freeze.js";
+import { freeze } from "@jasonsbarr/functional-core/object/freeze.js";
 import { from } from "@jasonsbarr/iterable/from.js";
 import { includes } from "@jasonsbarr/iterable/includes.js";
 import { indexOf } from "@jasonsbarr/iterable/indexOf.js";
@@ -65,7 +65,7 @@ import { unique } from "@jasonsbarr/iterable/unique.js";
 import { update } from "@jasonsbarr/iterable/update.js";
 import { values } from "@jasonsbarr/iterable/values.js";
 import { zip } from "@jasonsbarr/iterable/zip.js";
-import { equals } from "@jasonsbarr/functional-core/functions/object/equals.js";
+import { equals } from "@jasonsbarr/functional-core/object/equals.js";
 
 // A tuple is immutable, like in Python.
 // Objects inside it, however (not primitives!), can be mutated.

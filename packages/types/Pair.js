@@ -14,13 +14,13 @@ import {
   Setoid,
   Traversable,
 } from "@jasonsbarr/functional-core/types/typeClasses.js";
-import { isArray } from "@jasonsbarr/functional-core/functions/predicates/isArray.js";
-import { length } from "@jasonsbarr/functional-core/functions/iterable/length.js";
-import { equals } from "@jasonsbarr/functional-core/functions/object/equals.js";
-import { concatValues } from "@jasonsbarr/functional-core/functions/helpers/concatValues.js";
-import { isFunction } from "@jasonsbarr/functional-core/functions/predicates/isFunction.js";
-import { ne } from "@jasonsbarr/functional-core/functions/predicates/ne.js";
-import { eq } from "@jasonsbarr/functional-core/functions/predicates/eq.js";
+import { isArray } from "@jasonsbarr/functional-core/predicates/isArray.js";
+import { length } from "@jasonsbarr/functional-core/iterable/length.js";
+import { equals } from "@jasonsbarr/functional-core/object/equals.js";
+import { concatValues } from "@jasonsbarr/functional-core/helpers/concatValues.js";
+import { isFunction } from "@jasonsbarr/functional-core/predicates/isFunction.js";
+import { ne } from "@jasonsbarr/functional-core/predicates/ne.js";
+import { eq } from "@jasonsbarr/functional-core/predicates/eq.js";
 
 const variantInfos = [
   VariantInfo(

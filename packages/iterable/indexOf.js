@@ -1,4 +1,4 @@
-import { equals } from "@jasonsbarr/functional-core/functions/object/equals.js";
+import { equals } from "@jasonsbarr/functional-core/object/equals.js";
 import { Some, None } from "@jasonsbarr/functional-core/types/Option.js";
 
 // data-first because of optional argument, returns Option, works with any value including objects

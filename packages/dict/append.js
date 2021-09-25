@@ -1,9 +1,9 @@
-import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
-import { entries } from "@jasonsbarr/functional-core/functions/object/entries.js";
-import { fromEntries } from "@jasonsbarr/functional-core/functions/object/fromEntries.js";
-import { isArray } from "@jasonsbarr/functional-core/functions/predicates/isArray.js";
-import { isMap } from "@jasonsbarr/functional-core/functions/predicates/isMap.js";
-import { isObject } from "@jasonsbarr/functional-core/functions/predicates/isObject.js";
+import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
+import { entries } from "@jasonsbarr/functional-core/object/entries.js";
+import { fromEntries } from "@jasonsbarr/functional-core/object/fromEntries.js";
+import { isArray } from "@jasonsbarr/functional-core/predicates/isArray.js";
+import { isMap } from "@jasonsbarr/functional-core/predicates/isMap.js";
+import { isObject } from "@jasonsbarr/functional-core/predicates/isObject.js";
 
 // item can be a single-item object or map, or an array pair [key, value]
 export const append = curry((item, dict) => {

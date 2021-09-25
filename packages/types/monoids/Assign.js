@@ -8,9 +8,9 @@ import {
   SemiGroup,
   Setoid,
 } from "@jasonsbarr/functional-core/types/typeClasses.js";
-import { isFunction } from "@jasonsbarr/functional-core/functions/predicates/isFunction.js";
-import { assign } from "@jasonsbarr/functional-core/functions/object/assign.js";
-import { isObject } from "@jasonsbarr/functional-core/functions/predicates/isObject.js";
+import { isFunction } from "@jasonsbarr/functional-core/predicates/isFunction.js";
+import { assign } from "@jasonsbarr/functional-core/object/assign.js";
+import { isObject } from "@jasonsbarr/functional-core/predicates/isObject.js";
 
 const variantInfos = [
   VariantInfo(

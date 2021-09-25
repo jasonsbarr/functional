@@ -1,4 +1,4 @@
-import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
+import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
 
 export const symmetricDifference = curry((iter1, iter2) => {
   let set1 = new Set([...iter1]);

@@ -1,5 +1,5 @@
-import { keys } from "@jasonsbarr/functional-core/functions/object/keys.js";
-import { symbols } from "@jasonsbarr/functional-core/functions/object/symbols.js";
+import { keys } from "@jasonsbarr/functional-core/object/keys.js";
+import { symbols } from "@jasonsbarr/functional-core/object/symbols.js";
 
 export const toMap = (dict) => {
   let m = new Map();
