@@ -1,5 +1,5 @@
 import { length as lengthS } from "../string/length.js";
-import { length } from "../lib/array/length.js";
+import { length } from "../array/length.js";
 import { isString } from "../predicates/isString.js";
 import { curry } from "../lambda/curry.js";
 
