@@ -1,7 +1,7 @@
 import {
   VariantInfo,
   createType,
-} from "@jasonsbarr/functional-core/functions/type/createType.js";
+} from "@jasonsbarr/functional-core/types/createType.js";
 import {
   Applicative,
   Apply,

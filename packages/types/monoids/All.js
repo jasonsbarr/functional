@@ -1,7 +1,7 @@
 import {
   VariantInfo,
   createType,
-} from "@jasonsbarr/functional-core/functions/type/createType.js";
+} from "@jasonsbarr/functional-core/types/createType.js";
 import {
   SemiGroup,
   Monoid,
@@ -9,7 +9,7 @@ import {
   Fold,
 } from "@jasonsbarr/functional-core/types/typeClasses.js";
 import { isFunction } from "@jasonsbarr/functional-core/functions/predicates/isFunction.js";
-import { boolean } from "@jasonsbarr/functional-core/functions/type/boolean.js";
+import { boolean } from "@jasonsbarr/functional-core/functions/boolean/boolean.js";
 
 const variantInfos = [
   VariantInfo(

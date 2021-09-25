@@ -1,4 +1,4 @@
-import { VariantInfo, createType } from "../functions/type/createType.js";
+import { VariantInfo, createType } from "./createType.js";
 import { isFunction } from "../functions/predicates/isFunction.js";
 import {
   RightAlt,
