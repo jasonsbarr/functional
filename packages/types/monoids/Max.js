@@ -10,6 +10,7 @@ import {
 } from "@jasonsbarr/functional-core/types/typeClasses.js";
 import { isFunction } from "@jasonsbarr/functional-core/functions/predicates/isFunction.js";
 import { isNumber } from "@jasonsbarr/functional-core/functions/predicates/isNumber.js";
+import { isNotANum } from "@jasonsbarr/functional-core/functions/predicates/isNotANum.js";
 import { max } from "@jasonsbarr/functional-core/functions/math/max.js";
 
 const variantInfos = [
@@ -22,8 +23,8 @@ const variantInfos = [
       },
 
       init() {
-        if (!isNumber(this.value)) {
-          throw new Error("Value of Max must be a number");
+        if (!isNumber(this.value) || isNotANum(this.value)) {
+          throw new Error("Value of Max must be a number that is not NaN");
         }
       },
     },
