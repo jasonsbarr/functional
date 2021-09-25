@@ -94,6 +94,14 @@ export const Traversable = {
   },
 };
 
+export const Swap = {
+  swap(leftMapFn, rightMapFn) {
+    throw new Error(
+      "Swap method must be implemented individually for each type"
+    );
+  },
+};
+
 // Left typeclasses
 export const LeftFold = {
   fold(f, g) {
