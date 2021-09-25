@@ -1,5 +1,6 @@
 import { keys } from "../object/keys.js";
-import { includes } from "../iterable/lib/includes.js";
+import { includes } from "../array/includes.js";
+import { curry } from "../lambda/curry.js";
 /**
  *
  * @param {Object} typeRepresentative The type representative object for a type
@@ -7,7 +8,7 @@ import { includes } from "../iterable/lib/includes.js";
  * @param {Object} instance The actual instance of a type being switched on
  * @returns {Any} The result of the dispatched function
  */
-export const switchType = (typeRepresentative, dispatcher, instance) => {
+export const switchType = curry((typeRepresentative, dispatcher, instance) => {
   const cases = keys(dispatcher);
   for (let variant of typeRepresentative.variants) {
     if (!includes(variant, cases)) {
@@ -17,4 +18,4 @@ export const switchType = (typeRepresentative, dispatcher, instance) => {
     }
   }
   return dispatcher[instance.variant](instance);
-};
+});

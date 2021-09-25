@@ -2,14 +2,14 @@ import { hash } from "../object/hash.js";
 import { equals } from "../object/equals.js";
 import { Option } from "./Option.js";
 import { extend } from "../object/extend.js";
-import { entries } from "../iterable/lib/entries.js";
+import { entries } from "../object/entries.js";
 import { keys } from "../object/keys.js";
 import { values } from "../object/values.js";
 import { clone } from "../object/clone.js";
 import { freeze } from "../object/freeze.js";
-import { includes } from "../iterable/lib/includes.js";
+import { includes } from "../array/includes.js";
 import { create } from "../object/create.js";
-import { toQueryString } from "../dict/lib/toQueryString.js";
+import { toQueryString } from "../object/toQueryString.js";
 
 const recordProto = {
   // returns a Record with the same keys but all values set to undefined
