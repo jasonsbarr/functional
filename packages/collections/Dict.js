@@ -9,7 +9,7 @@ import { definePropWithOpts } from "@jasonsbarr/functional-core/functions/object
 import { deleteValue } from "@jasonsbarr/dict/deleteValue.js";
 import { entries } from "@jasonsbarr/functional-core/functions/object/entries.js";
 import { equals } from "@jasonsbarr/functional-core/functions/object/equals.js";
-import { index } from "@jasonsbarr/dict/dictIndex.js";
+import { index } from "@jasonsbarr/dict/index.js";
 import { clone } from "@jasonsbarr/functional-core/functions/object/clone.js";
 import { each } from "@jasonsbarr/dict/each.js";
 import { eachWithKey } from "@jasonsbarr/dict/eachWithKey.js";
