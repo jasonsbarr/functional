@@ -9,7 +9,7 @@ import {
   Setoid,
 } from "@jasonsbarr/functional-core/types/typeClasses.js";
 import { isFunction } from "@jasonsbarr/functional-core/predicates/isFunction.js";
-import { boolean } from "../../core/functions/boolean/boolean.js";
+import { boolean } from "../../core/boolean/boolean.js";
 
 const variantInfos = [
   VariantInfo(

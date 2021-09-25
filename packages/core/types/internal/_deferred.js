@@ -1,5 +1,5 @@
-import { define } from "../../functions/object/define.js";
-import { noop } from "../../functions/helpers/noop.js";
+import { define } from "../../object/define.js";
+import { noop } from "../../helpers/noop.js";
 import { Pending, Cancelled, Rejected, Resolved } from "./_executionStates.js";
 
 // Match execution state to resolver function

@@ -1,6 +1,6 @@
-import { ifElse } from "../functions/helpers/ifElse.js";
-import { isFunction } from "../functions/predicates/isFunction.js";
-import { isNullish } from "../functions/predicates/isNullish.js";
+import { ifElse } from "../helpers/ifElse.js";
+import { isFunction } from "../predicates/isFunction.js";
+import { isNullish } from "../predicates/isNullish.js";
 import { VariantInfo, createType } from "./createType.js";
 import {
   RightAlt,

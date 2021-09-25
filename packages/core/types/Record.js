@@ -1,15 +1,15 @@
-import { hash } from "../functions/object/hash.js";
-import { equals } from "../functions/object/equals.js";
+import { hash } from "../object/hash.js";
+import { equals } from "../object/equals.js";
 import { Option } from "./Option.js";
-import { extend } from "../functions/object/extend.js";
-import { entries } from "../functions/iterable/entries.js";
-import { keys } from "../functions/object/keys.js";
-import { values } from "../functions/object/values.js";
-import { clone } from "../functions/object/clone.js";
-import { freeze } from "../functions/object/freeze.js";
-import { includes } from "../functions/iterable/includes.js";
-import { create } from "../functions/object/create.js";
-import { toQueryString } from "../functions/dict/toQueryString.js";
+import { extend } from "../object/extend.js";
+import { entries } from "../iterable/entries.js";
+import { keys } from "../object/keys.js";
+import { values } from "../object/values.js";
+import { clone } from "../object/clone.js";
+import { freeze } from "../object/freeze.js";
+import { includes } from "../iterable/includes.js";
+import { create } from "../object/create.js";
+import { toQueryString } from "../dict/toQueryString.js";
 
 const recordProto = {
   // returns a Record with the same keys but all values set to undefined
