@@ -1,0 +1,26 @@
+{
+  "name": "@jasonsbarr/iterable",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "A collection of iterable functions that extend the capability of arrays and other collections",
+  "keywords": [
+    "array",
+    "collection",
+    "tuple",
+    "list",
+    "utilities"
+  ],
+  "author": "Jason Barr <jason@jasonsbarr.com>",
+  "homepage": "https://github.com/jasonsbarr/functional/wiki/",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonsbarr/functional.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/jasonsbarr/functional/issues"
+  }
+}
