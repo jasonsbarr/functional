@@ -1,4 +1,4 @@
-import { zip } from "@jasonsbarr/functional-core/functions/iterable/zip.js";
+import { zip } from "@jasonsbarr/iterable/zip.js";
 import { None } from "@jasonsbarr/functional-core/types/Option.js";
 import { list } from "./List.js";
 

@@ -1,3 +1,9 @@
+import { isNumber } from "@jasonsbarr/functional-core/functions/predicates/isNumber.js";
+import { isBool } from "@jasonsbarr/functional-core/functions/predicates/isBool.js";
+import { isSymbol } from "@jasonsbarr/functional-core/functions/predicates/isSymbol.js";
+import { isString } from "@jasonsbarr/functional-core/functions/predicates/isString.js";
+import { reverse } from "./reverse.js";
+
 // assumes all items in iterable are of same type, based on first item in iterable
 // because why would you want to sort a list of different types? That would be dumb.
 // Give either a key or a function, but not both. If you give both, it will use the function.
@@ -5,22 +11,22 @@ export const sort = (iter, { key = "", fn = null, reversed = false } = {}) => {
   let temp = [...iter];
   if (fn) {
     temp.sort(fn);
-  } else if (typeof temp[0] === "number") {
+  } else if (isNumber(temp[0])) {
     temp.sort((a, b) => a - b);
-  } else if (typeof temp[0] === "boolean") {
+  } else if (isBool(temp[0])) {
     temp.sort((a, b) => (a === b ? 0 : a ? -1 : 1));
-  } else if (typeof temp[0] === "symbol") {
+  } else if (isSymbol(temp[0])) {
     temp.sort((a, b) =>
       a.description > b.description ? 1 : a.description < b.description ? -1 : 0
     );
   } else if (key) {
-    if (typeof temp[0][key] === "number") {
+    if (isNumber(temp[0][key])) {
       temp.sort((a, b) => a[key] - b[key]);
-    } else if (typeof temp[0][key] === "boolean") {
+    } else if (isBool(temp[0][key])) {
       temp.sort((a, b) => (a[key] === b[key] ? 0 : a[key] ? -1 : 1));
-    } else if (typeof temp[0][key] === "string") {
+    } else if (isString(temp[0][key])) {
       temp.sort((a, b) => (a[key] > b[key] ? 1 : a[key] === b[key] ? 0 : -1));
-    } else if (typeof temp[0][key] === "symbol") {
+    } else if (isSymbol(temp[0][key])) {
       temp.sort((a, b) =>
         a[key].description > b[key].description
           ? 1
@@ -32,7 +38,5 @@ export const sort = (iter, { key = "", fn = null, reversed = false } = {}) => {
   } else {
     temp.sort();
   }
-  return reversed
-    ? iter.constructor(...temp.reverse())
-    : iter.constructor(...temp);
+  return reversed ? reverse(temp) : iter.constructor(...temp);
 };

@@ -1,7 +1,7 @@
-import { curry } from "../lambda/curry.js";
-import { equals } from "../object/equals.js";
-import { isFunction } from "../predicates/isFunction.js";
-import { isRegExp } from "../predicates/isRegExp.js";
+import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
+import { equals } from "@jasonsbarr/functional-core/functions/object/equals.js";
+import { isFunction } from "@jasonsbarr/functional-core/functions/predicates/isFunction.js";
+import { isRegExp } from "@jasonsbarr/functional-core/functions/predicates/isRegExp.js";
 
 // works with any value, including objects
 export const includes = curry((search, iter) => {

@@ -1,6 +1,6 @@
 import { length } from "./length.js";
 import { reduce } from "./reduce.js";
-import { Some, None } from "../../types/Option.js";
+import { Some, None } from "@jasonsbarr/functional-core/types/Option.js";
 
 // returns Option
 export const product = (iter) =>

@@ -1,7 +1,7 @@
 import { each } from "./each.js";
-import { isIterable } from "../predicates/isIterable.js";
+import { isIterable } from "@jasonsbarr/functional-core/functions/predicates/isIterable.js";
 import { concatToArray } from "./concatToArray.js";
-import { isString } from "../predicates/isString.js";
+import { isString } from "@jasonsbarr/functional-core/functions/predicates/isString.js";
 
 // flattens completely or to specified level of depth
 export const flatten = (iter, level = Infinity, current = 0) => {

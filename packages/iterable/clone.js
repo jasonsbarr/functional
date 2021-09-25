@@ -1,4 +1,3 @@
-import { copy } from "./copy.js";
+import { clone as cloneO } from "@jasonsbarr/functional-core/functions/object/clone.js";
 
-// eventually make this a deep copy?
-export const clone = copy;
+export const clone = cloneO;

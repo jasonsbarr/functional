@@ -1,5 +1,5 @@
-import { curry } from "../lambda/curry.js";
-import { equals } from "../object/equals.js";
+import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
+import { equals } from "@jasonsbarr/functional-core/functions/object/equals.js";
 
 export const none = curry((search, iter) => {
   for (let item of iter) {

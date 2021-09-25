@@ -1,5 +1,5 @@
 import { None, Some } from "@jasonsbarr/functional-core/types/Option.js";
-import { entries } from "@jasonsbarr/functional-core/functions/iterable/entries.js";
+import { entries } from "@jasonsbarr/iterable/entries.js";
 import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
 import { equals } from "@jasonsbarr/functional-core/functions/object/equals.js";
 

@@ -1,4 +1,4 @@
-import { curry } from "../lambda/curry.js";
+import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
 
 export const eachWithIndex = curry((fn, iter) => {
   let i = 0;

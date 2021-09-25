@@ -5,7 +5,7 @@ import { isString } from "@jasonsbarr/functional-core/functions/predicates/isStr
 import { localeCompare } from "@jasonsbarr/functional-core/functions/string/localeCompare.js";
 import { fromEntries } from "@jasonsbarr/functional-core/functions/object/fromEntries.js";
 import { isBool } from "@jasonsbarr/functional-core/functions/predicates/isBool.js";
-import { reverse as reverseI } from "@jasonsbarr/functional-core/functions/iterable/reverse.js";
+import { reverse as reverseI } from "@jasonsbarr/iterable/reverse.js";
 
 export const sort = (dict, { key = "", fn = null, reverse = false } = {}) => {
   let es = entries(dict);

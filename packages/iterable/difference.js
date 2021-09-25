@@ -1,4 +1,4 @@
-import { curry } from "../lambda/curry.js";
+import { curry } from "@jasonsbarr/functional-core/functions/lambda/curry.js";
 
 export const difference = curry((iter1, iter2) => {
   const set1 = new Set([...iter1]);

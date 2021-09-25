@@ -1,5 +1,5 @@
 import { values } from "@jasonsbarr/functional-core/functions/object/values.js";
-import { at } from "@jasonsbarr/functional-core/functions/iterable/at.js";
+import { at } from "@jasonsbarr/iterable/at.js";
 
 // returns Option
 export const first = (dict) => {
