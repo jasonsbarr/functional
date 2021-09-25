@@ -1,5 +1,5 @@
-import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
-import { entries } from "@jasonsbarr/functional-core/object/entries.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
+import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
 
 export const reduceRight = curry((fn, initial, dict) => {
   let acc = initial;

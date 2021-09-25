@@ -1,6 +1,6 @@
-import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
-import { entries } from "@jasonsbarr/functional-core/object/entries.js";
-import { create } from "@jasonsbarr/functional-core/object/create.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
+import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
+import { create } from "@jasonsbarr/functional-core/lib/object/create.js";
 
 // fn should take [key, value] pair like that from Object.entries
 export const mapEntries = curry((fn, dict) => {

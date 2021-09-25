@@ -1,6 +1,6 @@
-import { entries } from "@jasonsbarr/functional-core/object/entries.js";
-import { reverse as reverseA } from "@jasonsbarr/iterable/reverse.js";
-import { fromEntries } from "@jasonsbarr/functional-core/object/fromEntries.js";
+import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
+import { reverse as reverseA } from "@jasonsbarr/iterable/lib/reverse.js";
+import { fromEntries } from "@jasonsbarr/functional-core/lib/object/fromEntries.js";
 
 export const reverse = (dict) => {
   const pairs = entries(dict);

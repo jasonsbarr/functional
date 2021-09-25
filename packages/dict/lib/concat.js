@@ -1,8 +1,8 @@
-import { isNil } from "@jasonsbarr/functional-core/predicates/isNil.js";
-import { keys } from "@jasonsbarr/functional-core/object/keys.js";
+import { isNil } from "@jasonsbarr/functional-core/lib/predicates/isNil.js";
+import { keys } from "@jasonsbarr/functional-core/lib/object/keys.js";
 import { copy } from "./copy.js";
-import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
-import { symbols } from "@jasonsbarr/functional-core/object/symbols.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
+import { symbols } from "@jasonsbarr/functional-core/lib/object/symbols.js";
 
 // Note that dict1 and dict2 should have the same keys and be filled
 // completely with Semigroups (types that can be concatenated).

@@ -1,6 +1,6 @@
-import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
-import { create } from "@jasonsbarr/functional-core/object/create.js";
-import { entries } from "@jasonsbarr/functional-core/object/entries.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
+import { create } from "@jasonsbarr/functional-core/lib/object/create.js";
+import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
 
 export const filterKeys = curry((pred, dict) => {
   let result = create(null);

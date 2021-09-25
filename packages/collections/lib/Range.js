@@ -1,10 +1,10 @@
-import { curryN } from "@jasonsbarr/functional-core/lambda/curryN.js";
-import { gte } from "@jasonsbarr/functional-core/predicates/gte.js";
-import { isInt } from "@jasonsbarr/functional-core/predicates/isInt.js";
-import { isNegative } from "@jasonsbarr/functional-core/predicates/isNegative.js";
-import { isPositive } from "@jasonsbarr/functional-core/predicates/isPositive.js";
-import { isZero } from "@jasonsbarr/functional-core/predicates/isZero.js";
-import { lte } from "@jasonsbarr/functional-core/predicates/lte.js";
+import { curryN } from "@jasonsbarr/functional-core/lib/lambda/curryN.js";
+import { gte } from "@jasonsbarr/functional-core/lib/predicates/gte.js";
+import { isInt } from "@jasonsbarr/functional-core/lib/predicates/isInt.js";
+import { isNegative } from "@jasonsbarr/functional-core/lib/predicates/isNegative.js";
+import { isPositive } from "@jasonsbarr/functional-core/lib/predicates/isPositive.js";
+import { isZero } from "@jasonsbarr/functional-core/lib/predicates/isZero.js";
+import { lte } from "@jasonsbarr/functional-core/lib/predicates/lte.js";
 
 class RangeClass {
   constructor(start, end, step = 1) {

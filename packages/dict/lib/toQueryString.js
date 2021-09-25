@@ -1,5 +1,5 @@
-import { entries } from "@jasonsbarr/functional-core/object/entries.js";
-import { lt } from "@jasonsbarr/functional-core/predicates/lt.js";
+import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
+import { lt } from "@jasonsbarr/functional-core/lib/predicates/lt.js";
 
 export const toQueryString = (dict) => {
   let qStr = "";

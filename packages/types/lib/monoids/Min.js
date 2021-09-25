@@ -1,17 +1,17 @@
 import {
   VariantInfo,
   createType,
-} from "@jasonsbarr/functional-core/types/createType.js";
+} from "@jasonsbarr/functional-core/lib/types/createType.js";
 import {
   Fold,
   Monoid,
   Setoid,
   SemiGroup,
-} from "@jasonsbarr/functional-core/types/typeClasses.js";
-import { isFunction } from "@jasonsbarr/functional-core/predicates/isFunction.js";
-import { isNumber } from "@jasonsbarr/functional-core/predicates/isNumber.js";
-import { isNotANum } from "@jasonsbarr/functional-core/predicates/isNotANum.js";
-import { min } from "@jasonsbarr/functional-core/math/min.js";
+} from "@jasonsbarr/functional-core/lib/types/typeClasses.js";
+import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction.js";
+import { isNumber } from "@jasonsbarr/functional-core/lib/predicates/isNumber.js";
+import { isNotANum } from "@jasonsbarr/functional-core/lib/predicates/isNotANum.js";
+import { min } from "@jasonsbarr/functional-core/lib/math/min.js";
 
 const variantInfos = [
   VariantInfo(

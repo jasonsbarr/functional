@@ -1,6 +1,6 @@
-import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
 import { length } from "./length.js";
-import { allFuncs } from "@jasonsbarr/functional-core/predicates/isAllFuncs.js";
+import { allFuncs } from "@jasonsbarr/functional-core/lib/predicates/isAllFuncs.js";
 import { map } from "./map.js";
 import { concat } from "./concat.js";
 

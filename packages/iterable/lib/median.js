@@ -1,6 +1,6 @@
-import { Option } from "@jasonsbarr/functional-core/types/Option.js";
-import { isEven } from "@jasonsbarr/functional-core/predicates/isEven.js";
-import { floor } from "@jasonsbarr/functional-core/math/floor.js";
+import { Option } from "@jasonsbarr/functional-core/lib/types/Option.js";
+import { isEven } from "@jasonsbarr/functional-core/lib/predicates/isEven.js";
+import { floor } from "@jasonsbarr/functional-core/lib/math/floor.js";
 import { length } from "./length.js";
 import { sort } from "./sort.js";
 

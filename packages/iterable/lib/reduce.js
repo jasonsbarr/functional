@@ -1,4 +1,4 @@
-import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
 
 export const reduce = curry((fn, initial, iter) => {
   let acc = initial;

@@ -1,5 +1,5 @@
 import { isIterable } from "../predicates/isIterable.js";
-import { reduce } from "../iterable/reduce.js";
+import { reduce } from "@jasonsbarr/iterable/lib/reduce.js";
 
 // Gets the min of any number of numbers OR 1 or more iterables filled with numbers
 export const min = (...args) => {

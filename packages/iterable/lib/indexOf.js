@@ -1,5 +1,5 @@
-import { equals } from "@jasonsbarr/functional-core/object/equals.js";
-import { Some, None } from "@jasonsbarr/functional-core/types/Option.js";
+import { equals } from "@jasonsbarr/functional-core/lib/object/equals.js";
+import { Some, None } from "@jasonsbarr/functional-core/lib/types/Option.js";
 
 // data-first because of optional argument, returns Option, works with any value including objects
 export const indexOf = (iter, value, start = 0) => {

@@ -1,11 +1,11 @@
-import { entries } from "@jasonsbarr/functional-core/object/entries.js";
-import { isNumber } from "@jasonsbarr/functional-core/predicates/isNumber.js";
-import { isFunction } from "@jasonsbarr/functional-core/predicates/isFunction.js";
-import { isString } from "@jasonsbarr/functional-core/predicates/isString.js";
-import { localeCompare } from "@jasonsbarr/functional-core/string/localeCompare.js";
-import { fromEntries } from "@jasonsbarr/functional-core/object/fromEntries.js";
-import { isBool } from "@jasonsbarr/functional-core/predicates/isBool.js";
-import { reverse as reverseI } from "@jasonsbarr/iterable/reverse.js";
+import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
+import { isNumber } from "@jasonsbarr/functional-core/lib/predicates/isNumber.js";
+import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction.js";
+import { isString } from "@jasonsbarr/functional-core/lib/predicates/isString.js";
+import { localeCompare } from "@jasonsbarr/functional-core/lib/string/localeCompare.js";
+import { fromEntries } from "@jasonsbarr/functional-core/lib/object/fromEntries.js";
+import { isBool } from "@jasonsbarr/functional-core/lib/predicates/isBool.js";
+import { reverse as reverseI } from "@jasonsbarr/iterable/lib/reverse.js";
 
 export const sort = (dict, { key = "", fn = null, reverse = false } = {}) => {
   let es = entries(dict);

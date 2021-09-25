@@ -1,7 +1,7 @@
-import { isNumber } from "@jasonsbarr/functional-core/predicates/isNumber.js";
-import { isBool } from "@jasonsbarr/functional-core/predicates/isBool.js";
-import { isSymbol } from "@jasonsbarr/functional-core/predicates/isSymbol.js";
-import { isString } from "@jasonsbarr/functional-core/predicates/isString.js";
+import { isNumber } from "@jasonsbarr/functional-core/lib/predicates/isNumber.js";
+import { isBool } from "@jasonsbarr/functional-core/lib/predicates/isBool.js";
+import { isSymbol } from "@jasonsbarr/functional-core/lib/predicates/isSymbol.js";
+import { isString } from "@jasonsbarr/functional-core/lib/predicates/isString.js";
 import { reverse } from "./reverse.js";
 
 // assumes all items in iterable are of same type, based on first item in iterable

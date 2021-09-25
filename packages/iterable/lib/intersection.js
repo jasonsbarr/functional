@@ -1,4 +1,4 @@
-import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
 
 export const intersection = curry((iter1, iter2) => {
   let set1 = new Set([...iter1]);

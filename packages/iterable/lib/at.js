@@ -1,5 +1,5 @@
-import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
-import { Option } from "@jasonsbarr/functional-core/types/Option.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
+import { Option } from "@jasonsbarr/functional-core/lib/types/Option.js";
 
 // Returns Option, not value
 export const at = curry((i, iter) => {

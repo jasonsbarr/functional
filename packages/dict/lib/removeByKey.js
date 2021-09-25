@@ -1,4 +1,4 @@
-import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
 import { reject } from "./reject.js";
 
 export const removeByKey = curry((key, dict) =>

@@ -1,6 +1,6 @@
-import { curry } from "@jasonsbarr/functional-core/lambda/curry.js";
-import { equals } from "@jasonsbarr/functional-core/object/equals.js";
-import { Some, None } from "@jasonsbarr/functional-core/types/Option.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
+import { equals } from "@jasonsbarr/functional-core/lib/object/equals.js";
+import { Some, None } from "@jasonsbarr/functional-core/lib/types/Option.js";
 
 // returns Option
 export const find = curry((pred, iter) => {

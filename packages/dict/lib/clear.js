@@ -1,4 +1,4 @@
-import { keys } from "@jasonsbarr/functional-core/object/keys.js";
+import { keys } from "@jasonsbarr/functional-core/lib/object/keys.js";
 import { copy } from "./copy.js";
 
 export const clear = (dict) => {
