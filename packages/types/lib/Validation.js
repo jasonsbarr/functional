@@ -34,7 +34,7 @@ const variantInfos = [
         return Validation.fail(this.value, failMessage);
       },
 
-      // SemiGroup
+      // (Right)SemiGroup
       concat(validation) {
         assert(
           Validation.isValidation(validation),
@@ -79,7 +79,7 @@ const variantInfos = [
         return Validation.of(this.value);
       },
 
-      // SemiGroup
+      // (Left)SemiGroup
       concat(validation) {
         assert(
           Validation.isValidation(validation),
@@ -103,6 +103,10 @@ const representativeMethods = {
       value,
       messages: isArray(message) ? message : [message],
     });
+  },
+
+  succeed(value) {
+    return Validation.Success(value);
   },
 
   of(value) {
