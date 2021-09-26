@@ -83,6 +83,6 @@ All can be imported as standalone functions, or called as static methods on the 
 - `map(fn)`
 - `mapFailure(fn)`
 - `bimap(failFn, successFn)`
-- `fold(failFn, successFn)`
+- `fold(failFn, successFn)` - unlike other Left/Right monads, `fold` here takes the full instance so you have access to both the `value` and `messages` properties
 - `swap(failMessage)` - `failMessage` is applied in the case of swapping a `Success` to a `Failure`
 - `equals(other)`
