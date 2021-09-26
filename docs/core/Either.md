@@ -1,3 +1,5 @@
+# Either Type
+
 Monadic type for computations that can go one of two ways: `Right` for the "happy path" when things go as planned, and `Left` for the "sad path" when they don't.
 
 ## Constructors
@@ -11,7 +13,7 @@ Monadic type for computations that can go one of two ways: `Right` for the "happ
 - `Either.isRight(x)`
 - `Either.isLeft(x)`
 - `Either.isEither(x)`
-- `Either.empty()` - returns an empty `Left`
+- `Either.empty()` - returns an empty `Right`
 
 ## Instance Methods
 

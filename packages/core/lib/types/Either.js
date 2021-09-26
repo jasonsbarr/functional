@@ -54,7 +54,7 @@ export const Either = createType(
     },
 
     empty() {
-      return Either.Left(null);
+      return Either.Right();
     },
 
     isLeft(x) {
