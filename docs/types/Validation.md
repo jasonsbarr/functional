@@ -77,6 +77,7 @@ All can be imported as standalone functions, or called as static methods on the 
 
 ## Instance Methods
 
+- `alt(other)` - a chain of `alt`s returns the first `Success` or last `Failure` found
 - `ap(other)`
 - `concat(validation)`
 - `map(fn)`
