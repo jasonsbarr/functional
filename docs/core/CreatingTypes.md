@@ -48,6 +48,12 @@ const variantInfos = [
 export const HttpStates = createType("HttpStates", variantInfos);
 ```
 
+Now you can create any variant and give it a value using its constructor:
+
+```js
+const error = HttpStates.Error(errorObject);
+```
+
 Let's say you want to create a type to represent an email address. Here's how you might do that:
 
 ```js
