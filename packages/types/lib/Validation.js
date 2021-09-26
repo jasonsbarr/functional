@@ -79,6 +79,11 @@ const variantInfos = [
         return Validation.of(this.value);
       },
 
+      // (Left)Fold
+      fold(f, g) {
+        return { ...this, messages: this.messages.map(f) };
+      },
+
       // (Left)SemiGroup
       concat(validation) {
         assert(
