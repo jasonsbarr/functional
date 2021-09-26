@@ -378,3 +378,39 @@ Usage:
 ```js
 const rightNow = now(); // -> right now
 ```
+
+## parse
+
+Parses a string representation of a date and returns the number of milliseconds since the start of the Unix epoch (January 1, 1970 00:00:00:000).
+
+- `parse(dateStr)`
+
+Import:
+
+```js
+import { parse } from "@jasonsbarr/functional-core/lib/date/parse";
+```
+
+Usage:
+
+```js
+const javascriptRelease = parse("04 Dec 1995 00:12:00 GMT"); // -> 818035920000
+```
+
+## setDate
+
+Sets the day of the month of `date` to the specified `dayOfMonth` based on local time.
+
+- `setDate(24, date)`;
+
+Import:
+
+```js
+import { setDate } from "@jasonsbarr/functional-core/lib/date/setDate";
+```
+
+Usage:
+
+```js
+setDate(24, date("December 21, 1970 10:00:30"));
+```
