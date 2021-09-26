@@ -10,11 +10,16 @@ So, for example, if you want to filter an array just import the `filter` functio
 
 ```js
 import { filter } from "@jasonsbarr/functional-core/lib/array/filter";
+import { isEven } from "@jasonsbarr/functional-core/lib/predicates/isEven";
+
+console.log(filter(isEven, [1, 2, 3, 4, 5, 6, 7, 8])); // -> [2, 4, 6, 8]
 ```
+
+Assume all functions are curried and therefore can be partially applied unless otherwise stated.
 
 ## Function Categories
 
-- Array
+- [Array](./Array.md)
 - Boolean
 - Helpers
 - Lambda
