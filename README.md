@@ -28,3 +28,7 @@ Collections includes two indexed collections (List and Tuple) built on the funct
 ### Types
 
 The Types package includes additional algebraic types that are more specific in their use cases than those found in the Core package. The backbone of this package is a collection of Monoid types that shine when used for specific operations.
+
+### Documentation
+
+[Documentation](https://github.com/jasonsbarr/functional/tree/main/docs)

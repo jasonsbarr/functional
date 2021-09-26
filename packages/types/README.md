@@ -1,11 +1,5 @@
-# `@jasonsbarr/types`
+# @jasonsbarr/types
 
-> TODO: description
+A set of functional types and type-related conversions to supplement the core package types.
 
-## Usage
-
-```
-const types = require('@jasonsbarr/types');
-
-// TODO: DEMONSTRATE API
-```
+[Documentation](https://github.com/jasonsbarr/functional/tree/main/docs/types)

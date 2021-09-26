@@ -1,11 +1,5 @@
-# `core`
+# @jasonsbarr/core
 
-> TODO: description
+Core functions and types for functional programming in JavaScript, including a functional, largely curried interface to the JavaScript standard library.
 
-## Usage
-
-```
-const core = require('core');
-
-// TODO: DEMONSTRATE API
-```
+[Documentation](https://github.com/jasonsbarr/functional/tree/main/docs/core)

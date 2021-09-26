@@ -1,11 +1,5 @@
-# `dict`
+# @jasonsbarr/dict
 
-> TODO: description
+A collection of functions that treat Plain Old JavaScript Objects as iterable, keyed collections (a.k.a. Dictionaries).
 
-## Usage
-
-```
-const dict = require('dict');
-
-// TODO: DEMONSTRATE API
-```
+[Documentation](https://github.com/jasonsbarr/functional/tree/main/docs/dict)

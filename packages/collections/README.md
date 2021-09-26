@@ -1,11 +1,5 @@
-# `collections`
+# @jasonsbarr/collections
 
-> TODO: description
+Iterable collections in JavaScript with functionalities that far outstrip the native capabilities of JavaScript Arrays, Objects, and Maps.
 
-## Usage
-
-```
-const collections = require('collections');
-
-// TODO: DEMONSTRATE API
-```
+[Documentation](https://github.com/jasonsbarr/functional/tree/main/docs/collections)

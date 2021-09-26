@@ -1,11 +1,5 @@
-# `iterable`
+# @jasonsbarr/iterable
 
-> TODO: description
+A collection of iterable functions that work equally well on plain JavaScript arrays and other indexed iterables that implement a simple specification: they have a `constructor` method that doesn't take the `new` keyword.
 
-## Usage
-
-```
-const iterable = require('iterable');
-
-// TODO: DEMONSTRATE API
-```
+[Documentation](https://github.com/jasonsbarr/functional/tree/main/docs/iterable)
