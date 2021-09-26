@@ -31,7 +31,7 @@ import { filter } from "@jasonsbarr/functional-core/lib/array/filter";
 ## Available Types
 
 - Either
-- Future
+- [Future](./Future.md)
 - Id
 - Option
 - Record
