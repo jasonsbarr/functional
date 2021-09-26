@@ -33,7 +33,7 @@ import { filter } from "@jasonsbarr/functional-core/lib/array/filter";
 - [Either](./Either.md)
 - [Future](./Future.md)
 - [Id](./Id.md)
-- Option
+- [Option](./Option.md)
 - Record
 - Result
 
