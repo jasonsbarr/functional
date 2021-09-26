@@ -26,4 +26,4 @@ import { Id } from "@jasonsbarr/functional-core/lib/types/Id";
 - `inspect()`
 - `concat(other)`
 - `ap(other)` - applies a function lifted into `other`, an `Id`, to an argument also wrapped in an `Id`
-- `toString()`
+- `equals(other)`

@@ -2,6 +2,7 @@
 import { concatValues } from "../helpers/concatValues.js";
 import { equals } from "../object/equals.js";
 import { identity } from "../helpers/identity.js";
+import { eq } from "../predicates/eq.js";
 
 export const Fold = {
   fold(f) {
@@ -75,8 +76,8 @@ export const RightSemiGroup = {
 export const Setoid = {
   equals(x) {
     return (
-      this.type === x.type &&
-      this.variant === x.variant &&
+      eq(this.type, x.type) &&
+      eq(this.variant, x.variant) &&
       equals(this.value, x.value)
     );
   },

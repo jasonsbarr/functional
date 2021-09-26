@@ -36,4 +36,4 @@ All instances have these regardless of whether they're a `Right` or `Left`.
 - `alt(other)` - returns either the first `Right` in a chain of `alt`s or the last `Left`
 - `bimap(leftFunc, rightFunc)`
 - `bichain(leftFunc, rightFunc)`
-- `toString()`
+- `equals(other)`

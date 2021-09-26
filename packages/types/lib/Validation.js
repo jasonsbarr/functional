@@ -9,10 +9,12 @@ import {
   RightFold,
   Functor,
   Monoid,
+  RightAlt,
   RightBifunctor,
   SemiGroup,
   Setoid,
   Swap,
+  LeftAlt,
   LeftApply,
   LeftBifunctor,
   LeftChain,
@@ -21,13 +23,22 @@ import {
   LeftSemiGroup,
 } from "@jasonsbarr/functional-core/lib/types/typeClasses.js";
 import { isArray } from "@jasonsbarr/functional-core/lib/predicates/isArray.js";
-import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction.js";
 import { assert } from "@jasonsbarr/functional-core/lib/helpers/assert.js";
 
 const variantInfos = [
   VariantInfo(
     "Success",
-    [Apply, Chain, RightFold, Functor, RightBifunctor, SemiGroup, Setoid, Swap],
+    [
+      Apply,
+      Chain,
+      RightFold,
+      RightAlt,
+      Functor,
+      RightBifunctor,
+      SemiGroup,
+      Setoid,
+      Swap,
+    ],
     {
       // Swap
       swap(failMessage) {
@@ -51,6 +62,7 @@ const variantInfos = [
   VariantInfo(
     "Failure",
     [
+      LeftAlt,
       LeftApply,
       LeftBifunctor,
       LeftChain,

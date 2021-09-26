@@ -41,4 +41,4 @@ import { Result, Ok, Err, tryCatch } from "@jasonsbarr/functional-core/lib/types
 - `alt(other)` - a chain of `alt`s returns the first `Ok` or the last `Err`
 - `bimap(errFunc, okFunc)`
 - `bichain(errFunc, okFunc)`
-- `toString()`
+- `equals(other)`

@@ -40,7 +40,7 @@ import { Option, Some, None, safe } from "@jasonsbarr/functional-core/lib/types/
 - `alt(other)` - a chain of `alt`s returns either the first `Some` or the last `None`
 - `bimap(noneFunc, someFunc)`
 - `bichain(noneFunc, someFunc)`
-- `toString()`
+- `equals(other)`
 
 ## Functions
 
