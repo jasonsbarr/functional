@@ -153,7 +153,7 @@ export const HttpStates = createType("HttpStates", variantInfos, [Applicative, M
     empty() {
         return HttpStates.Pending();
     }
-})
+});
 ```
 
 Note that if all you wanted was 3 variants and the ability to attach a value to each variant instance, all you would need to pass to `VariantInfo` would be a string of the variant name:
