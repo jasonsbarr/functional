@@ -35,6 +35,8 @@ const variantInfos = [
         isAssign(x) {
           return x && isFunction(x.isAssign) && x.isAssign();
         },
+
+        variants: ["Assign"],
       },
     }
   ),

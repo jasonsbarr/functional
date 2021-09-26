@@ -38,6 +38,8 @@ const variantInfos = [
         isMax(x) {
           return x && isFunction(x.isMax) && x.isMax();
         },
+
+        variants: ["Max"],
       },
     }
   ),

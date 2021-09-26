@@ -38,6 +38,8 @@ const variantInfos = [
         isMin(x) {
           return x && isFunction(x.isMin) && x.isMin();
         },
+
+        variants: ["Min"],
       },
     }
   ),

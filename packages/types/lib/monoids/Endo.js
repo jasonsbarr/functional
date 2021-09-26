@@ -40,6 +40,8 @@ const variantInfos = [
         isEndo(x) {
           return x && isFunction(x.isEndo) && x.isEndo();
         },
+
+        variants: ["Endo"],
       },
     }
   ),

@@ -37,6 +37,8 @@ const variantInfos = [
         isProduct(x) {
           return x && isFunction(x.isProduct) && x.isProduct();
         },
+
+        variants: ["Product"],
       },
     }
   ),

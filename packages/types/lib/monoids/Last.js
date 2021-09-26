@@ -40,6 +40,8 @@ const variantInfos = [
         isLast(x) {
           return x && isFunction(x.isLast) && x.isLast();
         },
+
+        variants: ["Last"],
       },
     }
   ),

@@ -37,6 +37,8 @@ const variantInfos = [
         isSum(x) {
           return x && isFunction(x.isSum) && x.isSum();
         },
+
+        variants: ["Sum"],
       },
     }
   ),

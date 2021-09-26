@@ -30,6 +30,8 @@ const variantInfos = [
         isId(x) {
           return x && isFunction(x.isId) && x.isId();
         },
+
+        variants: ["Id"],
       },
     }
   ),

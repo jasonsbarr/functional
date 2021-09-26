@@ -40,6 +40,8 @@ const variantInfos = [
         isFirst(x) {
           return x && isFunction(x.isFirst) && x.isFirst();
         },
+
+        variants: ["First"],
       },
     }
   ),

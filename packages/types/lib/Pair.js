@@ -153,6 +153,8 @@ const variantInfos = [
         isPair(x) {
           return x && isFunction(x.isPair) && x.isPair();
         },
+
+        variants: ["Pair"],
       },
     }
   ),

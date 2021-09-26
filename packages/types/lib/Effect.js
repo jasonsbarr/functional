@@ -66,6 +66,8 @@ const variantInfos = [
         isEffect(x) {
           return x && isFunction(x.isEffect) && x.isEffect();
         },
+
+        variants: ["Effect"],
       },
     }
   ),

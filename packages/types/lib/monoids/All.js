@@ -34,6 +34,8 @@ const variantInfos = [
         isAll(x) {
           return x && isFunction(x.isAll) && x.isAll();
         },
+
+        variants: ["All"],
       },
     }
   ),
