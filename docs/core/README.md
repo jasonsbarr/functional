@@ -39,7 +39,7 @@ import { filter } from "@jasonsbarr/functional-core/lib/array/filter";
 
 ## Creating Your Own Types
 
-To create your own types, use the `createType` function. There are also base type class implementations for several Fantasy Land type classes with default method implementations for several of them.
+To create your own types, use the `createType` function.
 
 To import `createType`:
 
