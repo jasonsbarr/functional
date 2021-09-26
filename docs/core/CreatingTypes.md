@@ -34,6 +34,20 @@ Note that when defining methods for your variant instance, if you need to access
 
 ### Creating a Type
 
+The simplest type creation just involves giving `createType` the name of your type and the names of your variants:
+
+```js
+import { createType, VariantInfo } from "@jasonsbarr/functional-core/lib/types/createType";
+
+const variantInfos = [
+    VariantInfo("Pending"),
+    VariantInfo("Error"),
+    VariantInfo("Success")
+];
+
+export const HttpStates = createType("HttpStates", variantInfos);
+```
+
 Let's say you want to create a type to represent an email address. Here's how you might do that:
 
 ```js
@@ -82,9 +96,9 @@ export const { EmailAddress } = createType("EmailAddress", variantInfos);
 
 ## Creating a Type with Multiple Variants
 
-In the case of multiple variants, you'll want any of the type representative typeclasses and static methods to be defined on the type representative object itself, not on a single variant's constructor. The only information absolutely required to create a variant is the variant's name. The variant constructor will still take a value and make it available on the variant object as its `value` property.
+In the case of multiple variants, you'll want any of the type representative typeclasses and static methods to be defined on the type representative object itself, not on a single variant's constructor.
 
-For example, let's create a union type to represent the possible states of an HTTP request:
+For example, let's create a union type to represent the possible states of an HTTP request that's a little more detailed than the one above:
 
 ```js
 import { createType, VariantInfo } from "@jasonsbarr/functional-core/lib/types/createType";
@@ -154,18 +168,6 @@ export const HttpStates = createType("HttpStates", variantInfos, [Applicative, M
         return HttpStates.Pending();
     }
 });
-```
-
-Note that if all you wanted was 3 variants and the ability to attach a value to each variant instance, all you would need to pass to `VariantInfo` would be a string of the variant name:
-
-```js
-const variantInfos = [
-    VariantInfo("Pending"),
-    VariantInfo("Error"),
-    VariantInfo("Success")
-];
-
-export const HttpStates = createType("HttpStates", variantInfos);
 ```
 
 ## Type Classes
