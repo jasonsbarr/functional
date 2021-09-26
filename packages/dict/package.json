@@ -18,7 +18,7 @@
     "lib"
   ],
   "author": "Jason Barr <jason@jasonsbarr.com>",
-  "homepage": "https://github.com/jasonsbarr/functional/wiki",
+  "homepage": "https://github.com/jasonsbarr/functional/tree/main/packages/dict",
   "license": "MIT",
   "repository": {
     "type": "git",

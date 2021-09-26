@@ -14,7 +14,7 @@
     "lib"
   ],
   "author": "Jason Barr <jason.barr@metronetinc.com>",
-  "homepage": "https://github.com/jasonsbarr/functional/wiki",
+  "homepage": "https://github.com/jasonsbarr/functional/tree/main/packages/core",
   "license": "MIT",
   "main": "index.js",
   "repository": {

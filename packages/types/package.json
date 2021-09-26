@@ -16,7 +16,7 @@
     "lib"
   ],
   "author": "Jason Barr <jason@jasonsbarr.com>",
-  "homepage": "https://github.com/jasonsbarr/functional/wiki",
+  "homepage": "https://github.com/jasonsbarr/functional/tree/main/packages/types",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
