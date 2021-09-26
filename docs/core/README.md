@@ -20,7 +20,8 @@ Assume all functions are curried and therefore can be partially applied unless o
 ## Function Categories
 
 - [Array](./Array.md)
-- Boolean
+- [Boolean](./Boolean.md)
+- [Date](./Date.md)
 - Helpers
 - Lambda
 - Math
