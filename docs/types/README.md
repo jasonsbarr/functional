@@ -8,23 +8,20 @@ import { Pair } from "@jasonsbarr/types/lib/Pair";
 
 ## Available Types
 
-- Effect
-- Iso
-- Pair
-- [Validation](./Validation.md)
-
-### Monoids
-
 - All
 - Any
 - Assign
+- Effect
 - Endo
 - First
+- Iso
 - Last
 - Max
 - Min
+- Pair
 - Product
 - Sum
+- [Validation](./Validation.md)
 
 ## Type Conversion Functions
 
