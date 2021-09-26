@@ -42,6 +42,10 @@ const variantInfos = [
         );
         return validation;
       },
+
+      fold(f, g) {
+        return g(this);
+      },
     }
   ),
   VariantInfo(

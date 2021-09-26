@@ -40,7 +40,7 @@ const passwordFieldChange = (event) => {
                 setPassFieldState(value);
                 setPassFieldErrors(messages);
             },
-            (value) => {
+            ({ value }) => {
                 setPassFieldState(value);
                 setPassFieldErrors([]);
             }
