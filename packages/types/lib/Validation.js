@@ -93,6 +93,12 @@ const variantInfos = [
         }
         return this;
       },
+
+      // (Left)Bifunctor
+      bimap(failFn, successFn) {
+        const failures = this.messages.map(failFn);
+        return Validation.fail(this.value, failures);
+      },
     }
   ),
 ];
@@ -124,3 +130,5 @@ export const Validation = createType(
   [Applicative, Monoid],
   representativeMethods
 );
+
+export const { succeed, fail, Success, Failure } = Validation;
