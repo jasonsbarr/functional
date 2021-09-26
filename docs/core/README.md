@@ -26,7 +26,7 @@ import { filter } from "@jasonsbarr/functional-core/lib/array/filter";
 - String
 - Symbol
 - Type conversions
-- Type creation and matching
+- [Type creation and matching](./CreatingTypes.md)
 
 ## Available Types
 
@@ -34,8 +34,8 @@ import { filter } from "@jasonsbarr/functional-core/lib/array/filter";
 - [Future](./Future.md)
 - [Id](./Id.md)
 - [Option](./Option.md)
-- [Record](Record.md)
-- [Result](Result.md)
+- [Record](./Record.md)
+- [Result](./Result.md)
 
 ## Creating Your Own Types
 
