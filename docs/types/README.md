@@ -11,7 +11,7 @@ import { Pair } from "@jasonsbarr/types/lib/Pair";
 - Effect
 - Iso
 - Pair
-- Validation
+- [Validation](./Validation.md)
 
 ### Monoids
 
