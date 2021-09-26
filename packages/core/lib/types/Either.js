@@ -64,6 +64,10 @@ export const Either = createType(
     isRight(x) {
       return x && isFunction(x.isRight) && x.isRight();
     },
+
+    isEither(x) {
+      return x && isFunction(x.isEither) && x.isEither();
+    },
   }
 );
 

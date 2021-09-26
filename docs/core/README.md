@@ -30,7 +30,7 @@ import { filter } from "@jasonsbarr/functional-core/lib/array/filter";
 
 ## Available Types
 
-- Either
+- [Either](./Either.md)
 - [Future](./Future.md)
 - Id
 - Option
