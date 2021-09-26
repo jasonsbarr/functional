@@ -33,7 +33,7 @@ const isPasswordValid = (password) =>
         .concat(isPasswordLongEnough(password))
         .concat(doesPasswordContainSpecialChars(password))
 
-const passwordFieldChange = (event) => {
+const handlePasswordFieldChange = (event) => {
     isPasswordValid(event.target.value)
         .fold(
             ({ value, messages }) => {
@@ -52,7 +52,7 @@ export default function PasswordField() {
     return (
         <div className="form-control">
             {length(passFieldErrors) && <p className="error">{passFieldErrors[0]}</p>}
-            <input type="password" value={passFieldState} />
+            <input type="password" value={passFieldState} onChange={handlePasswordFieldChange} />
         </div>
     );
 }
