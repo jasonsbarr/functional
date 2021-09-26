@@ -1,8 +1,9 @@
+import { curry } from "../lambda/curry.js";
 import { boolean } from "../type/boolean.js";
 
-export const assert = (expr) => {
+export const assert = curry((expr, errorMsg) => {
   if (boolean(expr)) {
     return true;
   }
-  throw new Error("Expected true expression, got false");
-};
+  throw new Error(errorMsg);
+});

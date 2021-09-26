@@ -21,6 +21,8 @@ import {
   LeftSemiGroup,
 } from "@jasonsbarr/functional-core/lib/types/typeClasses.js";
 import { isArray } from "@jasonsbarr/functional-core/lib/predicates/isArray.js";
+import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction.js";
+import { assert } from "@jasonsbarr/functional-core/lib/helpers/assert.js";
 
 const variantInfos = [
   VariantInfo(
@@ -29,10 +31,16 @@ const variantInfos = [
     {
       // Swap
       swap(failMessage) {
-        return Validation.Failure({
-          value: this.value,
-          messages: [failMessage],
-        });
+        return Validation.fail(this.value, failMessage);
+      },
+
+      // SemiGroup
+      concat(validation) {
+        assert(
+          Validation.isValidation(validation),
+          "Argument to validation.concat must be another Validation type"
+        );
+        return validation;
       },
     }
   ),
@@ -50,32 +58,46 @@ const variantInfos = [
     ],
     {
       init() {
-        const { value, message } = this.value;
-        if (!value || !message) {
-          throw new Error(
-            "Validation.Failure constructor takes an object with value and message fields"
-          );
-        }
+        const { value, messages } = this.value;
+        assert(
+          value && messages,
+          "Validation.Failure constructor takes an object with value and message fields"
+        );
         // this.value is the field value
         this.value = value;
         // this.messages aggregates error messages
-        this.messages = isArray(message) ? message : [message];
+        this.messages = isArray(messages) ? messages : [messages];
       },
 
       mapFailure(fn) {
         const failures = this.messages.map(fn);
-        return Validation.Failure({ value: this.value, messages: failures });
+        return Validation.fail(this.value, failures);
       },
 
       // Swap
       swap(failMessage) {
-        return Validation.Success(this.value);
+        return Validation.of(this.value);
+      },
+
+      // SemiGroup
+      concat(validation) {
+        assert(
+          Validation.isValidation(validation),
+          "Argument to validation.concat must be another Validation type"
+        );
+        if (validation.isFailure()) {
+          return Validation.fail(
+            this.value,
+            this.messages.concat(validation.messages)
+          );
+        }
+        return this;
       },
     }
   ),
 ];
 
-const constructorMethods = {
+const representativeMethods = {
   fail(value, message) {
     return Validation.Failure({
       value,
@@ -88,7 +110,7 @@ const constructorMethods = {
   },
 
   empty() {
-    return Validation.Success("");
+    return Validation.of("");
   },
 };
 
@@ -96,5 +118,5 @@ export const Validation = createType(
   "Validation",
   variantInfos,
   [Applicative, Monoid],
-  constructorMethods
+  representativeMethods
 );
