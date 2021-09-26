@@ -81,7 +81,7 @@ const variantInfos = [
 
       // (Left)Fold
       fold(f, g) {
-        return { ...this, messages: this.messages.map(f) };
+        return f(this);
       },
 
       // (Left)SemiGroup
