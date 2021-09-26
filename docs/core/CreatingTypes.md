@@ -118,7 +118,11 @@ const variantInfos = [
                 // type predicate uses a method automatically created on the variant instance
                 isEmailAddress(x) {
                     return x && isFunction(x.isEmailAddress) && x.isEmailAddress();
-                }
+                },
+
+                // this is necessary if you want to be able to use switchType on the type, since
+                // we're treating the constructor as if it were the type representative
+                variants: ["EmailAddress"]
             }
         }
     )
@@ -126,8 +130,6 @@ const variantInfos = [
 
 export const { EmailAddress } = createType("EmailAddress", variantInfos);
 ```
-
-Note that, as created above, the extracted `EmailAddress` constructor will _not_ work properly with `switchType`.
 
 ## Creating a Type with Multiple Variants
 
