@@ -30,8 +30,8 @@ const doesPasswordContainSpecialChars = (password) =>
 
 const isPasswordValid = (password) =>
     Validation.empty()
-        .concat(isPasswordLongEnough)
-        .concat(doesPasswordContainSpecialChars)
+        .concat(isPasswordLongEnough(password))
+        .concat(doesPasswordContainSpecialChars(password))
 
 const passwordFieldChange = (event) => {
     isPasswordValid(event.target.value)
