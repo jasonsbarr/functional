@@ -68,14 +68,14 @@ switchType(
     HttpStates,
     {
         Pending: () => console.log("Still pending!"),
-        Error: (error) => console.error(error),
-        Success: (value) => console.log(value)
+        Error: ({ value: error }) => console.error(error),
+        Success: ({ value }) => console.log(value)
     },
     instance
 );
 ```
 
-`switchType` takes the type representative object, an object with a function to dispatch for each possible variant, and the type instance itself. If you need a return value, it returns the value returned by the function executed on match.
+`switchType` takes the type representative object, an object with a function to dispatch for each possible variant, and the type instance itself. When dispatching a function it passes the variant instance itself into the function. If you need a return value, it returns the value returned by the function executed on match.
 
 Note that matching is exhaustively checked at runtime - you _must_ provide a case for _every_ possible variant.
 
