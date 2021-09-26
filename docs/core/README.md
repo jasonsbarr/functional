@@ -34,8 +34,8 @@ import { filter } from "@jasonsbarr/functional-core/lib/array/filter";
 - [Future](./Future.md)
 - [Id](./Id.md)
 - [Option](./Option.md)
-- Record
-- Result
+- [Record](Record.md)
+- [Result](Result.md)
 
 ## Creating Your Own Types
 

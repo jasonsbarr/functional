@@ -4,6 +4,12 @@ Type that allows you to handle `null`, `undefined`, and `NaN` values without hav
 
 Several functions in the functional-core package that can return `null` or `undefined` in the standard JavaScript library return `Option` types instead.
 
+## Importing Option
+
+```js
+import { Option, Some, None, safe } from "@jasonsbarr/functional-core/lib/types/Option";
+```
+
 ## Type Representative
 
 - `Option`

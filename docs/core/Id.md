@@ -2,6 +2,12 @@
 
 Monadic type for putting values in a "box" so you can `map` and compose functionally over them.
 
+## Importing Id
+
+```js
+import { Id } from "@jasonsbarr/functional-core/lib/types/Id";
+```
+
 ## Constructors
 
 - `Id(x)`

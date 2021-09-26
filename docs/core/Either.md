@@ -2,6 +2,12 @@
 
 Monadic type for computations that can go one of two ways: `Right` for the "happy path" when things go as planned, and `Left` for the "sad path" when they don't.
 
+## Importing Either
+
+```js
+import { Either, Right, Left } from "@jasonsbarr/functional-core/lib/types/Either";
+```
+
 ## Constructors
 
 - `Right(x)` - creates a `Right` wrapping `x`
