@@ -18,7 +18,9 @@ A union type has two parts: the type representative and variants. The variant co
 
 A variant instance has a `value` property that holds whatever single value is passed to its constructor. In your variant info, you can provide an `init` method to manipulate this value, do data validation, and anything else you need to do with it. An example is provided below.
 
-Variant instances also automatically get the type name, the variant name, a predicate identifying it as an instance of the type, another predicate for the variant, and `inspect` and `toString` methods.
+Variant instances also automatically get the type name, the variant name, a predicate identifying it as an instance of the type, another predicate for the variant, a `valueOf` method to get the value, and `inspect` and `toString` methods.
+
+Using `valueOf` is discouraged except in the case of single-variant types in favor of using a `fold` method or the `switchType` function, but it's there if you need it.
 
 ## Providing Your Variant Info
 
@@ -32,7 +34,7 @@ import { VariantInfo } from "@jasonsbarr/functional-core/lib/types/createType";
 
 Note that when defining methods for your variant instance, if you need to access `this` you'll need to define your method as either a `function` function or using the shorthand method syntax available from ES2015. Due to how arrow functions work, trying to access `this` in an arrow function will cause an error.
 
-### Creating a Type
+## Creating a Type
 
 The simplest type creation just involves giving `createType` the name of your type and the names of your variants:
 
@@ -53,6 +55,31 @@ Now you can create any variant and give it a value using its constructor:
 ```js
 const error = HttpStates.Error(errorObject);
 ```
+
+## Matching on a Type
+
+To match on a type and extract its value, use the `switchType` function:
+
+```js
+import { switchType } from "@jasonsbarr/functional-core/lib/types/switchType";
+import { HttpStates } from "./HttpStates";
+
+switchType(
+    HttpStates,
+    {
+        Pending: () => console.log("Still pending!"),
+        Error: (error) => console.error(error),
+        Success: (value) => console.log(value)
+    },
+    instance
+);
+```
+
+`switchType` takes the type representative object, an object with a function to dispatch for each possible variant, and the type instance itself. If you need a return value, it returns the value returned by the function executed on match.
+
+Note that matching is exhaustively checked at runtime - you _must_ provide a case for _every_ possible variant.
+
+## Creating a More Complex Type
 
 Let's say you want to create a type to represent an email address. Here's how you might do that:
 
@@ -99,6 +126,8 @@ const variantInfos = [
 
 export const { EmailAddress } = createType("EmailAddress", variantInfos);
 ```
+
+Note that, as created above, the extracted `EmailAddress` constructor will _not_ work properly with `switchType`.
 
 ## Creating a Type with Multiple Variants
 
