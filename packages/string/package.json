@@ -1,6 +1,7 @@
 {
   "name": "@jasonsbarr/string",
   "version": "0.0.1",
+  "type": "module",
   "description": "String functions and a supercharged string wrapper type",
   "keywords": [
     "string"
