@@ -1,0 +1,31 @@
+{
+  "name": "@jasonsbarr/string",
+  "version": "0.0.1",
+  "description": "String functions and a supercharged string wrapper type",
+  "keywords": [
+    "string"
+  ],
+  "author": "Jason Barr <jason@jasonsbarr.com>",
+  "homepage": "https://github.com/jasonsbarr/functional/wiki/tree/main/packages/string",
+  "license": "MIT",
+  "main": "lib/string.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonsbarr/functional.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/jasonsbarr/functional/issues"
+  }
+}
