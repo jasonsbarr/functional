@@ -102,9 +102,39 @@ Slices a `Str` from `index` to the end. Returns a `Str`.
 
 ### includes
 
-Returns `true` if the `Str` value includes `subStr`. Works with either a string or `Str` as argument.
+Returns `true` if the `Str` value includes `subStr` starting at `startIndex`. Works with either a string or `Str` as argument.
 
-- `str.includes(subStr)`
+- `str.includes(subStr, startIndex)`
+
+### includesFromStart
+
+Returns `true` if the `Str` value includes `subStr` starting from the beginning. Works with either a string or a `Str` as argument.
+
+- `str.includesFromStart(subStr)`
+
+### indexOf
+
+Returns an `Option` of the index at which `subStr` is found, starting at `startIndex`. Works with either a string or a `Str` as argument.
+
+- `str.indexOf(subStr, startIndex)`
+
+### indexOfFromStart
+
+Returns an `Option` of the index at which `subStr` is found, starting at the beginning. Works with either a string or a `Str`.
+
+- `str.indexOfFromStart(subStr)`
+
+### lastIndexOf
+
+Returns an `Option` of the last index at which `subStr` is found, starting at `startIndex`. Works with either a string or a `Str`.
+
+- `str.lastIndexOf(subStr, startIndex)`
+
+### localeCompare
+
+Returns 1, -1, or 0 after comparing `str` with `other` based on locale information. Works with either a string or a `Str`.
+
+- `str.localeCompare(other)`
 
 ### splitGrapheme
 

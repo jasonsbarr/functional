@@ -78,12 +78,78 @@ import { from } from "@jasonsbarr/functional-core/lib/string/from";
 
 ## includes
 
-Returns `true` if `string` contains `subStr`.
+Returns `true` if `string` contains `subStr` starting at `startIndex`.
 
-- `includes(subStr, string)`
+- `includes(subStr, startIndex, string)`
 
 Import:
 
 ```js
 import { includes } from "@jasonsbarr/functional-core/lib/string/includes";
 ```
+
+## includesFromStart
+
+Returns `true` if `string` contains `subStr` starting from the beginning of the string.
+
+- `includes(subStr, string)`
+
+Import:
+
+```js
+import { includesFromStart } from "@jasonsbarr/functional-core/lib/string/includesFromStart";
+```
+
+## indexOf
+
+Returns `Option` of the index at which `subStr` is found, starting with `startIndex`.
+
+- `indexOf(subStr, startIndex, string)`
+
+Import:
+
+```js
+import { indexOf } from "@jasonsbarr/functional-core/lib/string/indexOf";
+```
+
+## indexOfFromStart
+
+Returns `Option` of the index at which `subStr` is found, starting from the beginning of the string.
+
+- `indexOfFromStart(subStr)`
+
+Import:
+
+```js
+import { indexOfFromStart } from "@jasonsbarr/functional-core/lib/string/indexOfFromStart";
+```
+
+## lastIndexOf
+
+Returns `Option` of the last index at which `subStr` is found, starting from `startIndex`.
+
+- `lastIndexOf(subStr, startIndex, string)`
+
+Import:
+
+```js
+import { lastIndexOf } from "@jasonsbarr/functional-core/lib/string/lastIndexOf";
+```
+
+## toUpperCase
+
+Converts `string` to all uppercase.
+
+- `toUpperCase(string)`
+
+Import:
+
+```js
+import { toUpperCase } from "@jasonsbarr/functional-core/lib/string/toUpperCase";
+```
+
+## localeCompare
+
+Compares `other` with `string` based on locale information. Returns 1 if `string` > `other`, - 1 if `other` > `string`, and 0 if they are equal.
+
+- `localeCompare(other, string)`

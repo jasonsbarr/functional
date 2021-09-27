@@ -21,6 +21,13 @@ import { from } from "@jasonsbarr/functional-core/lib/string/from.js";
 import { fromCharCode } from "@jasonsbarr/functional-core/lib/string/fromCharCode.js";
 import { fromCodePoint } from "@jasonsbarr/functional-core/lib/string/fromCodePoint.js";
 import { includes } from "@jasonsbarr/functional-core/lib/string/includes.js";
+import { includesFromStart } from "@jasonsbarr/functional-core/lib/string/includesFromStart.js";
+import { indexOf } from "@jasonsbarr/functional-core/lib/string/indexOf.js";
+import { indexOfFromStart } from "@jasonsbarr/functional-core/lib/string/indexOfFromStart.js";
+import { lastIndexOf } from "@jasonsbarr/functional-core/lib/string/lastIndexOf.js";
+import { lastIndexOfFromEnd } from "@jasonsbarr/functional-core/lib/string/lastIndexOfFromEnd.js";
+import { length } from "@jasonsbarr/functional-core/lib/string/length.js";
+import { localeCompare } from "@jasonsbarr/functional-core/lib/string/localeCompare.js";
 import { splitGrapheme } from "./splitGrapheme.js";
 import { toUpperCase } from "@jasonsbarr/functional-core/lib/string/toUpperCase.js";
 
@@ -68,11 +75,53 @@ const strProto = {
     return this.map(from(index));
   },
 
-  includes(subStr) {
+  includes(subStr, start) {
     if (isString(subStr)) {
-      return this.fold(includes(subStr));
+      return this.fold(includes(subStr, start));
     }
-    return this.fold(includes(subStr.value));
+    return this.fold(includes(subStr.value, start));
+  },
+
+  includesFromStart(subStr) {
+    if (isString(subStr)) {
+      return this.fold(includesFromStart(subStr, this.value));
+    }
+    return this.fold(includesFromStart(subStr.value, this.value));
+  },
+
+  indexOf(subStr, startIndex) {
+    if (isString(subStr)) {
+      return this.fold(indexOf(subStr, startIndex));
+    }
+    return this.fold(indexOf(subStr.value, startIndex));
+  },
+
+  indexOfFromStart(subStr) {
+    if (isString(subStr)) {
+      return this.fold(indexOfFromStart(subStr));
+    }
+    return this.fold(indexOfFromStart(subStr.value));
+  },
+
+  lastIndexOf(subStr, startIndex) {
+    if (isString(subStr)) {
+      return this.fold(lastIndexOf(subStr, startIndex));
+    }
+    return this.fold(lastIndexOf(subStr.value, startIndex));
+  },
+
+  lastIndexOfFromEnd(subStr) {
+    if (isString(subStr)) {
+      return this.fold(lastIndexOfFromEnd(subStr));
+    }
+    return this.fold(lastIndexOfFromEnd(subStr.value));
+  },
+
+  localeCompare(other) {
+    if (isString(other)) {
+      return this.fold(localeCompare(other));
+    }
+    return this.fold(localeCompare(other.value));
   },
 
   splitGrapheme() {
@@ -106,6 +155,13 @@ export const Str = (string) => {
     configurable: false,
     enumerable: false,
     value: string,
+  });
+
+  definePropWithOpts("length", str, {
+    writable: false,
+    configurable: false,
+    enumerable: false,
+    value: length(string),
   });
 
   definePropWithOpts("constructor", str, {
