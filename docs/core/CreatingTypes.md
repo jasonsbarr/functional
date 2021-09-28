@@ -84,11 +84,11 @@ Note that matching is exhaustively checked at runtime - you _must_ provide a cas
 When you create a type, the type representative object and variant instances automatically get the following methods:
 
 - Type representative
-    - ["is" + typeName](x) - predicate that takes a value, `x`, and checks if `x` is an instance of the type
-    - ["is" + variantName](x) - for each variant, checks if `x` is an instance of that particular variant
+    - "is" + typeName(x) - predicate that takes a value, `x`, and checks if `x` is an instance of the type
+    - "is" + variantName(x) - for each variant, checks if `x` is an instance of that particular variant
 - Variant instance
-    - ["is" + typeName]() - predicate that returns `true` because it is an instance of `typeName`
-    - ["is" + variantName]() - only for its variant, predicate that returns `true` because it is an instance of `variantName`
+    - "is" + typeName() - predicate that returns `true` because it is an instance of `typeName`
+    - "is" + variantName() - only for its variant, predicate that returns `true` because it is an instance of `variantName`
     - valueOf() - returns the `value` property of the variant object
     - inspect() - returns a string representation of the variant
     - toString() - alias for `inspect`
