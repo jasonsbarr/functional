@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/dict",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Functions that treat plain JS objects like iterable, immutable dictionaries",
   "keywords": [
@@ -31,8 +31,8 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/functional-core": "^0.1.0",
-    "@jasonsbarr/iterable": "^0.1.0"
+    "@jasonsbarr/functional-core": "^0.1.1",
+    "@jasonsbarr/iterable": "^0.1.1"
   },
   "gitHead": "2e0e8c79689f8f32fedb984818da634bd663a265"
 }
