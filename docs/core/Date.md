@@ -14,7 +14,7 @@ Constructs a new `Date` object.
 - `date(number)` - creates a `Date` from `number` as a timestamp in milliseconds since 1/1/1970 00:00:00 UTC.
 - `date(year)` - values from 0-99 map to 1900-1999; for years in other centuries use the full 4-digit year.
 - `date(year, month)` - `month` is indexed from 0 (January) to 11 (December); numbers greater than 11 will be added to the date. Defaults to 0.
-    - e.g. `date(1990, 12)` will return the `Date` for January 1, 1991 at 00:00:00 UTC.
+  - e.g. `date(1990, 12)` will return the `Date` for January 1, 1991 at 00:00:00 UTC.
 - `date(year, month, day)' - `day` is the integer day of the month, starting with 1. Defaults to 1.
 - `date(year, month, day, hour)` - `hour` is an integer from 0 to 23. Defaults to 0.
 - `date(year, month, day, hour, minute)` - `minute` is an integer ranging from 0-59. Defaults to 0,
@@ -34,6 +34,24 @@ Usage:
 const moonLanding = date("July 20, 1969 00:20:18:123");
 ```
 
+## dateFrom
+
+Converts the timestamp returned by the set functions below into a Date object and returns it.
+
+- `dateFrom(dateFn, arg, date)`
+
+Import:
+
+```js
+import { dateFrom } from "@jasonsbarr/functional-core/lib/date/dateFrom";
+```
+
+Usage:
+
+```js
+const newDate = dateFrom(setFullYear, 2011, someDateObject);
+```
+
 ## getDate
 
 Returns the day of the month for `date` as an integer according to local time.
@@ -43,7 +61,7 @@ Returns the day of the month for `date` as an integer according to local time.
 Import:
 
 ```js
-import { getDate }  from "@jasonsbarr/functional-core/lib/date/getDate";
+import { getDate } from "@jasonsbarr/functional-core/lib/date/getDate";
 ```
 
 Usage:
@@ -61,7 +79,7 @@ Returns the day of the week as an integer from 0 (Sunday) to 6 (Saturday).
 Import:
 
 ```js
-import { getDay }  from "@jasonsbarr/functional-core/lib/date/getDay";
+import { getDay } from "@jasonsbarr/functional-core/lib/date/getDay";
 ```
 
 Usage:
@@ -79,7 +97,7 @@ Returns the year of `date` as an integer.
 Import:
 
 ```js
-import { getFullYear }  from "@jasonsbarr/functional-core/lib/date/getFullYear";
+import { getFullYear } from "@jasonsbarr/functional-core/lib/date/getFullYear";
 ```
 
 Usage:
@@ -401,7 +419,7 @@ const javascriptRelease = parse("04 Dec 1995 00:12:00 GMT"); // -> 818035920000
 
 Sets the day of the month of `date` to the specified `dayOfMonth` based on local time.
 
-- `setDate(24, date)`;
+- `setDate(day, date)`;
 
 Import:
 
@@ -413,4 +431,209 @@ Usage:
 
 ```js
 setDate(24, date("December 21, 1970 10:00:30"));
+```
+
+## setFullYear
+
+Sets the year of `date` to the specified integer `year` based on local time. Returns a new timestamp (number).
+
+- `setFullYear(year, date)`
+
+Import:
+
+```js
+import { setFullYear } from "@jasonsbarr/functional-core/lib/date/setFullYear";
+```
+
+Usage:
+
+```js
+const event = date("January 27, 1975 10:30:00");
+setFullYear(1980, event);
+```
+
+## setHours
+
+Sets the hours of `date` to the specified integer `hours` based on local time. Returns a new timestamp.
+
+- `setHours(hours, date)`
+
+Import:
+
+```js
+import { setHours } from "@jasonsbarr/functional-core/lib/date/setHours";
+```
+
+Usage:
+
+```js
+setHours(15, event);
+```
+
+## setMilliseconds
+
+Sets the milliseconds of `date` to an integer `ms` based on local time. Returns a new timestamp.
+
+- `setMilliseconds(ms, date)`
+
+Import:
+
+```js
+import { setMilliseconds } from "@jasonsbarr/functional-core/lib/date/setMilliseconds";
+```
+
+Usage:
+
+```js
+setMilliseconds(123, event);
+```
+
+## setMinutes
+
+Sets the minutes of `date` to an integer `minutes` based on local time. Returns a new timestamp.
+
+- `setMinutes(minutes, date)`
+
+Import:
+
+```js
+import { setMinutes } from "@jasonsbarr/functional-core/lib/date/setMinutes";
+```
+
+Usage:
+
+```js
+setMinutes(15, event);
+```
+
+## setMonth
+
+Sets the month of `date` to an integer `month` between 0 (January) and 11 (December). Returns a new timestamp.
+
+- `setMonth(month, date)`
+
+Import:
+
+```js
+import { setMonth } from "@jasonsbarr/functional-core/lib/date/setMonth";
+```
+
+Usage:
+
+```js
+setMonth(8, event);
+```
+
+## setSeconds
+
+Sets the seconds of `date` to the integer `seconds` according to local time. Returns a new timestamp.
+
+- `setSeconds(seconds, date)`
+
+Import:
+
+```js
+import { setSeconds } from "@jasonsbarr/functional-core/lib/date/setSeconds";
+```
+
+Usage:
+
+```js
+setSeconds(15, event);
+```
+
+## setTime
+
+Sets the timestamp of a Date object to the specified number of milliseconds since the Unix epoch (Jan. 1, 1970 00:00:00).
+
+- `setTime(ms, date)`
+
+Import:
+
+```js
+import { setTime } from "@jasonsbarr/functional-core/lib/date/setTime";
+```
+
+## setUTCDate
+
+Sets the day of the month for `date` according to UTC time. Returns a new timestamp.
+
+- `setUTCDate(day, date);
+
+Import:
+
+```js
+import { setUTCDate } from "@jasonsbarr/functional-core/lib/date/setUTCDate";
+```
+
+## setUTCFullYear
+
+Sets the 4-digit year for `date` according to UTC time. Returns a new timestamp.
+
+- `setUTCFullYear(year, date)`
+
+Import:
+
+```js
+import { setUTCFullYear } from "@jasonsbarr/functional-core/lib/date/setUTCFullYear";
+```
+
+## setUTCHours
+
+Sets the hours for `date` according to UTC time. Returns a new timestamp.
+
+- `setUTCHours(hour, date)`
+
+Import:
+
+```js
+import { setUTCHours } from "@jasonsbarr/functional-core/lib/date/setUTCHours";
+```
+
+## setUTCMilliseconds
+
+Sets the milliseconds for `date` according to UTC time. Returns a new timestamp.
+
+- `setUTCHours(ms, date)`
+
+Import:
+
+```js
+import { setUTCMilliseconds } from "@jasonsbarr/functional-core/lib/date/setUTCMilliseconds";
+```
+
+## setUTCMinutes
+
+Sets the minutes of `date` according to UTC time. Returns a new timestamp.
+
+- `setUTCMinutes(mins, date)`
+
+Import:
+
+```js
+import { setUTCMinutes } from "@jasonsbarr/functional-core/lib/date/setUTCMinutes";
+```
+
+## setUTCMonth
+
+Sets the month of `date` to the specified integer `month` according to UTC time. Returns a new timestamp.
+
+- `setUTCMonth(month, date)`
+
+Import:
+
+```js
+import { setUTCMonth } from "@jasonsbarr/functional-core/lib/date/setUTCMonth";
+```
+
+## setUTCSeconds
+
+Sets the seconds of `date` to the specified `seconds` according to UTC time. Returns a new timestamp.
+
+- `setUTCSeconds(seconds, date)`
+
+Import:
+
+```js
+import { setUTCSeconds } from "@jasonsbarr/functional-core/lib/date/setUTCSeconds";
 ```
