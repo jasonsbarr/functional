@@ -1,1 +1,4 @@
-export const apply = (fn, ...args) => fn.apply(null, args);
+export const apply =
+  (fn) =>
+  (...args) =>
+    fn.apply(null, args);
