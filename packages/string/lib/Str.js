@@ -1,6 +1,5 @@
 import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
 import { create } from "@jasonsbarr/functional-core/lib/object/create.js";
-import { setProto } from "@jasonsbarr/functional-core/lib/object/setProto.js";
 import { assign } from "@jasonsbarr/functional-core/lib/object/assign.js";
 import { isString } from "@jasonsbarr/functional-core/lib/predicates/isString.js";
 import {
@@ -284,9 +283,7 @@ const strProto = {
 };
 
 export const Str = (string) => {
-  let str = create(null);
-
-  str = setProto(strProto, str);
+  let str = create(strProto);
 
   definePropWithOpts("_value", str, {
     writable: false,
