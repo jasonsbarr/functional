@@ -142,7 +142,7 @@ Returns an `Option` of the index at which `subStr` is found, starting at `startI
 
 ### indexOfFromStart
 
-Returns an `Option` of the index at which `subStr` is found, starting at the beginning. Works with either a string or a `Str`.
+Returns an `Option` of the index at which `subStr` is found, starting at the beginning. Works with `subStr` as either a string or a `Str`.
 
 - `str.indexOfFromStart(subStr)`
 
