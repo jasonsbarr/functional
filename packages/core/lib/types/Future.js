@@ -189,19 +189,19 @@ class Futur extends Deferred {
   }
 
   isPending() {
-    return this.state === "Pending";
+    return this.state.name === "Pending";
   }
 
   isCancelled() {
-    return this.state === "Cancelled";
+    return this.state.name === "Cancelled";
   }
 
   isRejected() {
-    return this.state === "Rejected";
+    return this.state.name === "Rejected";
   }
 
   isResolved() {
-    return this.state === "Resolved";
+    return this.state.name === "Resolved";
   }
 
   isFuture() {
