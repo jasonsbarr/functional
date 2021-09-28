@@ -57,7 +57,7 @@ const handlePasswordFieldChange = (event) => {
 export default function PasswordField() {
     return (
         <div className="form-control">
-            {passFieldErrors && gte(1, length(passFieldErrors)) && <p className="error">{passFieldErrors[0]}</p>}
+            {gte(1, length(passFieldErrors)) && <p className="error">{passFieldErrors[0]}</p>}
             <input type="password" value={passFieldState} onChange={handlePasswordFieldChange} />
         </div>
     );
