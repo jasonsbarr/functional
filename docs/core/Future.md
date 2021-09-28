@@ -8,7 +8,7 @@ For more on the problems with JavaScript Promises and how a monadic interface he
 
 ## Using Futures
 
-You can map, chain, and fold over a Future value just like you can with any Monad, just in an asynchronous fashion.
+You can map and chain over a Future value just like you can with any Monad, just in an asynchronous fashion.
 
 You can create Futures from any value, including Promises _and_ functions that take a Node.js style callback with error and data parameters.
 
