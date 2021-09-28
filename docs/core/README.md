@@ -29,7 +29,7 @@ Assume all functions are curried and therefore can be partially applied unless o
 - Object
 - Predicates
 - RegExp
-- String
+- [String](./String.md)
 - Symbol
 - Type conversions
 - [Type creation and matching](./CreatingTypes.md)
