@@ -178,6 +178,7 @@ const variantInfos = [
         LeftSemiGroup
     ],
     {
+        // all 3 variants need to have the same methods, so simply return this for mapError
         mapError(fn) {
             return this;
         }
