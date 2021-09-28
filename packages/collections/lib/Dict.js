@@ -35,7 +35,7 @@ import { reverse } from "@jasonsbarr/dict/lib/reverse.js";
 import { set } from "@jasonsbarr/dict/lib/set.js";
 import { toMap } from "@jasonsbarr/dict/lib/toMap.js";
 import { toObject } from "@jasonsbarr/dict/lib/toObject.js";
-import { toQueryString } from "@jasonsbarr/dict/lib/toQueryString.js";
+import { toQueryString } from "@jasonsbarr/functional-core/lib/object/toQueryString.js";
 import { update } from "@jasonsbarr/dict/lib/update.js";
 import { values } from "@jasonsbarr/functional-core/lib/object/values.js";
 import { concatToArray } from "@jasonsbarr/iterable/lib/concatToArray.js";
