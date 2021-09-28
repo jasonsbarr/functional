@@ -2,6 +2,9 @@
   "name": "@jasonsbarr/string",
   "version": "0.1.1",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "String functions and a supercharged string wrapper type",
   "keywords": [
     "string"
@@ -16,9 +19,6 @@
   "files": [
     "lib"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jasonsbarr/functional.git"

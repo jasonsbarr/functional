@@ -2,6 +2,9 @@
   "name": "@jasonsbarr/iterable",
   "version": "0.1.1",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "A collection of iterable functions that extend the capability of arrays and other collections",
   "keywords": [
     "array",

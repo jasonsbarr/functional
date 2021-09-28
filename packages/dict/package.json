@@ -2,6 +2,9 @@
   "name": "@jasonsbarr/dict",
   "version": "0.1.1",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Functions that treat plain JS objects like iterable, immutable dictionaries",
   "keywords": [
     "dict",
