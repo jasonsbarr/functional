@@ -1,7 +1,7 @@
 {
   "name": "@jasonsbarr/functional",
   "type": "module",
-  "version": "0.5.0",
+  "version": "0.1.0",
   "description": "A standard library for fluent functional programming in JavaScript",
   "main": "index.js",
   "scripts": {

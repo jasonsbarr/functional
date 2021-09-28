@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/functional-core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "A function-based version of the JavaScript standard library plus additional awesome functions",
   "keywords": [
@@ -29,5 +29,6 @@
   },
   "bugs": {
     "url": "https://github.com/jasonsbarr/functional/issues"
-  }
+  },
+  "gitHead": "2e0e8c79689f8f32fedb984818da634bd663a265"
 }

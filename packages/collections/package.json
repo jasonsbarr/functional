@@ -34,5 +34,6 @@
     "@jasonsbarr/dict": "^0.1.0",
     "@jasonsbarr/functional-core": "^0.1.0",
     "@jasonsbarr/iterable": "^0.1.0"
-  }
+  },
+  "gitHead": "2e0e8c79689f8f32fedb984818da634bd663a265"
 }
