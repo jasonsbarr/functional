@@ -275,7 +275,7 @@ const strProto = {
   },
 
   toString() {
-    return this.inspect();
+    return this.value;
   },
 
   valueOf() {
