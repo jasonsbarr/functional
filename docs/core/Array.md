@@ -301,7 +301,7 @@ includesFrom(3, 3, [1, 2, 3, 4]); // -> false
 
 ## indexOf
 
-Returns an `Option` of the index in `arr` at which `value` is found. Starts from the beginning of the array.
+Returns a `Some` of the index in `arr` at which `value` is found, `None` if it is not found. Starts from the beginning of the array.
 
 - `indexOf(value, arr)`
 
