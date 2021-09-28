@@ -219,6 +219,11 @@ export const HttpStates = createType("HttpStates", variantInfos, [Applicative, M
     empty() {
         return HttpStates.Pending();
     }
+
+    // let's also have a way to statically create an error variant
+    err(error) {
+        return HttpStates.Error(error);
+    }
 });
 ```
 
