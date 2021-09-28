@@ -55,7 +55,7 @@ const f = future(
 This is the same as:
 
 ```js
-const f = Future.listen({
+const f = Future().listen({
   onCancelled: () => {},
   onRejected: reason => {},
   onResolved: value => {}
