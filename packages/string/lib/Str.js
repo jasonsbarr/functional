@@ -199,9 +199,9 @@ const strProto = {
 
   split(splitter = "") {
     if (isString(splitter)) {
-      return this.map(split(splitter));
+      return this.fold(split(splitter));
     }
-    return this.map(split(splitter.value));
+    return this.fold(split(splitter.value));
   },
 
   splitGrapheme() {
