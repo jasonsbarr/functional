@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/types",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "description": "A collection of algebraic data types for JavaScript",
   "keywords": [
@@ -32,7 +32,7 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/functional-core": "^0.0.1",
-    "@jasonsbarr/iterable": "^0.0.1"
+    "@jasonsbarr/functional-core": "^0.1.0",
+    "@jasonsbarr/iterable": "^0.1.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/collections",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "description": "Awesome collection types for fluent functional programming",
   "keywords": [
@@ -31,8 +31,8 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/dict": "^0.0.1",
-    "@jasonsbarr/functional-core": "^0.0.1",
-    "@jasonsbarr/iterable": "^0.0.1"
+    "@jasonsbarr/dict": "^0.1.0",
+    "@jasonsbarr/functional-core": "^0.1.0",
+    "@jasonsbarr/iterable": "^0.1.0"
   }
 }
