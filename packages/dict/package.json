@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/dict",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -34,7 +34,7 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/functional-core": "^0.1.2",
+    "@jasonsbarr/functional-core": "^0.1.3",
     "@jasonsbarr/iterable": "^0.1.2"
   },
   "gitHead": "151ec2f0e22101d2e5edb1497c22914e36fb3b10"
