@@ -247,7 +247,7 @@ Note also that some type classes require you to provide your own method implemen
 - RightBichain
 - RightAlt
 - SemiGroup
-- RightSemigroup
+- RightSemiGroup
 - Setoid
 - Traversable
 - Swap
