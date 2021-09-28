@@ -155,6 +155,7 @@ Note that `onCancelled` is always optional unless otherwise noted.
 - `finalize(predicate, value[, reason])` Rejects or Resolves the Future based on executing `predicate` with `value` as its argument. Also uses `value` as the Resolve value. Optional `reason` may be supplied for Rejection, otherwise the Reject reason will be `value`.
 - `then(resolveF, rejectF)` - included for parity with the Promise API. Note that the order of the callbacks is reversed to maintain parity with Promises. `rejectF` is optional. Registers callbacks only; does _not_ Resolve the Future.
 - `catch(rejectF)` - included for parity with the Promise API. Registers callbacks only; does _not_ Reject the Future.
+- `finally(fn)` - included for parity with the Promise API. Registers a callback that runs in all cases, rejected, resolved, and cancelled.
 - `promise()` - converts the Future to a Promise and returns it.
 - `toString()` - returns a string representation of the Future.
 - `inspect()` - alias for `toString`.
