@@ -136,6 +136,75 @@ Import:
 import { lastIndexOf } from "@jasonsbarr/functional-core/lib/string/lastIndexOf";
 ```
 
+## localeCompare
+
+Compares `other` with `string` based on locale information. Returns 1 if `string` > `other`, - 1 if `other` > `string`, and 0 if they are equal.
+
+- `localeCompare(other, string)`
+
+Import:
+
+```js
+import { localeCompare } from "@jasonsbarr/functional-core/lib/string/localeCompare";
+```
+
+## match
+
+Tests `string` for matches using `regexp`. Returns an `Option` that will contain an array if there are matches.
+
+- `match(regexp, string)`
+
+Import:
+
+```js
+import { match } from "@jasonsbarr/functional-core/lib/string/match";
+```
+
+## matchAll
+
+Tests `string` for matches using `regexp`, which _must_ use the `g` flag. Returns an array of matches.
+
+- `matchAll(regexp, string)`
+
+Import:
+
+```js
+import { matchAll }## toUpperCase
+
+Converts `string` to all uppercase.
+
+- `toUpperCase(string)`
+
+Import:
+
+```js
+import { toUpperCase } from "@jasonsbarr/functional-core/lib/string/matchAll";
+```
+
+## normalize
+
+Performs Unicode normalization on `string`.
+
+- `normalize(string)`
+
+Import:
+
+```js
+import { normalize } from "@jasonsbarr/functional-core/lib/string/normalize";
+```
+
+## padEnd
+
+Pad the end of `string` to `targetLength` using `padString`.
+
+- `padEnd(targetLength, padString, string)`
+
+Import:
+
+```js
+import { padEnd } from "@jasonsbarr/functional-core/lib/string/padEnd";
+```
+
 ## toUpperCase
 
 Converts `string` to all uppercase.
@@ -147,9 +216,3 @@ Import:
 ```js
 import { toUpperCase } from "@jasonsbarr/functional-core/lib/string/toUpperCase";
 ```
-
-## localeCompare
-
-Compares `other` with `string` based on locale information. Returns 1 if `string` > `other`, - 1 if `other` > `string`, and 0 if they are equal.
-
-- `localeCompare(other, string)`

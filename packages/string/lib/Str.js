@@ -28,6 +28,10 @@ import { lastIndexOf } from "@jasonsbarr/functional-core/lib/string/lastIndexOf.
 import { lastIndexOfFromEnd } from "@jasonsbarr/functional-core/lib/string/lastIndexOfFromEnd.js";
 import { length } from "@jasonsbarr/functional-core/lib/string/length.js";
 import { localeCompare } from "@jasonsbarr/functional-core/lib/string/localeCompare.js";
+import { match } from "@jasonsbarr/functional-core/lib/string/match.js";
+import { matchAll } from "@jasonsbarr/functional-core/lib/string/matchAll.js";
+import { normalize } from "@jasonsbarr/functional-core/lib/string/normalize.js";
+import { padEnd } from "@jasonsbarr/functional-core/lib/string/padEnd.js";
 import { splitGrapheme } from "./splitGrapheme.js";
 import { toUpperCase } from "@jasonsbarr/functional-core/lib/string/toUpperCase.js";
 
@@ -122,6 +126,25 @@ const strProto = {
       return this.fold(localeCompare(other));
     }
     return this.fold(localeCompare(other.value));
+  },
+
+  match(regexp) {
+    return this.fold(match(regexp));
+  },
+
+  matchAll(regexp) {
+    return this.fold(matchAll(regexp));
+  },
+
+  normalize() {
+    return this.map(normalize);
+  },
+
+  padEnd(targetLength, padString) {
+    if (isString(padString)) {
+      return this.map(padEnd(targetLength, padString));
+    }
+    return this.map(padEnd(targetLength, padString.value));
   },
 
   splitGrapheme() {

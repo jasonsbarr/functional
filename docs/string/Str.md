@@ -132,13 +132,37 @@ Returns an `Option` of the last index at which `subStr` is found, starting at `s
 
 ### localeCompare
 
-Returns 1, -1, or 0 after comparing `str` with `other` based on locale information. Works with either a string or a `Str`.
+Returns 1 (`str` is greater), -1 (`other` is greater), or 0 (they are equal) after comparing `str` with `other` based on locale information. Works with either a string or a `Str`.
 
 - `str.localeCompare(other)`
 
+### match
+
+Tests a `Str` value against `regexp`. Returns an `Option` that will contain an array if there are matches.
+
+- `str.match(regexp)`
+
+### matchAll
+
+Tests a `Str` value against `regexp`, which _must_ use the `g` flag. Returns an array of matches.
+
+- `str.matchAll(regexp)`
+
+### normalize
+
+Performs Unicode normalization on a `Str` value.
+
+- `str.normalize()`
+
+### padEnd
+
+Pad a `Str` value to `targetLength` using `padString`.
+
+- `str.padEnd(targetLength, padString)`
+
 ### splitGrapheme
 
-Splits a string into its constituent extended grapheme clusters. Returns a Tuple.
+Splits a string into its constituent extended grapheme clusters. Returns an array.
 
 - `str.splitGrapheme()`
 

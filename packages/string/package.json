@@ -30,7 +30,6 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/collections": "^0.0.1",
     "@jasonsbarr/functional-core": "^0.0.1",
     "locutus": "^2.0.15",
     "sugar": "^2.0.6",
