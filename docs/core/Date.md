@@ -637,3 +637,111 @@ Import:
 ```js
 import { setUTCSeconds } from "@jasonsbarr/functional-core/lib/date/setUTCSeconds";
 ```
+
+## toDateString
+
+Returns a string from `date` formatted as follows:
+
+1. First 3 letters of the weekday name
+2. First 3 letters of the month name
+3. 2-digit day of the month
+4. 4-digit year
+
+- `toDateString(date)`
+
+Import:
+
+```js
+import { toDateString } from "@jasonsbarr/functional-core/lib/date/toDateString";
+```
+
+## toISOString
+
+Returns a string of `date` formatted according to ISO 8601.
+
+- `toISOString(date)`
+
+Import:
+
+```js
+import { toISOString } from "@jasonsbarr/functional-core/lib/date/toISOString";
+```
+
+## toLocaleDateString
+
+Returns a string of the date portion of `date` formatted according to `locales` convention. `locales` can either be a valid locale string or an array of locales.
+
+- `toLocaleDateString(locales, date)`
+
+Import:
+
+```js
+import { toLocaleDateString } from "@jasonsbarr/functional-core/lib/date/toLocaleDateString";
+```
+
+## toLocaleString
+
+Returns a language-sensitive string of `date` according to the specified `locales`. `locales` can either be a valid locale string or an array of locales.
+
+- `toLocaleString(locales, date)`
+
+Import:
+
+```js
+import { toLocaleString } from "@jasonsbarr/functional-core/lib/date/toLocaleString";
+```
+
+## toLocaleTimeString
+
+Returns a language-sensitive string of the time portion of `date` according to the specified `locales`. `locales` can either be a valid locale string or an array of locales.
+
+- `toLocaleTimeString(locales, date)`
+
+Import:
+
+```js
+import { toLocaleTimeString } from "@jasonsbarr/functional-core/lib/date/toLocaleTimeString";
+```
+
+## toTimeString
+
+Returns an English string of the time portion of a date.
+
+- `toTimeString(date)`
+
+Import:
+
+```js
+import { toTimeString } from "@jasonsbarr/functional-core/lib/date/toTimeString";
+```
+
+## toUTCString
+
+Returns an English string of the date's value in the UTC time zone.
+
+- `toUTCString(date)`
+
+Import:
+
+```js
+import { toUTCString } from "@jasonsbarr/functional-core/lib/date/toUTCString";
+```
+
+## utc
+
+Takes a series of integers and turns them into a date in the UTC time zone.
+
+- `utc(year)` - values from 0-99 map to 1900-1999; for years in other centuries use the full 4-digit year.
+- `utc(year, month)` - `month` is indexed from 0 (January) to 11 (December); numbers greater than 11 will be added to the date. Defaults to 0.
+  - e.g. `date(1990, 12)` will return the `Date` for January 1, 1991 at 00:00:00 UTC.
+- `utc(year, month, day)' - `day` is the integer day of the month, starting with 1. Defaults to 1.
+- `utc(year, month, day, hour)` - `hour` is an integer from 0 to 23. Defaults to 0.
+- `utc(year, month, day, hour, minute)` - `minute` is an integer ranging from 0-59. Defaults to 0,
+- `utc(year, month, day, hour, minute, second)` - `second` is an integer ranging from 0-59. Defaults to 0.
+- `utc(year, month, day, hour, minute, second, millisecond)` - `millisecond` is an integer ranging from 0 - 999. Defaults to 0.
+
+Import:
+
+```js
+import { utc } from "@jasonsbarr/functional-core/lib/date/utc";
+```
