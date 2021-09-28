@@ -79,6 +79,20 @@ switchType(
 
 Note that matching is exhaustively checked at runtime - you _must_ provide a case for _every_ possible variant.
 
+## Automatically-Created Methods
+
+When you create a type, the type representative object and variant instances automatically get the following methods:
+
+- Type representative
+    - ["is" + typeName](x) - predicate that takes a value, `x`, and checks if `x` is an instance of the type
+    - ["is" + variantName](x) - for each variant, checks if `x` is an instance of that particular variant
+- Variant instance
+    - ["is" + typeName]() - predicate that returns `true` because it is an instance of `typeName`
+    - ["is" + variantName]() - only for its variant, predicate that returns `true` because it is an instance of `variantName`
+    - valueOf() - returns the `value` property of the variant object
+    - inspect() - returns a string representation of the variant
+    - toString() - alias for `inspect`
+
 ## Creating a More Complex Type
 
 Let's say you want to create a type to represent an email address. Here's how you might do that:
