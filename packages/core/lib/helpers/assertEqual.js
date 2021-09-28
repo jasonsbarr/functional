@@ -1,15 +1,9 @@
 import { curry } from "../lambda/curry.js";
 import { equals } from "../object/equals.js";
 
-export const assertEqual = curry((v1, v2) => {
+export const assertEqual = curry((v1, v2, message) => {
   if (equals(v1, v2)) {
     return true;
   }
-  throw new Error(
-    `Expected value equality, got ${JSON.stringify(
-      v1,
-      null,
-      2
-    )} !== ${JSON.stringify(v2, null, 2)}`
-  );
+  throw new Error(message);
 });

@@ -22,7 +22,7 @@ Assume all functions are curried and therefore can be partially applied unless o
 - [Array](./Array.md)
 - [Boolean](./Boolean.md)
 - [Date](./Date.md)
-- Helpers
+- [Helpers](./Helpers.md)
 - Lambda
 - Math
 - Number
