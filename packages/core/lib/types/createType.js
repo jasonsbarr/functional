@@ -1,3 +1,5 @@
+typeRepresentative["is" + info.variantName] = (x) =>
+  x && x.variant === info.variantName;
 import { assign } from "../object/assign.js";
 import { definePropWithOpts } from "../object/definePropWithOpts.js";
 import { freeze } from "../object/freeze.js";
@@ -132,6 +134,8 @@ export const createType = (
       typeName,
       info
     );
+    typeRepresentative["is" + info.variantName] = (x) =>
+      x && x.variant === info.variantName;
     typeRepresentative.variants.push(info.variantName);
   }
 
