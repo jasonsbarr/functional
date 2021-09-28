@@ -198,7 +198,7 @@ Return a slice of the `Str` value from `start` to `end` (non-inclusive).
 
 ### split
 
-Return an array of string pieces separated at `splitter`. `splitter` defaults to `""`. `splitter` can be either a string or `Str`.
+Return an array of string pieces separated at `splitter`. `splitter` defaults to `""`, which will split apart every UTF-16 code unit. `splitter` can be either a string or `Str`.
 
 - `str.split(splitter)`
 
