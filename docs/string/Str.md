@@ -156,9 +156,51 @@ Performs Unicode normalization on a `Str` value.
 
 ### padEnd
 
-Pad a `Str` value to `targetLength` using `padString`.
+Pad a `Str` value to `targetLength` using `padString`. `padString` can be either a `Str` or a string.
 
 - `str.padEnd(targetLength, padString)`
+
+### padStart
+
+Pad a `Str` value to `targetLength` using `padString`. `padString` can be either a `Str` or a string.
+
+- `str.padStart(targetLength, padString)`
+
+### repeat
+
+Repeat a `Str` value `times` number of times.
+
+- `str.repeat(times)`
+
+### replace
+
+Replace the first occurrence of `search` in a `Str` value with `replacement`. Both `search` and `replacement` can be either a string or `Str`.
+
+- `str.replace(search, replacement)`
+
+### replaceAll
+
+Replace _all_ occurrences of `search` in a `Str` value with `replacement`. Both `search` and `replacement` can be either a string or `Str`.
+
+- `str.replaceAll(search, replacement)`
+
+### search
+
+Returns the index at which `regexp` is matched, or -1 if there is no match.
+
+- `str.search(regexp)`
+
+### slice
+
+Return a slice of the `Str` value from `start` to `end` (non-inclusive).
+
+- `str.slice(start, end)`
+
+### split
+
+Return an array of string pieces separated at `splitter`. `splitter` defaults to `""`. `splitter` can be either a string or `Str`.
+
+- `str.split(splitter)`
 
 ### splitGrapheme
 

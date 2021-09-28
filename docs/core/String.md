@@ -205,6 +205,90 @@ Import:
 import { padEnd } from "@jasonsbarr/functional-core/lib/string/padEnd";
 ```
 
+## padStart
+
+Pad the beginning of `string` to `targetLength` using `padString`.
+
+- `padStart(targetLength, padString, string)`
+
+Import:
+
+```js
+import { padStart } from "@jasonsbarr/functional-core/lib/string/padStart";
+```
+
+## repeat
+
+Repeat a string `times` number of times.
+
+- `repeat(times)`
+
+Import:
+
+```js
+import { repeat } from "@jasonsbarr/functional-core/lib/string/repeat";
+```
+
+## replace
+
+Replace `search` in `string` with `replacement`.
+
+- `replace(search, replacement, string)`
+
+Import:
+
+```js
+import { replace } from "@jasonsbarr/functional-core/lib/string/replace";
+```
+
+## replaceAll
+
+Replace all occurrences of `search` in `string` with `replacement`.
+
+- `replaceAll(search, replacement, string)`
+
+Import:
+
+```js
+import { replaceAll } from "@jasonsbarr/functional-core/lib/string/replaceAll";
+```
+
+## search
+
+Returns the index matched by `regexp` or -1 if there is no match.
+
+- `search(regexp, string)`
+
+Import:
+
+```js
+import { search } from "@jasonsbarr/functional-core/lib/string/search";
+```
+
+## slice
+
+Return a copy of `string` from `start` index to `end` (non-inclusive).
+
+- `slice(start, end, string)`
+
+Import:
+
+```js
+import { slice } from "@jasonsbarr/functional-core/lib/string/slice";
+```
+
+## split
+
+Return an array of `string` pieces, split at `splitter`.
+
+- `split(splitter, string)`
+
+Import:
+
+```js
+import { split } from "@jasonsbarr/functional-core/lib/string/split";
+```
+
 ## toUpperCase
 
 Converts `string` to all uppercase.

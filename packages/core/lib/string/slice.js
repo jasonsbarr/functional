@@ -1,4 +1,3 @@
-import { slice as sliceI } from "../iterable/lib/slice.js";
+import { curry } from "../lambda/curry.js";
 
-export const slice = (str, start, end, step) =>
-  sliceI([...str], start, end, step).join("");
+export const slice = curry((start, end, string) => string.slice(start, end));

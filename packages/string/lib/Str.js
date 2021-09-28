@@ -32,6 +32,13 @@ import { match } from "@jasonsbarr/functional-core/lib/string/match.js";
 import { matchAll } from "@jasonsbarr/functional-core/lib/string/matchAll.js";
 import { normalize } from "@jasonsbarr/functional-core/lib/string/normalize.js";
 import { padEnd } from "@jasonsbarr/functional-core/lib/string/padEnd.js";
+import { padStart } from "@jasonsbarr/functional-core/lib/string/padStart.js";
+import { repeat } from "@jasonsbarr/functional-core/lib/string/repeat.js";
+import { replace } from "@jasonsbarr/functional-core/lib/string/replace.js";
+import { replaceAll } from "@jasonsbarr/functional-core/lib/string/replaceAll.js";
+import { search } from "@jasonsbarr/functional-core/lib/string/search.js";
+import { slice } from "@jasonsbarr/functional-core/lib/string/slice.js";
+import { split } from "@jasonsbarr/functional-core/lib/string/split.js";
 import { splitGrapheme } from "./splitGrapheme.js";
 import { toUpperCase } from "@jasonsbarr/functional-core/lib/string/toUpperCase.js";
 
@@ -145,6 +152,56 @@ const strProto = {
       return this.map(padEnd(targetLength, padString));
     }
     return this.map(padEnd(targetLength, padString.value));
+  },
+
+  padStart(targetLength, padString) {
+    if (isString(padString)) {
+      return this.map(padStart(targetLength, padString));
+    }
+    return this.map(padStart(targetLength, padString.value));
+  },
+
+  repeat(times) {
+    return this.map(repeat(times));
+  },
+
+  replace(search, replacement) {
+    if (isString(search)) {
+      if (isString(replacement)) {
+        return this.map(replace(search, replacement));
+      }
+      return this.map(replace(search, replacement.value));
+    } else if (isString(replacement)) {
+      return this.map(replace(search.value, replacement));
+    }
+    return this.map(replace(search.value, replacement.value));
+  },
+
+  replaceAll(search, replacement) {
+    if (isString(search)) {
+      if (isString(replacement)) {
+        return this.map(replaceAll(search, replacement));
+      }
+      return this.map(replaceAll(search, replacement.value));
+    } else if (isString(replacement)) {
+      return this.map(replaceAll(search.value, replacement));
+    }
+    return this.map(replaceAll(search.value, replacement.value));
+  },
+
+  search(regexp) {
+    return this.fold(search(regexp));
+  },
+
+  slice(start, end) {
+    return this.map(slice(start, end));
+  },
+
+  split(splitter = "") {
+    if (isString(splitter)) {
+      return this.map(split(splitter));
+    }
+    return this.map(split(splitter.value));
   },
 
   splitGrapheme() {
