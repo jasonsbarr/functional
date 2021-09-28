@@ -11,6 +11,7 @@ import {
   Fold,
   Monoid,
   SemiGroup,
+  Setoid,
 } from "@jasonsbarr/functional-core/lib/types/typeClasses.js";
 import { charAt } from "@jasonsbarr/functional-core/lib/string/charAt.js";
 import { charCodeAt } from "@jasonsbarr/functional-core/lib/string/charCodeAt.js";
@@ -40,7 +41,17 @@ import { search } from "@jasonsbarr/functional-core/lib/string/search.js";
 import { slice } from "@jasonsbarr/functional-core/lib/string/slice.js";
 import { split } from "@jasonsbarr/functional-core/lib/string/split.js";
 import { splitGrapheme } from "./splitGrapheme.js";
+import { startsWith } from "@jasonsbarr/functional-core/lib/string/startsWith.js";
+import { startsWithFromStart } from "@jasonsbarr/functional-core/lib/string/startsWithFromStart.js";
+import { substring } from "@jasonsbarr/functional-core/lib/string/substring.js";
+import { to } from "@jasonsbarr/functional-core/lib/string/to.js";
+import { toLocaleLowerCase } from "@jasonsbarr/functional-core/lib/string/toLocaleLowerCase.js";
+import { toLocaleUpperCase } from "@jasonsbarr/functional-core/lib/string/toLocaleUpperCase.js";
+import { toLowerCase } from "@jasonsbarr/functional-core/lib/string/toLowerCase.js";
 import { toUpperCase } from "@jasonsbarr/functional-core/lib/string/toUpperCase.js";
+import { trim } from "@jasonsbarr/functional-core/lib/string/trim.js";
+import { trimEnd } from "@jasonsbarr/functional-core/lib/string/trimEnd.js";
+import { trimStart } from "@jasonsbarr/functional-core/lib/string/trimStart.js";
 
 const strProto = {
   get value() {
@@ -55,6 +66,7 @@ const strProto = {
   ...Fold,
   ...Functor,
   ...SemiGroup,
+  ...Setoid,
 
   charAt(index) {
     return this.map(charAt(index));
@@ -208,8 +220,54 @@ const strProto = {
     return this.fold(splitGrapheme);
   },
 
+  startsWith(search, startIndex) {
+    if (isString(search)) {
+      return this.fold(startsWith(search, startIndex));
+    }
+    return this.fold(startsWith(search.value, startIndex));
+  },
+
+  startsWithFromStart(search) {
+    if (isString(search)) {
+      return this.fold(startsWithFromStart(search));
+    }
+    return this.fold(startsWithFromStart(search.value));
+  },
+
+  substring(start, end) {
+    return this.map(substring(start, end));
+  },
+
+  to(end) {
+    return this.map(to(end));
+  },
+
+  toLocaleLowerCase(locales) {
+    return this.map(toLocaleLowerCase(locales));
+  },
+
+  toLocaleUpperCase(locales) {
+    return this.map(toLocaleUpperCase(locales));
+  },
+
+  toLowerCase() {
+    return this.map(toLowerCase);
+  },
+
   toUpperCase() {
     return this.map(toUpperCase);
+  },
+
+  trim() {
+    return this.map(trim);
+  },
+
+  trimEnd() {
+    return this.map(trimEnd);
+  },
+
+  trimStart() {
+    return this.map(trimStart);
   },
 
   inspect() {

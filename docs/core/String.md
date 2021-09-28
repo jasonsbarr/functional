@@ -289,6 +289,78 @@ Import:
 import { split } from "@jasonsbarr/functional-core/lib/string/split";
 ```
 
+## startsWith
+
+Returns `true` if `string` starts with `search` at `startIndex`.
+
+- `startsWith(search, startIndex, string)`
+
+Import:
+
+```js
+import { startsWith } from "@jasonsbarr/functional-core/lib/string/startsWith";
+```
+
+## startsWithFromStart
+
+Returns `true` if `string` starts with `search` at the beginning.
+
+- `startsWithFromStart(search, string)`
+
+Import:
+
+```js
+import { startsWithFromStart } from "@jasonsbarr/functional-core/lib/string/startsWithFromStart";
+```
+
+## substring
+
+Returns a slice of the string between `start` and `end` (non-inclusive).
+
+- `substring(start, end, string)`
+
+Import:
+
+```js
+import { substring } from "@jasonsbarr/functional-core/lib/string/startsWithFromStart";
+```
+
+## toLocaleLowerCase
+
+Returns a lower-cased string according to the rules of `locales`. `locales` can be either a valid locale string or an array of locale strings.
+
+- `toLocaleLowerCase(locales, string)`
+
+Import:
+
+```js
+import { toLocaleLowerCase } from "@jasonsbarr/functional-core/lib/string/toLocaleLowerCase";
+```
+
+## toLocaleUpperCase
+
+Returns an upper-cased string according to the rules of `locales`. `locales` can either be a valid locale string or an array of locale strings.
+
+- `toLocaleUpperCase(locales, string)`
+
+Import:
+
+```js
+import { toLocaleUpperCase } from "@jasonsbarr/functional-core/lib/string/toLocaleUpperCase";
+```
+
+## toLowerCase
+
+Returns a lower-cased `string`.
+
+- `toLowerCase(string)`
+
+Import:
+
+```js
+import { toLowerCase } from "@jasonsbarr/functional-core/lib/string/toLowerCase";
+```
+
 ## toUpperCase
 
 Converts `string` to all uppercase.
@@ -299,4 +371,40 @@ Import:
 
 ```js
 import { toUpperCase } from "@jasonsbarr/functional-core/lib/string/toUpperCase";
+```
+
+## trim
+
+Trims whitespace from the front and back of a string.
+
+- `trim(string)`
+
+Import:
+
+```js
+import { trim } from "@jasonsbarr/functional-core/lib/string/trim";
+```
+
+## trimEnd
+
+Trims whitespace from the back of a string.
+
+- `trimEnd(string)`
+
+Import:
+
+```js
+import { trimEnd } from "@jasonsbarr/functional-core/lib/string/trimEnd";
+```
+
+## trimStart
+
+Trims whitespace from the front of a string.
+
+- `trimStart(string)`
+
+Import:
+
+```js
+import { trimStart } from "@jasonsbarr/functional-core/lib/string/trimStart";
 ```

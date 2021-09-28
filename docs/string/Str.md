@@ -70,6 +70,18 @@ Constructs a `Str` from one or more Unicode code points.
 
 A list of the valid `Str` instance methods, their parameters, and return types. Any method that returns a `Str` can be chained.
 
+### ap
+
+Apply a Functor-wrapped function to a `Str` value.
+
+- `str.ap(functorWithFn)`
+
+### chain
+
+Map a `Str` with a function that returns another `Str`.
+
+- `str.chain(functionThatReturnsStr)`
+
 ### charAt
 
 Returns a `Str` of the character at `index`. Indices are split by UTF-16 code units.
@@ -93,6 +105,16 @@ Works on a string or another instance of `Str`. Returns a `Str` of the 2 string 
 Returns `true` if the `Str` value ends with `endStr`. Works with either a string or `Str` as argument.
 
 - `str.endsWith(endStr)`
+
+### equals
+
+Test if a `Str` value equals another `Str`.
+
+- `str.equals(other)`
+
+### fold
+
+Optionally transform and extract the value from a `Str`.
 
 ### from
 
@@ -135,6 +157,12 @@ Returns an `Option` of the last index at which `subStr` is found, starting at `s
 Returns 1 (`str` is greater), -1 (`other` is greater), or 0 (they are equal) after comparing `str` with `other` based on locale information. Works with either a string or a `Str`.
 
 - `str.localeCompare(other)`
+
+### map
+
+Transform the value of a `Str` and return it wrapped in another `Str`.
+
+- `str.map(mapFn)`
 
 ### match
 
@@ -208,8 +236,60 @@ Splits a string into its constituent extended grapheme clusters. Returns an arra
 
 - `str.splitGrapheme()`
 
+### startsWith
+
+Returns `true` if `Str` value starts with `search`. `search` can be either a string or `Str`.
+
+- `str.startsWith(search, startIndex)`
+
+### startsWithFromStart
+
+Returns `true` if `Str` value starts with `search` at the beginning of the `Str`. `search` can be either a string or `Str`.
+
+- `str.startsWithFromStart(search)`
+
+### substring
+
+Returns a slice of the `Str` value starting with `start` and ending with `end` (non-inclusive).
+
+- `str.substring(start, end)`
+
+### toLocaleLowerCase
+
+Returns a new `Str` with the value lower-cased according to the rules of `locales`. `locales` can either be a valid locale string or an array of locales.
+
+- `str.toLocaleLowerCase(locales)`
+
+### toLocaleUpperCase
+
+Returns a new `Str` with the value upper-cased according to the rules of `locales`. `locales` can either be a valid locale string or an array of locales.
+
+### toLowerCase
+
+Converts a `Str` to lower case.
+
+- `str.toLowerCase()`
+
 ### toUpperCase
 
-Converts a string to upper case. Returns a `Str`.
+Converts a `Str` to upper case.
 
 - `str.toUpperCase()`
+
+### trim
+
+Returns a new `Str` with whitespace removed from the front and back of its value.
+
+- `str.trim()`
+
+### trimEnd
+
+Returns a new `Str` with whitespace trimmed from the back of its value.
+
+- `str.trimEnd()`
+
+### trimStart
+
+Returns a new `Str` with whitespace trimmed from the front of its value.
+
+- `str.trimStart()`
