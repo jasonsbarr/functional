@@ -1,5 +1,11 @@
 # Documentation for Functional Core Package
 
+## Installation
+
+```
+npm install @jasonsbarr/functional-core
+```
+
 ## Importing Functions and Types
 
 There is no single file to import that gives you all the functions and types, you'll need to import things individually as you need them. That's better for your bundle sizes anyway, if you're using a module bundler like Webpack in your build process.

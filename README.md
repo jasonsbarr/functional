@@ -6,6 +6,12 @@ The core package will replicate the entire standard library with a (mostly curri
 
 The additional packages will add important features not found in standard JavaScript, like immutable collections (with functionalities that leave JS arrays and objects in the dust), additional functional types, and souped-up versions of the standard JS types.
 
+## Installation
+
+```
+npm install @jasonsbarr/[package name]
+```
+
 ## The Packages
 
 Currently there are 5 packages:
