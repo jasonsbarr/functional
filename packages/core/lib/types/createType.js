@@ -116,7 +116,7 @@ const createVariantConstructor = (typeName, variantInfo) => {
  * @param {VariantInfo[]} variantInfos Info used to create variants
  * @param {Array} typeClasses An array of type classes to apply to the type representative
  * @param {Object} overrides Method overrides and additional method definitions for the type representative
- * @returns {Object} The created type representative object
+ * @returns {Type} The created type representative object
  */
 export const createType = (
   typeName,
