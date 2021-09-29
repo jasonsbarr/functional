@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/iterable",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "type": "module",
   "publishConfig": {
     "access": "public"
