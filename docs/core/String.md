@@ -255,7 +255,7 @@ import { replaceAll } from "@jasonsbarr/functional-core/lib/string/replaceAll";
 
 ## search
 
-Returns the index matched by `regexp` or -1 if there is no match.
+Returns `Option`, `Some` of the index matched by `regexp` or `None` if no match.
 
 - `search(regexp, string)`
 
