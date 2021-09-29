@@ -10,6 +10,7 @@ import { freeze } from "../object/freeze.js";
 import { includes } from "../array/includes.js";
 import { create } from "../object/create.js";
 import { toQueryString } from "../object/toQueryString.js";
+import { concatValues } from "../helpers/concatValues.js";
 
 const recordProto = {
   // returns a Record with the same keys but all values set to undefined
@@ -17,6 +18,15 @@ const recordProto = {
     let copy = this.toObject();
     for (let key in keys(copy)) {
       copy[key] = undefined;
+    }
+    return this.constructor.of(copy);
+  },
+
+  // Only works if current record and other are the same SemiGroup
+  concat(other) {
+    let copy = this.toObject();
+    for (let key of keys(copy)) {
+      copy[key] = concatValues(copy[key], other[key]);
     }
     return this.constructor.of(copy);
   },

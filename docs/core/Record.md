@@ -42,8 +42,9 @@ const cat = record({ name: "Phoenix", breed: "domestic shorthair", color: "grey 
 Note that no records are mutated by any of these methods; the result of methods that change the data in a record is a new, immutable record with the changed data.
 
 - `clear()`
-- `clone()`
-- `copy()`
+- `clone()` - makes a deep clone
+- `concat(other)`
+- `copy()` - makes a shallow copy
 - `delete(key)`
 - `entries()`
 - `equals(other)`
