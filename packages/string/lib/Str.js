@@ -178,7 +178,7 @@ const strProto = {
   },
 
   replace(search, replacement) {
-    if (isString(search)) {
+    if (isString(search) || isRegExp(search)) {
       if (isString(replacement)) {
         return this.map(replace(search, replacement));
       }
