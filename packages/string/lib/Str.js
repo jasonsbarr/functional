@@ -2,6 +2,7 @@ import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/defin
 import { create } from "@jasonsbarr/functional-core/lib/object/create.js";
 import { assign } from "@jasonsbarr/functional-core/lib/object/assign.js";
 import { isString } from "@jasonsbarr/functional-core/lib/predicates/isString.js";
+import { isRegExp } from "@jasonsbarr/functional-core/lib/predicates/isRegExp.js";
 import {
   Applicative,
   Apply,
@@ -189,7 +190,7 @@ const strProto = {
   },
 
   replaceAll(search, replacement) {
-    if (isString(search)) {
+    if (isString(search) || isRegExp(search)) {
       if (isString(replacement)) {
         return this.map(replaceAll(search, replacement));
       }
