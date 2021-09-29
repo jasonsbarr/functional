@@ -1,5 +1,6 @@
 import { keys } from "../object/keys.js";
 import { includes } from "../array/includes.js";
+import { not } from "../helpers/not.js";
 import { curry } from "../lambda/curry.js";
 /**
  *
@@ -11,10 +12,15 @@ import { curry } from "../lambda/curry.js";
 export const switchType = curry((typeRepresentative, dispatcher, instance) => {
   const cases = keys(dispatcher);
   for (let variant of typeRepresentative.variants) {
-    if (!includes(variant, cases)) {
+    if (not(includes(variant, cases))) {
       throw new Error(
         "switchType must take a case for every variant of a type"
       );
+    }
+  }
+  for (let typeCase of cases) {
+    if (not(includes(typeCase, typeRepresentative.variants))) {
+      throw new Error("Variant not found for switch case");
     }
   }
   return dispatcher[instance.variant](instance);
