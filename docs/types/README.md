@@ -1,5 +1,11 @@
 # Documentation for Types Package
 
+## Installation
+
+```
+npm install @jasonsbarr/types
+```
+
 ## Importing a Type
 
 ```js

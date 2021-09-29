@@ -158,6 +158,16 @@ Import:
 import { noop } from "@jasonsbarr/functional-core/lib/helpers/noop";
 ```
 
+## not
+
+Negates its argument.
+
+Import:
+
+```js
+import { not } from "@jasonsbarr/functional-core/lib/helpers/not";
+```
+
 ## unit
 
 Simply returns `null`.
