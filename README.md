@@ -40,6 +40,12 @@ The Types package includes additional algebraic types that are more specific in 
 
 - [Types package](https://github.com/jasonsbarr/functional/tree/main/packages/types)
 
+### String
+
+The String package includes functions to supercharge your strings and a `Str` wrapper type for strings that lets you chain these enhanced string operations.
+
+- [String package](https://github.com/jasonsbarr/functional/tree/main/packages/string)
+
 ### Documentation
 
 [Documentation](https://github.com/jasonsbarr/functional/tree/main/docs)
