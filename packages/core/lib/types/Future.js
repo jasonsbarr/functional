@@ -155,13 +155,7 @@ class Futur extends Deferred {
   }
 
   finally(fn) {
-    const final = Future();
-    this.listen({
-      onCancelled: () => final.cancel(),
-      onRejected: () => final.reject(fn()),
-      onResolved: () => final.resolve(fn()),
-    });
-    return final;
+    return this.fork(fn, fn, fn);
   }
 
   promise() {
