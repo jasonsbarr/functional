@@ -5,7 +5,7 @@ import { not } from "../helpers/not.js";
 import { curry } from "../lambda/curry.js";
 /**
  *
- * @param {Object} typeRepresentative The type representative object for a type
+ * @param {Object|Function} typeRepresentative The type representative object for a type
  * @param {Object} dispatcher The dispatcher with a function for every variant of a type
  * @param {Object} instance The actual instance of a type being switched on
  * @returns {Any} The result of the dispatched function
