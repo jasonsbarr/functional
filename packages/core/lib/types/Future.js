@@ -4,6 +4,7 @@ import { Deferred } from "./internal/_deferred.js";
 import { length } from "../array/length.js";
 import { defer } from "../lambda/defer.js";
 import { curry } from "../lambda/curry.js";
+import { isFunction } from "../predicates/isFunction.js";
 
 class Futur extends Deferred {
   constructor() {
@@ -207,7 +208,7 @@ export const Future = () => {
   return new Futur();
 };
 
-Future.isFuture = (obj) => typeof obj.isFuture === "function" && obj.isFuture();
+Future.isFuture = (obj) => obj && isFunction(obj.isFuture) && obj.isFuture();
 
 Future.of = (value) => {
   return Future().resolve(value);
