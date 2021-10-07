@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/collections",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -34,9 +34,9 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/dict": "^0.2.0",
-    "@jasonsbarr/functional-core": "^0.2.0",
-    "@jasonsbarr/iterable": "^0.2.0"
+    "@jasonsbarr/dict": "^0.2.1",
+    "@jasonsbarr/functional-core": "^0.2.1",
+    "@jasonsbarr/iterable": "^0.2.1"
   },
   "gitHead": "151ec2f0e22101d2e5edb1497c22914e36fb3b10"
 }
