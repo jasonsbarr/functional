@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
-  "gitHead": "151ec2f0e22101d2e5edb1497c22914e36fb3b10"
+  "gitHead": "151ec2f0e22101d2e5edb1497c22914e36fb3b10",
+  "dependencies": {
+    "@jasonsbarr/functional-core": "^0.2.0"
+  }
 }
