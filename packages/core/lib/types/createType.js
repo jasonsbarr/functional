@@ -34,11 +34,19 @@ export const VariantInfo = (
  * @param {VariantInfo} variantInfo The information used to create the variant
  * @returns {Object} The constructed variant instance
  */
-const createVariantConstructor = (typeName, variantInfo) => {
+const createVariantConstructor = (
+  typeName,
+  {
+    variantName,
+    typeClasses = [],
+    overrides = {},
+    statics: { sTypeClasses = [], methods = {} },
+  }
+) => {
   let variantConstructor = (value) => {
     let variant = {
       type: typeName,
-      variant: variantInfo.variantName,
+      variant: variantName,
       get value() {
         return this._value;
       },
@@ -46,23 +54,23 @@ const createVariantConstructor = (typeName, variantInfo) => {
         this._value = v;
       },
       ["is" + typeName]: () => true,
-      ["is" + variantInfo.variantName]: () => true,
+      ["is" + variantName]: () => true,
       valueOf() {
         return this.value;
       },
       inspect() {
-        return `${variantInfo.variantName}(${this.value})`;
+        return `${variantName}(${this.value})`;
       },
       toString() {
         return this.inspect();
       },
     };
 
-    for (let className of variantInfo.typeClasses) {
+    for (let className of typeClasses) {
       variant = assign(variant, className);
     }
 
-    variant = assign(variant, variantInfo.overrides);
+    variant = assign(variant, overrides);
 
     definePropWithOpts("_value", variant, {
       enumerable: false,
@@ -94,11 +102,11 @@ const createVariantConstructor = (typeName, variantInfo) => {
   };
 
   // assign statics to constructor
-  for (let className of variantInfo.statics.sTypeClasses) {
+  for (let className of sTypeClasses) {
     variantConstructor = assign(variantConstructor, className);
   }
 
-  variantConstructor = assign(variantConstructor, variantInfo.statics.methods);
+  variantConstructor = assign(variantConstructor, methods);
 
   return variantConstructor;
 };
