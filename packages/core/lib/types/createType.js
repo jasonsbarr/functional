@@ -40,7 +40,7 @@ const createVariantConstructor = (
     variantName,
     typeClasses = [],
     overrides = {},
-    statics: { sTypeClasses = [], methods = {} },
+    statics: { sTypeClasses = [], methods = {} } = {},
   }
 ) => {
   let variantConstructor = (value) => {
