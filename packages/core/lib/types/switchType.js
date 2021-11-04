@@ -1,6 +1,6 @@
 import { keys } from "../object/keys.js";
 import { includes } from "../array/includes.js";
-import { assert } from "..helpers/assert.js";
+import { assert } from "../helpers/assert.js";
 import { not } from "../helpers/not.js";
 import { curry } from "../lambda/curry.js";
 /**
