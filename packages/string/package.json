@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/string",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -30,7 +30,7 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/functional-core": "^0.3.2",
+    "@jasonsbarr/functional-core": "^0.3.3",
     "locutus": "^2.0.15",
     "sugar": "^2.0.6",
     "voca": "^1.4.0"
