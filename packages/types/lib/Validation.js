@@ -40,9 +40,21 @@ const variantInfos = [
       Swap,
     ],
     {
+      // Functor
+      map(f) {
+        return Validation.of(f(this.value.value));
+      },
+      // Chain
+      chain(f) {
+        return f(this.value.value);
+      },
+      // Bifunctor
+      bimap(f, g) {
+        return Validation.of(g(this.value.value));
+      },
       // Swap
       swap(failMessage) {
-        return Validation.fail(this.value, failMessage);
+        return Validation.fail(this.value.value, failMessage);
       },
 
       // (Right)SemiGroup
@@ -55,7 +67,7 @@ const variantInfos = [
       },
 
       fold(f, g) {
-        return g(this);
+        return g(this.value.value);
       },
     }
   ),
@@ -79,25 +91,26 @@ const variantInfos = [
           value && messages,
           "Validation.Failure constructor takes an object with value and message fields"
         );
-        // this.value is the field value
-        this.value = value;
-        // this.messages aggregates error messages
-        this.messages = isArray(messages) ? messages : [messages];
+        // value is the field value
+        this.value.value = value;
+        // messages aggregates error messages
+        this.value.messages = isArray(messages) ? messages : [messages];
       },
 
       mapFailure(fn) {
-        const failures = this.messages.map(fn);
-        return Validation.fail(this.value, failures);
+        const { value, messages } = this.value;
+        const failures = messages.map(fn);
+        return Validation.fail(value, failures);
       },
 
       // Swap
       swap(failMessage) {
-        return Validation.of(this.value);
+        return Validation.of(this.value.value);
       },
 
       // (Left)Fold
       fold(f, g) {
-        return f(this);
+        return f(this.value);
       },
 
       // (Left)SemiGroup
@@ -107,9 +120,10 @@ const variantInfos = [
           "Argument to validation.concat must be another Validation type"
         );
         if (validation.isFailure()) {
+          const { value, messages } = this.value;
           return Validation.fail(
-            this.value,
-            this.messages.concat(validation.messages)
+            value,
+            messages.concat(validation.value.messages)
           );
         }
         return this;
@@ -117,8 +131,9 @@ const variantInfos = [
 
       // (Left)Bifunctor
       bimap(failFn, successFn) {
-        const failures = this.messages.map(failFn);
-        return Validation.fail(this.value, failures);
+        const { value, messages } = this.value;
+        const failures = messages.map(failFn);
+        return Validation.fail(value, failures);
       },
     }
   ),
