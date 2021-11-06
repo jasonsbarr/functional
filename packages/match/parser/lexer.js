@@ -20,7 +20,6 @@ const read = (input, whichCase) => {
   const peek = () => input.charAt(pos);
   const next = () => input.charAt(pos++);
   const skip = () => pos++;
-  const lookahead = (i) => input.charAt(pos + i);
   const eoi = () => peek() == "";
   const croak = (msg) => {
     throw new SyntaxError(`${msg} in case ${whichCase}, pos ${pos}`);
