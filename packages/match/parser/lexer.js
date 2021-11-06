@@ -178,6 +178,14 @@ const read = (input, whichCase) => {
   const readOp = () => {
     const op = readWhile(isOpChar);
 
+    if (op === ".") {
+      return makeToken("punc", op);
+    }
+
+    if (op === "?") {
+      return makeToken("punc", op);
+    }
+
     if (!isOperator(op)) {
       croak(`Invalid symbol ${op} at ${pos}`);
     }

@@ -69,10 +69,8 @@ export const operators = [
   "=>",
   "in",
   "is",
-  ".",
-  "?.",
 ];
-export const punc = ["(", ")", "[", "]", "{", "}", ",", ";"];
+export const punc = ["(", ")", "[", "]", "{", "}", ",", ";", ".", "?"];
 
 // from: https://gist.github.com/mathiasbynens/6334847
 export const IDENTIFIER_START =
