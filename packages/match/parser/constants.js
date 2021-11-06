@@ -17,6 +17,7 @@ export const keywords = [
   "arguments",
   "NaN",
   "Infinity",
+  "return",
 ];
 export const OP_CHARS = "=+-*/%<>%^|&?:.~=";
 export const operators = [
