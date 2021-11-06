@@ -194,6 +194,10 @@ export const Lexer = (input) => {
       return makeToken(str, str);
     }
 
+    if (str === "_") {
+      return makeToken("catchall", str);
+    }
+
     if (isValidId(str)) {
       return makeToken("ident", str);
     }
