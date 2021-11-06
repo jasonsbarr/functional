@@ -194,6 +194,10 @@ const read = (input, whichCase) => {
       return makeToken("operator", str);
     }
 
+    if (str === "Infinity" || str === "NaN") {
+      return makeToken("number", Number(str));
+    }
+
     if (isKeyword(str)) {
       return makeToken("keyword", str);
     }
