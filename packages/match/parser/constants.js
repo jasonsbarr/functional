@@ -1,10 +1,9 @@
+// will add keywords for JS statements later, since they could be included in a function expression
 export const keywords = [
   "when",
   "as",
-  "in",
   "typeof",
   "await",
-  "is",
   "function",
   "delete",
   "instanceof",
@@ -16,6 +15,8 @@ export const keywords = [
   "new",
   "eval",
   "arguments",
+  "NaN",
+  "Infinity",
 ];
 export const OP_CHARS = "=+-*/%<>%^|&?:.~=";
 export const operators = [
@@ -65,8 +66,12 @@ export const operators = [
   ">>>",
   "->",
   "=>",
+  "in",
+  "is",
+  ".",
+  "?.",
 ];
-export const punc = ["(", ")", "[", "]", "{", "}", ",", ".", ";", "?"];
+export const punc = ["(", ")", "[", "]", "{", "}", ",", ";"];
 
 // from: https://gist.github.com/mathiasbynens/6334847
 export const IDENTIFIER_START =
