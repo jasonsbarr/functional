@@ -13,7 +13,7 @@ import {
   isKeyword,
 } from "./helpers.js";
 
-export const Lexer = (input) => {
+const read = (input, whichCase) => {
   let pos = 0;
   let tokens = [];
 
@@ -23,9 +23,9 @@ export const Lexer = (input) => {
   const lookahead = (i) => input.charAt(pos + i);
   const eoi = () => peek() == "";
   const croak = (msg) => {
-    throw new SyntaxError(msg);
+    throw new SyntaxError(`${msg} in case ${whichCase}, pos ${pos}`);
   };
-  const makeToken = (type, value) => ({ type, value, pos });
+  const makeToken = (type, value) => ({ type, value, pos, case: whichCase });
 
   const readWhile = (pred) => {
     let str = "";
@@ -151,7 +151,7 @@ export const Lexer = (input) => {
       } else if (ch == end) {
         break;
       } else if (ch == "\n") {
-        croak(`Unexpected EOL in string literal at ${pos}`);
+        croak(`Unexpected EOL in string literal`);
       } else {
         str += ch;
       }
@@ -202,7 +202,7 @@ export const Lexer = (input) => {
       return makeToken("ident", str);
     }
 
-    croak(`Invalid symbol ${str} at ${pos}`);
+    croak(`Invalid symbol ${str}`);
   };
 
   const readNext = () => {
@@ -235,7 +235,7 @@ export const Lexer = (input) => {
       return makeToken("punc", ch);
     }
 
-    croak(`Invalid character ${ch} at ${pos}`);
+    croak(`Invalid character ${ch}`);
   };
 
   while (!eoi()) {
@@ -248,3 +248,5 @@ export const Lexer = (input) => {
 
   return tokens;
 };
+
+export default read;
