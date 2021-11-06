@@ -195,7 +195,7 @@ const read = (input, whichCase) => {
     }
 
     if (isKeyword(str)) {
-      return makeToken(str, str);
+      return makeToken("keyword", str);
     }
 
     if (str === "_") {
