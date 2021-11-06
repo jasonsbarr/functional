@@ -63,6 +63,11 @@ const read = (input, whichCase) => {
         return makeToken("number", parseInt(num, 2));
       }
 
+      if (peek() === "n") {
+        // is BigInt 0n
+        return makeToken("bigint", 0n);
+      }
+
       if (peek() !== ".") {
         // is the integer zero
         return makeToken("number", 0);
