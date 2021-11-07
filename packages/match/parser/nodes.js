@@ -20,3 +20,33 @@ export const UndefinedLiteral = () => ({
   type: "UndefinedLiteral",
   value: undefined,
 });
+export const RegExpLiteral = (value) => ({ type: "RegExpLiteral", value });
+
+// Identifier - note that an identifier may be an expression or a destructuring pattern
+export const Identifier = (value) => ({ type: "Identifier", value });
+
+// Empty Statement, i.e. a lone semicolon
+export const EmptyStatement = () => ({ type: "EmptyStatement" });
+
+// Block statement
+export const BlockStatement = (body) => ({ type: "BlockStatement", body });
+
+// Expression statement
+export const ExpressionStatement = (expr) => ({
+  type: "ExpressionStatement",
+  expr,
+});
+
+// Function (expression or declaration)
+export const FunctionNode = (
+  params,
+  body,
+  { generator = false, async = false, id = null } = {}
+) => ({
+  type: "Function",
+  id,
+  params,
+  body,
+  generator,
+  async,
+});
