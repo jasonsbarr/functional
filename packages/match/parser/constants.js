@@ -30,8 +30,9 @@ export const keywords = [
   "extends",
   "void",
 ];
-export const OP_CHARS = "=+-*/%<>%^|&?:.~=";
+export const OP_CHARS = "=+-*/%<>^|&?:.~!";
 export const operators = [
+  "::",
   "=",
   "+=",
   "-=",
@@ -57,7 +58,6 @@ export const operators = [
   "===",
   "!==",
   "!",
-  "::",
   "&",
   "&&",
   "|",
