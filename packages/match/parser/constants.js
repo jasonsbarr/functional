@@ -25,6 +25,12 @@ export const keywords = [
   "set",
   "extends",
   "void",
+  "if",
+  "else",
+  "while",
+  "for",
+  "of",
+  "in",
 ];
 export const OP_CHARS = "=+-*/%<>^|&?:.~!";
 export const operators = [
