@@ -199,8 +199,16 @@ const read = (input, whichCase) => {
   const readOp = () => {
     const op = readWhile(isOpChar);
 
-    if (op === "." || op === "?" || op === "?.") {
+    if (op === "." || op === "?" || op === "?." || op === ":") {
       return makeToken("punc", op);
+    }
+
+    if (op === "->") {
+      return makeToken("arrow", op);
+    }
+
+    if (op === "=>") {
+      return makeToken("fatarrow", op);
     }
 
     if (!isOperator(op)) {

@@ -6,7 +6,6 @@ export const keywords = [
   "await",
   "function",
   "delete",
-  "instanceof",
   "true",
   "false",
   "null",
@@ -25,6 +24,10 @@ export const keywords = [
   "yield",
   "class",
   "static",
+  "get",
+  "set",
+  "extends",
+  "void",
 ];
 export const OP_CHARS = "=+-*/%<>%^|&?:.~=";
 export const operators = [
@@ -72,12 +75,11 @@ export const operators = [
   ">>",
   "<<",
   ">>>",
-  "->",
-  "=>",
   "in",
   "is",
+  "instanceof",
 ];
-export const punc = ["(", ")", "[", "]", "{", "}", ",", ";", ".", "?"];
+export const punc = ["(", ")", "[", "]", "{", "}", ",", ";", ".", "?", ":"];
 
 export const REGEX_REGEX =
   /\/((?![*+?])(?:[^\r\n\[/\\]|\\.|\[(?:[^\r\n\]\\]|\\.)*\])+)\//;
