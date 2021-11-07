@@ -22,6 +22,9 @@ export const keywords = [
   "var",
   "const",
   "async",
+  "yield",
+  "class",
+  "static",
 ];
 export const OP_CHARS = "=+-*/%<>%^|&?:.~=";
 export const operators = [
@@ -75,6 +78,9 @@ export const operators = [
   "is",
 ];
 export const punc = ["(", ")", "[", "]", "{", "}", ",", ";", ".", "?"];
+
+export const REGEX_REGEX =
+  /\/((?![*+?])(?:[^\r\n\[/\\]|\\.|\[(?:[^\r\n\]\\]|\\.)*\])+)\//;
 
 // from: https://gist.github.com/mathiasbynens/6334847
 export const IDENTIFIER_START =

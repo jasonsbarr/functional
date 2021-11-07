@@ -3,6 +3,7 @@ import {
   IDENTIFIER_CHAR,
   IDENTIFIER_REGEXP,
   OP_CHARS,
+  REGEX_REGEX,
   operators,
   punc,
   keywords,
@@ -31,3 +32,5 @@ export const isOperator = (str) => operators.includes(str);
 export const isPunc = (char) => punc.includes(char);
 
 export const isKeyword = (str) => keywords.includes(str);
+
+export const matchRegexBody = (str) => REGEX_REGEX.test(str);

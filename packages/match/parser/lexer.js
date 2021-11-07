@@ -11,6 +11,7 @@ import {
   isValidId,
   isPunc,
   isKeyword,
+  matchRegexBody,
 } from "./helpers.js";
 
 const read = (input, whichCase) => {
@@ -19,6 +20,7 @@ const read = (input, whichCase) => {
 
   const peek = () => input.charAt(pos);
   const next = () => input.charAt(pos++);
+  const lookahead = (i) => input.charAt(pos + i);
   const skip = () => pos++;
   const eoi = () => peek() == "";
   const croak = (msg) => {
@@ -175,6 +177,25 @@ const read = (input, whichCase) => {
     return makeToken("templateString", eval(str));
   };
 
+  const maybeRegExp = () => {
+    let str = peek();
+    let i = 1;
+
+    while (!eoi() && lookahead(i) !== "/") {
+      str += lookahead(i);
+      i++;
+    }
+
+    if (matchRegexBody(str)) {
+      pos += i;
+      str += readWhile((ch) => "dgimsuy".includes(ch));
+
+      return makeToken("regexp", new RegExp(String.raw`${str}`));
+    }
+
+    return null;
+  };
+
   const readOp = () => {
     const op = readWhile(isOpChar);
 
@@ -214,6 +235,14 @@ const read = (input, whichCase) => {
       return makeToken("keyword", str);
     }
 
+    if (str === "function" || str === "yield") {
+      if (peek() === "*") {
+        // handle function* and yield* keywords for generators
+        str += next();
+        return makeToken("keyword", str);
+      }
+    }
+
     if (str === "_") {
       return makeToken("catchall", str);
     }
@@ -240,6 +269,10 @@ const read = (input, whichCase) => {
 
     if (ch === "`") {
       return readTemplateString();
+    }
+
+    if (ch === "/") {
+      return maybeRegExp();
     }
 
     if (isOpChar(ch)) {
