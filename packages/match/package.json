@@ -27,5 +27,8 @@
   },
   "bugs": {
     "url": "https://github.com/jasonsbarr/functional/issues"
+  },
+  "dependencies": {
+    "@jasonsbarr/functional-core": "^0.3.3"
   }
 }
