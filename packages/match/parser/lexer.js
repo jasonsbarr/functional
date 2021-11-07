@@ -231,6 +231,18 @@ const read = (input, whichCase) => {
       return makeToken("number", Number(str));
     }
 
+    if (str === "true" || str === "false") {
+      return makeToken("boolean", str === "true");
+    }
+
+    if (str === "null") {
+      return makeToken("null", null);
+    }
+
+    if (str === "undefined") {
+      return makeToken("undefined", undefined);
+    }
+
     if (isKeyword(str)) {
       return makeToken("keyword", str);
     }
