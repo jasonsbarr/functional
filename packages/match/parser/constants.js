@@ -34,6 +34,7 @@ export const keywords = [
   "switch",
   "case",
   "default",
+  "do",
 ];
 export const OP_CHARS = "=+-*/%<>^|&?:.~!";
 export const operators = [

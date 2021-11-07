@@ -37,6 +37,76 @@ export const ExpressionStatement = (expr) => ({
   expr,
 });
 
+// If statement
+export const IfStatement = (cond, then, elseStmnt = null) => ({
+  type: "IfStatement",
+  cond,
+  then,
+  else: elseStmnt,
+});
+
+// Switch statement and case
+export const SwitchStatement = (discriminant, cases) => ({
+  type: "SwitchStatement",
+  discriminant,
+  cases,
+});
+
+export const SwitchCase = (test, consequent) => ({
+  type: "SwitchCase",
+  test,
+  consequent,
+});
+
+// Loops
+export const WhileStatement = (test, body) => ({
+  type: "WhileStatement",
+  test,
+  body,
+});
+
+export const DoWhileStatement = (test, body) => ({
+  type: "DoWhileStatement",
+  test,
+  body,
+});
+
+export const ForStatement = (init, test, update, body) => ({
+  type: "ForStatement",
+  init,
+  test,
+  update,
+  body,
+});
+
+export const ForInStatement = (left, right, body) => ({
+  type: "ForInStatement",
+  left,
+  right,
+  body,
+});
+
+export const ForOfStatement = (left, right, body, awaitS = false) => ({
+  type: "ForOfStatement",
+  left,
+  right,
+  body,
+  await: awaitS,
+});
+
+// Variable declaration and declarator
+export const VariableDeclaration = (declarations, kind) => ({
+  type: "VariableDeclaration",
+  declarations,
+  kind,
+});
+
+export const VariableDeclarator = (id, init) => ({
+  type: "VariableDeclarator",
+  id,
+  init,
+});
+
 // Function (expression or declaration)
 export const FunctionNode = (
   params,
