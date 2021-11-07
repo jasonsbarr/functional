@@ -1,7 +1,6 @@
 // will add keywords for JS statements later, since they could be included in a function expression
 export const keywords = [
   "when",
-  "fail",
   "as",
   "typeof",
   "await",
