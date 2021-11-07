@@ -14,7 +14,7 @@ import {
   matchRegexBody,
 } from "./helpers.js";
 
-const read = (input, whichCase) => {
+const read = (whichCase) => (input) => {
   let pos = 0;
   let tokens = [];
 
