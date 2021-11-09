@@ -1,10 +1,14 @@
 import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
+import { unique } from "./unique";
+import { includes } from "./includes";
 
 export const difference = curry((iter1, iter2) => {
-  const set1 = new Set([...iter1]);
-  const set2 = new Set([...iter2]);
+  let set1 = unique(iter1);
+  let set2 = unique(iter2);
+
   for (let item of set2) {
-    set1.delete(item);
+    set1 = remove(item, set1);
   }
+
   return iter1.constructor(...set1);
 });
