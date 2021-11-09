@@ -1,6 +1,5 @@
 import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
 import { unique } from "./unique";
-import { includes } from "./includes";
 
 export const difference = curry((iter1, iter2) => {
   let set1 = unique(iter1);
