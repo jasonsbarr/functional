@@ -1,10 +1,12 @@
 import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
+import { unique } from "./unique.js";
 
 export const union = curry((iter1, iter2) => {
-  let set1 = new Set([...iter1]);
-  let set2 = new Set([...iter2]);
-  for (let item of set2) {
-    set1.add(item);
+  let temp = [...unique(iter1)];
+
+  for (let item of unique(iter2)) {
+    temp.push(item);
   }
-  return iter1.constructor(...set1);
+
+  return iter1.constructor(...temp);
 });
