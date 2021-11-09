@@ -1,6 +1,6 @@
 {
   "name": "match",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "type": "module",
   "description": "ML-style pattern matching for JavaScript",
   "keywords": [
@@ -29,6 +29,6 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/functional-core": "^0.3.3"
+    "@jasonsbarr/functional-core": "^0.4.0"
   }
 }
