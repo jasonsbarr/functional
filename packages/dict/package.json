@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/dict",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@jasonsbarr/functional-core": "^0.4.1",
-    "@jasonsbarr/iterable": "^0.4.1"
+    "@jasonsbarr/iterable": "^0.4.2"
   },
   "gitHead": "5e8cd1f4755182ec7c579818770feef045525558"
 }
