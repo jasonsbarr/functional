@@ -7,7 +7,7 @@ const fst = (pair) => pair[0];
 const snd = (pair) => pair[1];
 
 function HashMap() {
-  const HashMap = class HashMap extends JsMap {
+  const Hash = class Hash extends JsMap {
     constructor(pairs) {
       super(pairs);
 
@@ -37,10 +37,10 @@ function HashMap() {
     get(key) {}
   };
 
-  const Map = (...pairs) => new HashMap(pairs);
+  const Map = (...pairs) => new Hash(pairs);
 
-  Map.of = (obj) => new HashMap(entries(obj));
-  Map.empty = () => new HashMap();
+  Map.of = (obj) => new Hash(entries(obj));
+  Map.empty = () => new Hash();
 
   return Map;
 }
