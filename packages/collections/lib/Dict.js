@@ -413,4 +413,4 @@ Dict.of = (obj) => new Dictionary(entries(obj));
 Dict.isDict = (obj) => obj.type === "Dictionary";
 Dict.empty = () => Dict.of({});
 
-export const dict = Dict;
+export default Dict;

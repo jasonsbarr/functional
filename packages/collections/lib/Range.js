@@ -88,3 +88,5 @@ export const Range = curryN(
 );
 
 export const range = Range;
+
+export default Range;

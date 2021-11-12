@@ -478,3 +478,5 @@ Tuple.of = (iter) => tuple(...iter);
 Tuple.from = Tuple.of;
 Tuple.isTuple = (obj) => obj.type === "Tuple";
 Tuple.empty = () => Tuple.of([]);
+
+export default Tuple;

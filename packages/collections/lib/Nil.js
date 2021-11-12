@@ -379,3 +379,5 @@ class Nil {
 Nil.empty = () => NIL;
 
 export const NIL = new Nil();
+
+export default NIL;
