@@ -319,7 +319,7 @@ class Dictionary {
   }
 
   sequence(point) {
-    return this.sequence(point, identity);
+    return this.traverse(point, identity);
   }
 
   set(key, value) {
