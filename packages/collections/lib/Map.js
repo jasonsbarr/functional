@@ -1,48 +1,75 @@
 import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
 import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
 import { equals } from "@jasonsbarr/functional-core/lib/object/equals.js";
+import { find } from "@jasonsbarr/iterable/lib/find.js";
+import { Option } from "@jasonsbarr/functional-core/lib/types/Option.js";
+import { JsMap } from "./internal/_JsMap.js";
 
-const JsMap = Map;
 const fst = (pair) => pair[0];
 const snd = (pair) => pair[1];
 
-function HashMap() {
-  const Hash = class Hash extends JsMap {
-    constructor(pairs) {
-      super(pairs);
+const HashMap = class HashMap extends JsMap {
+  constructor(pairs) {
+    super(pairs);
 
-      this.keyrefs = [];
+    const keyrefs = [];
 
-      for (let pair of pairs) {
-        this.keyrefs.push(fst(pair));
-      }
-
-      definePropWithOpts("type", this, {
-        enumerable: false,
-        writable: false,
-        configurable: false,
-        value: "Map",
-      });
-
-      definePropWithOpts("constructor", this, {
-        configurable: false,
-        enumerable: false,
-        writable: false,
-        value: Map,
-      });
+    for (let pair of pairs) {
+      keyrefs.push(fst(pair));
     }
 
-    has(key) {}
+    definePropWithOpts("keyrefs", this, {
+      enumerable: false,
+      writable: false,
+      configurable: false,
+      value: keyrefs,
+    });
 
-    get(key) {}
-  };
+    definePropWithOpts("type", this, {
+      enumerable: false,
+      writable: false,
+      configurable: false,
+      value: "Map",
+    });
 
-  const Map = (...pairs) => new Hash(pairs);
+    definePropWithOpts("constructor", this, {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: Map,
+    });
+  }
 
-  Map.of = (obj) => new Hash(entries(obj));
-  Map.empty = () => new Hash();
+  get(key) {
+    return this.lookup(key).chain((k) => Option.of(super.get(k)));
+  }
 
-  return Map;
-}
+  has(key) {
+    return this.lookup(key).fold(
+      () => false,
+      () => true
+    );
+  }
 
-export default HashMap();
+  hasValue(value) {
+    return find(value, this.entries()).fold(
+      () => false,
+      () => true
+    );
+  }
+
+  // returns Option
+  lookup(key) {
+    return find(key, this.keyrefs);
+  }
+};
+
+const Map = (...pairs) => new HashMap(pairs);
+
+// works with an Object or a JsMap
+Map.of = (obj) => new HashMap(entries(obj));
+Map.empty = () => new HashMap();
+
+export { Map };
+
+export default Map;
