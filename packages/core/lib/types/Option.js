@@ -60,11 +60,11 @@ export const Option = createType(
     },
 
     isSome(x) {
-      return isFunction(x.isSome) && x.isSome();
+      return x && isFunction(x.isSome) && x.isSome();
     },
 
     isNone(x) {
-      return isFunction(x.isNone) && x.isNone();
+      return x && isFunction(x.isNone) && x.isNone();
     },
   }
 );
