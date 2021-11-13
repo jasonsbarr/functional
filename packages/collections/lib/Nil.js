@@ -2,13 +2,20 @@ import { zip } from "@jasonsbarr/iterable/lib/zip.js";
 import { None } from "@jasonsbarr/functional-core/lib/types/Option.js";
 import { List } from "./List.js";
 
-class Nil {
+class NilClass {
   constructor() {
     Object.defineProperty(this, "type", {
       configurable: false,
       enumerable: false,
       writable: false,
       value: "Nil",
+    });
+
+    Object.defineProperty(this, "constructor", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: Nil,
     });
   }
 
@@ -376,8 +383,10 @@ class Nil {
   }
 }
 
+export const Nil = () => new NilClass();
+
 Nil.empty = () => NIL;
 
-export const NIL = new Nil();
+export const NIL = Nil();
 
 export default NIL;
