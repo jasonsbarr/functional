@@ -42,11 +42,11 @@ const isPasswordValid = (password) =>
 const handlePasswordFieldChange = (event) => {
     isPasswordValid(event.target.value)
         .fold(
-            ({ value, messages }) => {
+            ({ value: { value, messages } }) => {
                 setPassFieldState(value);
                 setPassFieldErrors(messages);
             },
-            ({ value }) => {
+            ({ value: { value } }) => {
                 setPassFieldState(value);
                 setPassFieldErrors([]);
             }
