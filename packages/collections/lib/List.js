@@ -572,4 +572,4 @@ List.isList = (obj) => obj.type === "List";
 
 List.empty = () => NIL;
 
-export const list = List;
+export default List;

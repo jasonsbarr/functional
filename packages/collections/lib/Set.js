@@ -479,3 +479,5 @@ Set.of = (iter) => Set(...iter);
 Set.from = Set.of;
 Set.isSet = (obj) => obj.type === "Set";
 Set.empty = () => Set.of([]);
+
+export default Set;

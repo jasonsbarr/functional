@@ -1,14 +1,21 @@
 import { zip } from "@jasonsbarr/iterable/lib/zip.js";
 import { None } from "@jasonsbarr/functional-core/lib/types/Option.js";
-import { list } from "./List.js";
+import { List } from "./List.js";
 
-class Nil {
+class NilClass {
   constructor() {
     Object.defineProperty(this, "type", {
       configurable: false,
       enumerable: false,
       writable: false,
       value: "Nil",
+    });
+
+    Object.defineProperty(this, "constructor", {
+      configurable: false,
+      enumerable: false,
+      writable: false,
+      value: Nil,
     });
   }
 
@@ -25,7 +32,7 @@ class Nil {
   }
 
   append(item) {
-    return list(item);
+    return List(item);
   }
 
   at(i) {
@@ -160,7 +167,7 @@ class Nil {
   }
 
   insert(item, i) {
-    return list(item);
+    return List(item);
   }
 
   inspect() {
@@ -240,7 +247,7 @@ class Nil {
   }
 
   prepend(item) {
-    return list(item);
+    return List(item);
   }
 
   product() {
@@ -248,7 +255,7 @@ class Nil {
   }
 
   push(item) {
-    return list(item);
+    return List(item);
   }
 
   reduce(fn, initial) {
@@ -307,7 +314,7 @@ class Nil {
     if (!items.length) {
       return this;
     }
-    return list.of(items);
+    return List.of(items);
   }
 
   sum() {
@@ -351,7 +358,7 @@ class Nil {
   }
 
   unshift(item) {
-    return list(item);
+    return List(item);
   }
 
   update(updater, i) {
@@ -376,6 +383,10 @@ class Nil {
   }
 }
 
+export const Nil = () => new NilClass();
+
 Nil.empty = () => NIL;
 
-export const NIL = new Nil();
+export const NIL = Nil();
+
+export default NIL;

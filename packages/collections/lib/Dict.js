@@ -319,7 +319,7 @@ class Dictionary {
   }
 
   sequence(point) {
-    return this.sequence(point, identity);
+    return this.traverse(point, identity);
   }
 
   set(key, value) {
@@ -413,4 +413,4 @@ Dict.of = (obj) => new Dictionary(entries(obj));
 Dict.isDict = (obj) => obj.type === "Dictionary";
 Dict.empty = () => Dict.of({});
 
-export const dict = Dict;
+export default Dict;
