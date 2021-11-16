@@ -119,7 +119,7 @@ const variantInfos = [
           Validation.isValidation(validation),
           "Argument to validation.concat must be another Validation type"
         );
-        if (validation.isFailure()) {
+        if (validation.isFailure && validation.isFailure()) {
           const { value, messages } = this.value;
           return Validation.fail(
             value,
