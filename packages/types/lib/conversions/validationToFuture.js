@@ -1,6 +1,7 @@
-import { Future } from "@jasonsbarr/functional-core/lib/types/Future.js";
+import { Future } from "@jasonsbarr/concurrency/lib/Future.js";
 
 export const validationToFuture = (validation) =>
-  validation.isSuccess()
-    ? Future.of(validation.valueOf())
-    : Future.rejected(validation.messages);
+  validation.fold(
+    (value) => Future.rejected(value),
+    (value) => Future.of(value)
+  );

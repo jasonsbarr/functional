@@ -33,7 +33,8 @@
   },
   "dependencies": {
     "@jasonsbarr/functional-core": "^0.6.0",
-    "@jasonsbarr/iterable": "^0.6.0"
+    "@jasonsbarr/iterable": "^0.6.0",
+    "@jasonsbarr/concurrency": "^0.6.0"
   },
   "gitHead": "5e8cd1f4755182ec7c579818770feef045525558"
 }

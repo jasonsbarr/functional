@@ -1,3 +1,3 @@
-import { Future } from "@jasonsbarr/functional-core/lib/types/Future.js";
+import { Future } from "@jasonsbarr/concurrency/lib/Future.js";
 
 export const effectToFuture = (effect) => effect.fold(Future.of);
