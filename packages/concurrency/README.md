@@ -11,7 +11,7 @@ Import the Future type and use as follows:
 ```js
 import { Future } from "@jasonsbarr/concurrency/lib/Future";
 
-// assume the existence of an addToDom function that appends an HTML string to the DOM
+// assume the existence of a handleError function and an addToDom function that appends an HTML string to the DOM
 Future.fromPromise(
   fetch("https://jsonplaceholder.typicode.com/posts").then((res) => res.json())
 )
