@@ -8,6 +8,7 @@ Collections include:
 - List - a linked list using Array-based cells
 - Nil - represents the empty List for safe use with what would otherwise be `null` and `undefined` values
 - Range - if all you need is to iterate over a range of numbers, this is what you need
+- Map - like native JavaScript Maps, but with additional methods and functionality
 - Tuple - immutable, Array-like collection
 
 ## Basic Usage
