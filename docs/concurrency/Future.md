@@ -87,17 +87,18 @@ Or from a function that takes a Node-style callback:
 ```js
 // this example shows off several functions from the library
 import fs from "fs";
-import { Future } from "@jasonsbarr/functional-core/lib/types/Future.js";
+import { Future } from "@jasonsbarr/concurrency/lib/Future.js";
+import { resultToFuture } from "@jasonsbarr/concurrency/lib/conversions/resultToFuture.js";
 import { tryCatch } from "@jasonsbarr/functional-core/lib/types/Result.js";
-import { eitherToFuture } from "@jasonsbarr/functional-core/lib/types/conversions/eitherToFuture.js";
 import { isNil } from "@jasonsbarr/functional-core/lib/predicates/isNil.js";
 
+// Note that fromCallback is curried, so these return functions
 const readFile = Future.fromCallback(fs.readFile);
 const writeFile = Future.fromCallback(fs.writeFile);
 
 readFile("config.json", "utf-8")
   .map((config) => tryCatch(() => JSON.parse(config)))
-  .chain(eitherToFuture)
+  .chain(resultToFuture)
   .map((json) => (isNil(json.port) ? { ...json, port: 3333 } : json))
   .chain(writeFile("config-new.json", "utf-8"))
   .fork(
