@@ -15,7 +15,6 @@
   "author": "Jason Barr <jason.barr@metronetinc.com>",
   "homepage": "https://github.com/jasonsbarr/functional/wiki/tree/main/packages/concurrency#readme",
   "license": "MIT",
-  "main": "lib/concurrency.js",
   "directories": {
     "lib": "lib"
   },
