@@ -13,6 +13,7 @@ import {
 const variantInfos = [
   VariantInfo(
     "Id",
+    [],
     [Fold, Functor, Apply, Chain, SemiGroup],
     {},
     {

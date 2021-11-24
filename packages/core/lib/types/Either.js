@@ -22,26 +22,34 @@ import {
 } from "./typeClasses.js";
 
 const variantInfos = [
-  VariantInfo("Right", [
-    RightFold,
-    Functor,
-    Apply,
-    Chain,
-    RightBifunctor,
-    RightBichain,
-    RightAlt,
-    RightSemiGroup,
-  ]),
-  VariantInfo("Left", [
-    LeftFold,
-    LeftFunctor,
-    LeftApply,
-    LeftChain,
-    LeftBifunctor,
-    LeftBichain,
-    LeftAlt,
-    LeftSemiGroup,
-  ]),
+  VariantInfo(
+    "Right",
+    [],
+    [
+      RightFold,
+      Functor,
+      Apply,
+      Chain,
+      RightBifunctor,
+      RightBichain,
+      RightAlt,
+      RightSemiGroup,
+    ]
+  ),
+  VariantInfo(
+    "Left",
+    [],
+    [
+      LeftFold,
+      LeftFunctor,
+      LeftApply,
+      LeftChain,
+      LeftBifunctor,
+      LeftBichain,
+      LeftAlt,
+      LeftSemiGroup,
+    ]
+  ),
 ];
 
 export const Either = createType(

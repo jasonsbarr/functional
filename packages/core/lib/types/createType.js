@@ -13,11 +13,13 @@ import { freeze } from "../object/freeze.js";
  */
 export const VariantInfo = (
   variantName,
+  fields = [],
   typeClasses = [],
   overrides = {},
   { sTypeClasses = [], methods = {} } = {}
 ) => ({
   variantName,
+  fields,
   typeClasses,
   overrides,
   statics: { sTypeClasses, methods },

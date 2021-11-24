@@ -15,6 +15,7 @@ import { isObject } from "@jasonsbarr/functional-core/lib/predicates/isObject.js
 const variantInfos = [
   VariantInfo(
     "Assign",
+    [],
     [Fold, SemiGroup, Setoid],
     {
       concat({ value: y }) {

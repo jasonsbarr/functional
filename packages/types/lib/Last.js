@@ -14,6 +14,7 @@ import { Option, None } from "@jasonsbarr/functional-core/lib/types/Option.js";
 const variantInfos = [
   VariantInfo(
     "Last",
+    [],
     [Fold, SemiGroup, Setoid],
     {
       concat({ value: y }) {

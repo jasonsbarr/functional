@@ -28,6 +28,7 @@ import { assert } from "@jasonsbarr/functional-core/lib/helpers/assert.js";
 const variantInfos = [
   VariantInfo(
     "Success",
+    [],
     [
       Apply,
       Chain,
@@ -73,6 +74,7 @@ const variantInfos = [
   ),
   VariantInfo(
     "Failure",
+    [],
     [
       LeftAlt,
       LeftApply,

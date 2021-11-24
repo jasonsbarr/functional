@@ -14,6 +14,7 @@ import { boolean } from "@jasonsbarr/functional-core/lib/boolean/boolean.js";
 const variantInfos = [
   VariantInfo(
     "Any",
+    [],
     [SemiGroup, Setoid, Fold],
     {
       concat({ value: y }) {
