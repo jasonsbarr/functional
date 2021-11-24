@@ -1,10 +1,10 @@
-import { noop } from "../helpers/noop.js";
+import { noop } from "@jasonsbarr/functional-core/lib/helpers/noop.js";
+import { length } from "@jasonsbarr/functional-core/lib/array/length.js";
+import { defer } from "@jasonsbarr/functional-core/lib/lambda/defer.js";
+import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
+import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction.js";
 import { Cancelled } from "./internal/_executionStates.js";
 import { Deferred } from "./internal/_deferred.js";
-import { length } from "../array/length.js";
-import { defer } from "../lambda/defer.js";
-import { curry } from "../lambda/curry.js";
-import { isFunction } from "../predicates/isFunction.js";
 
 class Futur extends Deferred {
   constructor() {

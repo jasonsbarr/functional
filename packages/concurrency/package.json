@@ -1,6 +1,7 @@
 {
   "name": "concurrency",
   "version": "0.6.0",
+  "type": "module",
   "description": "Handling concurrency the functional way",
   "keywords": [
     "future",
@@ -28,5 +29,8 @@
   },
   "bugs": {
     "url": "https://github.com/jasonsbarr/functional/issues"
+  },
+  "dependencies": {
+    "@jasonsbarr/functional-core": "^0.6.0"
   }
 }
