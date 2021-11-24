@@ -100,7 +100,7 @@ readFile("config.json", "utf-8")
   .map((config) => tryCatch(() => JSON.parse(config)))
   .chain(resultToFuture)
   .map((json) => (isNil(json.port) ? { ...json, port: 3333 } : json))
-  .chain(writeFile("config-new.json", "utf-8"))
+  .chain((data) => writeFile("config-new.json", JSON.stringify(data), "utf-8"))
   .fork(
     (err) => console.error(`Error: ${err}`),
     () => console.log("File written!")
