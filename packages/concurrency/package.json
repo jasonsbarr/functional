@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/concurrency",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "type": "module",
   "description": "Handling concurrency the functional way",
   "keywords": [
@@ -31,6 +31,6 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/functional-core": "^0.6.0"
+    "@jasonsbarr/functional-core": "^0.7.0"
   }
 }
