@@ -19,10 +19,12 @@ Future.fromPromise(
   .map((posts) =>
     posts.reduce(
       (html, post) =>
-        (html += `<div class="post">
-        <h1>${post.title}</h1>
-        <article class="post-body">${post.body}</article>
-    </div>`),
+        (html += `<article class="post">
+        <header class="post-header">
+            <h1>${post.title}</h1>
+        </header>
+        <section class="post-body">${post.body}</section>
+    </article>`),
       ""
     )
   )
