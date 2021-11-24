@@ -9,7 +9,7 @@ import { isFunction } from "../predicates/isFunction.js";
 class Futur extends Deferred {
   constructor() {
     super();
-    Object.defineProperty(this, "kind", {
+    Object.defineProperty(this, "type", {
       configurable: false,
       enumerable: true,
       writable: false,

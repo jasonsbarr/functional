@@ -1,0 +1,32 @@
+{
+  "name": "concurrency",
+  "version": "0.6.0",
+  "description": "Handling concurrency the functional way",
+  "keywords": [
+    "future",
+    "concurrency",
+    "promise",
+    "task"
+  ],
+  "author": "Jason Barr <jason.barr@metronetinc.com>",
+  "homepage": "https://github.com/jasonsbarr/functional/wiki/tree/main/packages/concurrency#readme",
+  "license": "MIT",
+  "main": "lib/concurrency.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonsbarr/functional.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/jasonsbarr/functional/issues"
+  }
+}
