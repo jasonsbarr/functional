@@ -1,5 +1,5 @@
 {
-  "name": "concurrency",
+  "name": "@jasonsbarr/concurrency",
   "version": "0.6.0",
   "type": "module",
   "description": "Handling concurrency the functional way",

@@ -32,6 +32,7 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
+    "@jasonsbarr/concurrency": "^0.6.0",
     "@jasonsbarr/functional-core": "^0.6.0",
     "@jasonsbarr/iterable": "^0.6.0"
   },
