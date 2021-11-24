@@ -14,7 +14,7 @@ npm install @jasonsbarr/[package name]
 
 ## The Packages
 
-Currently there are 5 packages:
+Currently there are 6 packages:
 
 ### Core
 
@@ -39,6 +39,12 @@ The Dict package adds almost 50 functions that treat Plain Old JavaScript Object
 Collections includes three indexed collections (List, Set, and Tuple) built on the functions in the Iterable package, but with a fluent interface so you can chain operations as you like. The functionality far outstrips that of JavaScript arrays, and Tuples have the added benefit of being immutable. The package also includes the Dict collection, that builds on functions from the Dict package but with some added features like flattening and chaining.
 
 - [Collections package](https://github.com/jasonsbarr/functional/tree/main/packages/collections)
+
+### Concurrency
+
+Concurrency includes the Future, a monadic type for handling concurrent and asynchronous operations in a functional manner. The interface has parity with native JavaScript promises, but with added functionality for mapping, chaining, and so on.
+
+- [Concurrency package](https://github.com/jasonsbarr/functional/tree/main/packages/concurrency)
 
 ### Types
 

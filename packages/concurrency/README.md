@@ -1,11 +1,37 @@
-# `concurrency`
+# @jasonsbarr/concurrency
 
-> TODO: description
+A functional type for handling concurrent and asynchronous operations.
 
-## Usage
+Includes the monadic Future type.
 
+## Basic Usage
+
+Import the Future type and use as follows:
+
+```js
+import { Future } from "@jasonsbarr/concurrency/lib/Future";
+
+// assume the existence of an addToDom function that appends an HTML string to the DOM
+Future.fromPromise(
+  fetch("https://jsonplaceholder.typicode.com/posts").then((res) => res.json())
+)
+  .map((posts) => posts.map((post) => ({ title, body })))
+  .map((posts) =>
+    posts.reduce(
+      (html, post) =>
+        (html += `<div class="post">
+        <h1>${post.title}</h1>
+        <article class="post-body">${post.body}</article>
+    </div>`),
+      ""
+    )
+  )
+  .fork(
+    (err) => handleError(err),
+    (posts) => addToDom(posts)
+  );
 ```
-const concurrency = require('concurrency');
 
-// TODO: DEMONSTRATE API
-```
+## Documentation
+
+[Documentation](https://github.com/jasonsbarr/functional/tree/main/docs/concurrency)
