@@ -121,14 +121,14 @@ const createVariantConstructor = (
  * @param {String} typeName The name of the type
  * @param {VariantInfo[]} variantInfos Info used to create variants
  * @param {Array} typeClasses An array of type classes to apply to the type representative
- * @param {Object} overrides Method overrides and additional method definitions for the type representative
+ * @param {Object} methods Method overrides and additional method definitions for the type representative
  * @returns {Type} The created type representative object
  */
 export const createType = (
   typeName,
   variantInfos,
   typeClasses = [],
-  overrides = {}
+  methods = {}
 ) => {
   let typeRepresentative = {
     type: typeName,
@@ -149,7 +149,7 @@ export const createType = (
     typeRepresentative = assign(typeRepresentative, className);
   }
 
-  assign(typeRepresentative, overrides);
+  assign(typeRepresentative, methods);
 
   typeRepresentative["is" + typeName] = (x) => x && x.type === typeName;
 
