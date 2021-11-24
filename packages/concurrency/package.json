@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/concurrency",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -33,7 +33,7 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/functional-core": "^0.7.0"
+    "@jasonsbarr/functional-core": "^0.7.1"
   },
   "gitHead": "7acbf2cd8877d25677a5aaf4ae3eba318f4859ca"
 }
