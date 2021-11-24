@@ -15,6 +15,7 @@ import { isNotANum } from "@jasonsbarr/functional-core/lib/predicates/isNotANum.
 const variantInfos = [
   VariantInfo(
     "Product",
+    [],
     [Fold, SemiGroup, Setoid],
     {
       concat({ value: y }) {

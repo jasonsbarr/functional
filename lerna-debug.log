@@ -1,18 +1,16 @@
-0 silly argv {
-0 silly argv   _: [ 'create' ],
-0 silly argv   lernaVersion: '4.0.0',
-0 silly argv   '$0': 'lerna',
-0 silly argv   name: 'match'
-0 silly argv }
+0 silly argv { _: [ 'bootstrap' ], lernaVersion: '4.0.0', '$0': 'lerna' }
 1 notice cli v4.0.0
-2 verbose rootPath /home/jason/Projects/functional
-3 error Error: canceled
-3 error     at Interface.<anonymous> (/home/jason/Projects/functional/node_modules/read/lib/read.js:66:13)
-3 error     at Interface.emit (node:events:394:28)
-3 error     at Interface._ttyWrite (node:readline:1081:16)
-3 error     at ReadStream.onkeypress (node:readline:288:10)
-3 error     at ReadStream.emit (node:events:394:28)
-3 error     at emitKeys (node:internal/readline/utils:358:14)
-3 error     at emitKeys.next (<anonymous>)
-3 error     at ReadStream.onData (node:internal/readline/emitKeypressEvents:61:36)
-3 error     at ReadStream.emit (node:events:394:28)
+2 verbose rootPath /home/jason/code/functional
+3 error JSONError: Unexpected token "}" (0x7D) in JSON at position 872 while parsing near "...rable\": \"^0.6.0\",\n  },\n  \"gitHead\": \"5e8..." in packages/types/package.json
+3 error
+3 error [0m [90m 35 |[39m     [32m"@jasonsbarr/functional-core"[39m[33m:[39m [32m"^0.6.0"[39m[33m,[39m[0m
+3 error [0m [90m 36 |[39m     [32m"@jasonsbarr/iterable"[39m[33m:[39m [32m"^0.6.0"[39m[33m,[39m[0m
+3 error [0m[31m[1m>[22m[39m[90m 37 |[39m   }[33m,[39m[0m
+3 error [0m [90m    |[39m   [31m[1m^[22m[39m[0m
+3 error [0m [90m 38 |[39m   [32m"gitHead"[39m[33m:[39m [32m"5e8cd1f4755182ec7c579818770feef045525558"[39m[0m
+3 error [0m [90m 39 |[39m }[0m
+3 error [0m [90m 40 |[39m[0m
+3 error
+3 error     at parseJson (/home/jason/code/functional/node_modules/parse-json/index.js:29:21)
+3 error     at parse (/home/jason/code/functional/node_modules/load-json-file/index.js:15:9)
+3 error     at module.exports (/home/jason/code/functional/node_modules/load-json-file/index.js:18:47)

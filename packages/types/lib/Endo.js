@@ -14,6 +14,7 @@ import { identity } from "@jasonsbarr/functional-core/lib/helpers/identity.js";
 const variantInfos = [
   VariantInfo(
     "Endo",
+    [],
     [Fold, SemiGroup, Setoid],
     {
       concat({ value: y }) {

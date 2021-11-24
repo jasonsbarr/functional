@@ -24,26 +24,34 @@ import {
 } from "./typeClasses.js";
 
 const variantInfos = [
-  VariantInfo("Some", [
-    RightFold,
-    Functor,
-    Apply,
-    Chain,
-    RightBifunctor,
-    RightBichain,
-    RightAlt,
-    RightSemiGroup,
-  ]),
-  VariantInfo("None", [
-    LeftFold,
-    LeftFunctor,
-    LeftApply,
-    LeftChain,
-    LeftBifunctor,
-    LeftBichain,
-    LeftAlt,
-    LeftSemiGroup,
-  ]),
+  VariantInfo(
+    "Some",
+    [],
+    [
+      RightFold,
+      Functor,
+      Apply,
+      Chain,
+      RightBifunctor,
+      RightBichain,
+      RightAlt,
+      RightSemiGroup,
+    ]
+  ),
+  VariantInfo(
+    "None",
+    [],
+    [
+      LeftFold,
+      LeftFunctor,
+      LeftApply,
+      LeftChain,
+      LeftBifunctor,
+      LeftBichain,
+      LeftAlt,
+      LeftSemiGroup,
+    ]
+  ),
 ];
 
 export const Option = createType(

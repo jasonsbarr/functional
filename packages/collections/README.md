@@ -1,6 +1,6 @@
 # @jasonsbarr/collections
 
-Iterable collections in JavaScript with functionalities that far outstrip the native capabilities of JavaScript Arrays, Objects, and Maps.
+Iterable collections in JavaScript with functionalities that far outstrip the native capabilities of JavaScript Arrays, Objects, Sets, and Maps.
 
 Collections include:
 
@@ -10,6 +10,7 @@ Collections include:
 - Range - if all you need is to iterate over a range of numbers, this is what you need
 - Map - like native JavaScript Maps, but with additional methods and functionality
 - Tuple - immutable, Array-like collection
+- Set - Indexed collection of unique values based on structural (value) equality
 
 ## Basic Usage
 

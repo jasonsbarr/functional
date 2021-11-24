@@ -30,7 +30,7 @@ const isPasswordLongEnough = (password) =>
         : fail(password, "Password must be at least 10 characters long");
 
 const doesPasswordContainSpecialChars = (password) =>
-    test(/#!\.#\*&\^%\$\?\\\/@/, password)
+    test(/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/, password)
         ? succeed(password)
         : fail(password, "Password must contain at least one special character")
 
@@ -42,11 +42,11 @@ const isPasswordValid = (password) =>
 const handlePasswordFieldChange = (event) => {
     isPasswordValid(event.target.value)
         .fold(
-            ({ value, messages }) => {
+            ({ value: { value, messages } }) => {
                 setPassFieldState(value);
                 setPassFieldErrors(messages);
             },
-            ({ value }) => {
+            ({ value: { value } }) => {
                 setPassFieldState(value);
                 setPassFieldErrors([]);
             }

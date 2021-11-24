@@ -2,6 +2,7 @@
 
 Packages:
 
+- [Concurrency](https://github.com/jasonsbarr/functional/tree/main/docs/concurrency)
 - [Core](https://github.com/jasonsbarr/functional/tree/main/docs/core)
 - [Dict](https://github.com/jasonsbarr/functional/tree/main/docs/dict)
 - [Iterable](https://github.com/jasonsbarr/functional/tree/main/docs/iterable)

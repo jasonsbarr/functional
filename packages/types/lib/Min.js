@@ -16,6 +16,7 @@ import { min } from "@jasonsbarr/functional-core/lib/math/min.js";
 const variantInfos = [
   VariantInfo(
     "Min",
+    [],
     [Fold, SemiGroup, Setoid],
     {
       concat({ value: y }) {

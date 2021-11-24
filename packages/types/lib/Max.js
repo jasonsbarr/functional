@@ -16,6 +16,7 @@ import { max } from "@jasonsbarr/functional-core/lib/math/max.js";
 const variantInfos = [
   VariantInfo(
     "Max",
+    [],
     [Fold, SemiGroup, Setoid],
     {
       concat({ value: y }) {

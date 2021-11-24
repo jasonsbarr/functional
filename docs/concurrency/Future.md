@@ -46,9 +46,15 @@ Use the `future` function to create a Future and immediately register callback h
 
 ```js
 const f = future(
-  reason => {/* handle rejection */},
-  value => {/* handle resolution */},
-  () => {/* optional handle cancellation */}
+  (reason) => {
+    /* handle rejection */
+  },
+  (value) => {
+    /* handle resolution */
+  },
+  () => {
+    /* optional handle cancellation */
+  }
 );
 ```
 
@@ -57,8 +63,8 @@ This is the same as:
 ```js
 const f = Future().listen({
   onCancelled: () => {},
-  onRejected: reason => {},
-  onResolved: value => {}
+  onRejected: (reason) => {},
+  onResolved: (value) => {},
 });
 ```
 
@@ -71,7 +77,9 @@ const f = Future().fork(rejectF, resolveF, cancelF);
 You can create a Future from a Promise:
 
 ```js
-const f = Future.fromPromise(fetch("https://jsonplaceholder.typicode.com/posts/1"));
+const f = Future.fromPromise(
+  fetch("https://jsonplaceholder.typicode.com/posts/1")
+);
 ```
 
 Or from a function that takes a Node-style callback:
@@ -79,26 +87,30 @@ Or from a function that takes a Node-style callback:
 ```js
 // this example shows off several functions from the library
 import fs from "fs";
-import { Future } from "@jasonsbarr/functional-core/lib/types/Future.js";
+import { Future } from "@jasonsbarr/concurrency/lib/Future.js";
+import { resultToFuture } from "@jasonsbarr/concurrency/lib/conversions/resultToFuture.js";
 import { tryCatch } from "@jasonsbarr/functional-core/lib/types/Result.js";
-import { eitherToFuture } from "@jasonsbarr/functional-core/lib/types/conversions/eitherToFuture.js";
 import { isNil } from "@jasonsbarr/functional-core/lib/predicates/isNil.js";
 
+// Note that fromCallback is curried, so these return functions
 const readFile = Future.fromCallback(fs.readFile);
 const writeFile = Future.fromCallback(fs.writeFile);
 
 readFile("config.json", "utf-8")
-  .map(config => tryCatch(() => JSON.parse(config)))
-  .chain(eitherToFuture)
-  .map(json => isNil(json.port) ? { ...json, port: 3333 } : json)
-  .chain(writeFile("config-new.json", "utf-8"))
-  .fork(err => console.error(`Error: ${err}`), () => console.log("File written!"));
+  .map((config) => tryCatch(() => JSON.parse(config)))
+  .chain(resultToFuture)
+  .map((json) => (isNil(json.port) ? { ...json, port: 3333 } : json))
+  .chain((data) => writeFile("config-new.json", JSON.stringify(data), "utf-8"))
+  .fork(
+    (err) => console.error(`Error: ${err}`),
+    () => console.log("File written!")
+  );
 ```
 
 Or to create the Future directly, without the intermediary function:
 
 ```js
-const f = Future.fromCallback(fs.readFile)("path/to/file", "utf-8")
+const f = Future.fromCallback(fs.readFile)("path/to/file", "utf-8");
 // ... etc.
 ```
 
@@ -113,20 +125,34 @@ import axios from "axios";
 
 const func = async () => {
   return await Future.all([
-    Future.fromPromise(axios.get("https://jsonplaceholder.typicode.com/posts/1")),
-    Future.fromPromise(axios.get("https://jsonplaceholder.typicode.com/posts/2")),
-    Future.fromPromise(axios.get("https://jsonplaceholder.typicode.com/posts/3")),
-    Future.fromPromise(axios.get("https://jsonplaceholder.typicode.com/posts/4")),
+    Future.fromPromise(
+      axios.get("https://jsonplaceholder.typicode.com/posts/1")
+    ),
+    Future.fromPromise(
+      axios.get("https://jsonplaceholder.typicode.com/posts/2")
+    ),
+    Future.fromPromise(
+      axios.get("https://jsonplaceholder.typicode.com/posts/3")
+    ),
+    Future.fromPromise(
+      axios.get("https://jsonplaceholder.typicode.com/posts/4")
+    ),
   ])
-  .map(value => value.map(res => res.data))
-  .map(data => data.map(post => `
+    .map((value) => value.map((res) => res.data))
+    .map((data) =>
+      data.map(
+        (post) => `
 <div>
   <h2>${post.title}</h2>
   <p>${post.body}</p>
-</div>`))
-  .map(posts => posts.reduce((htmlStr, html) => htmlStr + html, "<h1>Posts</h1>"))
-  .promise();
-}
+</div>`
+      )
+    )
+    .map((posts) =>
+      posts.reduce((htmlStr, html) => htmlStr + html, "<h1>Posts</h1>")
+    )
+    .promise();
+};
 ```
 
 The result will be the post data inserted into HTML content, wrapped inside a promise since the value is returned from an `async` function, ready to attach to your DOM somewhere in the callback to the promise.

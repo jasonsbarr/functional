@@ -25,6 +25,7 @@ import { eq } from "@jasonsbarr/functional-core/lib/predicates/eq.js";
 const variantInfos = [
   VariantInfo(
     "Pair",
+    [],
     [Apply, Bifunctor, Chain, Fold, Functor, SemiGroup, Setoid, Traversable],
     {
       init() {

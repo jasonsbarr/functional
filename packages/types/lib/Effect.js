@@ -16,6 +16,7 @@ import {
 const variantInfos = [
   VariantInfo(
     "Effect",
+    [],
     [Apply, Fold, Functor, Chain, SemiGroup],
     {
       map(f) {

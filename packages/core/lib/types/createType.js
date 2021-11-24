@@ -1,6 +1,9 @@
 import { assign } from "../object/assign.js";
 import { definePropWithOpts } from "../object/definePropWithOpts.js";
 import { freeze } from "../object/freeze.js";
+import { getType } from "./getType.js";
+import { length } from "../array/length.js";
+import { create } from "../object/create.js";
 
 /**
  * @typedef {Object} VariantInfo The info used to construct a type variant
@@ -13,11 +16,13 @@ import { freeze } from "../object/freeze.js";
  */
 export const VariantInfo = (
   variantName,
+  fields = [],
   typeClasses = [],
   overrides = {},
   { sTypeClasses = [], methods = {} } = {}
 ) => ({
   variantName,
+  fields,
   typeClasses,
   overrides,
   statics: { sTypeClasses, methods },
@@ -36,12 +41,13 @@ const createVariantConstructor = (
   typeName,
   {
     variantName,
+    fields = [],
     typeClasses = [],
     overrides = {},
     statics: { sTypeClasses = [], methods = {} } = {},
   }
 ) => {
-  let variantConstructor = (value) => {
+  let variantConstructor = (...args) => {
     let variant = {
       type: typeName,
       variant: variantName,
@@ -70,12 +76,29 @@ const createVariantConstructor = (
 
     variant = assign(variant, overrides);
 
-    definePropWithOpts("_value", variant, {
-      enumerable: false,
-      writable: true,
-      configurable: false,
-      value,
-    });
+    if (length(fields) === 0) {
+      definePropWithOpts("_value", variant, {
+        enumerable: false,
+        writable: true,
+        configurable: false,
+        value: args[0],
+      });
+    } else {
+      let obj = create(null);
+      let i = 0;
+
+      for (let field of fields) {
+        obj[field] = args[i];
+        i++;
+      }
+
+      definePropWithOpts("_value", variant, {
+        enumerable: false,
+        writable: true,
+        configurable: false,
+        value: obj,
+      });
+    }
 
     definePropWithOpts("constructor", variant, {
       enumerable: false,
@@ -121,14 +144,14 @@ const createVariantConstructor = (
  * @param {String} typeName The name of the type
  * @param {VariantInfo[]} variantInfos Info used to create variants
  * @param {Array} typeClasses An array of type classes to apply to the type representative
- * @param {Object} overrides Method overrides and additional method definitions for the type representative
+ * @param {Object} methods Method overrides and additional method definitions for the type representative
  * @returns {Type} The created type representative object
  */
 export const createType = (
   typeName,
   variantInfos,
   typeClasses = [],
-  overrides = {}
+  methods = {}
 ) => {
   let typeRepresentative = {
     type: typeName,
@@ -149,7 +172,7 @@ export const createType = (
     typeRepresentative = assign(typeRepresentative, className);
   }
 
-  assign(typeRepresentative, overrides);
+  assign(typeRepresentative, methods);
 
   typeRepresentative["is" + typeName] = (x) => x && x.type === typeName;
 

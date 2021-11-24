@@ -1,28 +1,26 @@
 {
-  "name": "@jasonsbarr/collections",
+  "name": "@jasonsbarr/concurrency",
   "version": "0.8.0",
   "type": "module",
   "publishConfig": {
     "access": "public"
   },
-  "description": "Awesome collection types for fluent functional programming",
+  "description": "Handling concurrency the functional way",
   "keywords": [
-    "collections",
-    "functional programming",
-    "list",
-    "tuple",
-    "dictionary"
+    "future",
+    "concurrency",
+    "promise",
+    "task"
   ],
+  "author": "Jason Barr <jason.barr@metronetinc.com>",
+  "homepage": "https://github.com/jasonsbarr/functional/wiki/tree/main/packages/concurrency#readme",
+  "license": "MIT",
   "directories": {
     "lib": "lib"
   },
   "files": [
     "lib"
   ],
-  "author": "Jason Barr <jason.barr@metronetinc.com>",
-  "homepage": "https://github.com/jasonsbarr/functional/tree/main/packages/collections",
-  "license": "MIT",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jasonsbarr/functional.git"
@@ -34,9 +32,7 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/dict": "^0.8.0",
-    "@jasonsbarr/functional-core": "^0.8.0",
-    "@jasonsbarr/iterable": "^0.8.0"
+    "@jasonsbarr/functional-core": "^0.8.0"
   },
   "gitHead": "7acbf2cd8877d25677a5aaf4ae3eba318f4859ca"
 }
