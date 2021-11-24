@@ -43,7 +43,6 @@ Assume all functions are curried and therefore can be partially applied unless o
 ## Available Types
 
 - [Either](./Either.md)
-- [Future](./Future.md)
 - [Id](./Id.md)
 - [Option](./Option.md)
 - [Record](./Record.md)
