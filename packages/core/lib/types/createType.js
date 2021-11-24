@@ -1,6 +1,9 @@
 import { assign } from "../object/assign.js";
 import { definePropWithOpts } from "../object/definePropWithOpts.js";
 import { freeze } from "../object/freeze.js";
+import { getType } from "./getType.js";
+import { length } from "../array/length.js";
+import { create } from "../object/create.js";
 
 /**
  * @typedef {Object} VariantInfo The info used to construct a type variant
@@ -38,12 +41,13 @@ const createVariantConstructor = (
   typeName,
   {
     variantName,
+    fields = [],
     typeClasses = [],
     overrides = {},
     statics: { sTypeClasses = [], methods = {} } = {},
   }
 ) => {
-  let variantConstructor = (value) => {
+  let variantConstructor = (...args) => {
     let variant = {
       type: typeName,
       variant: variantName,
@@ -72,12 +76,29 @@ const createVariantConstructor = (
 
     variant = assign(variant, overrides);
 
-    definePropWithOpts("_value", variant, {
-      enumerable: false,
-      writable: true,
-      configurable: false,
-      value,
-    });
+    if (length(fields) === 0) {
+      definePropWithOpts("_value", variant, {
+        enumerable: false,
+        writable: true,
+        configurable: false,
+        value: args[0],
+      });
+    } else {
+      let obj = create(null);
+      let i = 0;
+
+      for (let field of fields) {
+        obj[field] = args[i];
+        i++;
+      }
+
+      definePropWithOpts("_value", variant, {
+        enumerable: false,
+        writable: true,
+        configurable: false,
+        value: obj,
+      });
+    }
 
     definePropWithOpts("constructor", variant, {
       enumerable: false,

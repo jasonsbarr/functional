@@ -49,14 +49,14 @@ export const getType = (value) => {
     const t1 = getType(value[0]);
 
     if (every((i) => getType(i) === t1, value)) {
-      return `${t1}[]`;
+      return `[${t1}]`;
     }
 
     return `(t1 ${value.slice(1).reduce((str, i) => ` * ${getType(i)}`, "")})`;
   }
 
   if (isObject(value)) {
-    if (value.constructor.name !== "Object") {
+    if (value.constructor && value.constructor.name !== "Object") {
       return value.constructor.name;
     }
 
