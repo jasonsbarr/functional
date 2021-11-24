@@ -43,19 +43,19 @@ const variantInfos = [
     {
       // Functor
       map(f) {
-        return Validation.of(f(this.value.value));
+        return Validation.of(f(this.value));
       },
       // Chain
       chain(f) {
-        return f(this.value.value);
+        return f(this.value);
       },
       // Bifunctor
       bimap(f, g) {
-        return Validation.of(g(this.value.value));
+        return Validation.of(g(this.value));
       },
       // Swap
       swap(failMessage) {
-        return Validation.fail(this.value.value, failMessage);
+        return Validation.fail(this.value, failMessage);
       },
 
       // (Right)SemiGroup
@@ -68,13 +68,13 @@ const variantInfos = [
       },
 
       fold(f, g) {
-        return g(this.value.value);
+        return g(this.value);
       },
     }
   ),
   VariantInfo(
     "Failure",
-    [],
+    ["value", "messages"],
     [
       LeftAlt,
       LeftApply,
@@ -87,18 +87,6 @@ const variantInfos = [
       Swap,
     ],
     {
-      init() {
-        const { value, messages } = this.value;
-        assert(
-          value && messages,
-          "Validation.Failure constructor takes an object with value and message fields"
-        );
-        // value is the field value
-        this.value.value = value;
-        // messages aggregates error messages
-        this.value.messages = isArray(messages) ? messages : [messages];
-      },
-
       mapFailure(fn) {
         const { value, messages } = this.value;
         const failures = messages.map(fn);
@@ -107,12 +95,14 @@ const variantInfos = [
 
       // Swap
       swap(failMessage) {
-        return Validation.of(this.value.value);
+        const { value } = this.value;
+        return Validation.of(value);
       },
 
       // (Left)Fold
       fold(f, g) {
-        return f(this.value);
+        const { value, messages } = this.value;
+        return f(value, messages);
       },
 
       // (Left)SemiGroup
@@ -143,10 +133,7 @@ const variantInfos = [
 
 const representativeMethods = {
   fail(value, message) {
-    return Validation.Failure({
-      value,
-      messages: isArray(message) ? message : [message],
-    });
+    return Validation.Failure(value, isArray(message) ? message : [message]);
   },
 
   succeed(value) {
