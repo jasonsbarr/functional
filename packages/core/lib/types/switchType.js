@@ -26,5 +26,14 @@ export const switchType = curry((typeRepresentative, dispatcher, instance) => {
       );
     }
   }
-  return dispatcher[instance.variant](instance);
+
+  if (includes(instance.variant, cases)) {
+    return dispatcher[instance.variant](instance.value);
+  }
+
+  if (includes("_", cases)) {
+    return dispatcher["_"](instance.value);
+  }
+
+  throw new Error(`Valid switch case not found for type ${variant.type}`);
 });
