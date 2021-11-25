@@ -16,10 +16,10 @@
   "files": [
     "lib"
   ],
+  "main": "./lib/index.js",
   "author": "Jason Barr <jason.barr@metronetinc.com>",
   "homepage": "https://github.com/jasonsbarr/functional/tree/main/packages/core",
   "license": "MIT",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jasonsbarr/functional.git"
