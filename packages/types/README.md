@@ -19,42 +19,47 @@ const [passFieldState, setPassFieldState] = useState("");
 const [passFieldErrors, setPassFieldErrors] = useState([]);
 
 const isPasswordLongEnough = (password) =>
-    gte(strLength(password), 10)
-        ? succeed(password)
-        : fail(password, "Password must be at least 10 characters long");
+  gte(strLength(password), 10)
+    ? succeed(password)
+    : fail(password, "Password must be at least 10 characters long");
 
 const doesPasswordContainSpecialChars = (password) =>
-    test(/#!\.#\*&\^%\$\?\\\/@/, password)
-        ? succeed(password)
-        : fail(password, "Password must contain at least one special character")
+  test(/#!\.#\*&\^%\$\?\\\/@/, password)
+    ? succeed(password)
+    : fail(password, "Password must contain at least one special character");
 
 const isPasswordValid = (password) =>
-    Validation.empty()
-        .concat(isPasswordLongEnough(password))
-        .concat(doesPasswordContainSpecialChars(password))
+  Validation.empty()
+    .concat(isPasswordLongEnough(password))
+    .concat(doesPasswordContainSpecialChars(password));
 
 const handlePasswordFieldChange = (event) => {
-    isPasswordValid(event.target.value)
-        .fold(
-            ({ value, messages }) => {
-                setPassFieldState(value);
-                setPassFieldErrors(messages);
-            },
-            ({ value }) => {
-                setPassFieldState(value);
-                setPassFieldErrors([]);
-            }
-        )
+  isPasswordValid(event.target.value).fold(
+    ({ value, messages }) => {
+      setPassFieldState(value);
+      setPassFieldErrors(messages);
+    },
+    ({ value }) => {
+      setPassFieldState(value);
+      setPassFieldErrors([]);
+    }
+  );
 };
 
 // For demonstration purposes only - this is not a React tutorial
 export default function PasswordField() {
-    return (
-        <div className="form-control">
-            {gte(length(passFieldErrors), 1) && <p className="error">{passFieldErrors[0]}</p>}
-            <input type="password" value={passFieldState} onChange={handlePasswordFieldChange} />
-        </div>
-    );
+  return (
+    <div className="form-control">
+      {gte(length(passFieldErrors), 1) && (
+        <p className="error">{passFieldErrors[0]}</p>
+      )}
+      <input
+        type="password"
+        value={passFieldState}
+        onChange={handlePasswordFieldChange}
+      />
+    </div>
+  );
 }
 ```
 

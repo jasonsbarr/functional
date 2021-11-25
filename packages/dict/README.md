@@ -13,13 +13,16 @@ import { filter } from "@jasonsbarr/dict/lib/filter";
 import { endsWith } from "@jasonsbarr/functional-core/lib/string/endsWith";
 
 const contacts = {
-    john: "john.doe@gmail.com",
-    jimmy: "jimmy@yahoo.com",
-    jane: "jane-the-awesome@gmail.com",
-    jeremy: "jeremy@msn.com"
+  john: "john.doe@gmail.com",
+  jimmy: "jimmy@yahoo.com",
+  jane: "jane-the-awesome@gmail.com",
+  jeremy: "jeremy@msn.com",
 };
 
-const gmailContacts = filter(contact => endsWith("@gmail.com", contact), contacts);
+const gmailContacts = filter(
+  (contact) => endsWith("@gmail.com", contact),
+  contacts
+);
 ```
 
 ## Documentation
