@@ -15,6 +15,7 @@
   "files": [
     "lib"
   ],
+  "main": "./lib/index.js",
   "author": "Jason Barr <jason@jasonsbarr.com>",
   "homepage": "https://github.com/jasonsbarr/functional/tree/main/packages/types",
   "license": "MIT",
