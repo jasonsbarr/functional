@@ -87,6 +87,26 @@ export const Range = curryN(
   (start, end, step = 1) => new RangeClass(start, end, step)
 );
 
-export const range = Range;
+export const range = (...args) => {
+  let start,
+    end,
+    step = 1;
+
+  if (args.length === 1) {
+    start = 1;
+    end = args[0];
+  } else if (args.length === 2) {
+    start = args[0];
+    end = args[1];
+  } else if (args.length === 3) {
+    start = args[0];
+    end = args[1];
+    step = args[2];
+  } else {
+    throw new Error("range function must take 1, 2, or 3 arguments");
+  }
+
+  return Range(start, end, step);
+};
 
 export default Range;
