@@ -21,6 +21,7 @@ import {
   LeftFold,
   LeftFunctor,
   LeftSemiGroup,
+  Plus,
 } from "@jasonsbarr/functional-core/lib/types/typeClasses.js";
 import { isArray } from "@jasonsbarr/functional-core/lib/predicates/isArray.js";
 import { assert } from "@jasonsbarr/functional-core/lib/helpers/assert.js";
@@ -140,6 +141,10 @@ const representativeMethods = {
     return Validation.Success(value);
   },
 
+  zero() {
+    return Validation.Failure();
+  },
+
   of(value) {
     return Validation.Success(value);
   },
@@ -152,7 +157,7 @@ const representativeMethods = {
 export const Validation = createType(
   "Validation",
   variantInfos,
-  [Applicative, Monoid],
+  [Applicative, Monoid, Plus],
   representativeMethods
 );
 

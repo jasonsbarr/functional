@@ -21,7 +21,7 @@ import {
   Monoid,
   RightFold,
   RightSemiGroup,
-  Zero,
+  Plus,
 } from "./typeClasses.js";
 
 const variantInfos = [
@@ -58,7 +58,7 @@ const variantInfos = [
 export const Option = createType(
   "Option",
   variantInfos,
-  [Monoid, Applicative, Zero],
+  [Monoid, Applicative, Plus],
   {
     of(x) {
       return isNullish(x) ? Option.None(x) : Option.Some(x);

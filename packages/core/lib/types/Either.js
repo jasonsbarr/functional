@@ -17,6 +17,7 @@ import {
   LeftSemiGroup,
   Chain,
   Monoid,
+  Plus,
   RightFold,
   RightSemiGroup,
 } from "./typeClasses.js";
@@ -55,7 +56,7 @@ const variantInfos = [
 export const Either = createType(
   "Either",
   variantInfos,
-  [Monoid, Applicative],
+  [Monoid, Applicative, Plus],
   {
     of(x) {
       return Either.Right(x);
@@ -63,6 +64,10 @@ export const Either = createType(
 
     empty() {
       return Either.Right();
+    },
+
+    zero() {
+      return Either.Left();
     },
 
     isLeft(x) {

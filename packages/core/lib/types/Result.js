@@ -17,6 +17,7 @@ import {
   LeftSemiGroup,
   Chain,
   Monoid,
+  Plus,
   RightFold,
   RightSemiGroup,
 } from "./typeClasses.js";
@@ -55,7 +56,7 @@ const variantInfos = [
 export const Result = createType(
   "Result",
   variantInfos,
-  [Monoid, Applicative],
+  [Monoid, Applicative, Plus],
   {
     of(x) {
       if (x instanceof Error) {
@@ -65,6 +66,10 @@ export const Result = createType(
     },
     empty() {
       return Result.Ok();
+    },
+
+    zero() {
+      return Err();
     },
 
     isOk(x) {

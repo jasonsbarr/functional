@@ -167,7 +167,7 @@ export const Monoid = {
   },
 };
 
-export const Zero = {
+export const Plus = {
   zero() {
     throw new Error(
       "zero method must be implemented individually for each type"
