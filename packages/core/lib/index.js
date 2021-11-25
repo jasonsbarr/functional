@@ -6,7 +6,7 @@ import { createType } from "./types/createType.js";
 import { curry } from "./core/curry.js";
 import { curryN } from "./core/curryN.js";
 import { defer } from "./lambda/defer.js";
-import { Either } from "./types/Either";
+import { Either, Left, Right } from "./types/Either";
 import { empty } from "./core/empty.js";
 import { equals } from "./core/equals.js";
 import { failure } from "./core/failure.js";
@@ -28,16 +28,17 @@ import { map } from "./core/map.js";
 import { now } from "./date/now.js";
 import { of } from "./core/of.js";
 import { once } from "./lambda/once.js";
-import { Option, safe } from "./types/Option.js";
+import { Option, safe, Some, None } from "./types/Option.js";
 import { pair } from "./core/pair.js";
 import { pipe } from "./core/pipe.js";
 import { Record, record } from "./types/Record.js";
 import { reduce } from "./core/reduce.js";
-import { Result, tryCatch } from "./types/Result.js";
+import { Result, tryCatch, Ok, Err } from "./types/Result.js";
 import { snd } from "./core/snd.js";
 import { switchType } from "./types/switchType.js";
 import { tail } from "./core/tail.js";
 import { VariantInfo } from "./types/createType.js";
+import { zero } from "./core/zero.js";
 
 export const identity = (x) => x;
 export const noop = () => {};
@@ -55,6 +56,7 @@ export {
   Either,
   empty,
   equals,
+  Err,
   failure,
   fst,
   getType,
@@ -62,6 +64,7 @@ export {
   gte,
   head,
   last,
+  Left,
   length,
   liftA2,
   liftA3,
@@ -71,8 +74,10 @@ export {
   lte,
   Id,
   map,
+  None,
   now,
   of,
+  Ok,
   once,
   Option,
   pair,
@@ -81,10 +86,13 @@ export {
   record,
   reduce,
   Result,
+  Right,
   safe,
   snd,
+  Some,
   switchType,
   tail,
   tryCatch,
   VariantInfo,
+  zero,
 };

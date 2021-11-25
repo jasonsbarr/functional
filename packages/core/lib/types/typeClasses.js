@@ -166,3 +166,11 @@ export const Monoid = {
     );
   },
 };
+
+export const Zero = {
+  zero() {
+    throw new Error(
+      "zero method must be implemented individually for each type"
+    );
+  },
+};
