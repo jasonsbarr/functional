@@ -12,13 +12,13 @@
   "author": "Jason Barr <jason@jasonsbarr.com>",
   "homepage": "https://github.com/jasonsbarr/functional/wiki/tree/main/packages/string",
   "license": "MIT",
-  "main": "lib/string.js",
   "directories": {
     "lib": "lib"
   },
   "files": [
     "lib"
   ],
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jasonsbarr/functional.git"

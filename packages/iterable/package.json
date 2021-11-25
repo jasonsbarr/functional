@@ -19,6 +19,7 @@
   "files": [
     "lib"
   ],
+  "main": "index.js",
   "author": "Jason Barr <jason@jasonsbarr.com>",
   "homepage": "https://github.com/jasonsbarr/functional/tree/main/packages/iterable",
   "license": "MIT",
