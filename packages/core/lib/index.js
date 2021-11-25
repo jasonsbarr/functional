@@ -7,6 +7,7 @@ import { curry } from "./core/curry.js";
 import { curryN } from "./core/curryN.js";
 import { defer } from "./lambda/defer.js";
 import { Either } from "./types/Either";
+import { empty } from "./core/empty.js";
 import { equals } from "./core/equals.js";
 import { failure } from "./core/failure.js";
 import { fst } from "./core/fst.js";
@@ -25,6 +26,7 @@ import { lt } from "./core/lt.js";
 import { lte } from "./core/lte.js";
 import { map } from "./core/map.js";
 import { now } from "./date/now.js";
+import { of } from "./core/of.js";
 import { once } from "./lambda/once.js";
 import { Option, safe } from "./types/Option.js";
 import { pair } from "./core/pair.js";
@@ -51,6 +53,7 @@ export {
   curryN,
   defer,
   Either,
+  empty,
   equals,
   failure,
   fst,
@@ -69,6 +72,7 @@ export {
   Id,
   map,
   now,
+  of,
   once,
   Option,
   pair,
