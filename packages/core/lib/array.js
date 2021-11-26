@@ -37,6 +37,47 @@ import { sortBy } from "./array/sortBy.js";
 import { splice } from "./array/splice.js";
 import { unshift } from "./array/unshift.js";
 import { values } from "./array/values.js";
-import { last } from './array/last.js';
+import { last } from "./array/last.js";
 
-export {array, arrayFrom, at, concat, copyWithin, entries, every, fill, filter, find, findIndex, flat, flatMap,, flatN, forEach, includes, includesFrom, indexOf, indexOfFrom, join, keys, lastIndexOf, lastIndexOfFrom, length, map, of, pop, push reduce,, reduceRight, reverse, shift, slice, some, sort, sortBy, splice, unshift, values, last}
+export {
+  array,
+  arrayFrom,
+  at,
+  concat,
+  copyWithin,
+  entries,
+  every,
+  fill,
+  filter,
+  find,
+  findIndex,
+  flat,
+  flatMap,
+  flatN,
+  forEach,
+  includes,
+  includesFrom,
+  indexOf,
+  indexOfFrom,
+  join,
+  keys,
+  lastIndexOf,
+  lastIndexOfFrom,
+  length,
+  map,
+  of,
+  pop,
+  push,
+  reduce,
+  reduceRight,
+  reverse,
+  shift,
+  slice,
+  some,
+  sort,
+  sortBy,
+  splice,
+  unshift,
+  values,
+  last,
+};
