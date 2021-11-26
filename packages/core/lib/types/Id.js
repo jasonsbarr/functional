@@ -8,13 +8,15 @@ import {
   Monoid,
   Fold,
   SemiGroup,
+  Setoid,
+  Ord,
 } from "./typeClasses.js";
 
 const variantInfos = [
   VariantInfo(
     "Id",
     [],
-    [Fold, Functor, Apply, Chain, SemiGroup],
+    [Fold, Functor, Apply, Chain, SemiGroup, Setoid, Ord],
     {},
     {
       sTypeClasses: [Monoid, Applicative],

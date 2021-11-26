@@ -22,6 +22,8 @@ import {
   RightFold,
   RightSemiGroup,
   Plus,
+  Setoid,
+  Ord,
 } from "./typeClasses.js";
 
 const variantInfos = [
@@ -37,6 +39,8 @@ const variantInfos = [
       RightBichain,
       RightAlt,
       RightSemiGroup,
+      Setoid,
+      Ord,
     ]
   ),
   VariantInfo(
@@ -51,7 +55,18 @@ const variantInfos = [
       LeftBichain,
       LeftAlt,
       LeftSemiGroup,
-    ]
+      Setoid,
+      Ord,
+    ],
+    {
+      equals(other) {
+        return isFunction(other.isNone) && other.isNone();
+      },
+
+      lte(other) {
+        return this.equals(other);
+      },
+    }
   ),
 ];
 

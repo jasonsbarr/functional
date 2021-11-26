@@ -20,6 +20,8 @@ import {
   Plus,
   RightFold,
   RightSemiGroup,
+  Setoid,
+  Ord,
 } from "./typeClasses.js";
 
 const variantInfos = [
@@ -35,6 +37,8 @@ const variantInfos = [
       RightBichain,
       RightAlt,
       RightSemiGroup,
+      Setoid,
+      Ord,
     ]
   ),
   VariantInfo(
@@ -49,6 +53,8 @@ const variantInfos = [
       LeftBichain,
       LeftAlt,
       LeftSemiGroup,
+      Setoid,
+      Ord,
     ]
   ),
 ];
