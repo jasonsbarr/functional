@@ -41,6 +41,8 @@ import { VariantInfo } from "./lib/types/createType.js";
 import { zero } from "./lib/core/zero.js";
 
 import * as array from "./lib/array.js";
+import { boolean as bool } from "./lib/boolean/boolean.js";
+import * as date from "./lib/date.js";
 
 export const identity = (x) => x;
 export const noop = () => {};
@@ -49,6 +51,7 @@ export const unit = () => null;
 export {
   ap,
   array,
+  bool,
   compose,
   composeR,
   concat,
