@@ -58,6 +58,7 @@ export {
   createType,
   curry,
   curryN,
+  date,
   defer,
   Either,
   empty,
