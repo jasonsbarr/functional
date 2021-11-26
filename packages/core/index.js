@@ -40,12 +40,15 @@ import { tail } from "./lib/core/tail.js";
 import { VariantInfo } from "./lib/types/createType.js";
 import { zero } from "./lib/core/zero.js";
 
+import * as array from "./lib/array.js";
+
 export const identity = (x) => x;
 export const noop = () => {};
 export const unit = () => null;
 
 export {
   ap,
+  array,
   compose,
   composeR,
   concat,
