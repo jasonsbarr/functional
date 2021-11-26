@@ -3,6 +3,7 @@ import { concatValues } from "../helpers/concatValues.js";
 import { equals } from "../object/equals.js";
 import { identity } from "../helpers/identity.js";
 import { eq } from "../predicates/eq.js";
+import { lt } from "../core/lt.js";
 
 export const Fold = {
   fold(f) {
@@ -55,6 +56,12 @@ export const RightBichain = {
 export const RightAlt = {
   alt(other) {
     return this;
+  },
+};
+
+export const Ord = {
+  lte(other) {
+    return lt(this.value, other.value);
   },
 };
 
