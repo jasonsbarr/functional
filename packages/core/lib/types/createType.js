@@ -54,9 +54,6 @@ const createVariantConstructor = (
       get value() {
         return this._value;
       },
-      set value(v) {
-        this._value = v;
-      },
       ["is" + typeName]: () => true,
       ["is" + variantName]: () => true,
       valueOf() {
