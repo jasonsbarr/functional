@@ -22,6 +22,7 @@ import {
   LeftFunctor,
   LeftSemiGroup,
   Plus,
+  Ord,
 } from "@jasonsbarr/functional-core/lib/types/typeClasses.js";
 import { isArray } from "@jasonsbarr/functional-core/lib/predicates/isArray.js";
 import { assert } from "@jasonsbarr/functional-core/lib/helpers/assert.js";
@@ -39,6 +40,7 @@ const variantInfos = [
       RightBifunctor,
       SemiGroup,
       Setoid,
+      Ord,
       Swap,
     ],
     {
@@ -85,6 +87,7 @@ const variantInfos = [
       LeftFunctor,
       LeftSemiGroup,
       Setoid,
+      Ord,
       Swap,
     ],
     {
@@ -127,6 +130,11 @@ const variantInfos = [
         const { value, messages } = this.value;
         const failures = messages.map(failFn);
         return Validation.fail(value, failures);
+      },
+
+      // Ord
+      lte(other) {
+        return this.equals(other);
       },
     }
   ),
