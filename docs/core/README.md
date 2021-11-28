@@ -48,7 +48,6 @@ import { createType } from "@jasonsbarr/functional-core/lib/core/createType";
 ## Function Categories
 
 - [Array](./Array.md)
-- [Boolean](./Boolean.md)
 - [Date](./Date.md)
 - [Helpers](./Helpers.md)
 - [Lambda](./Lambda.md)
