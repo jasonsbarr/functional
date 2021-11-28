@@ -397,17 +397,20 @@ origin.distance(point1); // -> 5
 You can use `_` as a catchall with `switchType` when you don't need a specific case for every single variant.
 
 ```js
+import { Some, None } from "@jasonsbarr/functional-core"
+
 const HttpState = createType("HttpState", [
     VariantInfo("Pending"),
     VariantInfo("Error"),
     VariantInfo("Success")
 ]);
 
-export const foldHttpState = (state) => switchType(
+// Just for demo purposes - you probably wouldn't want to do this in a real program
+export const getHttpStateValue = (state) => switchType(
     "HttpState",
     {
-        Pending: () => "Pending",
-        _: (value) => value
+        Pending: () => None(),
+        _: (value) => Some(value)
     },
     state
 );
