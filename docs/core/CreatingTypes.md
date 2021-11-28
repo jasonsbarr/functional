@@ -301,7 +301,7 @@ const p = Point(1, 2, 3);
 p.valueOf(); // -> {x: 1, y: 2}
 ```
 
-Having the named fields makes it cleaner and allows you to just pass values to your constructor.
+Having the named fields makes it cleaner and allows you to just pass values to your constructor instead of having to worry about having a specific object shape.
 
 ### Creating variants with different fields
 
