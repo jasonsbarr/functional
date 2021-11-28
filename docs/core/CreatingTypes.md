@@ -406,7 +406,7 @@ const HttpState = createType("HttpState", [
 ]);
 
 // Just for demo purposes - you probably wouldn't want to do this in a real program
-export const getHttpStateValue = (state) => switchType(
+export const tryGetHttpStateValue = (state) => switchType(
     "HttpState",
     {
         Pending: () => None(),
