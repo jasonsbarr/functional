@@ -12,9 +12,11 @@ Then simply give `createType` the name of your type, an array of information abo
 
 Note that a type _must_ have at least 1 variant. If a type only has 1 variant, you can treat its constructor as the type representative and attach static methods to it.
 
-## The Anatomy of a Union Type
+We call types created by this function tagged union types, which you may also see called "variant types" in other languages.
 
-A union type has two parts: the type representative and variants. The variant constructor functions are implemented as methods on the type representative object. You can also define additional methods and properties on the type representative as the last argument to `createType`.
+## The Anatomy of a Tagged Union Type
+
+A tagged union type has two parts: the type representative and variants. The variant constructor functions are implemented as methods on the type representative object. You can also define additional methods and properties on the type representative as the last argument to `createType`.
 
 A variant instance has a `value` property that holds whatever single value is passed to its constructor. In your variant info, you can provide an `init` method to manipulate this value, do data validation, and anything else you need to do with it. An example is provided below.
 
