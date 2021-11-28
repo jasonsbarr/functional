@@ -8,9 +8,27 @@ npm install @jasonsbarr/functional-core
 
 ## Importing Functions and Types
 
-There is no single file to import that gives you all the functions and types, you'll need to import things individually as you need them. That's better for your bundle sizes anyway, if you're using a module bundler like Webpack in your build process.
+You can import any of the core functions and types from the package's entrypoint, e.g.:
 
-I mean, think about it, when you use Ramda, how often do you _need_ the whole `_` package versus just a few functions? We think it's better to be explicit about what you want and what you're doing in your code.
+```js
+import { pipe } from "@jasonsbarr/functional-core";
+```
+
+You _can_ import functions from a category by importing the category from the core package, e.g. the `array` functions:
+
+```js
+import { array, predicates } from "@jasonsbarr/functional-core";
+```
+
+Then use it with dot notation:
+
+```js
+console.log(array.filter(predicates.isEven, [1, 2, 3, 4, 5, 6, 7, 8]); //-> [2, 4, 6, 8]
+```
+
+However, you're almost certainly going to be better off if you import things individually as you need them. That's better for your bundle sizes anyway, if you're using a module bundler like Webpack in your build process.
+
+I mean, think about it, when you use Ramda, how often do you _need_ the whole package versus just a few functions? We think it's better to be explicit about what you want and what you're doing in your code.
 
 So, for example, if you want to filter an array just import the `filter` function:
 
@@ -21,7 +39,11 @@ import { isEven } from "@jasonsbarr/functional-core/lib/predicates/isEven";
 console.log(filter(isEven, [1, 2, 3, 4, 5, 6, 7, 8])); // -> [2, 4, 6, 8]
 ```
 
-Assume all functions are curried and therefore can be partially applied unless otherwise stated.
+All core functions and types can be imported from `/lib/core`:
+
+```js
+import { createType } from "@jasonsbarr/functional-core/lib/core/createType";
+```
 
 ## Function Categories
 
