@@ -3,7 +3,7 @@ import { compare } from "./lib/core/compare.js";
 import { compose } from "./lib/core/compose.js";
 import { composeR } from "./lib/core/composeR.js";
 import { concat } from "./lib/core/concat.js";
-import { createType, VariantInfo } from "./lib/types/createType.js";
+import { createType, extendType, VariantInfo } from "./lib/types/createType.js";
 import { curry } from "./lib/core/curry.js";
 import { curryN } from "./lib/core/curryN.js";
 import { defer } from "./lib/lambda/defer.js";
@@ -66,6 +66,7 @@ export {
   empty,
   equals,
   Err,
+  extendType,
   failure,
   fold,
   fst,

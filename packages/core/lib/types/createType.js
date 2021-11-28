@@ -176,3 +176,19 @@ export const createType = (
 
   return typeRepresentative;
 };
+
+export const extendType = (
+  typeRepresentative,
+  variantInfos,
+  typeClasses = [],
+  methods = {}
+) => {
+  const typeName = typeRepresentative.type;
+  const oldVariants = [...typeRepresentative.variants];
+  const extension = createType(typeName, variantInfos, typeClasses, methods);
+
+  let extended = assign({}, typeRepresentative, extension);
+  extended.variants = oldVariants.concat(extended.variants);
+
+  return extended;
+};

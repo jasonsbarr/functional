@@ -1,3 +1,3 @@
-import { createType, VariantInfo } from "../types/createType.js";
+import { createType, extendType, VariantInfo } from "../types/createType.js";
 
-export { createType, VariantInfo };
+export { createType, extendType, VariantInfo };
