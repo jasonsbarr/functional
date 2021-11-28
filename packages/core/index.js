@@ -27,6 +27,7 @@ import { liftA5 } from "./lib/helpers/liftA5.js";
 import { lt } from "./lib/core/lt.js";
 import { lte } from "./lib/core/lte.js";
 import { map } from "./lib/core/map.js";
+import { memo } from "./lib/core/memo.js";
 import { now } from "./lib/date/now.js";
 import { of } from "./lib/core/of.js";
 import { once } from "./lib/lambda/once.js";
@@ -85,6 +86,7 @@ export {
   lte,
   Id,
   map,
+  memo,
   None,
   now,
   of,
