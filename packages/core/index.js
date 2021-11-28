@@ -40,6 +40,7 @@ import { Record, record } from "./lib/types/Record.js";
 import { reduce } from "./lib/core/reduce.js";
 import { Result, tryCatch, Ok, Err } from "./lib/types/Result.js";
 import { snd } from "./lib/core/snd.js";
+import { swap } from "./lib/core/swap.js";
 import { switchType } from "./lib/types/switchType.js";
 import { tail } from "./lib/core/tail.js";
 import { zero } from "./lib/core/zero.js";
@@ -107,6 +108,7 @@ export {
   safe,
   snd,
   Some,
+  swap,
   switchType,
   tail,
   tryCatch,
