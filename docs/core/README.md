@@ -46,8 +46,8 @@ import { createType } from "@jasonsbarr/functional-core/lib/core/createType";
 - RegExp
 - [String](./String.md)
 - Symbol
-- Type conversions
-- [Type creation and matching](./CreatingTypes.md)
+- Conversions
+- [Types](./CreatingTypes.md)
 
 ## Available Types
 
