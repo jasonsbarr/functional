@@ -55,6 +55,10 @@ export const Ord = {
   lt(other) {
     return !this.gte(other);
   },
+
+  compare(other) {
+    return this.lt(other) ? -1 : this.equals(other) ? 0 : 1;
+  },
 };
 
 export const SemiGroup = {
