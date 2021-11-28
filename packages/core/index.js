@@ -39,6 +39,7 @@ import { pipe } from "./lib/core/pipe.js";
 import { Record, record } from "./lib/types/Record.js";
 import { reduce } from "./lib/core/reduce.js";
 import { Result, tryCatch, Ok, Err } from "./lib/types/Result.js";
+import { sequence } from "./lib/core/sequence.js";
 import { snd } from "./lib/core/snd.js";
 import { swap } from "./lib/core/swap.js";
 import { switchType } from "./lib/types/switchType.js";
@@ -107,6 +108,7 @@ export {
   Result,
   Right,
   safe,
+  sequence,
   snd,
   Some,
   swap,
