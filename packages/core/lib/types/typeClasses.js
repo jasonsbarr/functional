@@ -40,6 +40,7 @@ export const Functor = {
 
 // Ord must also implement Setoid
 export const Ord = {
+  // lte is the only method that needs to be implemented for all these to work
   lte(other) {
     return lte(this.value, other.value);
   },
