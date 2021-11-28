@@ -202,12 +202,12 @@ import {
 const variantInfos = [
     // Pending isn't really a "Left" state, but it has no value so it's simpler to treat it as one
     VariantInfo("Pending", [], [
-        LeftApply,
-        LeftFold,
-        LeftFunctor,
-        LeftChain,
-        LeftSemiGroup,
-        Setoid
+        LeftApply, // ap method
+        LeftFold, // fold method
+        LeftFunctor, // map method
+        LeftChain, // chain method
+        LeftSemiGroup, // concat method
+        Setoid // equals method
     ],
     {
         // all 3 variants need to have the same methods, so we need to define an appropriate version of mapError
@@ -223,6 +223,11 @@ const variantInfos = [
         // The predefined concat method that comes with LeftSemiGroup won't work either
         concat(other) {
             return other;
+        },
+
+        // need a Fold case for all 3 states
+        fold(pendingFn, errorFn, successFn) {
+            return pendingFn();
         }
     }),
     VariantInfo("Error", [], [
@@ -236,6 +241,10 @@ const variantInfos = [
     {
         mapError(fn) {
             return HttpStates.Error(fn(this.value));
+        },
+
+        fold(pendingFn, errorFn, successFn) {
+            return errorFn(this.value);
         }
     }),
     VariantInfo("Success", [
@@ -249,6 +258,10 @@ const variantInfos = [
     {
         mapError(fn) {
             return this;
+        },
+
+        fold(pendingFn, errorFn, successFn) {
+            return successFn(this.value);
         }
     })
 ];
