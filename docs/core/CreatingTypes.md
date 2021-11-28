@@ -20,7 +20,7 @@ A tagged union type has two parts: the type representative and variants. The var
 
 A variant instance has a `value` property that holds whatever single value is passed to its constructor. In your variant info, you can provide an `init` method to manipulate this value, do data validation, and anything else you need to do with it. An example is provided below.
 
-You can pre-define fields that will go on the `value` property in the second property of your variant info, which should be an array of string field names. An example is given below.
+You can pre-define fields that will go on the `value` property in the second property of your variant info, which should be an array of string field names. An example is given below. Defining fields will ensure only those fields get values on the created instance. If you don't define fields, the `value` property will get whatever value is passed to the constructor, or a "tuple" (really, a JavaScript array) of values if you pass multiple values to the constructor.
 
 Variant instances also automatically get the type name, the variant name, a predicate identifying it as an instance of the type, another predicate for the variant, a `valueOf` method to get the value, and `inspect` and `toString` methods.
 
