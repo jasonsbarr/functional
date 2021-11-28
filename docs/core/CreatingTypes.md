@@ -420,7 +420,7 @@ export const tryGetHttpStateValue = (state) => switchType(
 
 You can use the type classes included or create your own. For our purposes, a type class is just an object with one or more methods on it.
 
-While we've made some effort to comply with the Fantasy Land spec details, we've also created some of our own for ease of implementation. Note especially the existence of "Right" and "Left" variants of some type classes, intended for use with a type like `Either` that treats its values differently based on whether it's a `Left` or `Right` variant.
+While we've made some effort to comply with the Fantasy Land spec details, we've also created some of our own for ease of implementation. Note especially the existence of "Right" and "Left" versions of some type classes, intended for use with a type like `Either` that treats its values differently based on whether it's a `Left` or `Right` instance.
 
 Note also that some type classes require you to provide your own method implementation. We still think it's worth using the type classes even if you're going to override default methods or have to provide your own for a given type class, at least for documentation purposes so you can tell at a glance what capabilities a given variant has.
 
@@ -437,9 +437,9 @@ Note also that some type classes require you to provide your own method implemen
 - RightAlt
 - SemiGroup
 - RightSemiGroup
-- Setoid
 - Ord
 - Traversable
+- Setoid
 - Swap
 - LeftFold
 - LeftFunctor
