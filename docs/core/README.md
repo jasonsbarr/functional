@@ -77,7 +77,7 @@ To create your own types, use the `createType` function.
 To import `createType`:
 
 ```js
-import { createType } from "@jasonsbarr/functional-core/lib/types/createType";
+import { createType } from "@jasonsbarr/functional-core";
 ```
 
 Then simply give `createType` the name of your type, an array of information about any variants, and an object of any methods or properties you want to have on the type representative object.
