@@ -107,7 +107,7 @@ Note that any of these can be overridden in type creation.
 
 ## Creating a More Complex Type
 
-Let's say you want to create a type to represent an email address. Here's how you might do that:
+Let's say you want to create a type to represent an email address so you can validate the email on type creation. Here's how you might do that:
 
 ```js
 import { createType, VariantInfo } from "@jasonsbarr/functional-core";
