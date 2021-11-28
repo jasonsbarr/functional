@@ -10,6 +10,7 @@ import { Either, Left, Right } from "./lib/types/Either";
 import { empty } from "./lib/core/empty.js";
 import { equals } from "./lib/core/equals.js";
 import { failure } from "./lib/core/failure.js";
+import { fold } from "./lib/core/fold.js";
 import { fst } from "./lib/core/fst.js";
 import { getType } from "./lib/types/getType.js";
 import { gt } from "./lib/core/gt.js";
@@ -65,6 +66,7 @@ export {
   equals,
   Err,
   failure,
+  fold,
   fst,
   getType,
   gt,
