@@ -14,7 +14,9 @@ export const Apply = {
 
 export const Bifunctor = {
   bimap(f, g) {
-    throw new Error("bimap method must be implemented on the instance");
+    throw new Error(
+      "bimap method must be implemented for each type to implement Bifunctor"
+    );
   },
 };
 
@@ -59,10 +61,18 @@ export const Setoid = {
   },
 };
 
+export const Show = {
+  toString() {
+    throw new Error(
+      "toString method must be implemented for each type to implement Show"
+    );
+  },
+};
+
 export const Swap = {
   swap(leftMapFn, rightMapFn) {
     throw new Error(
-      "Swap method must be implemented individually for each type"
+      "swap method must be implemented individually for each type to implement Swap"
     );
   },
 };
@@ -70,7 +80,7 @@ export const Swap = {
 export const Traversable = {
   traverse(point, fn) {
     throw new Error(
-      "Traverse method must be implemented individually for each type"
+      "traverse method must be implemented individually for each type to implement Traversable"
     );
   },
 
@@ -165,14 +175,16 @@ export const LeftSemiGroup = {
 // for type representative
 export const Applicative = {
   of() {
-    throw new Error("of method must be implemented individually for each type");
+    throw new Error(
+      "of method must be implemented individually for each type to implement Applicative"
+    );
   },
 };
 
 export const Monoid = {
   empty() {
     throw new Error(
-      "empty method must be implemented individually for each type"
+      "empty method must be implemented individually for each type to implement Monoid"
     );
   },
 };
@@ -180,7 +192,7 @@ export const Monoid = {
 export const Plus = {
   zero() {
     throw new Error(
-      "zero method must be implemented individually for each type"
+      "zero method must be implemented individually for each type to implement Plus"
     );
   },
 };
