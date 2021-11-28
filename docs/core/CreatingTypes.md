@@ -2,10 +2,10 @@
 
 To create your own types, use the `createType` function. There are also base type class implementations for several Fantasy Land type classes with default method implementations for several of them.
 
-To import `createType`:
+You can import `createType` from the main entry point of the core library:
 
 ```js
-import { createType } from "@jasonsbarr/functional-core/lib/types/createType";
+import { createType } from "@jasonsbarr/functional-core";
 ```
 
 Then simply give `createType` the name of your type, an array of information about any variants, and an object of any methods or properties you want to have on the type representative object.
@@ -18,16 +18,18 @@ A union type has two parts: the type representative and variants. The variant co
 
 A variant instance has a `value` property that holds whatever single value is passed to its constructor. In your variant info, you can provide an `init` method to manipulate this value, do data validation, and anything else you need to do with it. An example is provided below.
 
+You can pre-define fields that will go on the `value` property in the second property of your variant info, which should be an array of string field names. An example is given below.
+
 Variant instances also automatically get the type name, the variant name, a predicate identifying it as an instance of the type, another predicate for the variant, a `valueOf` method to get the value, and `inspect` and `toString` methods.
 
 Using `valueOf` is discouraged except in the case of single-variant types in favor of using a `fold` method or the `switchType` function, but it's there if you need it.
 
 ## Providing Your Variant Info
 
-To help with creating your variants, there is a `VariantInfo` helper function in the `createType` module:
+To help with creating your variants, there is a `VariantInfo` helper function:
 
 ```js
-import { VariantInfo } from "@jasonsbarr/functional-core/lib/types/createType";
+import { VariantInfo } from "@jasonsbarr/functional-core";
 ```
 
 `VariantInfo` takes the name of the variant, an array of type classes, an object with any methods you want to attach to the variant, and another object with information you want to attach to the variant constructor as static methods and properties.
@@ -39,21 +41,27 @@ Note that when defining methods for your variant instance, if you need to access
 The simplest type creation just involves giving `createType` the name of your type and the names of your variants:
 
 ```js
-import { createType, VariantInfo } from "@jasonsbarr/functional-core/lib/types/createType";
+import { createType, VariantInfo } from "@jasonsbarr/functional-core";
 
+/**
+ * type HttpStates
+ *   | Pending
+ *   | Error of 'Error
+ *   | Success of 'Value
+ */
 const variantInfos = [
     VariantInfo("Pending"),
     VariantInfo("Error"),
     VariantInfo("Success")
 ];
 
-export const HttpStates = createType("HttpStates", variantInfos);
+export const HttpState = createType("HttpState", variantInfos);
 ```
 
 Now you can create any variant and give it a value using its constructor:
 
 ```js
-const error = HttpStates.Error(errorObject);
+const error = HttpState.Error(errorObject);
 ```
 
 ## Matching on a Type
@@ -61,11 +69,11 @@ const error = HttpStates.Error(errorObject);
 To match on a type and extract its value, use the `switchType` function:
 
 ```js
-import { switchType } from "@jasonsbarr/functional-core/lib/types/switchType";
-import { HttpStates } from "./HttpStates";
+import { switchType } from "@jasonsbarr/functional-core";
+import { HttpState } from "./HttpState";
 
 switchType(
-    HttpStates,
+    HttpState,
     {
         Pending: () => console.log("Still pending!"),
         Error: ({ value: error }) => console.error(error),
@@ -77,7 +85,7 @@ switchType(
 
 `switchType` takes the type representative object, an object with a function to dispatch for each possible variant, and the type instance itself. When dispatching a function it passes the variant instance itself into the function. If you need a return value, it returns the value returned by the function executed on match.
 
-Note that matching is exhaustively checked at runtime - you _must_ provide a case for _every_ possible variant.
+Note that matching is exhaustively checked at runtime - you _must_ provide a case for _every_ possible variant unless you use `_` as a catchall (example of this below).
 
 ## Automatically-Created Methods
 
@@ -98,13 +106,17 @@ When you create a type, the type representative object and variant instances aut
 Let's say you want to create a type to represent an email address. Here's how you might do that:
 
 ```js
-import { createType, VariantInfo } from "@jasonsbarr/functional-core/lib/types/createType";
+import { createType, VariantInfo } from "@jasonsbarr/functional-core";
 import { Apply, Applicative, Fold, Functor, Chain } from "@jasonsbarr/functional-core/lib/types/typeClasses";
 import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction";
 
+/**
+ * type EmailAddress of string
+ */
 const variantInfos = [
     VariantInfo(
         "EmailAddress",
+        [],
         [
             // for this type, the default method implementations will work
             Fold,
@@ -116,6 +128,8 @@ const variantInfos = [
             init() {
                 if (!validateEmailAddress(this.value)) {
                     // handle invalid email case
+                    // the types package contains a Validation type
+                    // for doing exactly this sort of thing
                 }
             }
         },
@@ -134,7 +148,7 @@ const variantInfos = [
                     return x && isFunction(x.isEmailAddress) && x.isEmailAddress();
                 },
 
-                // this is necessary if you want to be able to use switchType on the type, since
+                // this is necessary if you want to be able to use switchType to extract the value, since
                 // we're treating the constructor as if it were the type representative
                 variants: ["EmailAddress"]
             }
@@ -149,10 +163,22 @@ export const { EmailAddress } = createType("EmailAddress", variantInfos);
 
 In the case of multiple variants, you'll want any of the type representative typeclasses and static methods to be defined on the type representative object itself, not on a single variant's constructor.
 
-For example, let's create a union type to represent the possible states of an HTTP request that's a little more detailed than the one above:
+### Arguments to `VariantInfo`
+
+- `variantName` (string)
+- `fields` (array of strings)
+- `typeClasses` (array of typeClasses)
+- `overrides` - methods on the variant instance (object of method definitions)
+- `statics` - typeClasses and methods on the variant constructor (object with the following 2 fields)
+    - `sTypeClasses` - typeClasses implemented on the variant constructor (array of typeClasses)
+    - `methods` - static methods on the constructor (object of method definitions)
+
+### An Example of a More Complex Type
+
+Let's create a union type to represent the possible states of an HTTP request that's a little more detailed than the one above, and let's use some of the predefined type classes to do it:
 
 ```js
-import { createType, VariantInfo } from "@jasonsbarr/functional-core/lib/types/createType";
+import { createType, VariantInfo } from "@jasonsbarr/functional-core";
 import {
     Apply,
     Applicative,
@@ -161,6 +187,7 @@ import {
     Chain,
     Monoid,
     SemiGroup,
+    Setoid,
     LeftApply,
     LeftFold,
     LeftFunctor,
@@ -170,25 +197,37 @@ import {
 
 const variantInfos = [
     // Pending isn't really a "Left" state, but it has no value so it's simpler to treat it as one
-    VariantInfo("Pending", [
+    VariantInfo("Pending", [], [
         LeftApply,
         LeftFold,
         LeftFunctor,
         LeftChain,
-        LeftSemiGroup
+        LeftSemiGroup,
+        Setoid
     ],
     {
-        // all 3 variants need to have the same methods, so simply return this for mapError
+        // all 3 variants need to have the same methods, so we need to define an appropriate version of mapError
         mapError(fn) {
             return this;
+        },
+
+        // Replace the default method that comes with the Setoid type class
+        equals(other) {
+            return other.type === HttpStates && other.variant === "Pending";
+        },
+
+        // The predefined concat method that comes with LeftSemiGroup won't work either
+        concat(other) {
+            return other;
         }
     }),
-    VariantInfo("Error", [
+    VariantInfo("Error", [], [
         LeftApply,
         LeftFold,
         LeftFunctor,
         LeftChain,
-        LeftSemiGroup
+        LeftSemiGroup,
+        Setoid
     ],
     {
         mapError(fn) {
@@ -200,7 +239,8 @@ const variantInfos = [
         Fold,
         Functor,
         Chain,
-        SemiGroup
+        SemiGroup,
+        Setoid
     ],
     {
         mapError(fn) {
@@ -209,22 +249,151 @@ const variantInfos = [
     })
 ];
 
-export const HttpStates = createType("HttpStates", variantInfos, [Applicative, Monoid], {
+export const HttpState = createType("HttpState", variantInfos, [Applicative, Monoid], {
     // Required for Applicative
     of(value) {
-        return HttpStates.Success(value);
+        return HttpState.Success(value);
     },
 
     // Required for Monoid
     empty() {
-        return HttpStates.Pending();
-    }
-
-    // let's also have a way to statically create an error variant
-    err(error) {
-        return HttpStates.Error(error);
+        return HttpState.Pending();
     }
 });
+```
+
+## Creating a type with pre-defined fields
+
+You can pass an array of string field names as the second parameter of your variant info. These fields will be available on the `value` property of the variant instance, and you can pass values as multiple arguments to the variant constructor.
+
+### A simple example
+
+```js
+/**
+ * type Point of {
+ *   x: number,
+ *   y: number
+ * }
+ */
+const variantInfos = [
+    VariantInfo("Point", ["x", "y"])
+];
+
+const { Point } = createType("Point", variantInfos);
+
+// creating a Point
+const origin = Point(0, 0);
+
+origin.valueOf(); // -> {x: 0, y: 0}
+```
+
+Without the named fields you would have to have passed an object to the constructor, e.g.
+
+```js
+Point({x: 0, y: 0});
+```
+
+Extra values passed to the constructor will be ignored:
+
+```js
+const p = Point(1, 2, 3);
+
+p.valueOf(); // -> {x: 1, y: 2}
+```
+
+Having the named fields makes it cleaner and allows you to just pass values to your constructor.
+
+### Creating variants with different fields
+
+Each variant can have its own unique set of fields.
+
+```js
+/**
+ * type Shape
+ *   | Circle of radius: number
+ *   | Rectangle of {
+ *      width: number,
+ *      height: number }
+ *   | Triangle of {
+ *      base: number,
+ *      height: number }
+ */
+const variantInfos = [
+    VariantInfo("Circle"),
+    VariantInfo("Rectangle", ["width", "height"]),
+    VariantInfo("Triangle", ["base", "height"])
+];
+
+const Shape = createType("Shape", variantInfos, [], {
+    area(shape) {
+        return switchType(
+            Shape,
+            {
+                Circle: (radius) => Math.PI * radius * radius,
+                Rectangle: ({ width, height }) => width * height,
+                Triangle: ({ base, height }) => (base * height) / 2
+            },
+            shape
+        );
+    }
+});
+const { Circle, Rectangle, Triangle } = Shape;
+
+// create a Shape
+const rect = Rectangle(4, 5);
+
+rect.valueOf(); // -> {width: 4, height: 5}
+Shape.area(rect); // -> 20
+```
+
+## Creating a type with a "tuple" value
+
+You can simulate a tuple value for your custom type by defining no fields when constructing your type and then passing multiple arguments to the variant constructor. Only do this with very simple values for types. Here is an example of the Point type with a "tuple" value:
+
+```js
+/**
+ * type Point of number * number
+ */
+const variantInfos = [
+    VariantInfo("Point", [], [], {
+        distance({ value: value2 }) {
+            const value1 = this.value;
+            const distX = value2[0] - value1[0];
+            const distY = value2[1] - value1[1];
+            return Math.sqrt((distX * distX) + (distY * distY));
+        }
+    })
+];
+
+const { Point } = createType("Point", variantInfos);
+
+const origin = Point(0, 0);
+const point1 = Point(3, 4);
+
+origin.valueOf(); // -> [0, 0]
+point1.valueOf(); // -> [3, 4]
+origin.distance(point1); // -> 5
+```
+
+## Using a catchall with `switchType`
+
+You can use `_` as a catchall with `switchType` when you don't need a specific case for every single variant.
+
+```js
+const HttpState = createType("HttpState", [
+    VariantInfo("Pending"),
+    VariantInfo("Error"),
+    VariantInfo("Success")
+]);
+
+export const foldHttpState = (state) => switchType(
+    "HttpState",
+    {
+        Pending: () => "Pending",
+        _: (value) => value
+    },
+    state
+);
 ```
 
 ## Type Classes
@@ -249,6 +418,7 @@ Note also that some type classes require you to provide your own method implemen
 - SemiGroup
 - RightSemiGroup
 - Setoid
+- Ord
 - Traversable
 - Swap
 - LeftFold
@@ -264,3 +434,4 @@ Note also that some type classes require you to provide your own method implemen
 
 - Applicative
 - Monoid
+- Plus
