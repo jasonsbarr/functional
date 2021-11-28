@@ -1,4 +1,5 @@
 import { ap } from "./lib/core/ap.js";
+import { chain } from "./lib/core/chain.js";
 import { compare } from "./lib/core/compare.js";
 import { compose } from "./lib/core/compose.js";
 import { composeR } from "./lib/core/composeR.js";
@@ -52,6 +53,7 @@ export const unit = () => null;
 
 export {
   ap,
+  chain,
   compare,
   array,
   bool,
