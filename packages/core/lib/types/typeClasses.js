@@ -5,27 +5,16 @@ import { identity } from "../helpers/identity.js";
 import { eq } from "../predicates/eq.js";
 import { lte } from "../core/lte.js";
 
-export const Fold = {
-  fold(f) {
-    return f(this.value);
-  },
-};
-
-export const RightFold = {
-  fold(f, g) {
-    return g(this.value);
-  },
-};
-
-export const Functor = {
-  map(f) {
-    return this.constructor(f(this.value));
-  },
-};
-
+// instance typeclasses
 export const Apply = {
   ap(other) {
     return other.map(this.value);
+  },
+};
+
+export const Bifunctor = {
+  bimap(f, g) {
+    throw new Error("bimap method must be implemented on the instance");
   },
 };
 
@@ -35,9 +24,65 @@ export const Chain = {
   },
 };
 
-export const Bifunctor = {
-  bimap(f, g) {
-    throw new Error("bimap method must be implemented on the instance");
+export const Fold = {
+  fold(f) {
+    return f(this.value);
+  },
+};
+
+export const Functor = {
+  map(f) {
+    return this.constructor(f(this.value));
+  },
+};
+
+// Ord must also implement Setoid
+export const Ord = {
+  lte(other) {
+    return lte(this.value, other.value);
+  },
+};
+
+export const SemiGroup = {
+  concat(o) {
+    return this.constructor(concatValues(this.value, o.value));
+  },
+};
+
+export const Setoid = {
+  equals(x) {
+    return (
+      eq(this.type, x.type) &&
+      eq(this.variant, x.variant) &&
+      equals(this.value, x.value)
+    );
+  },
+};
+
+export const Swap = {
+  swap(leftMapFn, rightMapFn) {
+    throw new Error(
+      "Swap method must be implemented individually for each type"
+    );
+  },
+};
+
+export const Traversable = {
+  traverse(point, fn) {
+    throw new Error(
+      "Traverse method must be implemented individually for each type"
+    );
+  },
+
+  sequence(point) {
+    return this.traverse(point, identity);
+  },
+};
+
+// Right typeclasses
+export const RightFold = {
+  fold(f, g) {
+    return g(this.value);
   },
 };
 
@@ -59,54 +104,11 @@ export const RightAlt = {
   },
 };
 
-// Ord must implement Setoid
-export const Ord = {
-  lte(other) {
-    return lte(this.value, other.value);
-  },
-};
-
-export const SemiGroup = {
-  concat(o) {
-    return this.constructor(concatValues(this.value, o.value));
-  },
-};
-
 export const RightSemiGroup = {
   concat(o) {
     return o.fold(
       (l) => o.constructor(l),
       (r) => this.constructor(concatValues(this.value, r))
-    );
-  },
-};
-
-export const Setoid = {
-  equals(x) {
-    return (
-      eq(this.type, x.type) &&
-      eq(this.variant, x.variant) &&
-      equals(this.value, x.value)
-    );
-  },
-};
-
-export const Traversable = {
-  traverse(point, fn) {
-    throw new Error(
-      "Traverse method must be implemented individually for each type"
-    );
-  },
-
-  sequence(point) {
-    return this.traverse(point, identity);
-  },
-};
-
-export const Swap = {
-  swap(leftMapFn, rightMapFn) {
-    throw new Error(
-      "Swap method must be implemented individually for each type"
     );
   },
 };
