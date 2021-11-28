@@ -286,6 +286,7 @@ You can pass an array of string field names as the second parameter of your vari
 ### A simple example
 
 ```js
+import { Show } from "@jasonsbarr/functional-core/lib/types/typeClasses";
 /**
  * type Point of {
  *   x: number,
@@ -293,7 +294,12 @@ You can pass an array of string field names as the second parameter of your vari
  * }
  */
 const variantInfos = [
-    VariantInfo("Point", ["x", "y"])
+    VariantInfo("Point", ["x", "y"], [Show], {
+        toString() {
+            const { x, y } = this.value;
+            return `Point(x: ${x}, y: ${y})`;
+        }
+    })
 ];
 
 const { Point } = createType("Point", variantInfos);
@@ -434,6 +440,7 @@ Note also that some type classes require you to provide your own method implemen
 - Ord
 - SemiGroup
 - Setoid
+- Show
 - Swap
 - Traversable
 - RightAlt
