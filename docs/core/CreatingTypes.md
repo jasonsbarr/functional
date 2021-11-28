@@ -304,7 +304,7 @@ const origin = Point(0, 0);
 origin.valueOf(); // -> {x: 0, y: 0}
 ```
 
-Without the named fields you would have to have passed an object to the constructor, e.g.
+Without the named fields you would have to pass an object to the constructor, e.g.
 
 ```js
 Point({x: 0, y: 0});
