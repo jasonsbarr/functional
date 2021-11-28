@@ -392,7 +392,7 @@ point1.valueOf(); // -> [3, 4]
 origin.distance(point1); // -> 5
 ```
 
-## Using a catchall with `switchType`
+## Using a Catchall with `switchType`
 
 You can use `_` as a catchall with `switchType` when you don't need a specific case for every single variant.
 
