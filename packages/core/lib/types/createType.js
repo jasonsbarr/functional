@@ -4,6 +4,7 @@ import { freeze } from "../object/freeze.js";
 import { getType } from "./getType.js";
 import { length } from "../array/length.js";
 import { create } from "../object/create.js";
+import { isFunction } from "../predicates/isFunction.js";
 
 /**
  * @typedef {Object} VariantInfo The info used to construct a type variant
@@ -53,6 +54,9 @@ const createVariantConstructor = (
       variant: variantName,
       get value() {
         return this._value;
+      },
+      set value(v) {
+        this._value = v;
       },
       ["is" + typeName]: () => true,
       ["is" + variantName]: () => true,
@@ -105,7 +109,7 @@ const createVariantConstructor = (
       value: variantConstructor,
     });
 
-    if (variant.init) {
+    if (variant.init && isFunction(variant.init)) {
       definePropWithOpts("init", variant, {
         enumerable: false,
         writable: false,
