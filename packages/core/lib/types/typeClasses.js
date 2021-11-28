@@ -43,6 +43,18 @@ export const Ord = {
   lte(other) {
     return lte(this.value, other.value);
   },
+
+  gt(other) {
+    return !this.lte(other);
+  },
+
+  gte(other) {
+    return this.gt(other) || this.equals(other);
+  },
+
+  lt(other) {
+    return !this.gte(other);
+  },
 };
 
 export const SemiGroup = {
