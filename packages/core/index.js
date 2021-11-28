@@ -1,4 +1,5 @@
 import { ap } from "./lib/core/ap.js";
+import { bimap } from "./lib/core/bimap.js";
 import { chain } from "./lib/core/chain.js";
 import { compare } from "./lib/core/compare.js";
 import { compose } from "./lib/core/compose.js";
@@ -53,6 +54,7 @@ export const unit = () => null;
 
 export {
   ap,
+  bimap,
   chain,
   compare,
   array,
