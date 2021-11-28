@@ -78,7 +78,8 @@ const createVariantConstructor = (
         enumerable: false,
         writable: true,
         configurable: false,
-        value: args[0],
+        // if no fields and multiple args, treat args array as tuple
+        value: args.length === 1 ? args[0] : args,
       });
     } else {
       let obj = create(null);
