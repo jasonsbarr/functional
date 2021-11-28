@@ -78,14 +78,14 @@ switchType(
     HttpState,
     {
         Pending: () => console.log("Still pending!"),
-        Error: ({ value: error }) => console.error(error),
-        Success: ({ value }) => console.log(value)
+        Error: (error) => console.error(error),
+        Success: (value) => console.log(value)
     },
     instance
 );
 ```
 
-`switchType` takes the type representative object, an object with a function to dispatch for each possible variant, and the type instance itself. When dispatching a function it passes the variant instance itself into the function. If you need a return value, it returns the value returned by the function executed on match.
+`switchType` takes the type representative object, an object with a function to dispatch for each possible variant, and the type instance itself. When dispatching a function it passes the variant instance's `value` property into the function. If you need a return value, it returns the value returned by the function executed on match.
 
 Note that matching is exhaustively checked at runtime - you _must_ provide a case for _every_ possible variant unless you use `_` as a catchall (example of this below).
 
@@ -102,6 +102,8 @@ When you create a type, the type representative object and variant instances aut
     - valueOf() - returns the `value` property of the variant object
     - inspect() - returns a string representation of the variant
     - toString() - alias for `inspect`
+
+Note that any of these can be overridden in type creation.
 
 ## Creating a More Complex Type
 
