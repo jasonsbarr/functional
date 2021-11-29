@@ -32,6 +32,12 @@ export const Fold = {
   },
 };
 
+export const Foldable = {
+  reduce(f, init) {
+    return f(init, this.value);
+  },
+};
+
 export const Functor = {
   map(f) {
     return this.constructor(f(this.value));
