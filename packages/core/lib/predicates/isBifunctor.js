@@ -1,1 +1,3 @@
-export const isBifunctor = (obj) => typeof obj.bimap === "function";
+import { isFunction } from "./isFunction.js";
+
+export const isBifunctor = (obj) => isFunction(obj.bimap);

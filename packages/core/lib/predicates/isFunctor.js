@@ -1,1 +1,3 @@
-export const isFunctor = (obj) => typeof obj.map === "function";
+import { isFunction } from "./isFunction.js";
+
+export const isFunctor = (obj) => isFunction(obj.map);
