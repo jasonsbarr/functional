@@ -9,12 +9,21 @@ import { isSet } from "@jasonsbarr/functional-core/lib/predicates/isSet.js";
 import { isDate } from "@jasonsbarr/functional-core/lib/predicates/isDate.js";
 import { isRegExp } from "@jasonsbarr/functional-core/lib/predicates/isRegExp.js";
 import { isObject } from "@jasonsbarr/functional-core/lib/predicates/isObject.js";
+import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
+import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
 import { Map } from "./Map.js";
 import { Dict } from "./Dict.js";
 
 class Sequence {
   constructor(source) {
     this.source = source;
+
+    definePropWithOpts("size", this, {
+      writable: false,
+      enumerable: false,
+      configurable: false,
+      value: source.length,
+    });
   }
 }
 
@@ -48,7 +57,7 @@ class ArrayWrapper extends ArrayLikeSequence {
 
 class EntriesWrapper extends Sequence {
   constructor(source) {
-    super(source);
+    super(entries(source));
   }
 }
 
@@ -62,13 +71,15 @@ export const Seq = (source) =>
       isBool(source) ||
       isSymbol(source) ||
       isDate(source) ||
-      isRegExp(source) ||
-      isObject(source)
+      isRegExp(source)
     ? new ArrayWrapper([source])
     : isSet(source)
     ? new ArrayWrapper([...source])
-    : isMap(source) || Map.isMap(source) || Dict.isDict(source)
-    ? new EntriesWrapper(source.entries())
+    : isMap(source) ||
+      Map.isMap(source) ||
+      Dict.isDict(source) ||
+      isObject(source)
+    ? new EntriesWrapper(source)
     : Seq.isSeq(source)
     ? source
     : new Sequence(source);
