@@ -87,7 +87,7 @@ export const Setoid = {
 export const Show = {
   toString() {
     throw new Error(
-      "toString method must be implemented for each type to implement Show"
+      "toString method must be implemented for each type to implement Show type class"
     );
   },
 };
