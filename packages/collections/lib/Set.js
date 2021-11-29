@@ -57,6 +57,8 @@ import { sort } from "@jasonsbarr/iterable/lib/sort.js";
 import { splice } from "@jasonsbarr/iterable/lib/splice.js";
 import { sum } from "@jasonsbarr/iterable/lib/sum.js";
 import { symmetricDifference } from "@jasonsbarr/iterable/lib/symmetricDifference.js";
+import { take } from "@jasonsbarr/iterable/lib/take.js";
+import { takeWhile } from "@jasonsbarr/iterable/lib/takeWhile.js";
 import { to } from "@jasonsbarr/iterable/lib/to.js";
 import { toArray } from "@jasonsbarr/iterable/lib/toArray.js";
 import { traverse } from "@jasonsbarr/iterable/lib/traverse.js";
@@ -422,7 +424,11 @@ class SetClass extends Array {
   }
 
   take(numItems) {
-    return this.pluck(numItems);
+    return take(numItems, this);
+  }
+
+  takeWhile(pred) {
+    return takeWhile(pred, this);
   }
 
   to(index) {

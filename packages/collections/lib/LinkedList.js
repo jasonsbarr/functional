@@ -1,3 +1,5 @@
+import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
+import { isNil } from "@jasonsbarr/functional-core/lib/predicates/isNil.js";
 import { all } from "@jasonsbarr/iterable/lib/all.js";
 import { any } from "@jasonsbarr/iterable/lib/any.js";
 import { ap } from "@jasonsbarr/iterable/lib/ap.js";
@@ -16,6 +18,7 @@ import { count } from "@jasonsbarr/iterable/lib/count.js";
 import { difference } from "@jasonsbarr/iterable/lib/difference.js";
 import { each } from "@jasonsbarr/iterable/lib/each.js";
 import { eachWithIndex } from "@jasonsbarr/iterable/lib/eachWithIndex.js";
+import { equals } from "@jasonsbarr/functional-core/lib/object/equals.js";
 import { entries } from "@jasonsbarr/iterable/lib/entries.js";
 import { filter } from "@jasonsbarr/iterable/lib/filter.js";
 import { find } from "@jasonsbarr/iterable/lib/find.js";
@@ -29,18 +32,16 @@ import { insert } from "@jasonsbarr/iterable/lib/insert.js";
 import { intersection } from "@jasonsbarr/iterable/lib/intersection.js";
 import { isEmpty } from "@jasonsbarr/iterable/lib/isEmpty.js";
 import { isEqual } from "@jasonsbarr/iterable/lib/isEqual.js";
-import { isNil } from "@jasonsbarr/functional-core/lib/predicates/isNil.js";
 import { join } from "@jasonsbarr/iterable/lib/join.js";
 import { keys } from "@jasonsbarr/iterable/lib/keys.js";
 import { last } from "@jasonsbarr/iterable/lib/last.js";
 import { lastIndexOf } from "@jasonsbarr/iterable/lib/lastIndexOf.js";
-import { length } from "@jasonsbarr/iterable/lib/length.js";
 import { map } from "@jasonsbarr/iterable/lib/map.js";
 import { mapWithIndex } from "@jasonsbarr/iterable/lib/mapWithIndex.js";
 import { max } from "@jasonsbarr/iterable/lib/max.js";
+import { none } from "@jasonsbarr/iterable/lib/none.js";
 import { median } from "@jasonsbarr/iterable/lib/median.js";
 import { min } from "@jasonsbarr/iterable/lib/min.js";
-import { none } from "@jasonsbarr/iterable/lib/none.js";
 import { pluck } from "@jasonsbarr/iterable/lib/pluck.js";
 import { prepend } from "@jasonsbarr/iterable/lib/prepend.js";
 import { product } from "@jasonsbarr/iterable/lib/product.js";
@@ -68,36 +69,85 @@ import { unique } from "@jasonsbarr/iterable/lib/unique.js";
 import { update } from "@jasonsbarr/iterable/lib/update.js";
 import { values } from "@jasonsbarr/iterable/lib/values.js";
 import { zip } from "@jasonsbarr/iterable/lib/zip.js";
-import { NIL } from "./Nil.js";
-import { equals } from "@jasonsbarr/functional-core/lib/object/equals.js";
 
-class Cons extends Array {
-  constructor(car, cdr) {
-    super(car, cdr);
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.prev = null;
+    this.next = null;
+  }
+}
 
-    Object.defineProperty(this, "type", {
+class DLList {
+  constructor(...args) {
+    let head = null;
+    let tail = null;
+    let length = 0;
+
+    for (let arg of args) {
+      let node = new Node(arg);
+
+      if (!head) {
+        head = node;
+        tail = node;
+      } else {
+        tail.next = node;
+        node.prev = tail;
+        tail = node;
+      }
+
+      length++;
+    }
+
+    this.head = head;
+    this.tail = tail;
+
+    definePropWithOpts("length", this, {
+      writable: false,
       configurable: false,
       enumerable: false,
-      writable: true,
-      value: "Cons",
+      value: length,
     });
 
-    Object.defineProperty(this, "constructor", {
+    definePropWithOpts("size", this, {
+      writable: false,
       configurable: false,
       enumerable: false,
-      writable: true,
-      value: cons,
+      value: length,
     });
 
-    Object.defineProperty(this, "size", {
+    definePropWithOpts("constructor", this, {
+      writable: false,
       configurable: false,
       enumerable: false,
-      writable: true,
-      value: length(this),
+      value: LinkedList,
+    });
+
+    definePropWithOpts("type", this, {
+      writable: false,
+      configurable: false,
+      enumerable: false,
+      value: "LinkedList",
     });
   }
 
-  // can use either a fluent method interface or use the iterable functions used here directly
+  [Symbol.iterator]() {
+    let current = this.head;
+
+    return {
+      next() {
+        if (isNil(current)) {
+          return { done: true };
+        }
+
+        let value = current.value;
+        current = current.next;
+
+        return { value, done: false };
+      },
+    };
+  }
+
   all(search) {
     return all(search, this);
   }
@@ -119,7 +169,7 @@ class Cons extends Array {
     return at(i, this);
   }
 
-  // may return null or undefined value
+  // unsafe - may return null or undefined value
   atUnsafe(i) {
     return atUnsafe(i, this);
   }
@@ -179,7 +229,7 @@ class Cons extends Array {
   }
 
   empty() {
-    return List.empty();
+    return Tuple.empty();
   }
 
   entries() {
@@ -279,10 +329,6 @@ class Cons extends Array {
     return intersection(this, other);
   }
 
-  isCons() {
-    return true;
-  }
-
   isEmpty() {
     return isEmpty(this);
   }
@@ -291,12 +337,8 @@ class Cons extends Array {
     return isEqual(this, other);
   }
 
-  isList() {
-    return this.type === "List";
-  }
-
-  isNil() {
-    return length(this) !== 0;
+  isTuple() {
+    return true;
   }
 
   join(sep = "") {
@@ -342,7 +384,7 @@ class Cons extends Array {
   }
 
   pluck(numItems) {
-    return pluck(numItems, this);
+    return pluck(this, numItems);
   }
 
   // returns Option, not value
@@ -350,12 +392,12 @@ class Cons extends Array {
     return this.last();
   }
 
-  product() {
-    return product(this);
-  }
-
   prepend(item) {
     return prepend(item, this);
+  }
+
+  product() {
+    return product(this);
   }
 
   // unlike the array method, this does NOT mutate the current object
@@ -449,13 +491,7 @@ class Cons extends Array {
   }
 
   toString() {
-    let arrStr = [...this].toString();
-    let strArr = arrStr.split(",");
-    let str =
-      strArr.length == 2
-        ? "'(" + strArr.join(" . ") + ")"
-        : "'(" + strArr.join(" ") + ")";
-    return str;
+    return `LinkedList(${[...this].toString().split(",").join(", ")})`;
   }
 
   traverse(point, fn) {
@@ -475,7 +511,7 @@ class Cons extends Array {
     return this.prepend(item);
   }
 
-  update(i, updater) {
+  update(updater, i) {
     return update(updater, i, this);
   }
 
@@ -487,95 +523,13 @@ class Cons extends Array {
   zip(...iters) {
     return zip(this, ...iters);
   }
-
-  [Symbol.iterator]() {
-    let head = this;
-    let i = 0;
-
-    return {
-      next() {
-        let value = head[i];
-        if (value == null || value.constructor.name === "Nil") {
-          return {
-            done: true,
-          };
-        } else {
-          if (head[1] instanceof Cons) {
-            head = head[1];
-            return {
-              value,
-              done: false,
-            };
-          } else {
-            i++;
-            return {
-              value,
-              done: false,
-            };
-          }
-        }
-      },
-    };
-  }
 }
 
-Cons.isCons = (obj) => typeof obj.isCons === "function" && obj.isCons();
+export const LinkedList = (...args) => new DLList(...args);
 
-export const cons = (car, cdr) => {
-  let c = new Cons(car, cdr);
-  if (cdr.type === "List") {
-    c.type = "List";
-  }
-  return c;
-};
+LinkedList.of = (arr) => LinkedList(...arr);
+LinkedList.from = LinkedList.of;
+LinkedList.isLinkedList = (obj) => obj.type === "LinkedList";
+LinkedList.empty = () => LinkedList.of([]);
 
-export const List = (...args) => {
-  if (
-    args.length === 0 ||
-    isNil(args[0]) ||
-    args[0].constructor.name === "Nil"
-  ) {
-    return NIL;
-  }
-
-  let i = 0;
-  let head = new Cons(args[i], NIL);
-  let l = head;
-  i++;
-  while (i < args.length) {
-    head[1] = new Cons(args[i], NIL);
-    head = head[1];
-    i++;
-  }
-
-  Object.defineProperty(l, "type", {
-    configurable: false,
-    enumerable: false,
-    writable: false,
-    value: "List",
-  });
-  Object.defineProperty(l, "constructor", {
-    configurable: false,
-    enumerable: false,
-    writable: false,
-    value: List,
-  });
-  Object.defineProperty(l, "size", {
-    configurable: false,
-    enumerable: false,
-    writable: false,
-    value: length(l),
-  });
-
-  return l;
-};
-
-// constructs a list from any iterable
-List.of = (iter) => List(...iter);
-List.from = List.of;
-
-List.isList = (obj) => obj.type === "List";
-
-List.empty = () => NIL;
-
-export default List;
+export default LinkedList;

@@ -15,7 +15,7 @@ Core functions are mostly for working with functional types created with `create
 ```js
 import { ap } from "@jasonsbarr/functional-core";
 
-ap(wrapped, applicative);
+ap(wrapped, apply);
 ```
 
 Applies a Functor-wrapped function to an Apply type.
@@ -264,7 +264,7 @@ Returns the length or size of an iterable or collection. Works with JS Arrays, M
 
 Constructs a `Left` instance of the `Either` type.
 
-### The liftA* functions
+### The liftA\* functions
 
 ```js
 import { liftA2, liftA3, liftA4, liftA5 } from "@jasonsbarr/functional-core";
@@ -309,9 +309,7 @@ Applies a function to the value of an instance of a Functor type and returns a n
 ```js
 import { memo } from "@jasonsbarr/functional-core";
 
-const fact = (n) => n == 0 || n == 1
-    ? 1
-    : n * fact(n - 1);
+const fact = (n) => (n == 0 || n == 1 ? 1 : n * fact(n - 1));
 
 const factMemo = memo(fact);
 ```
@@ -406,7 +404,7 @@ import { Record } from "@jasonsbarr/functional-core";
 const Person = Record("name", "age");
 
 const me1 = Person("Jason", 41);
-const me2 = Person.of({name: "Jason", age: 41});
+const me2 = Person.of({ name: "Jason", age: 41 });
 ```
 
 Returns a `Record` constructor that accepts values for the specified fields.
@@ -418,7 +416,7 @@ Constructor can also be called as `Constructor.of(obj)`, which converts the obje
 ```js
 import { record } from "@jasonsbarr/functional-core";
 
-const me = record({name: "Jason", age: 41});
+const me = record({ name: "Jason", age: 41 });
 ```
 
 Takes an object and returns a `Record` with the same fields and values.
@@ -448,7 +446,7 @@ Constructs a `Right` instance of the `Either` type.
 ```js
 import { safe } from "@jasonsbarr/functional-core";
 
-const isSafeNum = safe(v => typeof v === "number" && !Number.isNaN(v));
+const isSafeNum = safe((v) => typeof v === "number" && !Number.isNaN(v));
 isSafeNum(5);
 ```
 
@@ -511,10 +509,14 @@ Converts a "left" variant into its associated "right" and vice-versa, using `lef
 ```js
 import { switchType } from "@jasonsbarr/functional-core";
 
-switchType(Option, {
+switchType(
+  Option,
+  {
     Some: (v) => "Something: " + v,
-    None: () => "Nothing"
-}, instance);
+    None: () => "Nothing",
+  },
+  instance
+);
 ```
 
 Matches a type on its variants. Allows you to extract an instance's value or perform other operations on it. Checks variants exhaustively at runtime, so you _must_ have a case for each variant unless you use `_` as a catchall in which case it short-circuits checking.
@@ -547,6 +549,8 @@ import { tryCatch } from "@jasonsbarr/functional-core";
 tryCatch(() => JSON.parse(file));
 ```
 
+Takes a function and executes it in a try/catch block. Returns a `Result` type: `Ok` of the value if the function call succeeds, `Err` of the Error if it throws an error.
+
 ### `unit`
 
 ```js
@@ -566,8 +570,6 @@ zero(Option);
 ```
 
 Returns the zero value of a type that implements the `Plus` type class.
-
-Takes a function and executes it in a try/catch block. Returns a `Result` type: `Ok` of the value if the function call succeeds, `Err` of the Error if it throws an error.
 
 ## Available Core Types
 
