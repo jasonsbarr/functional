@@ -138,7 +138,11 @@ const variantInfos = [
       equals(other) {
         const { value } = this.value;
         const { value: oValue } = other.value;
-        return equals(this.variant, other.variant) && equals(value, oValue);
+        return (
+          equals(other.type, "Validation") &&
+          equals(this.variant, other.variant) &&
+          equals(value, oValue)
+        );
       },
 
       // Ord
