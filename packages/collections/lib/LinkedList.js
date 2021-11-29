@@ -1,4 +1,5 @@
 import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
+import { isNil } from "@jasonsbarr/functional-core/lib/predicates/isNil.js";
 
 class Node {
   constructor(value) {
@@ -45,6 +46,23 @@ class DLList {
       enumerable: false,
       value: LinkedList,
     });
+  }
+
+  [Symbol.iterator]() {
+    let current = this.head;
+
+    return {
+      next() {
+        if (isNil(current)) {
+          return { done: true };
+        }
+
+        let value = current.value;
+        current = current.next;
+
+        return { value, done: false };
+      },
+    };
   }
 }
 
