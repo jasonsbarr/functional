@@ -326,7 +326,7 @@ class NilClass {
   }
 
   take(numItems) {
-    return this.pluck(numItems);
+    return this;
   }
 
   takeWhile() {
