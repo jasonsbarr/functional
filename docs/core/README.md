@@ -11,6 +11,9 @@ npm install @jasonsbarr/functional-core
 You can import any of the core functions and types from the package's entrypoint, e.g.:
 
 ```js
+import * as f from "@jasonsbarr/functional-core";
+
+// or just import a single function
 import { pipe } from "@jasonsbarr/functional-core";
 ```
 
