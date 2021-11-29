@@ -549,6 +549,8 @@ import { tryCatch } from "@jasonsbarr/functional-core";
 tryCatch(() => JSON.parse(file));
 ```
 
+Takes a function and executes it in a try/catch block. Returns a `Result` type: `Ok` of the value if the function call succeeds, `Err` of the Error if it throws an error.
+
 ### `unit`
 
 ```js
@@ -568,8 +570,6 @@ zero(Option);
 ```
 
 Returns the zero value of a type that implements the `Plus` type class.
-
-Takes a function and executes it in a try/catch block. Returns a `Result` type: `Ok` of the value if the function call succeeds, `Err` of the Error if it throws an error.
 
 ## Available Core Types
 
