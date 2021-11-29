@@ -58,6 +58,14 @@ class AsyncSequence extends Sequence {
     super(parent.source);
     this.parent = parent;
   }
+
+  async *[Symbol.asyncIterator]() {
+    let i = 0;
+
+    while (i < this.source.length) {
+      yield this.source[i++];
+    }
+  }
 }
 
 class MappedSequence extends Sequence {
@@ -122,3 +130,7 @@ Seq.from = Seq.of;
 Seq.isSeq = (obj) => obj.type === "Seq";
 Seq.empty = () => Seq.of([]);
 Seq.async = (source) => Seq(source).toAsync();
+
+for await (let e of Seq.async([1, 2, 3])) {
+  console.log(e);
+}
