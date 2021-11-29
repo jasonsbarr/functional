@@ -9,6 +9,7 @@ import { isSet } from "@jasonsbarr/functional-core/lib/predicates/isSet.js";
 import { isDate } from "@jasonsbarr/functional-core/lib/predicates/isDate.js";
 import { isRegExp } from "@jasonsbarr/functional-core/lib/predicates/isRegExp.js";
 import { isObject } from "@jasonsbarr/functional-core/lib/predicates/isObject.js";
+import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction.js";
 import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
 import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
 import { Map } from "./Map.js";
@@ -46,6 +47,10 @@ class Sequence {
     while (i < this.size) {
       yield this.source[i++];
     }
+  }
+
+  isAsync() {
+    return isFunction(this[Symbol.asyncIterator]);
   }
 
   toAsync() {
@@ -130,7 +135,3 @@ Seq.from = Seq.of;
 Seq.isSeq = (obj) => obj.type === "Seq";
 Seq.empty = () => Seq.of([]);
 Seq.async = (source) => Seq(source).toAsync();
-
-for await (let e of Seq.async([1, 2, 3])) {
-  console.log(e);
-}
