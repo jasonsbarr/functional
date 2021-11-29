@@ -24,6 +24,28 @@ class Sequence {
       configurable: false,
       value: source.length,
     });
+
+    definePropWithOpts("length", this, {
+      writable: false,
+      enumerable: false,
+      configurable: false,
+      value: source.length,
+    });
+
+    definePropWithOpts("type", this, {
+      writable: false,
+      enumerable: false,
+      configurable: false,
+      value: "Seq",
+    });
+  }
+
+  *[Symbol.iterator]() {
+    let i = 0;
+
+    while (i < this.size) {
+      yield this.source[i++];
+    }
   }
 }
 
