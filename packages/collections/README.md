@@ -11,6 +11,7 @@ Collections include:
 - Map - like native JavaScript Maps, but with additional methods and functionality
 - Tuple - immutable, Array-like collection
 - Set - Indexed collection of unique values based on structural (value) equality
+- LinkedList - a doubly linked list using objects as nodes
 
 ## Basic Usage
 
