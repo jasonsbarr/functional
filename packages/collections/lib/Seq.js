@@ -47,6 +47,17 @@ class Sequence {
       yield this.source[i++];
     }
   }
+
+  toAsync() {
+    return new AsyncSequence(this);
+  }
+}
+
+class AsyncSequence extends Sequence {
+  constructor(parent) {
+    super(parent.source);
+    this.parent = parent;
+  }
 }
 
 class MappedSequence extends Sequence {
@@ -110,3 +121,4 @@ Seq.of = (iter) => Seq(iter);
 Seq.from = Seq.of;
 Seq.isSeq = (obj) => obj.type === "Seq";
 Seq.empty = () => Seq.of([]);
+Seq.async = (source) => Seq(source).toAsync();
