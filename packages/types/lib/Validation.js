@@ -26,6 +26,8 @@ import {
 } from "@jasonsbarr/functional-core/lib/types/typeClasses.js";
 import { isArray } from "@jasonsbarr/functional-core/lib/predicates/isArray.js";
 import { assert } from "@jasonsbarr/functional-core/lib/helpers/assert.js";
+import { lt } from "@jasonsbarr/functional-core";
+import { equals } from "@jasonsbarr/functional-core";
 
 const variantInfos = [
   VariantInfo(
@@ -132,9 +134,21 @@ const variantInfos = [
         return Validation.fail(value, failures);
       },
 
+      // Setoid
+      equals(other) {
+        const { value } = this.value;
+        const { value: oValue } = other.value;
+        return equals(this.variant, other.variant) && equals(value, oValue);
+      },
+
       // Ord
       lte(other) {
-        return this.equals(other);
+        const { value } = this.value;
+        const { value: oValue } = other.value;
+        return (
+          this.equals(other) ||
+          (equals(this.variant, other.variant) && lt(value, oValue))
+        );
       },
     }
   ),
