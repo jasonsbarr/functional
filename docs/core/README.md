@@ -17,11 +17,7 @@ import * as f from "@jasonsbarr/functional-core";
 import { pipe } from "@jasonsbarr/functional-core";
 ```
 
-For library functions, import things individually as you need them. That's better for your bundle sizes anyway, if you're using a module bundler like Webpack in your build process.
-
-I mean, think about it, when you use Ramda, how often do you _need_ the whole package versus just a few functions? We think it's better to be explicit about what you want and what you're doing in your code.
-
-So, for example, if you want to filter an array just import the `filter` function:
+For library functions, import things individually as you need them. For example, if you want to filter an array just import the `filter` function:
 
 ```js
 import { filter } from "@jasonsbarr/functional-core/lib/array/filter";
