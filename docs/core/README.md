@@ -33,7 +33,11 @@ All core functions and types can be imported from `/lib/core`:
 import { createType } from "@jasonsbarr/functional-core/lib/core/createType";
 ```
 
-## Function Categories
+## Core Functions
+
+[Core Function Documentation](./Core.md)
+
+## Other Function Categories
 
 - [Array](./Array.md)
 - [Date](./Date.md)
