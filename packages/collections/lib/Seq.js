@@ -13,6 +13,7 @@ import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunctio
 import { isGeneratorObject } from "@jasonsbarr/functional-core/lib/predicates/isGeneratorObject.js";
 import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
 import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
+import { length } from "@jasonsbarr/functional-core/lib/array/length.js";
 import { Map } from "./Map.js";
 import { Dict } from "./Dict.js";
 
@@ -139,24 +140,28 @@ class EntriesWrapper extends Sequence {
 export const Seq = (...args) => Seq.of(args);
 
 Seq.of = (source) =>
-  isArray(source)
-    ? new ArrayWrapper(source)
-    : isNil(source)
+  length(source) === 0
     ? new ArrayWrapper([])
-    : isString(source) ||
-      isNumber(source) ||
-      isBool(source) ||
-      isSymbol(source) ||
-      isDate(source) ||
-      isRegExp(source) ||
-      isObject(source)
-    ? new ArrayWrapper([source])
-    : isSet(source)
-    ? new ArrayWrapper([...source])
-    : isMap(source) || Map.isMap(source) || Dict.isDict(source)
-    ? new EntriesWrapper(source)
-    : Seq.isSeq(source)
-    ? source
+    : length(source) === 1
+    ? isArray(source[0])
+      ? new ArrayWrapper(source)
+      : isNil(source[0])
+      ? new ArrayWrapper([])
+      : isString(source[0]) ||
+        isNumber(source[0]) ||
+        isBool(source[0]) ||
+        isSymbol(source[0]) ||
+        isDate(source[0]) ||
+        isRegExp(source[0]) ||
+        isObject(source[0])
+      ? new ArrayWrapper([source[0]])
+      : isSet(source)
+      ? new ArrayWrapper([...source[0]])
+      : isMap(source[0]) || Map.isMap(source[0]) || Dict.isDict(source[0])
+      ? new EntriesWrapper(source[0])
+      : Seq.isSeq(source[0])
+      ? source[0]
+      : new Sequence(source[0])
     : new Sequence(source);
 
 Seq.from = Seq.of;
