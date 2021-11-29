@@ -162,4 +162,4 @@ Seq.from = Seq.of;
 Seq.isSeq = (obj) => obj.type === "Seq";
 Seq.empty = () => Seq.of([]);
 Seq.async = (source) => Seq(source).toAsync();
-Seq.fromEntries = (source) => Seq(entries(source));
+Seq.fromObject = (source) => Seq(entries(source));
