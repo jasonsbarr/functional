@@ -18,7 +18,7 @@ Collections include:
 Import the collections you need and use as follows:
 
 ```js
-import { Tuple } from "@jasonsbarr/collections/lib/Tuple";
+import { Tuple } from "@jasonsbarr/collections";
 import { isOdd } from "@jasonsbarr/functional-core/lib/predicates/isOdd";
 
 const nums = Tuple(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
