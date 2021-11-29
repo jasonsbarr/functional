@@ -329,6 +329,10 @@ class NilClass {
     return this.pluck(numItems);
   }
 
+  takeWhile() {
+    return this;
+  }
+
   to(index) {
     return this;
   }
