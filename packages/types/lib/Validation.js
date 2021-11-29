@@ -140,7 +140,7 @@ const variantInfos = [
         const { value: oValue } = other.value;
         return (
           equals(other.type, "Validation") &&
-          equals(this.variant, other.variant) &&
+          equals(other.variant, "Failure") &&
           equals(value, oValue)
         );
       },
