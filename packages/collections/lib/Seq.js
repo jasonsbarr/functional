@@ -136,7 +136,9 @@ class EntriesWrapper extends Sequence {
   }
 }
 
-export const Seq = (source) =>
+export const Seq = (...args) => Seq.of(args);
+
+Seq.of = (source) =>
   isArray(source)
     ? new ArrayWrapper(source)
     : isNil(source)
@@ -157,9 +159,8 @@ export const Seq = (source) =>
     ? source
     : new Sequence(source);
 
-Seq.of = (iter) => Seq(iter);
 Seq.from = Seq.of;
 Seq.isSeq = (obj) => obj.type === "Seq";
 Seq.empty = () => Seq.of([]);
 Seq.async = (source) => Seq(source).toAsync();
-Seq.fromObject = (source) => Seq(entries(source));
+Seq.fromObject = (source) => new EntriesWrapper(source);
