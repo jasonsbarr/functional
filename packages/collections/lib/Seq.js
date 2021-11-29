@@ -10,6 +10,7 @@ import { isDate } from "@jasonsbarr/functional-core/lib/predicates/isDate.js";
 import { isRegExp } from "@jasonsbarr/functional-core/lib/predicates/isRegExp.js";
 import { isObject } from "@jasonsbarr/functional-core/lib/predicates/isObject.js";
 import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction.js";
+import { isGeneratorObject } from "@jasonsbarr/functional-core/lib/predicates/isGeneratorObject.js";
 import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
 import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
 import { Map } from "./Map.js";
@@ -23,14 +24,14 @@ class Sequence {
       writable: false,
       enumerable: false,
       configurable: false,
-      value: source.length,
+      value: isGeneratorObject(source) ? Infinity : source.length,
     });
 
     definePropWithOpts("length", this, {
       writable: false,
       enumerable: false,
       configurable: false,
-      value: source.length,
+      value: this.size,
     });
 
     definePropWithOpts("type", this, {
@@ -42,10 +43,24 @@ class Sequence {
   }
 
   *[Symbol.iterator]() {
-    let i = 0;
+    if (this.size === Infinity) {
+      let done = false;
+      let v;
 
-    while (i < this.size) {
-      yield this.source[i++];
+      while (!done) {
+        v = this.source.next();
+        done = v.done;
+
+        if (!done) {
+          yield v.value;
+        }
+      }
+    } else {
+      let i = 0;
+
+      while (i < this.source.length) {
+        yield this.source[i++];
+      }
     }
   }
 
@@ -65,10 +80,24 @@ class AsyncSequence extends Sequence {
   }
 
   async *[Symbol.asyncIterator]() {
-    let i = 0;
+    if (this.size === Infinity) {
+      let done = false;
+      let v;
 
-    while (i < this.source.length) {
-      yield this.source[i++];
+      while (!done) {
+        v = this.source.next();
+        done = v.done;
+
+        if (!done) {
+          yield v.value;
+        }
+      }
+    } else {
+      let i = 0;
+
+      while (i < this.source.length) {
+        yield this.source[i++];
+      }
     }
   }
 }

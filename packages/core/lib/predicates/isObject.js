@@ -4,6 +4,7 @@ import { isMap } from "./isMap.js";
 import { isNil } from "./isNil.js";
 import { isRegExp } from "./isRegExp.js";
 import { isSet } from "./isSet.js";
+import { isGeneratorObject } from "./isGeneratorObject.js";
 
 export const isObject = (obj) =>
   !isNil(obj) &&
@@ -12,4 +13,5 @@ export const isObject = (obj) =>
   !isSet(obj) &&
   !isRegExp(obj) &&
   !isDate(obj) &&
-  !isArray(obj);
+  !isArray(obj) &&
+  !isGeneratorObject(obj);
