@@ -67,3 +67,5 @@ class DLList {
 }
 
 export const LinkedList = (...args) => new DLList(...args);
+
+LinkedList.of = (arr) => LinkedList(...arr);
