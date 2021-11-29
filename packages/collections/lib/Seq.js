@@ -46,7 +46,7 @@ class ArrayWrapper extends ArrayLikeSequence {
   }
 }
 
-class EntriesSequence extends Sequence {
+class EntriesWrapper extends Sequence {
   constructor(source) {
     super(source);
   }
@@ -68,7 +68,7 @@ export const Seq = (source) =>
     : isSet(source)
     ? new ArrayWrapper([...source])
     : isMap(source) || Map.isMap(source) || Dict.isDict(source)
-    ? new EntriesSequence(source.entries())
+    ? new EntriesWrapper(source.entries())
     : Seq.isSeq(source)
     ? source
     : new Sequence(source);
