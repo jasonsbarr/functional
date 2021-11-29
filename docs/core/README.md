@@ -11,10 +11,15 @@ npm install @jasonsbarr/functional-core
 You can import any of the core functions and types from the package's entrypoint, e.g.:
 
 ```js
+// import all core functions and types
 import * as f from "@jasonsbarr/functional-core";
+
+f.pipe(val, fn1, fn2, fn3);
 
 // or just import a single function
 import { pipe } from "@jasonsbarr/functional-core";
+
+pipe(val, fn1, fn2, fn3);
 ```
 
 For library functions, import things individually as you need them. That's better for your bundle sizes anyway, if you're using a module bundler like Webpack in your build process.
