@@ -146,14 +146,12 @@ export const Seq = (source) =>
       isBool(source) ||
       isSymbol(source) ||
       isDate(source) ||
-      isRegExp(source)
+      isRegExp(source) ||
+      isObject(source)
     ? new ArrayWrapper([source])
     : isSet(source)
     ? new ArrayWrapper([...source])
-    : isMap(source) ||
-      Map.isMap(source) ||
-      Dict.isDict(source) ||
-      isObject(source)
+    : isMap(source) || Map.isMap(source) || Dict.isDict(source)
     ? new EntriesWrapper(source)
     : Seq.isSeq(source)
     ? source
@@ -164,3 +162,4 @@ Seq.from = Seq.of;
 Seq.isSeq = (obj) => obj.type === "Seq";
 Seq.empty = () => Seq.of([]);
 Seq.async = (source) => Seq(source).toAsync();
+Seq.fromEntries = (source) => Seq(entries(source));
