@@ -1,12 +1,12 @@
 import { isArray } from "@jasonsbarr/functional-core/lib/predicates/isArray.js";
 import { isNil } from "@jasonsbarr/functional-core/lib/predicates/isNil.js";
-import { isString } from "@jasonsbarr/functional-core/lib/predicates/isString.js";
 import { isMap } from "@jasonsbarr/functional-core/lib/predicates/isMap.js";
 import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction.js";
 import { isGeneratorObject } from "@jasonsbarr/functional-core/lib/predicates/isGeneratorObject.js";
 import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
 import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
 import { length } from "@jasonsbarr/functional-core/lib/array/length.js";
+import { equals } from "@jasonsbarr/functional-core";
 import { JsMap } from "./internal/_JsMap.js";
 import { Map } from "./Map.js";
 import { Dict } from "./Dict.js";
@@ -60,7 +60,41 @@ class Sequence {
     }
   }
 
-  apply() {}
+  apply(source) {
+    let root = this.root();
+    let prevSource = root.source;
+    let result = [];
+
+    try {
+      root.source = source;
+      result = this.toArray();
+    } finally {
+      root.source = prevSource;
+    }
+
+    return result;
+  }
+
+  equals(other) {
+    if (!Seq.isSeq(other)) {
+      return false;
+    }
+
+    let seq1 = this.toArray();
+    let seq2 = other.toArray();
+
+    if (seq1.length !== seq2.length) {
+      return false;
+    }
+
+    for (let i = 0; i < seq1.length; i++) {
+      if (!equals(seq1[i], seq2[i])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
 
   isAsync() {
     return isFunction(this[Symbol.asyncIterator]);
@@ -174,7 +208,7 @@ class AsyncSequence extends Sequence {
     }
   }
 
-  take(num) {
+  async take(num) {
     let i = 0;
     let result = [];
 
@@ -190,7 +224,7 @@ class AsyncSequence extends Sequence {
     return Seq.of(result).toAsync();
   }
 
-  takeWhile(pred) {
+  async takeWhile(pred) {
     let result = [];
 
     for await (let el of this) {
@@ -227,7 +261,7 @@ class FunctionWrapper extends Sequence {
     this.fn = sourceFn;
     this.parent = null;
 
-     definePropWithOpts("size", this, {
+    definePropWithOpts("size", this, {
       writable: false,
       enumerable: false,
       configurable: false,
@@ -257,14 +291,14 @@ class FunctionWrapper extends Sequence {
         done = v.done;
 
         if (!done) {
-          yield v.value
+          yield v.value;
         }
       }
     } else {
       let i = 0;
 
       while (i < this.size) {
-        yield this.source[i++]
+        yield this.source[i++];
       }
     }
   }
@@ -357,17 +391,18 @@ class FilteredEntriesSequence extends EntriesWrapper {
 
 export const Seq = (...args) => Seq.of(args);
 
-Seq.of = (source) => isNil(source) || length(source) === 0
-  ? new Sequence([])
-  : Dict.isDict(source) || Map.isMap(source) || isMap(source)
-  ? new EntriesWrapper(source)
-  : isArray(source)
-  ? new Sequence(source)
-  : isFunction(source)
-  ? new FunctionWrapper(source)
-  : length(source) === 1
-  ? new Sequence([source[0]])
-  : new Sequence(source);
+Seq.of = (source) =>
+  isNil(source) || length(source) === 0
+    ? new Sequence([])
+    : Dict.isDict(source) || Map.isMap(source) || isMap(source)
+    ? new EntriesWrapper(source)
+    : isArray(source)
+    ? new Sequence(source)
+    : isFunction(source)
+    ? new FunctionWrapper(source)
+    : length(source) === 1
+    ? new Sequence([source[0]])
+    : new Sequence(source);
 
 Seq.from = Seq.of;
 Seq.isSeq = (obj) => obj.type === "Seq";
