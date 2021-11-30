@@ -53,6 +53,15 @@ class HashMap {
     freeze(this);
   }
 
+  *[Symbol.iterator]() {
+    const entries = this.entries();
+    let i = 0;
+
+    while (i < entries.length) {
+      yield entries[i++];
+    }
+  }
+
   clear() {
     return Map.of(new JsMap());
   }
