@@ -211,6 +211,8 @@ Seq.of = (source) =>
       ? new ArrayWrapper(source)
       : isNil(source[0])
       ? new ArrayWrapper([])
+      : isMap(source[0]) || Map.isMap(source[0]) || Dict.isDict(source[0])
+      ? new EntriesWrapper(source[0])
       : isString(source[0]) ||
         isNumber(source[0]) ||
         isBool(source[0]) ||
@@ -221,8 +223,6 @@ Seq.of = (source) =>
       ? new ArrayWrapper([source[0]])
       : isSet(source)
       ? new ArrayWrapper([...source[0]])
-      : isMap(source[0]) || Map.isMap(source[0]) || Dict.isDict(source[0])
-      ? new EntriesWrapper(source[0])
       : Seq.isSeq(source[0])
       ? source[0]
       : new Sequence(source[0])
