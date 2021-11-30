@@ -120,13 +120,7 @@ class FilteredSequence extends Sequence {
   }
 }
 
-class ArrayLikeSequence extends Sequence {
-  constructor(source) {
-    super(source);
-  }
-}
-
-class ArrayWrapper extends ArrayLikeSequence {
+class ArrayWrapper extends Sequence {
   constructor(source) {
     super(source);
   }
