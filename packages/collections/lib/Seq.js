@@ -377,7 +377,7 @@ class AsyncSequence extends Sequence {
     this.parent = parent;
   }
 
-  async *[Symbol.asyncIterator]() {
+  *[Symbol.asyncIterator]() {
     if (this.size === Infinity) {
       let done = false;
       let v;
