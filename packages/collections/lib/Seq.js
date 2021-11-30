@@ -89,6 +89,7 @@ class Sequence {
         return false;
       }
     }
+
     return true;
   }
 
