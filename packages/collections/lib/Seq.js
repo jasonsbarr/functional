@@ -133,6 +133,20 @@ class Sequence {
     return new MappedSequence(this, fn);
   }
 
+  reduce(reducer, init) {
+    let acc = init;
+
+    for (let el of this) {
+      acc = reducer(acc, el);
+    }
+
+    return acc;
+  }
+
+  reject(fn) {
+    return new RejectedSequence(this, fn);
+  }
+
   root() {
     return this?.parent ?? Seq.of([]);
   }
@@ -209,6 +223,34 @@ class MappedSequence extends Sequence {
 
     return this.parent.each((e, i) => fn(mapFn(e, i), i));
   }
+
+  take(num) {
+    const mapFn = this.mapFn;
+    const result = [];
+
+    this.parent.each((e, i) => {
+      if (i >= num) {
+        return false;
+      }
+      result.push(mapFn(e));
+    });
+
+    return Seq.of(result);
+  }
+
+  takeWhile(pred) {
+    const mapFn = this.mapFn;
+    const result = [];
+
+    this.parent.each((e, i) => {
+      if (!pred(e)) {
+        return false;
+      }
+      result.push(mapFn(e));
+    });
+
+    return Seq.of(result);
+  }
 }
 
 class FilteredSequence extends Sequence {
@@ -220,8 +262,106 @@ class FilteredSequence extends Sequence {
 
   each(fn) {
     const filterFn = this.filterFn;
+    const result = [];
+    let j = 0;
 
-    return this.parent.each((e, i) => fn(filterFn(e, i), i));
+    this.parent.each((e, i) => {
+      if (filterFn(e)) {
+        result.push(fn(e, j++));
+      }
+    });
+
+    return Seq.of(result);
+  }
+
+  take(num) {
+    const filterFn = this.filterFn;
+    const result = [];
+
+    this.parent.each((e, i) => {
+      if (i >= num) {
+        return false;
+      }
+
+      if (filterFn(e)) {
+        result.push(e);
+      }
+    });
+
+    return Seq.of(result);
+  }
+
+  takeWhile(pred) {
+    const filterFn = this.filterFn;
+    const result = [];
+
+    this.parent.each((e, i) => {
+      if (!pred(e)) {
+        return false;
+      }
+
+      if (filterFn(e)) {
+        result.push(e);
+      }
+    });
+
+    return Seq.of(result);
+  }
+}
+
+class RejectedSequence extends Sequence {
+  constructor(parent, rejectFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.rejectFn = rejectFn;
+  }
+
+  each(fn) {
+    const rejectFn = this.rejectFn;
+    const result = [];
+    let j = 0;
+
+    this.parent.each((e, i) => {
+      if (!rejectFn(e)) {
+        result.push(fn(e, j++));
+      }
+    });
+
+    return Seq.of(result);
+  }
+
+  take(num) {
+    const rejectFn = this.rejectFn;
+    const result = [];
+
+    this.parent.each((e, i) => {
+      if (i >= num) {
+        return false;
+      }
+
+      if (!rejectFn(e)) {
+        result.push(e);
+      }
+    });
+
+    return Seq.of(result);
+  }
+
+  takeWhile(pred) {
+    const rejectFn = this.rejectFn;
+    const result = [];
+
+    this.parent.each((e, i) => {
+      if (!pred(e)) {
+        return false;
+      }
+
+      if (!rejectFn(e)) {
+        result.push(e);
+      }
+    });
+
+    return Seq.of(result);
   }
 }
 
@@ -377,6 +517,25 @@ class EntriesWrapper extends Sequence {
     this.parent = null;
   }
 
+  each(fn) {
+    let i = 0;
+
+    for (let [k, v] of this) {
+      if (fn(v, k, i++) === false) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  filter(fn) {
+    return new FilteredEntriesSequence(this, fn);
+  }
+
+  map(fn) {
+    return new MappedEntriesSequence(this, fn);
+  }
+
   take(num) {
     let i = 0;
     let result = [];
@@ -430,6 +589,12 @@ class MappedEntriesSequence extends EntriesWrapper {
     this.parent = parent;
     this.mapFn = mapFn;
   }
+
+  each(fn) {
+    const mapFn = this.mapFn;
+
+    return this.parent.each((v, k, i) => fn(mapFn(v, k, i)));
+  }
 }
 
 class FilteredEntriesSequence extends EntriesWrapper {
@@ -437,6 +602,12 @@ class FilteredEntriesSequence extends EntriesWrapper {
     super(parent.source);
     this.parent = parent;
     this.filterFn = filterFn;
+  }
+
+  each(fn) {
+    const filterFn = this.filterFn;
+
+    return this.parent.each((v, k, i) => fn(filterFn(v, k, i)));
   }
 }
 
