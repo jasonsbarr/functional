@@ -256,6 +256,12 @@ class FilteredAsyncSequence extends AsyncSequence {
   }
 }
 
+class ArrayWrapper extends Sequence {}
+
+class MappedArrayWrapper extends Sequence {}
+
+class FilteredArrayWrapper extends Sequence {}
+
 class FunctionWrapper extends Sequence {
   constructor(sourceFn) {
     super([]);
