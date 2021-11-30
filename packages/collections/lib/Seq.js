@@ -103,6 +103,22 @@ class Sequence {
   }
 }
 
+class MappedSequence extends Sequence {
+  constructor(parent, mapFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.mapFn = mapFn;
+  }
+}
+
+class FilteredSequence extends Sequence {
+  constructor(parent, filterFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.filterFn = filterFn;
+  }
+}
+
 class AsyncSequence extends Sequence {
   constructor(parent) {
     super(parent.source);
@@ -162,27 +178,19 @@ class AsyncSequence extends Sequence {
   }
 }
 
-class MappedSequence extends Sequence {
-  constructor(parent, mapFn) {
-    super(parent.source);
-    this.parent = parent;
-    this.mapFn = mapFn;
-  }
-}
+class MappedAsyncSequence extends AsyncSequence {}
 
-class FilteredSequence extends Sequence {
-  constructor(parent, filterFn) {
-    super(parent.source);
-    this.parent = parent;
-    this.filterFn = filterFn;
-  }
-}
+class FilteredAsyncSequence extends AsyncSequence {}
 
 class ArrayWrapper extends Sequence {
   constructor(source) {
     super(source);
   }
 }
+
+class MappedArrayWrapper extends ArrayWrapper {}
+
+class FilteredArrayWrapper extends ArrayWrapper {}
 
 class StringWrapper extends Sequence {}
 
