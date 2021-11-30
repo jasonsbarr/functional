@@ -399,6 +399,18 @@ class AsyncSequence extends Sequence {
     }
   }
 
+  filter(fn) {
+    return new FilteredAsyncSequence(this, fn);
+  }
+
+  map(fn) {
+    return new MappedAsyncSequence(this, fn);
+  }
+
+  reject(fn) {
+    return new RejectedAsyncSequence(this, fn);
+  }
+
   async take(num) {
     let i = 0;
     let result = [];
@@ -446,11 +458,13 @@ class FilteredAsyncSequence extends AsyncSequence {
   }
 }
 
-class ArrayWrapper extends Sequence {}
-
-class MappedArrayWrapper extends Sequence {}
-
-class FilteredArrayWrapper extends Sequence {}
+class RejectedAsyncSequence extends AsyncSequence {
+  constructor(parent, rejectFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.rejectFn = rejectFn;
+  }
+}
 
 class FunctionWrapper extends Sequence {
   constructor(sourceFn) {
@@ -499,6 +513,18 @@ class FunctionWrapper extends Sequence {
       }
     }
   }
+
+  filter(fn) {
+    return new FilteredFunctionWrapper(this, fn);
+  }
+
+  map(fn) {
+    return new MappedFunctionWrapper(this, fn);
+  }
+
+  reject(fn) {
+    return new RejectedFunctionWrapper(this, fn);
+  }
 }
 
 class MappedFunctionWrapper extends FunctionWrapper {
@@ -514,6 +540,14 @@ class FilteredFunctionWrapper extends FunctionWrapper {
     super(parent.source);
     this.parent = parent;
     this.filterFn = filterFn;
+  }
+}
+
+class RejectedFunctionWrapper extends FunctionWrapper {
+  constructor(parent, rejectFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.rejectFn = rejectFn;
   }
 }
 
@@ -540,6 +574,10 @@ class EntriesWrapper extends Sequence {
 
   map(fn) {
     return new MappedEntriesSequence(this, fn);
+  }
+
+  reject(fn) {
+    return new RejectedEntriesSequence(this, fn);
   }
 
   take(num) {
@@ -609,11 +647,13 @@ class FilteredEntriesSequence extends EntriesWrapper {
     this.parent = parent;
     this.filterFn = filterFn;
   }
+}
 
-  each(fn) {
-    const filterFn = this.filterFn;
-
-    return this.parent.each((v, k, i) => fn(filterFn(v, k, i)));
+class RejectedEntriesSequence extends EntriesWrapper {
+  constructor(parent, rejectFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.rejectFn = rejectFn;
   }
 }
 
@@ -625,7 +665,7 @@ Seq.of = (source) =>
     : Dict.isDict(source) || Map.isMap(source) || isMap(source)
     ? new EntriesWrapper(source)
     : isArray(source)
-    ? new ArrayWrapper(source)
+    ? new Sequence(source)
     : isFunction(source)
     ? new FunctionWrapper(source)
     : length(source) === 1
