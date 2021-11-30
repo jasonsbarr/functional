@@ -79,6 +79,20 @@ class Sequence {
     return Seq.of(result);
   }
 
+  takeWhile(pred) {
+    let result = [];
+
+    for (let el of this) {
+      if (!pred(el)) {
+        break;
+      }
+
+      result.push(el);
+    }
+
+    return Seq.of(result);
+  }
+
   toArray() {
     // DANGER: infinite Sequence will never terminate into an array
     return [...this];
@@ -132,6 +146,20 @@ class AsyncSequence extends Sequence {
 
     return Seq.of(result).toAsync();
   }
+
+  takeWhile(pred) {
+    let result = [];
+
+    for await (let el of this) {
+      if (!pred(el)) {
+        break;
+      }
+
+      result.push(el);
+    }
+
+    return Seq.of(result).toAsync();
+  }
 }
 
 class MappedSequence extends Sequence {
@@ -174,6 +202,20 @@ class EntriesWrapper extends Sequence {
 
       result.push(pair);
       i++;
+    }
+
+    return Seq.of(Map(...result));
+  }
+
+  takeWhile(pred) {
+    let result = [];
+
+    for (let [k, v] of this) {
+      if (!pred(v, k)) {
+        break;
+      }
+
+      result.push([k, v]);
     }
 
     return Seq.of(Map(...result));
