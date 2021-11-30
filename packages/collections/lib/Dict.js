@@ -87,6 +87,15 @@ class Dictionary {
     freeze(this);
   }
 
+  *[Symbol.iterator]() {
+    const entries = this.entries();
+    let i = 0;
+
+    while (i < entries.length) {
+      yield entries[i++];
+    }
+  }
+
   all(search) {
     return all(search, this);
   }
