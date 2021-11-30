@@ -201,14 +201,14 @@ class EntriesWrapper extends Sequence {
   }
 }
 
-export const Seq = (...args) => Seq.of(args);
+export const Seq = (...args) => Seq.of(...args);
 
-Seq.of = (source) =>
+Seq.of = (...source) =>
   length(source) === 0
     ? new ArrayWrapper([])
     : length(source) === 1
     ? isArray(source[0])
-      ? new ArrayWrapper(source)
+      ? new ArrayWrapper(source[0])
       : isNil(source[0])
       ? new ArrayWrapper([])
       : isMap(source[0]) || Map.isMap(source[0]) || Dict.isDict(source[0])
@@ -221,7 +221,7 @@ Seq.of = (source) =>
         isRegExp(source[0]) ||
         isObject(source[0])
       ? new ArrayWrapper([source[0]])
-      : isSet(source)
+      : isSet(source[0])
       ? new ArrayWrapper([...source[0]])
       : Seq.isSeq(source[0])
       ? source[0]
