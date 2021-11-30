@@ -7,6 +7,7 @@ import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/defin
 import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
 import { length } from "@jasonsbarr/functional-core/lib/array/length.js";
 import { equals } from "@jasonsbarr/functional-core";
+import { Option } from "@jasonsbarr/functional-core";
 import { JsMap } from "./internal/_JsMap.js";
 import { Map } from "./Map.js";
 import { Dict } from "./Dict.js";
@@ -75,6 +76,16 @@ class Sequence {
     return result;
   }
 
+  each(fn) {
+    for (let el of this) {
+      let i = 0;
+
+      if (fn(el, i++) === false) {
+        break;
+      }
+    }
+  }
+
   equals(other) {
     // DANGER: will hang with infinite sequence
     if (!Seq.isSeq(other)) {
@@ -95,6 +106,18 @@ class Sequence {
     }
 
     return true;
+  }
+
+  get(i) {
+    let ele;
+
+    this.each((e, idx) => {
+      if (idx === i) {
+        ele = e;
+        return false;
+      }
+    });
+    return Option.of(ele);
   }
 
   isAsync() {
