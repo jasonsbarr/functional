@@ -149,9 +149,7 @@ class Sequence {
     return acc;
   }
 
-  reject(fn) {
-    return new RejectedSequence(this, fn);
-  }
+  reject(fn) {}
 
   root() {
     return this?.parent ?? Seq.of([]);
@@ -315,62 +313,6 @@ class FilteredSequence extends Sequence {
   }
 }
 
-class RejectedSequence extends Sequence {
-  constructor(parent, rejectFn) {
-    super(parent.source);
-    this.parent = parent;
-    this.rejectFn = rejectFn;
-  }
-
-  each(fn) {
-    const rejectFn = this.rejectFn;
-    const result = [];
-    let j = 0;
-
-    this.parent.each((e, i) => {
-      if (!rejectFn(e)) {
-        result.push(fn(e, j++));
-      }
-    });
-
-    return Seq.of(result);
-  }
-
-  take(num) {
-    const rejectFn = this.rejectFn;
-    const result = [];
-
-    this.parent.each((e, i) => {
-      if (i >= num) {
-        return false;
-      }
-
-      if (!rejectFn(e)) {
-        result.push(e);
-      }
-    });
-
-    return Seq.of(result);
-  }
-
-  takeWhile(pred) {
-    const rejectFn = this.rejectFn;
-    const result = [];
-
-    this.parent.each((e, i) => {
-      if (!pred(e)) {
-        return false;
-      }
-
-      if (!rejectFn(e)) {
-        result.push(e);
-      }
-    });
-
-    return Seq.of(result);
-  }
-}
-
 class AsyncSequence extends Sequence {
   constructor(parent) {
     super(parent.source);
@@ -407,9 +349,7 @@ class AsyncSequence extends Sequence {
     return new MappedAsyncSequence(this, fn);
   }
 
-  reject(fn) {
-    return new RejectedAsyncSequence(this, fn);
-  }
+  reject(fn) {}
 
   async take(num) {
     let i = 0;
@@ -455,14 +395,6 @@ class FilteredAsyncSequence extends AsyncSequence {
     super(parent.source);
     this.parent = parent;
     this.filterFn = filterFn;
-  }
-}
-
-class RejectedAsyncSequence extends AsyncSequence {
-  constructor(parent, rejectFn) {
-    super(parent.source);
-    this.parent = parent;
-    this.rejectFn = rejectFn;
   }
 }
 
@@ -522,9 +454,7 @@ class FunctionWrapper extends Sequence {
     return new MappedFunctionWrapper(this, fn);
   }
 
-  reject(fn) {
-    return new RejectedFunctionWrapper(this, fn);
-  }
+  reject(fn) {}
 }
 
 class MappedFunctionWrapper extends FunctionWrapper {
@@ -540,14 +470,6 @@ class FilteredFunctionWrapper extends FunctionWrapper {
     super(parent.source);
     this.parent = parent;
     this.filterFn = filterFn;
-  }
-}
-
-class RejectedFunctionWrapper extends FunctionWrapper {
-  constructor(parent, rejectFn) {
-    super(parent.source);
-    this.parent = parent;
-    this.rejectFn = rejectFn;
   }
 }
 
@@ -576,9 +498,7 @@ class EntriesWrapper extends Sequence {
     return new MappedEntriesSequence(this, fn);
   }
 
-  reject(fn) {
-    return new RejectedEntriesSequence(this, fn);
-  }
+  reject(fn) {}
 
   take(num) {
     let i = 0;
@@ -646,14 +566,6 @@ class FilteredEntriesSequence extends EntriesWrapper {
     super(parent.source);
     this.parent = parent;
     this.filterFn = filterFn;
-  }
-}
-
-class RejectedEntriesSequence extends EntriesWrapper {
-  constructor(parent, rejectFn) {
-    super(parent.source);
-    this.parent = parent;
-    this.rejectFn = rejectFn;
   }
 }
 
