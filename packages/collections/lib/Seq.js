@@ -70,6 +70,11 @@ class Sequence {
     return isFunction(this[Symbol.asyncIterator]);
   }
 
+  toArray() {
+    // DANGER: infinite Sequence will never terminate into an array
+    return [...this];
+  }
+
   toAsync() {
     return new AsyncSequence(this);
   }
