@@ -81,7 +81,7 @@ class Sequence {
     return Seq.of(...this, ...others);
   }
 
-  each(fn) {
+  each(fn = (x) => x) {
     let i = 0;
 
     for (let el of this) {
@@ -224,7 +224,7 @@ class MappedSequence extends Sequence {
     this.mapFn = mapFn;
   }
 
-  each(fn) {
+  each(fn = (x) => x) {
     const mapFn = this.mapFn;
 
     return this.parent.each((e, i) => fn(mapFn(e, i), i));
@@ -266,7 +266,7 @@ class FilteredSequence extends Sequence {
     this.filterFn = filterFn;
   }
 
-  each(fn) {
+  each(fn = (x) => x) {
     const filterFn = this.filterFn;
     const result = [];
     let j = 0;
@@ -345,7 +345,7 @@ class AsyncSequence extends Sequence {
     }
   }
 
-  async each(fn) {
+  async each(fn = (x) => x) {
     let i = 0;
 
     for await (let el of this) {
@@ -407,7 +407,7 @@ class MappedAsyncSequence extends AsyncSequence {
     this.mapFn = mapFn;
   }
 
-  async each(fn) {
+  async each(fn = (x) => x) {
     const mapFn = this.mapFn;
 
     return await this.parent.each((e, i) => fn(mapFn(e, i), i));
@@ -505,7 +505,7 @@ class EntriesWrapper extends Sequence {
     this.parent = null;
   }
 
-  each(fn) {
+  each(fn = (x) => x) {
     let i = 0;
 
     for (let [k, v] of this) {
@@ -582,7 +582,7 @@ class MappedEntriesSequence extends EntriesWrapper {
     this.mapFn = mapFn;
   }
 
-  each(fn) {
+  each(fn = (x) => x) {
     const mapFn = this.mapFn;
 
     return this.parent.each((v, k, i) => fn(mapFn(v, k, i)));
