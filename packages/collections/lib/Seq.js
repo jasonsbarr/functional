@@ -400,15 +400,15 @@ export const Seq = (...args) => Seq.of(args);
 
 Seq.of = (source) =>
   isNil(source) || length(source) === 0
-    ? new Sequence([])
+    ? new ArrayWrapper([])
     : Dict.isDict(source) || Map.isMap(source) || isMap(source)
     ? new EntriesWrapper(source)
     : isArray(source)
-    ? new Sequence(source)
+    ? new ArrayWrapper(source)
     : isFunction(source)
     ? new FunctionWrapper(source)
     : length(source) === 1
-    ? new Sequence([source[0]])
+    ? Seq.of([source[0]])
     : new Sequence(source);
 
 Seq.from = Seq.of;
