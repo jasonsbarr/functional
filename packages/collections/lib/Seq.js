@@ -63,6 +63,10 @@ class Sequence {
     return isFunction(this[Symbol.asyncIterator]);
   }
 
+  root() {
+    return this.parent.source;
+  }
+
   take(num) {
     let i = 0;
     let result = [];
@@ -178,9 +182,21 @@ class AsyncSequence extends Sequence {
   }
 }
 
-class MappedAsyncSequence extends AsyncSequence {}
+class MappedAsyncSequence extends AsyncSequence {
+  constructor(parent, mapFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.mapFn = mapFn;
+  }
+}
 
-class FilteredAsyncSequence extends AsyncSequence {}
+class FilteredAsyncSequence extends AsyncSequence {
+  constructor(parent, filterFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.filterFn = filterFn;
+  }
+}
 
 class ArrayWrapper extends Sequence {
   constructor(source) {
@@ -188,9 +204,21 @@ class ArrayWrapper extends Sequence {
   }
 }
 
-class MappedArrayWrapper extends ArrayWrapper {}
+class MappedArrayWrapper extends ArrayWrapper {
+  constructor(parent, mapFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.mapFn = mapFn;
+  }
+}
 
-class FilteredArrayWrapper extends ArrayWrapper {}
+class FilteredArrayWrapper extends ArrayWrapper {
+  constructor(parent, filterFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.filterFn = filterFn;
+  }
+}
 
 class StringWrapper extends Sequence {}
 
@@ -242,9 +270,21 @@ class FunctionWrapper extends Sequence {
   }
 }
 
-class MappedFunctionWrapper extends FunctionWrapper {}
+class MappedFunctionWrapper extends FunctionWrapper {
+  constructor(parent, mapFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.mapFn = mapFn;
+  }
+}
 
-class FilteredFunctionWrapper extends FunctionWrapper {}
+class FilteredFunctionWrapper extends FunctionWrapper {
+  constructor(parent, filterFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.filterFn = filterFn;
+  }
+}
 
 class EntriesWrapper extends Sequence {
   constructor(source) {
@@ -298,9 +338,21 @@ class EntriesWrapper extends Sequence {
   }
 }
 
-class MappedEntriesSequence extends EntriesWrapper {}
+class MappedEntriesSequence extends EntriesWrapper {
+  constructor(parent, mapFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.mapFn = mapFn;
+  }
+}
 
-class FilteredEntriesSequence extends EntriesWrapper {}
+class FilteredEntriesSequence extends EntriesWrapper {
+  constructor(parent, filterFn) {
+    super(parent.source);
+    this.parent = parent;
+    this.filterFn = filterFn;
+  }
+}
 
 export const Seq = (...args) => Seq.of(args);
 
