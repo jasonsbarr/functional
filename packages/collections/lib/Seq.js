@@ -219,31 +219,6 @@ class FilteredAsyncSequence extends AsyncSequence {
   }
 }
 
-class ArrayWrapper extends Sequence {
-  constructor(source) {
-    super(source);
-    this.parent = null;
-  }
-}
-
-class MappedArrayWrapper extends ArrayWrapper {
-  constructor(parent, mapFn) {
-    super(parent.source);
-    this.parent = parent;
-    this.mapFn = mapFn;
-  }
-}
-
-class FilteredArrayWrapper extends ArrayWrapper {
-  constructor(parent, filterFn) {
-    super(parent.source);
-    this.parent = parent;
-    this.filterFn = filterFn;
-  }
-}
-
-class StringWrapper extends Sequence {}
-
 class FunctionWrapper extends Sequence {
   constructor(sourceFn) {
     super([]);
@@ -381,17 +356,15 @@ class FilteredEntriesSequence extends EntriesWrapper {
 export const Seq = (...args) => Seq.of(args);
 
 Seq.of = (source) => isNil(source) || length(source) === 0
-  ? new ArrayWrapper([])
+  ? new Sequence([])
   : Dict.isDict(source) || Map.isMap(source) || isMap(source)
-  ? new EntriesWrapper(entries(source))
+  ? new EntriesWrapper(source)
   : isArray(source)
-  ? new ArrayWrapper(source)
-  : isString(source)
-  ? new StringWrapper(source)
+  ? new Sequence(source)
   : isFunction(source)
   ? new FunctionWrapper(source)
   : length(source) === 1
-  ? new ArrayWrapper([source[0]])
+  ? new Sequence([source[0]])
   : new Sequence(source);
 
 Seq.from = Seq.of;
