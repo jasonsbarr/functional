@@ -81,6 +81,10 @@ class Sequence {
     return Seq.of(...this, ...others);
   }
 
+  copy() {
+    return Seq.of(this.source);
+  }
+
   each(fn = (x) => x) {
     let i = 0;
 
@@ -131,12 +135,20 @@ class Sequence {
     return Option.of(ele);
   }
 
+  invoke(method) {
+    return this.map((el) => el[method]());
+  }
+
   isAsync() {
     return isFunction(this[Symbol.asyncIterator]);
   }
 
   map(fn) {
     return new MappedSequence(this, fn);
+  }
+
+  pluck(prop) {
+    return new MappedSequence(this, (el) => el[prop]);
   }
 
   reduce(reducer, init) {
@@ -151,6 +163,10 @@ class Sequence {
 
   reject(fn) {
     return this.filter((el) => !fn(el));
+  }
+
+  reverse() {
+    return new ReversedSequence(this);
   }
 
   root() {
@@ -314,6 +330,40 @@ class FilteredSequence extends Sequence {
     });
 
     return Seq.of(result);
+  }
+}
+
+class ReversedSequence extends Sequence {
+  constructor(parent) {
+    super(parent.source);
+    this.parent = parent;
+  }
+
+  *[Symbol.iterator]() {
+    if (isGeneratorObject(this.source)) {
+      // will hang with infinite generator;
+      this.source = [...this.source];
+      this.size = length(this.source);
+      this.length = this.size;
+    }
+
+    let i = this.size - 1;
+
+    while (i >= 0) {
+      yield this.source[i--];
+    }
+  }
+
+  each(fn = (x) => x) {
+    let i = 0;
+
+    for (let el of this) {
+      if (fn(el, i++) === false) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }
 
