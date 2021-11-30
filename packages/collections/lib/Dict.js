@@ -334,7 +334,7 @@ class Dictionary {
     return JSON.stringify(this.toObject());
   }
 
-  toMap() {
+  toJSMap() {
     return toMap(this);
   }
 
