@@ -149,7 +149,9 @@ class Sequence {
     return acc;
   }
 
-  reject(fn) {}
+  reject(fn) {
+    return this.filter((el) => !fn(el));
+  }
 
   root() {
     return this?.parent ?? Seq.of([]);
@@ -349,7 +351,9 @@ class AsyncSequence extends Sequence {
     return new MappedAsyncSequence(this, fn);
   }
 
-  reject(fn) {}
+  reject(fn) {
+    return this.filter((el) => !fn(el));
+  }
 
   async take(num) {
     let i = 0;
@@ -454,7 +458,9 @@ class FunctionWrapper extends Sequence {
     return new MappedFunctionWrapper(this, fn);
   }
 
-  reject(fn) {}
+  reject(fn) {
+    return this.filter((el) => !fn(el));
+  }
 }
 
 class MappedFunctionWrapper extends FunctionWrapper {
@@ -498,7 +504,9 @@ class EntriesWrapper extends Sequence {
     return new MappedEntriesSequence(this, fn);
   }
 
-  reject(fn) {}
+  reject(fn) {
+    return this.filter((v, k) => !fn(v, k));
+  }
 
   take(num) {
     let i = 0;
