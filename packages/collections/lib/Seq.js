@@ -76,6 +76,11 @@ class Sequence {
     return result;
   }
 
+  concat(...others) {
+    // DANGER: will hang with infinite sequence
+    return Seq.of(...this, ...others);
+  }
+
   each(fn) {
     let i = 0;
 
