@@ -520,6 +520,18 @@ class EntriesWrapper extends Sequence {
     return new FilteredEntriesSequence(this, fn);
   }
 
+  get(key) {
+    let ele;
+
+    this.each((v, k, i) => {
+      if (equals(key, k)) {
+        ele = v;
+      }
+    });
+
+    return Option.of(ele);
+  }
+
   map(fn) {
     return new MappedEntriesSequence(this, fn);
   }
