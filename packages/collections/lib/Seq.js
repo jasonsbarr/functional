@@ -1,14 +1,7 @@
 import { isArray } from "@jasonsbarr/functional-core/lib/predicates/isArray.js";
 import { isNil } from "@jasonsbarr/functional-core/lib/predicates/isNil.js";
 import { isString } from "@jasonsbarr/functional-core/lib/predicates/isString.js";
-import { isNumber } from "@jasonsbarr/functional-core/lib/predicates/isNumber.js";
-import { isBool } from "@jasonsbarr/functional-core/lib/predicates/isBool.js";
-import { isSymbol } from "@jasonsbarr/functional-core/lib/predicates/isSymbol.js";
 import { isMap } from "@jasonsbarr/functional-core/lib/predicates/isMap.js";
-import { isSet } from "@jasonsbarr/functional-core/lib/predicates/isSet.js";
-import { isDate } from "@jasonsbarr/functional-core/lib/predicates/isDate.js";
-import { isRegExp } from "@jasonsbarr/functional-core/lib/predicates/isRegExp.js";
-import { isObject } from "@jasonsbarr/functional-core/lib/predicates/isObject.js";
 import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction.js";
 import { isGeneratorObject } from "@jasonsbarr/functional-core/lib/predicates/isGeneratorObject.js";
 import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
@@ -163,6 +156,8 @@ class ArrayWrapper extends Sequence {
   }
 }
 
+class StringWrapper extends Sequence {}
+
 class EntriesWrapper extends Sequence {
   constructor(source) {
     super(entries(source));
@@ -205,32 +200,19 @@ class MappedEntriesSequence extends EntriesWrapper {}
 
 class FilteredEntriesSequence extends EntriesWrapper {}
 
-export const Seq = (...args) => Seq.of(...args);
+export const Seq = (...args) => Seq.of(args);
 
-Seq.of = (...source) =>
-  length(source) === 0
-    ? new ArrayWrapper([])
-    : length(source) === 1
-    ? isArray(source[0])
-      ? new ArrayWrapper(source[0])
-      : isNil(source[0])
-      ? new ArrayWrapper([])
-      : isMap(source[0]) || Map.isMap(source[0]) || Dict.isDict(source[0])
-      ? new EntriesWrapper(source[0])
-      : isString(source[0]) ||
-        isNumber(source[0]) ||
-        isBool(source[0]) ||
-        isSymbol(source[0]) ||
-        isDate(source[0]) ||
-        isRegExp(source[0]) ||
-        isObject(source[0])
-      ? new ArrayWrapper([source[0]])
-      : isSet(source[0])
-      ? new ArrayWrapper([...source[0]])
-      : Seq.isSeq(source[0])
-      ? source[0]
-      : new Sequence(source[0])
-    : new Sequence(source);
+Seq.of = (source) => isNil(source) || length(source) === 0
+  ? new ArrayWrapper([])
+  : Dict.isDict(source) || Map.isMap(source) || isMap(source)
+  ? new EntriesWrapper(source)
+  : isArray(source)
+  ? new ArrayWrapper(source)
+  : isString(source)
+  ? new StringWrapper(source)
+  : length(source) === 1
+  ? new ArrayWrapper([source[0]])
+  : new Sequence(source);
 
 Seq.from = Seq.of;
 Seq.isSeq = (obj) => obj.type === "Seq";
