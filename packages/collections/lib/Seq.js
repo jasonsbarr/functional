@@ -60,12 +60,14 @@ class Sequence {
     }
   }
 
+  apply() {}
+
   isAsync() {
     return isFunction(this[Symbol.asyncIterator]);
   }
 
   root() {
-    return this?.parent?.source ?? [];
+    return this?.parent ?? Seq.of([]);
   }
 
   take(num) {
