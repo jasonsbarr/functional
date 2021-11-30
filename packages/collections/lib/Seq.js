@@ -186,6 +186,58 @@ class ArrayWrapper extends Sequence {
 
 class StringWrapper extends Sequence {}
 
+class FunctionWrapper extends Sequence {
+  constructor(sourceFn) {
+    super([]);
+    this.fn = sourceFn;
+
+     definePropWithOpts("size", this, {
+      writable: false,
+      enumerable: false,
+      configurable: false,
+      value: Infinity,
+    });
+
+    definePropWithOpts("length", this, {
+      writable: false,
+      enumerable: false,
+      configurable: false,
+      value: Infinity,
+    });
+  }
+
+  *[Symbol.iterator]() {
+    this.parent = Seq.of(this.fn());
+    this.source = this.parent.source;
+    this.size = isGeneratorObject(this.source) ? Infinity : this.source.length;
+    this.length = this.size;
+
+    if (this.size === Infinity) {
+      let done = false;
+      let v;
+
+      while (!done) {
+        v = this.source.next();
+        done = v.done;
+
+        if (!done) {
+          yield v.value
+        }
+      }
+    } else {
+      let i = 0;
+
+      while (i < this.size) {
+        yield this.source[i++]
+      }
+    }
+  }
+}
+
+class MappedFunctionWrapper extends FunctionWrapper {}
+
+class FilteredFunctionWrapper extends FunctionWrapper {}
+
 class EntriesWrapper extends Sequence {
   constructor(source) {
     super(entries(source));
@@ -252,6 +304,8 @@ Seq.of = (source) => isNil(source) || length(source) === 0
   ? new ArrayWrapper(source)
   : isString(source)
   ? new StringWrapper(source)
+  : isFunction(source)
+  ? new FunctionWrapper(source)
   : length(source) === 1
   ? new ArrayWrapper([source[0]])
   : new Sequence(source);
