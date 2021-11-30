@@ -76,6 +76,7 @@ class Sequence {
   }
 
   equals(other) {
+    // DANGER: will hang with infinite sequence
     if (!Seq.isSeq(other)) {
       return false;
     }
