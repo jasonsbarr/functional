@@ -128,7 +128,7 @@ class AsyncSequence extends Sequence {
     let i = 0;
     let result = [];
 
-    for (let el of this) {
+    for await (let el of this) {
       if (i >= num) {
         break;
       }
@@ -200,6 +200,10 @@ class EntriesWrapper extends Sequence {
     return Object.fromEntries(this.source);
   }
 }
+
+class MappedEntriesSequence extends EntriesWrapper {}
+
+class FilteredEntriesSequence extends EntriesWrapper {}
 
 export const Seq = (...args) => Seq.of(...args);
 
