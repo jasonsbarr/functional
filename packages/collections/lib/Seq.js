@@ -343,6 +343,18 @@ class AsyncSequence extends Sequence {
     }
   }
 
+  async each(fn) {
+    let i = 0;
+
+    for await (let el of this) {
+      if (fn(el, i++) === false) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   filter(fn) {
     return new FilteredAsyncSequence(this, fn);
   }
