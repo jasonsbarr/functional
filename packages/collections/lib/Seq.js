@@ -14,6 +14,7 @@ import { isGeneratorObject } from "@jasonsbarr/functional-core/lib/predicates/is
 import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
 import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
 import { length } from "@jasonsbarr/functional-core/lib/array/length.js";
+import { JsMap } from "./internal/_JsMap.js";
 import { Map } from "./Map.js";
 import { Dict } from "./Dict.js";
 
@@ -134,6 +135,18 @@ class ArrayWrapper extends ArrayLikeSequence {
 class EntriesWrapper extends Sequence {
   constructor(source) {
     super(entries(source));
+  }
+
+  toJSMap() {
+    return new JsMap(this.source);
+  }
+
+  toMap() {
+    return Map(...this.source);
+  }
+
+  toObject() {
+    return Object.fromEntries(this.source);
   }
 }
 
