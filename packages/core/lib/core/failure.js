@@ -1,3 +1,3 @@
-import { failure } from "../helpers/failure";
+import { failure } from "../helpers/failure.js";
 
 export { failure };

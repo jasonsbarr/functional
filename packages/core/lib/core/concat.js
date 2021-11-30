@@ -1,5 +1,5 @@
 import { curry } from "./curry.js";
-import { concatValues } from "../helpers/concatValues";
+import { concatValues } from "../helpers/concatValues.js";
 import { isFunction } from "../predicates/isFunction.js";
 
 export const concat = curry((sg1, sg2) =>

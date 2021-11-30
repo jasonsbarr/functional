@@ -77,13 +77,14 @@ class Sequence {
   }
 
   each(fn) {
-    for (let el of this) {
-      let i = 0;
+    let i = 0;
 
+    for (let el of this) {
       if (fn(el, i++) === false) {
-        break;
+        return false;
       }
     }
+    return true;
   }
 
   equals(other) {
@@ -108,6 +109,10 @@ class Sequence {
     return true;
   }
 
+  filter(fn) {
+    return new FilteredSequence(this, fn);
+  }
+
   get(i) {
     let ele;
 
@@ -122,6 +127,10 @@ class Sequence {
 
   isAsync() {
     return isFunction(this[Symbol.asyncIterator]);
+  }
+
+  map(fn) {
+    return new MappedSequence(this, fn);
   }
 
   root() {
@@ -194,6 +203,12 @@ class MappedSequence extends Sequence {
     this.parent = parent;
     this.mapFn = mapFn;
   }
+
+  each(fn) {
+    const mapFn = this.mapFn;
+
+    return this.parent.each((e, i) => fn(mapFn(e, i), i));
+  }
 }
 
 class FilteredSequence extends Sequence {
@@ -201,6 +216,12 @@ class FilteredSequence extends Sequence {
     super(parent.source);
     this.parent = parent;
     this.filterFn = filterFn;
+  }
+
+  each(fn) {
+    const filterFn = this.filterFn;
+
+    return this.parent.each((e, i) => fn(filterFn(e, i), i));
   }
 }
 

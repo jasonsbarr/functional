@@ -1,3 +1,3 @@
-import { compose } from "../lambda/compose";
+import { compose } from "../lambda/compose.js";
 
 export { compose };

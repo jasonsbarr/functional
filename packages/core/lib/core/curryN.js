@@ -1,3 +1,3 @@
-import { curryN } from "../lambda/curryN";
+import { curryN } from "../lambda/curryN.js";
 
 export { curryN };
