@@ -52,6 +52,7 @@ import { removeByKey } from "@jasonsbarr/dict/lib/removeByKey.js";
 import { removeByValue } from "@jasonsbarr/dict/lib/removeByValue.js";
 import { identity } from "@jasonsbarr/functional-core/lib/helpers/identity.js";
 import { sort } from "@jasonsbarr/dict/lib/sort.js";
+import { Map } from "./Map.js";
 
 // Dictionaries work best when all the keys are one type and all the values are one type
 // like any JS object, keys can only be strings or symbols
@@ -330,12 +331,16 @@ class Dictionary {
     return sort(this, { key, fn, reverse });
   }
 
+  toJSMap() {
+    return toMap(this);
+  }
+
   toJSON() {
     return JSON.stringify(this.toObject());
   }
 
-  toJSMap() {
-    return toMap(this);
+  toMap() {
+    return Map(...this.entries());
   }
 
   toObject() {
