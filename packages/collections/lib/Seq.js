@@ -65,7 +65,7 @@ class Sequence {
   }
 
   root() {
-    return this?.parent?.source;
+    return this?.parent?.source ?? null;
   }
 
   take(num) {
