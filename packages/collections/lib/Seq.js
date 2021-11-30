@@ -141,6 +141,10 @@ class EntriesWrapper extends Sequence {
     return new JsMap(this.source);
   }
 
+  toJSON() {
+    return JSON.stringify(this.toObject());
+  }
+
   toMap() {
     return Map(...this.source);
   }
