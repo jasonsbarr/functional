@@ -103,12 +103,28 @@ class Sequence {
     return [...this];
   }
 
+  toEntries() {
+    return new EntriesWrapper(this.source);
+  }
+
   toAsync() {
     return new AsyncSequence(this);
   }
 
+  toJSMap() {
+    return this.toEntries().toJSMap();
+  }
+
   toJSON() {
     return JSON.stringify(this.toArray());
+  }
+
+  toMap() {
+    return this.toEntries().toMap();
+  }
+
+  toObject() {
+    return this.toEntries().toObject();
   }
 }
 
@@ -295,7 +311,7 @@ class FilteredFunctionWrapper extends FunctionWrapper {
 
 class EntriesWrapper extends Sequence {
   constructor(source) {
-    super(entries(source));
+    super(isArray(source) ? source : entries(source));
     this.parent = null;
   }
 
@@ -367,7 +383,7 @@ export const Seq = (...args) => Seq.of(args);
 Seq.of = (source) => isNil(source) || length(source) === 0
   ? new ArrayWrapper([])
   : Dict.isDict(source) || Map.isMap(source) || isMap(source)
-  ? new EntriesWrapper(source)
+  ? new EntriesWrapper(entries(source))
   : isArray(source)
   ? new ArrayWrapper(source)
   : isString(source)
