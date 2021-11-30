@@ -70,6 +70,22 @@ class Sequence {
     return isFunction(this[Symbol.asyncIterator]);
   }
 
+  take(num) {
+    let i = 0;
+    let result = [];
+
+    for (let el of this) {
+      if (i >= num) {
+        break;
+      }
+
+      result.push(el);
+      i++;
+    }
+
+    return Seq.of(result);
+  }
+
   toArray() {
     // DANGER: infinite Sequence will never terminate into an array
     return [...this];
@@ -107,6 +123,22 @@ class AsyncSequence extends Sequence {
       }
     }
   }
+
+  take(num) {
+    let i = 0;
+    let result = [];
+
+    for (let el of this) {
+      if (i >= num) {
+        break;
+      }
+
+      result.push(el);
+      i++;
+    }
+
+    return Seq.of(result).toAsync();
+  }
 }
 
 class MappedSequence extends Sequence {
@@ -134,6 +166,22 @@ class ArrayWrapper extends Sequence {
 class EntriesWrapper extends Sequence {
   constructor(source) {
     super(entries(source));
+  }
+
+  take(num) {
+    let i = 0;
+    let result = [];
+
+    for (let pair of this) {
+      if (i >= num) {
+        break;
+      }
+
+      result.push(pair);
+      i++;
+    }
+
+    return Seq.of(Map(...result));
   }
 
   toJSMap() {
