@@ -5,7 +5,7 @@ import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunctio
 import { isGeneratorObject } from "@jasonsbarr/functional-core/lib/predicates/isGeneratorObject.js";
 import { definePropWithOpts } from "@jasonsbarr/functional-core/lib/object/definePropWithOpts.js";
 import { entries } from "@jasonsbarr/functional-core/lib/object/entries.js";
-import { length } from "@jasonsbarr/functional-core/lib/array/length.js";
+import { length } from "@jasonsbarr/iterable/lib/length.js";
 import { equals } from "@jasonsbarr/functional-core";
 import { Option } from "@jasonsbarr/functional-core";
 import { JsMap } from "./internal/_JsMap.js";
@@ -21,7 +21,7 @@ class Sequence {
       writable: false,
       enumerable: false,
       configurable: false,
-      value: isGeneratorObject(source) ? Infinity : source.length,
+      value: isGeneratorObject(source) ? Infinity : length(source),
     });
 
     definePropWithOpts("length", this, {
@@ -55,7 +55,7 @@ class Sequence {
     } else {
       let i = 0;
 
-      while (i < this.source.length) {
+      while (i < this.size) {
         yield this.source[i++];
       }
     }
