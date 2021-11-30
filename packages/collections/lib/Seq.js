@@ -14,6 +14,7 @@ import { Dict } from "./Dict.js";
 class Sequence {
   constructor(source) {
     this.source = source;
+    this.parent = null;
 
     definePropWithOpts("size", this, {
       writable: false,
@@ -64,7 +65,7 @@ class Sequence {
   }
 
   root() {
-    return this.parent.source;
+    return this?.parent?.source;
   }
 
   take(num) {
@@ -104,6 +105,10 @@ class Sequence {
 
   toAsync() {
     return new AsyncSequence(this);
+  }
+
+  toJSON() {
+    return JSON.stringify(this.toArray());
   }
 }
 
@@ -201,6 +206,7 @@ class FilteredAsyncSequence extends AsyncSequence {
 class ArrayWrapper extends Sequence {
   constructor(source) {
     super(source);
+    this.parent = null;
   }
 }
 
@@ -226,6 +232,7 @@ class FunctionWrapper extends Sequence {
   constructor(sourceFn) {
     super([]);
     this.fn = sourceFn;
+    this.parent = null;
 
      definePropWithOpts("size", this, {
       writable: false,
@@ -289,6 +296,7 @@ class FilteredFunctionWrapper extends FunctionWrapper {
 class EntriesWrapper extends Sequence {
   constructor(source) {
     super(entries(source));
+    this.parent = null;
   }
 
   take(num) {
