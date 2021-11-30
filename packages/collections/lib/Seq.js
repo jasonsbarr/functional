@@ -283,14 +283,16 @@ class FilteredSequence extends Sequence {
   take(num) {
     const filterFn = this.filterFn;
     const result = [];
+    let j = 0;
 
     this.parent.each((e, i) => {
-      if (i >= num) {
+      if (j >= num) {
         return false;
       }
 
       if (filterFn(e)) {
         result.push(e);
+        j++;
       }
     });
 
@@ -403,6 +405,12 @@ class MappedAsyncSequence extends AsyncSequence {
     super(parent.source);
     this.parent = parent;
     this.mapFn = mapFn;
+  }
+
+  async each(fn) {
+    const mapFn = this.mapFn;
+
+    return await this.parent.each((e, i) => fn(mapFn(e, i), i));
   }
 }
 
