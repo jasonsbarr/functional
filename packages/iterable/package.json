@@ -1,6 +1,6 @@
 {
   "name": "@jasonsbarr/iterable",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -35,6 +35,6 @@
   },
   "gitHead": "7acbf2cd8877d25677a5aaf4ae3eba318f4859ca",
   "dependencies": {
-    "@jasonsbarr/functional-core": "^0.9.2"
+    "@jasonsbarr/functional-core": "^0.9.3"
   }
 }
