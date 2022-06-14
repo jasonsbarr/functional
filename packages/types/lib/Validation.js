@@ -25,7 +25,6 @@ import {
   Ord,
 } from "@jasonsbarr/functional-core/lib/types/typeClasses.js";
 import { isArray } from "@jasonsbarr/functional-core/lib/predicates/isArray.js";
-import { assert } from "@jasonsbarr/functional-core/lib/helpers/assert.js";
 import { lt } from "@jasonsbarr/functional-core";
 import { equals } from "@jasonsbarr/functional-core";
 
@@ -65,10 +64,6 @@ const variantInfos = [
 
       // (Right)SemiGroup
       concat(validation) {
-        assert(
-          Validation.isValidation(validation),
-          "Argument to validation.concat must be another Validation type"
-        );
         return validation;
       },
 
@@ -93,6 +88,13 @@ const variantInfos = [
       Swap,
     ],
     {
+      init() {
+        const { value, messages } = this.value;
+        // this.value is the field value
+        this.value = value;
+        // this.messages aggregates error messages
+        this.messages = isArray(messages) ? messages : [messages];
+      },
       mapFailure(fn) {
         const { value, messages } = this.value;
         const failures = messages.map(fn);
@@ -113,12 +115,7 @@ const variantInfos = [
 
       // (Left)SemiGroup
       concat(validation) {
-        assert(
-          Validation.isValidation(validation),
-          "Argument to validation.concat must be another Validation type"
-        );
-        if (validation.isFailure && validation.isFailure()) {
-          const { value, messages } = this.value;
+        if (validation.isFailure()) {
           return Validation.fail(
             value,
             messages.concat(validation.value.messages)
