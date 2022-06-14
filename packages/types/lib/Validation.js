@@ -49,6 +49,9 @@ const variantInfos = [
       map(f) {
         return Validation.of(f(this.value));
       },
+      mapFailure(fn) {
+        return this;
+      },
       // Chain
       chain(f) {
         return f(this.value);
