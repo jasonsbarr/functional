@@ -23,7 +23,6 @@ import {
   LeftSemiGroup,
 } from "@jasonsbarr/functional-core/lib/types/typeClasses.js";
 import { isArray } from "@jasonsbarr/functional-core/lib/predicates/isArray.js";
-import { assert } from "@jasonsbarr/functional-core/lib/helpers/assert.js";
 
 const variantInfos = [
   VariantInfo(
@@ -47,10 +46,6 @@ const variantInfos = [
 
       // (Right)SemiGroup
       concat(validation) {
-        assert(
-          Validation.isValidation(validation),
-          "Argument to validation.concat must be another Validation type"
-        );
         return validation;
       },
 
@@ -75,10 +70,6 @@ const variantInfos = [
     {
       init() {
         const { value, messages } = this.value;
-        assert(
-          value && messages,
-          "Validation.Failure constructor takes an object with value and message fields"
-        );
         // this.value is the field value
         this.value = value;
         // this.messages aggregates error messages
@@ -102,10 +93,6 @@ const variantInfos = [
 
       // (Left)SemiGroup
       concat(validation) {
-        assert(
-          Validation.isValidation(validation),
-          "Argument to validation.concat must be another Validation type"
-        );
         if (validation.isFailure()) {
           return Validation.fail(
             this.value,
