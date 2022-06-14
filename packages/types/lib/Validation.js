@@ -2,6 +2,7 @@ import {
   VariantInfo,
   createType,
 } from "@jasonsbarr/functional-core/lib/types/createType.js";
+import { switchType } from "@jasonsbarr/functional-core";
 import {
   Applicative,
   Apply,
@@ -190,3 +191,13 @@ export const Validation = createType(
 );
 
 export const { succeed, fail, Success, Failure } = Validation;
+
+export const extractValidationValue = (failFn, succeedFn, validation) =>
+  switchType(
+    Validation,
+    {
+      Failure: failFn,
+      Success: succeedFn,
+    },
+    validation
+  );
