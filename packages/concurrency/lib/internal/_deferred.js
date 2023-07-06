@@ -88,4 +88,14 @@ export class Deferred {
     );
     return this;
   }
+
+  promise() {
+    return new Promise((resolve, reject) => {
+      this.listen({
+        onCancelled: () => reject(Cancelled()),
+        onResolved: resolve,
+        onRejected: reject,
+      });
+    });
+  }
 }
