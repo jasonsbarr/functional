@@ -99,9 +99,11 @@ export class Task {
 
 /**
  * Functional Task constructor
+ *
+ * Usage: task((reject, resolve, cancel) => {}, () => {})
  * @param {Computation} computation
  * @param {Cleanup} cleanup
  * @returns {TaskClass}
  */
-export const task = (computation, cleanup) =>
+export const task = (computation, cleanup = noop) =>
   new TaskClass(computation, cleanup);
