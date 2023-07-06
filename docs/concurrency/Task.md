@@ -94,3 +94,7 @@ taskFetch("https://jsonplaceholder.typicode.com/posts/1")
 ```
 
 There are also `mapRejected` for mapping over the rejected case of a Task, `bimap` for mapping over both resolved and rejected cases, and `concat` for concatenating 2 Tasks together (the one that completes first will be passed on).
+
+Handle errors in a composable fashion with the `orElse` method, get the first of 2 Tasks when you only need 1 with `or`, and run 2 Tasks concurrently with `and`.
+
+The static `withAll` method returns an array of Tasks when all have finished, and the static `withAny` method returns the first of a list of Tasks to finish.
