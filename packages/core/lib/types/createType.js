@@ -42,8 +42,8 @@ const createVariantConstructor = (
     variantName,
     fields = [],
     typeClasses = [],
-    overrides = {},
-    statics: { sTypeClasses = [], methods = {} } = {},
+    methods = {},
+    statics: { sTypeClasses = [], sMethods = {} } = {},
   }
 ) => {
   let variantConstructor = (...args) => {
@@ -73,7 +73,7 @@ const createVariantConstructor = (
       variant = assign(variant, className);
     }
 
-    variant = assign(variant, overrides);
+    variant = assign(variant, methods);
 
     if (length(fields) === 0) {
       definePropWithOpts("_value", variant, {
@@ -127,7 +127,7 @@ const createVariantConstructor = (
     variantConstructor = assign(variantConstructor, className);
   }
 
-  variantConstructor = assign(variantConstructor, methods);
+  variantConstructor = assign(variantConstructor, sMethods);
 
   return variantConstructor;
 };
