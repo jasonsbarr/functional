@@ -1,10 +1,12 @@
 # The Future Type
 
-Futures are an alternative to JavaScript Promises in that they provide an object that represents an asynchronous computation. However, unlike Promises, Futures provide a monadic interface that allows complete flexibility with function composition and your Future values.
+Futures are an alternative to JavaScript Promises in that they provide an object that represents the result of an asynchronous computation. However, unlike Promises, Futures provide a monadic interface that allows complete flexibility with function composition and your Future values.
 
 ## Why Futures?
 
 For more on the problems with JavaScript Promises and how a monadic interface helps to solve them, see [Broken Promises](https://avaq.medium.com/broken-promises-2ae92780f33) by Aldwin Vlasblom (author of the excellent [https://github.com/fluture-js/Fluture](Fluture.js) library).
+
+Use Futures when you need a monadic type to represent the result of an asynchronous computation that also has parity with the native JavaScript Promise API.
 
 ## Using Futures
 
@@ -42,23 +44,7 @@ To create a Future that immediately rejects:
 const f = Future.rejected(reason);
 ```
 
-Use the `Future.new` function to create a Future and immediately register callback handlers:
-
-```js
-const f = Future.new(
-  (reason) => {
-    /* handle rejection */
-  },
-  (value) => {
-    /* handle resolution */
-  },
-  () => {
-    /* optional handle cancellation */
-  }
-);
-```
-
-This is the same as:
+Use the `listen` method to register callback handlers for your Future:
 
 ```js
 const f = Future().listen({
@@ -68,7 +54,7 @@ const f = Future().listen({
 });
 ```
 
-or:
+or you can do this to immediately process the Future with the given handlers:
 
 ```js
 const f = Future().fork(rejectF, resolveF, cancelF);
