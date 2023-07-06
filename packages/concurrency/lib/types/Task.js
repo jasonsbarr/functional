@@ -1,4 +1,10 @@
-import { equals, length, noop, reduce } from "@jasonsbarr/functional-core";
+import {
+  defer,
+  equals,
+  length,
+  noop,
+  reduce,
+} from "@jasonsbarr/functional-core";
 import { Deferred } from "../internal/_deferred.js";
 import { TaskExecution } from "./TaskExecution.js";
 /**
@@ -41,7 +47,14 @@ export class Task {
   }
 
   /**
-   * Lifts a value into a resolved Task
+   * Creates an empty task (monoid)
+   */
+  static empty() {
+    return task(() => {});
+  }
+
+  /**
+   * Lifts a value into a resolved Task (monad)
    */
   static of(value) {
     return task((_rej, resolve, _can) => {
@@ -193,6 +206,50 @@ export class Task {
         execution.cancel();
       }
     }, this._cleanup);
+  }
+
+  /**
+   * Concatenates 2 Tasks together (semigroup)
+   */
+  concat(that) {
+    const thisExecution = this.run();
+    const thatExecution = that.run();
+    const thisCleanup = this._cleanup;
+    const thatCleanup = that._cleanup;
+    const cleanupBoth = () => {
+      thisCleanup();
+      thatCleanup();
+    };
+    let done = false;
+    const guard = (f) => (x) => {
+      if (!done) {
+        done = true;
+        defer(cleanupBoth());
+        return f(x);
+      }
+    };
+
+    return task((reject, resolve, cancel) => {
+      thisExecution.listen({
+        onCancelled: cancel,
+        onRejected: guard(reject),
+        onResolved: guard(resolve),
+      });
+
+      thatExecution.listen({
+        onCancelled: cancel,
+        onRejected: guard(reject),
+        onResolved: guard(resolve),
+      });
+
+      if (this._isCancelled) {
+        thisExecution.cancel();
+      }
+
+      if (that._isCancelled) {
+        thatExecution.cancel();
+      }
+    }, cleanupBoth);
   }
 
   /**
