@@ -2,8 +2,8 @@ import { noop } from "@jasonsbarr/functional-core/lib/helpers/noop.js";
 import { length } from "@jasonsbarr/functional-core/lib/array/length.js";
 import { defer } from "@jasonsbarr/functional-core/lib/lambda/defer.js";
 import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
-import { Cancelled } from "./internal/_executionStates.js";
-import { Deferred } from "./internal/_deferred.js";
+import { Cancelled } from "../internal/_executionStates.js";
+import { Deferred } from "../internal/_deferred.js";
 
 class Future extends Deferred {
   constructor() {
