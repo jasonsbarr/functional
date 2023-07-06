@@ -8,4 +8,4 @@ Concurrency contains types for handling concurrent and asynchronous operations i
 npm install @jasonsbarr/concurrency
 ```
 
-The package currently contains two types: Task and [Future](./Future.md) (both monadic and bifunctors).
+The package currently contains two types: [Task](./Task.md) and [Future](./Future.md) (both monadic and bifunctors).
