@@ -54,6 +54,35 @@ export class Task {
   }
 
   /**
+   * Converts a Node.js-style continuation callback into a Task
+   */
+  static fromCallback(fn) {
+    return (...args) =>
+      task((reject, resolve, _) => {
+        fn(...args, (err, data) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(data);
+          }
+        });
+      });
+  }
+
+  /**
+   * Converts a Promise to a Task
+   */
+  static fromPromise(promiseFn) {
+    return (...args) =>
+      task((reject, resolve, _) => {
+        promiseFn(...args).then(
+          (value) => resolve(value),
+          (reason) => reject(reason)
+        );
+      });
+  }
+
+  /**
    * Lifts a value into a resolved Task (monad)
    */
   static of(value) {
