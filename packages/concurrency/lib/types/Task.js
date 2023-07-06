@@ -1,4 +1,4 @@
-import { noop, reduce } from "@jasonsbarr/functional-core";
+import { equals, length, noop, reduce } from "@jasonsbarr/functional-core";
 import { Deferred } from "../internal/_deferred.js";
 import { TaskExecution } from "./TaskExecution.js";
 /**
@@ -67,6 +67,17 @@ export class Task {
       Task.of([]),
       tasks
     );
+  }
+
+  /**
+   * Returns the first Task of an array of Tasks that resolves
+   */
+  static waitAny(tasks) {
+    if (equals(length(tasks), 0)) {
+      throw new Error("Task.waitAny requires a non-empty array of Tasks");
+    }
+
+    return reduce((a, b) => a.or(b), Task.rejected(null), tasks);
   }
 
   /**
