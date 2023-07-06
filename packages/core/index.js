@@ -1,4 +1,3 @@
-import { ap } from "./lib/core/ap.js";
 import { bichain } from "./lib/core/bichain.js";
 import { bimap } from "./lib/core/bimap.js";
 import { chain } from "./lib/core/chain.js";
@@ -58,7 +57,6 @@ export const noop = () => {};
 export const unit = () => null;
 
 export {
-  ap,
   bichain,
   bimap,
   chain,

@@ -10,16 +10,6 @@ import * as f from "@jasonsbarr/functional-core";
 
 Core functions are mostly for working with functional types created with `createType`, but there are also some important utility functions.
 
-### `ap`
-
-```js
-import { ap } from "@jasonsbarr/functional-core";
-
-ap(wrapped, apply);
-```
-
-Applies a Functor-wrapped function to an Apply type.
-
 ### `bichain`
 
 ```js
