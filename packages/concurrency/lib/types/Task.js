@@ -42,14 +42,14 @@ export class Task {
   /**
    * Maps a Task to a new Task (functor)
    */
-  map(fn) {
+  map(f) {
     const _Task = new Task((reject, resolve, cancel) => {
       const execution = this.run();
 
       execution.listen({
         onCancelled: () => cancel(),
         onRejected: (reason) => reject(reason),
-        onResolved: (value) => resolve(fn(value)),
+        onResolved: (value) => resolve(f(value)),
       });
     }, this._cleanup);
 
