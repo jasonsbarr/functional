@@ -12,6 +12,7 @@ import { JsMap } from "./internal/_JsMap.js";
 import { Map } from "./Map.js";
 import { Dict } from "./Dict.js";
 
+// Stability: experimental, DO NOT USE
 class Sequence {
   constructor(source) {
     this.source = source;
