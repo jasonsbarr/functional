@@ -1,3 +1,4 @@
+import { Deferred } from "../internal/_deferred.js";
 /**
  * @callback Reject
  * @param {any} reason
@@ -33,6 +34,7 @@ export class TaskClass {
   constructor(computation, cleanup) {
     this._computation = computation;
     this._cleanup = cleanup;
+    this._deferred = new Deferred();
   }
 }
 
