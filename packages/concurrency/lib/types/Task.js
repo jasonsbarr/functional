@@ -1,4 +1,3 @@
-import { Deferred } from "../internal/_deferred.js";
 /**
  * @callback Reject
  * @param {any} reason
