@@ -37,7 +37,7 @@ export class Task {
   /**
    * Task constructor
    * @param {Computation} computation
-   * @param {Cleanup} [cleanup=() => {}]
+   * @param {Cleanup} cleanup
    */
   constructor(computation, cleanup = noop) {
     this._computation = computation;
