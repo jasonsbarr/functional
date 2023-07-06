@@ -6,7 +6,7 @@ import { Cancelled } from "../internal/_executionStates.js";
 import { Deferred } from "../internal/_deferred.js";
 import { AggregateError } from "../internal/_AggregateError.js";
 
-export class Future extends Deferred {
+export class FutureClass extends Deferred {
   constructor() {
     super();
     Object.defineProperty(this, "type", {
@@ -203,6 +203,8 @@ export class Future extends Deferred {
     return "Future";
   }
 }
+
+export const Future = () => new Future();
 
 Future.isFuture = (obj) => obj?.type === "Future";
 
