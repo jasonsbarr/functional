@@ -151,6 +151,42 @@ export class Task {
   }
 
   /**
+   * Combines 2 Tasks and assimilates the result of the first to resolve
+   */
+  or(that) {
+    return task((reject, resolve, cancel) => {
+      const thisExecution = this.run();
+      const thatExecution = that.run();
+      let done = false;
+
+      const guard = (fn, execution) => (value) => {
+        if (!done) {
+          done = true;
+          execution.cancel();
+          fn(value);
+        }
+      };
+
+      thisExecution.listen({
+        onRejected: guard(reject, thatExecution),
+        onCancelled: guard(cancel, thatExecution),
+        onResolved: guard(resolve, thatExecution),
+      });
+
+      thatExecution.listen({
+        onRejected: guard(reject, thisExecution),
+        onCancelled: guard(cancel, thisExecution),
+        onResolved: guard(resolve, thisExecution),
+      });
+
+      if (this._isCancelled) {
+        thisExecution.cancel();
+        thatExecution.cancel();
+      }
+    }, this._cleanup);
+  }
+
+  /**
    * Recover from possible failed Tasks
    */
   orElse(handler) {
