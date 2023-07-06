@@ -18,7 +18,7 @@ Currently there are 6 packages:
 
 ### Core
 
-The core package presents much of the JavaScript standard library with a curried, function-based interface and adds important types like Option, Record, and Future. It also contains additional functions for things like function composition and other features not found in standard JavaScript, and an apparatus for creating something about as close as you'll get in JavaScript to discriminated union types (sometimes referred to as Algebraic Data Types) with exhaustive pattern matching.
+The core package presents much of the JavaScript standard library with a curried, function-based interface and adds important types like Option, Record, and Result. It also contains additional functions for things like function composition and other features not found in standard JavaScript, and an apparatus for creating something about as close as you'll get in JavaScript to discriminated union types (sometimes referred to as Algebraic Data Types) with exhaustive pattern matching.
 
 - [Core package](https://github.com/jasonsbarr/functional/tree/main/packages/core)
 
