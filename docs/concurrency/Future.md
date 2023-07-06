@@ -195,6 +195,7 @@ Note that `onCancelled` is always optional unless otherwise noted.
 
 ### Static methods
 
+- `Future.new(onRejected, onResolved, onCancelled?)` - creates a new future with listeners for the rejected, resolved, and cancelled cases
 - `Future.of(value)` - creates a new Future and immediately Resolves it with `value`.
 - `Future.rejected(reason)` - creates a new Future and immediate Rejects it with `reason`.
 - `Future.fromPromise(promise)` - creates a new Future from a Promise.
