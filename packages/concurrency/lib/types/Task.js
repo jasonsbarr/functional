@@ -1,10 +1,5 @@
-import {
-  defer,
-  equals,
-  length,
-  noop,
-  reduce,
-} from "@jasonsbarr/functional-core";
+import { defer, equals, length, noop } from "@jasonsbarr/functional-core";
+import { reduce } from "@jasonsbarr/iterable";
 import { Deferred } from "../internal/_deferred.js";
 import { TaskExecution } from "./TaskExecution.js";
 /**

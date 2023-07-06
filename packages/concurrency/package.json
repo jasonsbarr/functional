@@ -33,7 +33,8 @@
     "url": "https://github.com/jasonsbarr/functional/issues"
   },
   "dependencies": {
-    "@jasonsbarr/functional-core": "^0.9.3"
+    "@jasonsbarr/functional-core": "^0.9.3",
+    "@jasonsbarr/iterable": "^0.9.3"
   },
   "gitHead": "7acbf2cd8877d25677a5aaf4ae3eba318f4859ca"
 }
