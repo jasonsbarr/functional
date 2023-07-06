@@ -47,7 +47,7 @@ export class Task {
   }
 
   /**
-   * Creates an empty task (monoid)
+   * Creates an empty task that will never resolve (monoid)
    */
   static empty() {
     return task(() => {});
@@ -209,7 +209,7 @@ export class Task {
   }
 
   /**
-   * Concatenates 2 Tasks together (semigroup)
+   * Concatenates 2 Tasks together by selecting the first task to finish (semigroup)
    */
   concat(that) {
     const thisExecution = this.run();
