@@ -83,14 +83,18 @@ export class Task {
   }
 
   /**
-   * Converts a Promise to a Task
+   * Converts a Promise-producing function to a Task-producing one
    */
   static fromPromise(promiseFn) {
     return (...args) =>
       task((reject, resolve, _) => {
         promiseFn(...args).then(
-          (value) => resolve(value),
-          (reason) => reject(reason)
+          (value) => {
+            resolve(value);
+          },
+          (reason) => {
+            reject(reason);
+          }
         );
       });
   }
