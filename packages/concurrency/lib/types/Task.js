@@ -27,6 +27,7 @@ import { TaskExecution } from "./TaskExecution.js";
  * @returns {void}
  */
 
+// Stability: experimental DO NOT USE
 export class Task {
   /**
    * Task constructor
