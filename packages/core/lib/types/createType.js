@@ -85,7 +85,7 @@ const createVariantConstructor = (
         value: args.length === 1 ? args[0] : args,
       });
     } else {
-      let obj = create(null);
+      let obj = create({});
       let i = 0;
 
       for (let field of fields) {
