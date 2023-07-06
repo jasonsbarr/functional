@@ -201,6 +201,10 @@ class Future extends Deferred {
   isResolved() {
     return this.state.name === "Resolved";
   }
+
+  get [Symbol.toStringTag]() {
+    return "Future";
+  }
 }
 
 Future.isFuture = (obj) => obj?.type === "Future";

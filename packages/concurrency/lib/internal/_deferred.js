@@ -105,4 +105,8 @@ export class Deferred {
 
     return `Deferred(${state}, ${listeners} listeners)`;
   }
+
+  get [Symbol.toStringTag]() {
+    return "Deferred";
+  }
 }
