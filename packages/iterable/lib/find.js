@@ -13,5 +13,5 @@ export const find = curry((pred, iter) => {
       if (equals(pred, item)) return Some(item);
     }
   }
-  return None(null);
+  return None();
 });
