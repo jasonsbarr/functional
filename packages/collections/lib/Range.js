@@ -6,7 +6,7 @@ import { isPositive } from "@jasonsbarr/functional-core/lib/predicates/isPositiv
 import { isZero } from "@jasonsbarr/functional-core/lib/predicates/isZero.js";
 import { lte } from "@jasonsbarr/functional-core/lib/predicates/lte.js";
 
-class RangeClass {
+class Range {
   constructor(start, end, step = 1) {
     if (isZero(step) || !isInt(step)) {
       throw new Error("Range step must be a positive or negative integer");
@@ -82,11 +82,6 @@ class RangeClass {
   }
 }
 
-export const Range = curryN(
-  2,
-  (start, end, step = 1) => new RangeClass(start, end, step)
-);
-
 export const range = (...args) => {
   let start,
     end,
@@ -106,7 +101,7 @@ export const range = (...args) => {
     throw new Error("range function must take 1, 2, or 3 arguments");
   }
 
-  return Range(start, end, step);
+  return new Range(start, end, step);
 };
 
-export default Range;
+export default range;
