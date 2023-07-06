@@ -9,8 +9,8 @@
  */
 /**
  * @callback Computation
- * @prop {Resolver} resolver
- * @returns {undefined}
+ * @param {Resolver} resolver
+ * @returns {void}
  */
 
 export class Task {
