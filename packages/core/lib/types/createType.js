@@ -2,7 +2,6 @@ import { assign } from "../object/assign.js";
 import { definePropWithOpts } from "../object/definePropWithOpts.js";
 import { freeze } from "../object/freeze.js";
 import { length } from "../array/length.js";
-import { create } from "../object/create.js";
 import { isFunction } from "../predicates/isFunction.js";
 
 /**
