@@ -174,7 +174,7 @@ export const createType = (
 
   assign(typeRepresentative, methods);
 
-  typeRepresentative["is" + typeName] = (x) => x && x.type === typeName;
+  typeRepresentative["is" + typeName] = (x) => x && x?.type === typeName;
 
   return typeRepresentative;
 };
