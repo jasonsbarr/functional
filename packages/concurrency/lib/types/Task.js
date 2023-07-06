@@ -90,7 +90,7 @@ export class Task {
       throw new Error("Task.waitAny requires a non-empty array of Tasks");
     }
 
-    return reduce((a, b) => a.or(b), Task.rejected(null), tasks);
+    return reduce((a, b) => a.or(b), Task.empty(), tasks);
   }
 
   /**
