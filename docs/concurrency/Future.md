@@ -27,7 +27,7 @@ Unlike Promises, which are eager, Futures don't actually run until you register 
 You can create an empty Future using the function constructor:
 
 ```js
-const f = Future();
+const f = future(); // note the lower-case f
 ```
 
 To create a Future that immediately resolves:

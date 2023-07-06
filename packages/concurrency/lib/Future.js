@@ -336,5 +336,4 @@ Future.rejectAfter = curry((ms, reason) => {
   return f;
 });
 
-export const future = (onRejected, onResolved, onCancelled = noop) =>
-  Future().listen({ onRejected, onResolved, onCancelled });
+export const future = () => new Future();
