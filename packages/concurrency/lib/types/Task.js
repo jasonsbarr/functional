@@ -58,6 +58,13 @@ export class Task {
   }
 
   /**
+   * Applies a Task-wrapped function to the value in another Task (applicative)
+   */
+  ap(task) {
+    return this.chain((f) => task.map(f));
+  }
+
+  /**
    * Chains one Task to another (monad)
    *
    * f should return a Task
