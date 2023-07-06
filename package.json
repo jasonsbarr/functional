@@ -15,7 +15,8 @@
   "keywords": [
     "adts",
     "types",
-    "monads"
+    "monads",
+    "functional programming"
   ],
   "author": "Jason Barr <jason@jasonsbarr.com>",
   "license": "MIT",
