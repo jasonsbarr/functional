@@ -157,6 +157,8 @@ const func = async () => {
 
 The result will be the post data inserted into HTML content, wrapped inside a promise since the value is returned from an `async` function, ready to attach to your DOM somewhere in the callback to the promise.
 
+Even better, Futures have a `then` method so you can actually just `await` the Future itself!
+
 ### Instance properties and methods
 
 Note that `onCancelled` is always optional unless otherwise noted.
