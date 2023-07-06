@@ -54,6 +54,10 @@ export class TaskExecution {
         state.reason
       );
     }
+
+    get [Symbol.toStringTag]() {
+    return "TaskExecution";
+  }
   }
 
   /**

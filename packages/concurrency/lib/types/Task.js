@@ -271,6 +271,10 @@ export class Task {
 
     return execution;
   }
+
+  get [Symbol.toStringTag]() {
+    return "Task";
+  }
 }
 
 /**
