@@ -109,4 +109,8 @@ export class Deferred {
   get [Symbol.toStringTag]() {
     return "Deferred";
   }
+
+  [Symbol.for("nodejs.util.inspect.custom")](depth, options, inspect) {
+    return this.toString();
+  }
 }
