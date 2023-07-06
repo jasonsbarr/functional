@@ -5,7 +5,7 @@ import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
 import { Cancelled } from "../internal/_executionStates.js";
 import { Deferred } from "../internal/_deferred.js";
 
-class Future extends Deferred {
+export class Future extends Deferred {
   constructor() {
     super();
     Object.defineProperty(this, "type", {
