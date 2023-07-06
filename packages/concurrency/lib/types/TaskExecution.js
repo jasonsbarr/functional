@@ -40,11 +40,20 @@ export class TaskExecution {
    * @returns {Future}
    */
   future() {
-    return future().listen({
+    const state = this._deferred.state;
+    const f = future().listen({
       onCancelled: () => this._deferred.cancel(),
       onRejected: (reason) => this._deferred.reject(reason),
       onResolved: (value) => this._deferred.resolve(value),
     });
+
+    if (state.name !== "Pending" && state.name !== "Cancelled") {
+      return f.finalize(
+        () => state.name === "Resolved",
+        state.value,
+        state.reason
+      );
+    }
   }
 
   /**
