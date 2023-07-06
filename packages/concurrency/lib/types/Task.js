@@ -27,7 +27,7 @@ import { TaskExecution } from "./TaskExecution.js";
  * @returns {void}
  */
 
-export class TaskClass {
+export class Task {
   /**
    * Task constructor
    * @param {Computation} computation
@@ -43,7 +43,7 @@ export class TaskClass {
    * Maps a Task to a new Task (functor)
    */
   map(fn) {
-    const _Task = Task((reject, resolve, cancel) => {
+    const _Task = new Task((reject, resolve, cancel) => {
       const execution = this.run();
 
       execution.listen({
@@ -103,5 +103,5 @@ export class TaskClass {
  * @param {Cleanup} cleanup
  * @returns {TaskClass}
  */
-export const Task = (computation, cleanup) =>
+export const task = (computation, cleanup) =>
   new TaskClass(computation, cleanup);
