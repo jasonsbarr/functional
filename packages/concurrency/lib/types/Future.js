@@ -51,14 +51,14 @@ export class Future extends Deferred {
 
     this.listen({
       onCancelled: result.cancel,
-      onRejected: (reason) => guard(result.reject(reason)),
-      onResolved: (value) => guard(result.resolve(value)),
+      onRejected: guard(result.reject),
+      onResolved: guard(result.resolve),
     });
 
     that.listen({
       onCancelled: result.cancel,
-      onRejected: (reason) => guard(result.reject(reason)),
-      onResolved: (value) => guard(result.resolve(value)),
+      onRejected: guard(result.reject),
+      onResolved: guard(result.resolve),
     });
 
     return result;
