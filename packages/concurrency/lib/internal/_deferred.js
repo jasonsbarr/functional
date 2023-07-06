@@ -98,4 +98,11 @@ export class Deferred {
       });
     });
   }
+
+  toString() {
+    const listeners = this._listeners.length;
+    const state = this._state?.name;
+
+    return `Deferred(${state}, ${listeners} listeners)`;
+  }
 }
