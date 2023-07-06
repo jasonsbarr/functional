@@ -125,10 +125,6 @@ export class Future extends Deferred {
     return this.chain((f) => future.map(f));
   }
 
-  apRejected(future) {
-    return this.chain((f) => future.mapRejected(f));
-  }
-
   finalize(pred, value, reason = null) {
     return pred(value) ? this.resolve(value) : this.reject(reason ?? value);
   }
