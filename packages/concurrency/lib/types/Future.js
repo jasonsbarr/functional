@@ -4,6 +4,7 @@ import { defer } from "@jasonsbarr/functional-core/lib/lambda/defer.js";
 import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
 import { Cancelled } from "../internal/_executionStates.js";
 import { Deferred } from "../internal/_deferred.js";
+import { AggregateError } from "../internal/_AggregateError.js";
 
 export class Future extends Deferred {
   constructor() {
