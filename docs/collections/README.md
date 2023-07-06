@@ -18,7 +18,7 @@ import { LinkedList } from "@jasonsbarr/collections";
 
 - Dict - a hash table or dictionary-like data structure intended for use with single-type values (string or symbol keys only)
 - List - a linked list using Array-based cells
-- Nil - represents the empty List for safe use with what would otherwise be `null` and `undefined` values
+- Nil - represents the empty List for safe use with what would otherwise be `null` and `undefined` values (like a Left type for Lists)
 - Range - if all you need is to iterate over a range of numbers, this is what you need
 - Map - like native JavaScript Maps, but with additional methods and functionality and they check keys by structural equality, not by reference (any type as keys)
 - Tuple - immutable, Array-like collection
