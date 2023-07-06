@@ -1,24 +1,46 @@
 /**
- * @typedef Resolver
- * @prop {Function} resolve
- * @prop {Function} reject
- * @prop {Function} cancel
- * @prop {Function} cleanup
- * @prop {Function} onCancelled
- * @prop {boolean} isCancelled
+ * @callback Reject
+ * @param {any} reason
+ * @returns {TaskClass}
+ */
+/**
+ * @callback Resolve
+ * @param {any} value
+ * @returns {TaskClass}
+ */
+/**
+ * @callback Cancel
+ * @returns {TaskClass}
+ */
+/**
+ * @callback Cleanup
+ * @returns {void}
  */
 /**
  * @callback Computation
- * @param {Resolver} resolver
+ * @param {Reject} reject
+ * @param {Resolve} resolve
+ * @param {Cancel} cancel
  * @returns {void}
  */
 
-export class Task {
+export class TaskClass {
   /**
    * Task constructor
    * @param {Computation} computation
+   * @param {Cleanup} cleanup
    */
-  constructor(computation) {
+  constructor(computation, cleanup) {
     this._computation = computation;
+    this._cleanup = cleanup;
   }
 }
+
+/**
+ * Functional Task constructor
+ * @param {Computation} computation
+ * @param {Cleanup} cleanup
+ * @returns {TaskClass}
+ */
+export const Task = (computation, cleanup) =>
+  new TaskClass(computation, cleanup);
