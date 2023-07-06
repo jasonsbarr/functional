@@ -98,3 +98,5 @@ There are also `mapRejected` for mapping over the rejected case of a Task, `bima
 Handle errors in a composable fashion with the `orElse` method, get the first of 2 Tasks when you only need 1 with `or`, and run 2 Tasks concurrently with `and`.
 
 The static `withAll` method returns an array of Tasks when all have finished, and the static `withAny` method returns the first of a list of Tasks to finish.
+
+The `run` method returns a TaskExecution object which is not handled directly, but has `promise` and `future` methods that will let you convert the Task to either a Promise or a Future.
