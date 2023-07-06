@@ -46,6 +46,20 @@ export class Task {
   }
 
   /**
+   * Enables sequential use of Tasks in an async/await like style using generators and yield
+   */
+  static do(generator) {
+    const nextGeneratorValue = (generator) => (value) => {
+      const { value: task, done } = generator.next(value);
+      return !done ? task.chain(nextGeneratorValue(generator)) : task;
+    };
+
+    return task((_rej, resolve, _can) => resolve(generator())).chain((gen) =>
+      nextGeneratorValue(gen)()
+    );
+  }
+
+  /**
    * Creates an empty task that will never resolve (monoid)
    */
   static empty() {
@@ -453,7 +467,7 @@ export class Task {
  * }, () => {})
  * @param {Computation} computation
  * @param {Cleanup} cleanup
- * @returns {TaskClass}
+ * @returns {Task}
  */
 export const task = (computation, cleanup = noop) =>
   new Task(computation, cleanup);
