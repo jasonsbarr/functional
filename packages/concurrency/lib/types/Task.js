@@ -58,6 +58,66 @@ export class Task {
   }
 
   /**
+   * Combines 2 Tasks concurrently
+   */
+  and(that) {
+    return task((reject, resolve, cancel) => {
+      const thisExecution = this.run();
+      const thatExecution = that.run();
+      let valueLeft = null;
+      let valueRight = null;
+      let doneLeft = false;
+      let doneRight = false;
+      let cancelled = false;
+
+      const guardResolve = (setter) => (value) => {
+        if (cancelled) {
+          return;
+        }
+
+        setter(value);
+
+        if (doneLeft && doneRight) {
+          resolve([valueLeft, valueRight]);
+        }
+      };
+
+      const guardReject = (fn, execution) => (value) => {
+        if (cancelled) {
+          return;
+        }
+
+        cancelled = true;
+        execution.cancel();
+        fn(value);
+      };
+
+      thisExecution.listen({
+        onRejected: guardReject(reject, thatExecution),
+        onCancelled: guardReject(cancel, thatExecution),
+        onResolved: guardResolve((x) => {
+          valueRight = x;
+          doneRight = true;
+        }),
+      });
+
+      thatExecution.listen({
+        onRejected: guardReject(reject, thisExecution),
+        onCancelled: guardReject(cancel, thisExecution),
+        onResolved: guardResolve((x) => {
+          valueLeft = x;
+          doneLeft = true;
+        }),
+      });
+
+      if (this._isCancelled) {
+        thisExecution.cancel();
+        thatExecution.cancel();
+      }
+    }, this._cleanup);
+  }
+
+  /**
    * Applies a Task-wrapped function to the value in another Task (applicative)
    */
   ap(task) {
@@ -84,7 +144,7 @@ export class Task {
   }
 
   /**
-   * Chains one Task to another (monad)
+   * Chains one Task to another, combining them sequentially (monad)
    *
    * f should return a Task
    */
