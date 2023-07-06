@@ -67,4 +67,8 @@ export class TaskExecution {
     this._links.push(execution);
     return this;
   }
+
+  get [Symbol.toStringTag]() {
+    return "TaskExecution";
+  }
 }
