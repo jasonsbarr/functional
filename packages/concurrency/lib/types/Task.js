@@ -34,7 +34,6 @@ export class TaskClass {
   constructor(computation, cleanup) {
     this._computation = computation;
     this._cleanup = cleanup;
-    this._deferred = new Deferred();
   }
 }
 
