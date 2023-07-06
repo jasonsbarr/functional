@@ -151,6 +151,33 @@ export class Task {
   }
 
   /**
+   * Recover from possible failed Tasks
+   */
+  orElse(handler) {
+    return task((reject, resolve, cancel) => {
+      const execution = this.run();
+
+      execution.listen({
+        onCancelled: cancel,
+        onResolved: resolve,
+        onRejected: (reason) => {
+          execution.link(
+            handler(reason).run().listen({
+              onCancelled: cancel,
+              onRejected: reject,
+              onResolved: resolve,
+            })
+          );
+        },
+      });
+
+      if (this._isCancelled) {
+        execution.cancel();
+      }
+    }, this._cleanup);
+  }
+
+  /**
    * Maps a rejected Task to a resolved one and vice versa (swap)
    */
   swap(rejToResF, resToRejF) {
