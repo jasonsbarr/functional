@@ -43,7 +43,7 @@ export class Task {
    * Maps a Task to a new Task (functor)
    */
   map(f) {
-    const _Task = new Task((reject, resolve, cancel) => {
+    const task_ = task((reject, resolve, cancel) => {
       const execution = this.run();
 
       execution.listen({
@@ -57,7 +57,7 @@ export class Task {
       execution.cancel();
     }
 
-    return _Task;
+    return task_;
   }
 
   run() {
