@@ -36,6 +36,28 @@ export class TaskClass {
   constructor(computation, cleanup = noop) {
     this._computation = computation;
     this._cleanup = cleanup;
+    this._isCancelled = false;
+  }
+
+  /**
+   * Maps a Task to a new Task (functor)
+   */
+  map(fn) {
+    const _Task = Task((reject, resolve, cancel) => {
+      const execution = this.run();
+
+      execution.listen({
+        onCancelled: () => cancel(),
+        onRejected: (reason) => reject(reason),
+        onResolved: (value) => resolve(fn(value)),
+      });
+    }, this._cleanup);
+
+    if (this._isCancelled) {
+      execution.cancel();
+    }
+
+    return _Task;
   }
 
   run() {
@@ -46,6 +68,7 @@ export class TaskClass {
 
     deferred.listen({
       onCancelled: () => {
+        this._isCancelled = true;
         cleanups.forEach((f) => f());
         cleanups = [];
       },
