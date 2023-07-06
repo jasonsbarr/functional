@@ -1,4 +1,4 @@
-import { noop } from "@jasonsbarr/functional-core";
+import { noop, reduce } from "@jasonsbarr/functional-core";
 import { Deferred } from "../internal/_deferred.js";
 import { TaskExecution } from "./TaskExecution.js";
 /**
@@ -56,6 +56,17 @@ export class Task {
     return task((reject, _res, _can) => {
       reject(reason);
     });
+  }
+
+  /**
+   * Waits on all Tasks to finish then returns an array of results
+   */
+  static waitAll(tasks) {
+    return reduce(
+      (a, b) => a.and(b).map(([xs, x]) => [...xs, x]),
+      Task.of([]),
+      tasks
+    );
   }
 
   /**
