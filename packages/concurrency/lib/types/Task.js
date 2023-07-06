@@ -151,6 +151,25 @@ export class Task {
   }
 
   /**
+   * Maps a rejected Task to a resolved one and vice versa (swap)
+   */
+  swap(rejToResF, resToRejF) {
+    return task((reject, resolve, cancel) => {
+      const execution = this.run();
+
+      execution.listen({
+        onCancelled: cancel,
+        onRejected: (reason) => resolve(rejToResF(reason)),
+        onResolved: (value) => reject(resToRejF(value)),
+      });
+
+      if (this._isCancelled) {
+        execution.cancel();
+      }
+    }, this._cleanup);
+  }
+
+  /**
    * Runs a Task's computation
    * @returns {TaskExecution}
    */
