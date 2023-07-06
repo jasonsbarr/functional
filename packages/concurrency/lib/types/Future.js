@@ -38,6 +38,32 @@ export class Future extends Deferred {
     return result;
   }
 
+  concat(that) {
+    const result = future();
+    let done = false;
+
+    const guard = (f) => (x) => {
+      if (!done) {
+        done = true;
+        return f(x);
+      }
+    };
+
+    this.listen({
+      onCancelled: result.cancel,
+      onRejected: (reason) => guard(result.reject(reason)),
+      onResolved: (value) => guard(result.resolve(value)),
+    });
+
+    that.listen({
+      onCancelled: result.cancel,
+      onRejected: (reason) => guard(result.reject(reason)),
+      onResolved: (value) => guard(result.resolve(value)),
+    });
+
+    return result;
+  }
+
   map(f) {
     const result = future();
     this.listen({
@@ -175,6 +201,8 @@ Future.of = (value) => {
 Future.rejected = (reason) => {
   return future().reject(reason);
 };
+
+Future.empty = () => future();
 
 Future.fromPromise = (promise) => {
   let f = future();
