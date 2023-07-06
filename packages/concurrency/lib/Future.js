@@ -22,7 +22,7 @@ class Future extends Deferred {
 
   // f should return a Future
   chain(f) {
-    const result = Future();
+    const result = future();
     this.listen({
       onCancelled: () => result.cancel(),
       onRejected: (reason) => result.reject(reason),
@@ -38,7 +38,7 @@ class Future extends Deferred {
   }
 
   chainRejected(f) {
-    const result = Future();
+    const result = future();
     this.listen({
       onCancelled: () => result.cancel(),
       onRejected: (reason) => {
@@ -54,7 +54,7 @@ class Future extends Deferred {
   }
 
   map(f) {
-    const result = Future();
+    const result = future();
     this.listen({
       onCancelled: () => result.cancel(),
       onRejected: (reason) => result.reject(reason),
@@ -64,7 +64,7 @@ class Future extends Deferred {
   }
 
   mapRejected(f) {
-    const reject = Future();
+    const reject = future();
     this.listen({
       onCancelled: () => reject.cancel(),
       onRejected: (reason) => reject.reject(f(reason)),
@@ -74,7 +74,7 @@ class Future extends Deferred {
   }
 
   bimap(rejectF, resolveF) {
-    const mapped = Future();
+    const mapped = future();
     this.listen({
       onCancelled: () => mapped.cancel(),
       onRejected: (reason) => mapped.reject(rejectF(reason)),
@@ -84,7 +84,7 @@ class Future extends Deferred {
   }
 
   bichain(rejectF, resolveF) {
-    const result = Future();
+    const result = future();
     this.listen({
       onCancelled: () => result.cancel(),
       onRejected: (reason) => {
@@ -107,7 +107,7 @@ class Future extends Deferred {
 
   // Maps a resolved value to a rejected Future and vice-versa
   swap(rejToRes, resToRej) {
-    let result = Future();
+    let result = future();
     this.listen({
       onCancelled: () => result.cancel(),
       onRejected: (reason) => result.resolve(rejToRes(reason)),
@@ -135,7 +135,7 @@ class Future extends Deferred {
   // Takes a Future-returning function. Chained alts will return the
   // first Resolved Future or the _last_ Rejected/Cancelled Future.
   alt(future) {
-    const f = Future();
+    const f = future();
     this.listen({
       onCancelled: () => f.cancel(),
       onRejected: () =>
