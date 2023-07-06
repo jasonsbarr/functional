@@ -1,7 +1,6 @@
 import { assign } from "../object/assign.js";
 import { definePropWithOpts } from "../object/definePropWithOpts.js";
 import { freeze } from "../object/freeze.js";
-import { getType } from "./getType.js";
 import { length } from "../array/length.js";
 import { create } from "../object/create.js";
 import { isFunction } from "../predicates/isFunction.js";
@@ -36,7 +35,7 @@ export const VariantInfo = (
  *
  * @param {String} typeName The name of the type representative
  * @param {VariantInfo} variantInfo The information used to create the variant
- * @returns {Object} The constructed variant instance
+ * @returns {Function} The constructed variant instance
  */
 const createVariantConstructor = (
   typeName,
