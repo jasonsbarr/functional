@@ -63,7 +63,7 @@ export class Task {
    * f should return a Task
    */
   chain(f) {
-    const t = task((reject, resolve, cancel) => {
+    return task((reject, resolve, cancel) => {
       const execution = this.run();
 
       execution.listen({
@@ -79,20 +79,18 @@ export class Task {
           );
         },
       });
-    });
 
-    if (this._isCancelled) {
-      execution.cancel();
-    }
-
-    return t;
+      if (this._isCancelled) {
+        execution.cancel();
+      }
+    }, this._cleanup);
   }
 
   /**
    * Maps a Task to a new Task (functor)
    */
   map(f) {
-    const t = task((reject, resolve, cancel) => {
+    return task((reject, resolve, cancel) => {
       const execution = this.run();
 
       execution.listen({
@@ -100,15 +98,36 @@ export class Task {
         onRejected: reject,
         onResolved: (value) => resolve(f(value)),
       });
+
+      if (this._isCancelled) {
+        execution.cancel();
+      }
     }, this._cleanup);
-
-    if (this._isCancelled) {
-      execution.cancel();
-    }
-
-    return t;
   }
 
+  /**
+   * Maps the value of a rejected Task
+   */
+  mapRejected(f) {
+    return task((reject, resolve, cancel) => {
+      const execution = this.run();
+
+      execution.listen({
+        onCancelled: cancel,
+        onRejected: (reason) => reject(f(reason)),
+        onResolved: resolve,
+      });
+
+      if (this._isCancelled) {
+        execution.cancel();
+      }
+    }, this._cleanup);
+  }
+
+  /**
+   * Runs a Task's computation
+   * @returns {TaskExecution}
+   */
   run() {
     let deferred = new Deferred();
     let cleanups = [];
