@@ -139,7 +139,7 @@ const createVariantConstructor = (
  * and all variants will get constructor functions as methods on that object.
  * Constructors will return an object that contains the type name, the variant name,
  * the value held "inside" the type (which can be anything, including an instance
- * of another type), and any methods defined in the variants info.
+ * of another type), and any methods defined in the variant's info.
  *
  * @param {String} typeName The name of the type
  * @param {VariantInfo[]} variantInfos Info used to create variants
