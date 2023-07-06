@@ -210,15 +210,15 @@ export class Future extends Deferred {
 Future.isFuture = (obj) => obj?.type === "Future";
 
 Future.of = (value) => {
-  return Future().resolve(value);
+  return future().resolve(value);
 };
 
 Future.rejected = (reason) => {
-  return Future().reject(reason);
+  return future().reject(reason);
 };
 
 Future.fromPromise = (promise) => {
-  let f = Future();
+  let f = future();
   // for some reason, not returning from these callbacks makes it work
   promise.then(
     (value) => {
@@ -250,7 +250,7 @@ Future.resolve = Future.of;
 Future.reject = Future.rejected;
 
 Future.all = (futures) => {
-  const all = Future();
+  const all = future();
   let results = [];
   // Hack to keep the array alive throughout execution due to defer sticking the callback
   // in the task queue, whereas Promise callbacks go into the microtask queue. This
@@ -272,7 +272,7 @@ Future.all = (futures) => {
 };
 
 Future.allSettled = (futures) => {
-  const all = Future();
+  const all = future();
   let results = [];
   defer(async () => {
     for (let future of futures) {
@@ -291,7 +291,7 @@ Future.allSettled = (futures) => {
 };
 
 Future.any = (futures) => {
-  const any = Future();
+  const any = future();
   let errors = [];
   defer(async () => {
     for (let future of futures) {
@@ -312,7 +312,7 @@ Future.any = (futures) => {
 };
 
 Future.race = (futures) => {
-  let race = Future();
+  let race = future();
   defer(async () => {
     try {
       for await (let value of futures) {
@@ -329,13 +329,13 @@ Future.race = (futures) => {
 };
 
 Future.resolveAfter = curry((ms, value) => {
-  const f = Future();
+  const f = future();
   setTimeout(() => f.resolve(value), ms);
   return f;
 });
 
 Future.rejectAfter = curry((ms, reason) => {
-  const f = Future();
+  const f = future();
   setTimeout(() => f.reject(reason), ms);
   return f;
 });
