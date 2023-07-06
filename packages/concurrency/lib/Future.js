@@ -2,11 +2,10 @@ import { noop } from "@jasonsbarr/functional-core/lib/helpers/noop.js";
 import { length } from "@jasonsbarr/functional-core/lib/array/length.js";
 import { defer } from "@jasonsbarr/functional-core/lib/lambda/defer.js";
 import { curry } from "@jasonsbarr/functional-core/lib/lambda/curry.js";
-import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction.js";
 import { Cancelled } from "./internal/_executionStates.js";
 import { Deferred } from "./internal/_deferred.js";
 
-class Futur extends Deferred {
+class Future extends Deferred {
   constructor() {
     super();
     Object.defineProperty(this, "type", {
@@ -15,6 +14,10 @@ class Futur extends Deferred {
       writable: false,
       value: "Future",
     });
+  }
+
+  static new(onRejected, onResolved, onCancelled = noop) {
+    return new Future().listen({ onResolved, onRejected, onCancelled });
   }
 
   // f should return a Future
@@ -198,17 +201,9 @@ class Futur extends Deferred {
   isResolved() {
     return this.state.name === "Resolved";
   }
-
-  isFuture() {
-    return true;
-  }
 }
 
-export const Future = () => {
-  return new Futur();
-};
-
-Future.isFuture = (obj) => obj && isFunction(obj.isFuture) && obj.isFuture();
+Future.isFuture = (obj) => obj?.type === "Future";
 
 Future.of = (value) => {
   return Future().resolve(value);
