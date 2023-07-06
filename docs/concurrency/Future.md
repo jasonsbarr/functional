@@ -42,10 +42,10 @@ To create a Future that immediately rejects:
 const f = Future.rejected(reason);
 ```
 
-Use the `future` function to create a Future and immediately register callback handlers:
+Use the `Future.new` function to create a Future and immediately register callback handlers:
 
 ```js
-const f = future(
+const f = Future.new(
   (reason) => {
     /* handle rejection */
   },
