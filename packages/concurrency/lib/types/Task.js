@@ -40,6 +40,24 @@ export class Task {
   }
 
   /**
+   * Lifts a value into a resolved Task
+   */
+  static of(value) {
+    return task((_rej, resolve, _can) => {
+      resolve(value);
+    });
+  }
+
+  /**
+   * Lifts a value into a rejected Task
+   */
+  static rejected(reason) {
+    return task((reject, _res, _can) => {
+      reject(reason);
+    });
+  }
+
+  /**
    * Maps a Task to a new Task (functor)
    */
   map(f) {
@@ -100,10 +118,12 @@ export class Task {
 /**
  * Functional Task constructor
  *
- * Usage: task((reject, resolve, cancel) => {}, () => {})
+ * Usage: task((reject, resolve, cancel) => {
+ *    [function body]
+ * }, () => {})
  * @param {Computation} computation
  * @param {Cleanup} cleanup
  * @returns {TaskClass}
  */
 export const task = (computation, cleanup = noop) =>
-  new TaskClass(computation, cleanup);
+  new Task(computation, cleanup);
