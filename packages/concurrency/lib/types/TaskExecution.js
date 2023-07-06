@@ -47,12 +47,14 @@ export class TaskExecution {
       onResolved: (value) => this._deferred.resolve(value),
     });
 
-    if (state.name !== "Pending" && state.name !== "Cancelled") {
+    if (state.name === "Resolved" || state.name === "Rejected") {
       return f.finalize(
         () => state.name === "Resolved",
         state.value,
         state.reason
       );
+    } else if (state.name === "Cancelled") {
+      return f.cancel();
     } else {
       return f;
     }
