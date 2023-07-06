@@ -38,22 +38,6 @@ export class Future extends Deferred {
     return result;
   }
 
-  chainRejected(f) {
-    const result = future();
-    this.listen({
-      onCancelled: () => result.cancel(),
-      onRejected: (reason) => {
-        f(reason).listen({
-          onCancelled: () => result.cancel(),
-          onRejected: (reason2) => result.reject(reason2),
-          onResolved: (value) => result.resolve(value),
-        });
-      },
-      onResolved: (value) => result.resolve(value),
-    });
-    return result;
-  }
-
   map(f) {
     const result = future();
     this.listen({
@@ -82,28 +66,6 @@ export class Future extends Deferred {
       onResolved: (value) => mapped.resolve(resolveF(value)),
     });
     return mapped;
-  }
-
-  bichain(rejectF, resolveF) {
-    const result = future();
-    this.listen({
-      onCancelled: () => result.cancel(),
-      onRejected: (reason) => {
-        rejectF(reason).listen({
-          onCancelled: () => result.cancel(),
-          onRejected: (reason2) => result.reject(reason2),
-          onResolved: (value) => result.resolve(value),
-        });
-      },
-      onResolved: (value) => {
-        resolveF(value).listen({
-          onCancelled: () => result.cancel(),
-          onRejected: (reason) => result.reject(reason),
-          onResolved: (value2) => result.resolve(value2),
-        });
-      },
-    });
-    return result;
   }
 
   // Maps a resolved value to a rejected Future and vice-versa
