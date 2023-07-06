@@ -209,3 +209,7 @@ Note that `onCancelled` is always optional unless otherwise noted.
 - `Future.isFuture(object)` - Tests whether an object is an instance of Future.
 - `Future.resolveAfter(ms, value)` - Creates a Future that resolves after `ms` milliseconds with `value`.
 - `Future.rejectAfter(ms, reason)` - Creates a Future that rejects after `ms` milliseconds with `reason`.
+
+## Credit
+
+The Future type is heavily inspired by the Future type from [the old Folktale.js library](https://github.com/origamitower/folktale), which is no longer actively maintained.
