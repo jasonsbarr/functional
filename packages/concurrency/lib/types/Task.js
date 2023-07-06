@@ -65,6 +65,25 @@ export class Task {
   }
 
   /**
+   * Applies one function to a resolved Task and another to a rejected Task (bifunctor)
+   */
+  bimap(rejectF, resolveF) {
+    return task((reject, resolve, cancel) => {
+      const execution = this.run();
+
+      execution.listen({
+        onCancelled: cancel,
+        onRejected: (reason) => reject(rejectF(reason)),
+        onResolved: (value) => resolve(resolveF(value)),
+      });
+
+      if (this._isCancelled) {
+        execution.cancel();
+      }
+    }, this._cleanup);
+  }
+
+  /**
    * Chains one Task to another (monad)
    *
    * f should return a Task
