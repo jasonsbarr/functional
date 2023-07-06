@@ -23,6 +23,10 @@ export class TaskExecution {
     return this;
   }
 
+  listen(pattern) {
+    this._deferred.listen(pattern);
+  }
+
   /**
    * Convert the current TaskExecution into a Promise
    * @returns {Promise}
