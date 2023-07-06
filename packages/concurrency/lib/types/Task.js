@@ -58,15 +58,46 @@ export class Task {
   }
 
   /**
-   * Maps a Task to a new Task (functor)
+   * Chains one Task to another (monad)
+   *
+   * f should return a Task
    */
-  map(f) {
-    const task_ = task((reject, resolve, cancel) => {
+  chain(f) {
+    const t = task((reject, resolve, cancel) => {
       const execution = this.run();
 
       execution.listen({
-        onCancelled: () => cancel(),
-        onRejected: (reason) => reject(reason),
+        onCancelled: cancel,
+        onRejected: reject,
+        onResolved: (value) => {
+          execution.link(
+            f(value).run().listen({
+              onCancelled: cancel,
+              onRejected: reject,
+              onResolved: resolve,
+            })
+          );
+        },
+      });
+    });
+
+    if (this._isCancelled) {
+      execution.cancel();
+    }
+
+    return t;
+  }
+
+  /**
+   * Maps a Task to a new Task (functor)
+   */
+  map(f) {
+    const t = task((reject, resolve, cancel) => {
+      const execution = this.run();
+
+      execution.listen({
+        onCancelled: cancel,
+        onRejected: reject,
         onResolved: (value) => resolve(f(value)),
       });
     }, this._cleanup);
@@ -75,7 +106,7 @@ export class Task {
       execution.cancel();
     }
 
-    return task_;
+    return t;
   }
 
   run() {
