@@ -42,7 +42,7 @@ Collections includes three indexed collections (List, Set, and Tuple) built on t
 
 ### Concurrency
 
-Concurrency includes the Future, a monadic type for handling concurrent and asynchronous operations in a functional manner. The interface has parity with native JavaScript promises, but with added functionality for mapping, chaining, and so on.
+Concurrency includes Tasks and Futures, monadic types for handling concurrent and asynchronous operations in a functional manner. The interface for Futures has parity with native JavaScript promises, but with added functionality for mapping, chaining, and so on. Task represents an asynchronous computation and allows easy cancellation of asynchronous operations and cleanup of any resources used in the process.
 
 - [Concurrency package](https://github.com/jasonsbarr/functional/tree/main/packages/concurrency)
 
