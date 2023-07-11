@@ -41,6 +41,16 @@ export class Task {
   }
 
   /**
+   * Task static constructor
+   * @param {Computation} computation
+   * @param {Cleanup} cleanup
+   * @returns {Task}
+   */
+  static create(computation, cleanup = noop) {
+    return new Task(computation, cleanup);
+  }
+
+  /**
    * Enables sequential use of Tasks in an async/await like style using generators and yield
    */
   static do(generator) {
@@ -469,4 +479,4 @@ export class Task {
  * @returns {Task}
  */
 export const task = (computation, cleanup = noop) =>
-  new Task(computation, cleanup);
+  Task.create(computation, cleanup);
