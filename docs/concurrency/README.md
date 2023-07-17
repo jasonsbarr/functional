@@ -9,3 +9,5 @@ npm install @jasonsbarr/concurrency
 ```
 
 The package currently contains two types: [Task](./Task.md) and [Future](./Future.md) (both monadic and bifunctors).
+
+Use Tasks to represent an asynchronous/concurrent computation itself, and Futures to represent the **result** of that computation. Also, use Futures if you need parity with the Promise API for some reason.
