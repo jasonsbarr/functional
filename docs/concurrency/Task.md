@@ -14,7 +14,7 @@ import { task } from "@jasonsbarr/concurrency";
 const getDOMElement = (selector) =>
   task(
     (reject, resolve, cancel) => {
-      if (cancellationCheck) {
+      if (!selector) {
         cancel();
       }
 
