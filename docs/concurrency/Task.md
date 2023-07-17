@@ -57,7 +57,7 @@ Task.rejected("BAD TASK, I REJECT YOU");
 Task.empty();
 ```
 
-There are also static `fromPromise` and `fromCallback` methods that create functions that convert Promises and Node.js-style continuation callbacks (respectively) into Tasks:
+There are also static `fromPromise` and `fromCallback` methods that create functions that convert Promise-returning functions and Node.js-style continuation callbacks (respectively) into Tasks:
 
 ```js
 // From a Promise
