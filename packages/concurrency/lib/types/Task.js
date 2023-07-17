@@ -145,6 +145,32 @@ export class Task {
   }
 
   /**
+   * Takes a Task. Chained alts will return the first
+   * resolved Task or the last rejected or cancelled Task
+   */
+  alt(other) {
+    return task((reject, resolve) => {
+      const thisExecution = this.run();
+      const thatExecution = other.run();
+
+      thisExecution.listen({
+        onCancelled: () => thatExecution.cancel(),
+        onRejected: () =>
+          thatExecution.listen({
+            onCancelled: () => thatExecution.cancel(),
+            onRejected: (reason) => reject(reason),
+            onResolved: (value) => resolve(value),
+          }),
+        onResolved: (value) => resolve(value),
+      });
+
+      if (this._isCancelled) {
+        thisExecution.cancel();
+      }
+    }, this._cleanup);
+  }
+
+  /**
    * Combines 2 Tasks concurrently
    */
   and(that) {
