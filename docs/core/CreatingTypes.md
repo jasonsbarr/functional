@@ -126,7 +126,7 @@ import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunctio
 const variantInfos = [
   VariantInfo(
     "EmailAddress",
-    [],
+    [], // no fields for the value property on this type
     [
       // for this type, the default method implementations will work
       Fold,
@@ -157,10 +157,6 @@ const variantInfos = [
         isEmailAddress(x) {
           return x && isFunction(x.isEmailAddress) && x.isEmailAddress();
         },
-
-        // this is necessary if you want to be able to use switchType to extract the value, since
-        // we're treating the constructor as if it were the type representative
-        variants: ["EmailAddress"],
       },
     }
   ),
