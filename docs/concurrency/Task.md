@@ -72,7 +72,7 @@ const writeFile = Task.fromCallback(fs.writeFile);
 
 ## Using Tasks
 
-Task has `map` and `chain` methods for processing the result of a Task. A Task's computation is only performed when you call the `run` method on it:
+Task has `map` and `chain` methods for processing the result of a Task, as well as `mapRejected` for processing the rejected case. A Task's computation is only performed when you call the `run` method on it:
 
 ```js
 taskFetch("https://jsonplaceholder.typicode.com/posts/1")
@@ -85,6 +85,7 @@ taskFetch("https://jsonplaceholder.typicode.com/posts/1")
 	</div>
   `
   )
+  .mapRejected(() => `<div class="error">Post not found</div>`)
   .chain((html) =>
     getDOMElement(".posts").chain((postsContainer) =>
       appendHTMLToElement(postsContainer, html)
@@ -93,7 +94,7 @@ taskFetch("https://jsonplaceholder.typicode.com/posts/1")
   .run();
 ```
 
-There are also `mapRejected` for mapping over the rejected case of a Task, `bimap` for mapping over both resolved and rejected cases, and `concat` for concatenating 2 Tasks together (the one that completes first will be passed on).
+There are also `bimap` for mapping over both resolved and rejected cases, and `concat` for concatenating 2 Tasks together (the one that completes first will be passed on).
 
 Handle errors in a composable fashion with the `orElse` method, get the first of 2 Tasks when you only need 1 with `or`, and run 2 Tasks concurrently with `and`.
 
