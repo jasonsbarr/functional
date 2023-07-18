@@ -4,7 +4,7 @@ Functional interface to the `Date` object and its methods in the JavaScript stan
 
 Assume functions that take multiple arguments are curried and can be partially applied unless stated otherwise.
 
-Note that none of these functions mutate their arguments. A new value is always returned.
+Note that none of these functions mutate their arguments. A new value is always returned. That means, unlike in vanilla JS, the `set` methods create new `Date`s.
 
 ## date
 
