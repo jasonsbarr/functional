@@ -36,7 +36,7 @@ const isPasswordLongEnough = (password) =>
         : fail(password, "Password must be at least 10 characters long");
 
 const doesPasswordContainSpecialChars = (password) =>
-    test(/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/, password)
+    test(/[@!#$%^&\*()_\+\-=\[\]\{\};':"\\|,\.<>\/\?]+/, password)
         ? succeed(password)
         : fail(password, "Password must contain at least one special character")
 
