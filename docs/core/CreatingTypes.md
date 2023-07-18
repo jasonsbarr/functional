@@ -176,7 +176,7 @@ In the case of multiple variants, you'll want any of the type representative typ
 - `typeClasses` (array of typeClasses)
 - `overrides` - methods on the variant instance (object of method definitions)
 - `statics` - typeClasses and methods on the variant constructor (object with the following 2 fields)
-  - `sTypeClasses` - typeClasses implemented on the variant constructor (array of typeClasses)
+  - `sTypeClasses` - typeClasses implemented on the variant constructor (array of typeclasses)
   - `methods` - static methods on the constructor (object of method definitions)
 
 ### An Example of a More Complex Type
