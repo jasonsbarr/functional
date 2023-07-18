@@ -94,7 +94,7 @@ taskFetch("https://jsonplaceholder.typicode.com/posts/1")
   .run();
 ```
 
-There are also `bimap` for mapping over both resolved and rejected cases, and `concat` for concatenating 2 Tasks together (the one that completes first will be passed on).
+There are also `bimap` for mapping over both resolved and rejected cases, `swap` for switching the rejected and resolved cases, and `concat` for concatenating 2 Tasks together (the one that completes first will be passed on).
 
 Handle errors in a composable fashion with the `orElse` method, get the first of 2 Tasks when you only need 1 with `or`, and run 2 Tasks concurrently with `and`.
 
