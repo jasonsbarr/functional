@@ -18,7 +18,7 @@ We call types created by this function tagged union types, which you may also se
 
 A tagged union type has two parts: the type representative and variants. The variant constructor functions are implemented as methods on the type representative object. You can also define additional methods and properties on the type representative as the last argument to `createType`.
 
-A variant instance has a `value` property that holds whatever single value is passed to its constructor. In your variant info, you can provide an `init` method to manipulate this value, do data validation, and anything else you need to do with it. An example is provided below.
+A variant instance has a `value` property that holds whatever value(s) is/are passed to its constructor. In your variant info, you can provide an `init` method to manipulate this value, do data validation, and anything else you need to do with it. An example is provided below.
 
 You can pre-define fields that will go on the `value` property in the second property of your variant info, which should be an array of string field names. An example is given below. Defining fields will ensure only those fields get values on the created instance. If you don't define fields, the `value` property will get whatever value is passed to the constructor, or a "tuple" (really, a JavaScript array) of values if you pass multiple values to the constructor.
 
@@ -52,9 +52,9 @@ import { createType, VariantInfo } from "@jasonsbarr/functional-core";
  *   | Success of 'Value
  */
 const variantInfos = [
-    VariantInfo("Pending"),
-    VariantInfo("Error"),
-    VariantInfo("Success")
+  VariantInfo("Pending"),
+  VariantInfo("Error"),
+  VariantInfo("Success"),
 ];
 
 export const HttpState = createType("HttpState", variantInfos);
@@ -75,13 +75,13 @@ import { switchType } from "@jasonsbarr/functional-core";
 import { HttpState } from "./HttpState";
 
 switchType(
-    HttpState,
-    {
-        Pending: () => console.log("Still pending!"),
-        Error: (error) => console.error(error),
-        Success: (value) => console.log(value)
-    },
-    instance
+  HttpState,
+  {
+    Pending: () => console.log("Still pending!"),
+    Error: (error) => console.error(error),
+    Success: (value) => console.log(value),
+  },
+  instance
 );
 ```
 
@@ -94,14 +94,14 @@ Note that matching is exhaustively checked at runtime - you _must_ provide a cas
 When you create a type, the type representative object and variant instances automatically get the following methods:
 
 - Type representative
-    - "is" + typeName(x) - predicate that takes a value, `x`, and checks if `x` is an instance of the type
-    - "is" + variantName(x) - for each variant, checks if `x` is an instance of that particular variant
+  - "is" + typeName(x) - predicate that takes a value, `x`, and checks if `x` is an instance of the type
+  - "is" + variantName(x) - for each variant, checks if `x` is an instance of that particular variant
 - Variant instance
-    - "is" + typeName() - predicate that returns `true` because it is an instance of `typeName`
-    - "is" + variantName() - only for its variant, predicate that returns `true` because it is an instance of `variantName`
-    - valueOf() - returns the `value` property of the variant object
-    - inspect() - returns a string representation of the variant
-    - toString() - alias for `inspect`
+  - "is" + typeName() - predicate that returns `true` because it is an instance of `typeName`
+  - "is" + variantName() - only for its variant, predicate that returns `true` because it is an instance of `variantName`
+  - valueOf() - returns the `value` property of the variant object
+  - inspect() - returns a string representation of the variant
+  - toString() - alias for `inspect`
 
 Note that any of these can be overridden in type creation.
 
@@ -111,53 +111,59 @@ Let's say you want to create a type to represent an email address so you can val
 
 ```js
 import { createType, VariantInfo } from "@jasonsbarr/functional-core";
-import { Apply, Applicative, Fold, Functor, Chain } from "@jasonsbarr/functional-core/lib/types/typeClasses";
+import {
+  Apply,
+  Applicative,
+  Fold,
+  Functor,
+  Chain,
+} from "@jasonsbarr/functional-core/lib/types/typeClasses";
 import { isFunction } from "@jasonsbarr/functional-core/lib/predicates/isFunction";
 
 /**
  * type EmailAddress of string
  */
 const variantInfos = [
-    VariantInfo(
-        "EmailAddress",
-        [],
-        [
-            // for this type, the default method implementations will work
-            Fold,
-            Functor,
-            Chain,
-            Apply
-        ],
-        {
-            init() {
-                if (!validateEmailAddress(this.value)) {
-                    // handle invalid email case
-                    // the types package contains a Validation type
-                    // for doing exactly this sort of thing
-                }
-            }
-        },
-        {
-            // since there's only 1 variant we'll treat its constructor like the type representative
-            // this means attaching the type class for the type representative and type predicate to it
-            sTypeclasses: [Applicative],
-            methods: {
-                // of method is required by Applicative type class
-                of(value) {
-                    return EmailAddress.EmailAddress(value);
-                },
-
-                // type predicate uses a method automatically created on the variant instance
-                isEmailAddress(x) {
-                    return x && isFunction(x.isEmailAddress) && x.isEmailAddress();
-                },
-
-                // this is necessary if you want to be able to use switchType to extract the value, since
-                // we're treating the constructor as if it were the type representative
-                variants: ["EmailAddress"]
-            }
+  VariantInfo(
+    "EmailAddress",
+    [],
+    [
+      // for this type, the default method implementations will work
+      Fold,
+      Functor,
+      Chain,
+      Apply,
+    ],
+    {
+      init() {
+        if (!validateEmailAddress(this.value)) {
+          // handle invalid email case
+          // the types package contains a Validation type
+          // for doing exactly this sort of thing
         }
-    )
+      },
+    },
+    {
+      // since there's only 1 variant we'll treat its constructor like the type representative
+      // this means attaching the type class for the type representative and type predicate to it
+      sTypeclasses: [Applicative],
+      methods: {
+        // of method is required by Applicative type class
+        of(value) {
+          return EmailAddress.EmailAddress(value);
+        },
+
+        // type predicate uses a method automatically created on the variant instance
+        isEmailAddress(x) {
+          return x && isFunction(x.isEmailAddress) && x.isEmailAddress();
+        },
+
+        // this is necessary if you want to be able to use switchType to extract the value, since
+        // we're treating the constructor as if it were the type representative
+        variants: ["EmailAddress"],
+      },
+    }
+  ),
 ];
 
 export const { EmailAddress } = createType("EmailAddress", variantInfos);
@@ -174,8 +180,8 @@ In the case of multiple variants, you'll want any of the type representative typ
 - `typeClasses` (array of typeClasses)
 - `overrides` - methods on the variant instance (object of method definitions)
 - `statics` - typeClasses and methods on the variant constructor (object with the following 2 fields)
-    - `sTypeClasses` - typeClasses implemented on the variant constructor (array of typeClasses)
-    - `methods` - static methods on the constructor (object of method definitions)
+  - `sTypeClasses` - typeClasses implemented on the variant constructor (array of typeClasses)
+  - `methods` - static methods on the constructor (object of method definitions)
 
 ### An Example of a More Complex Type
 
@@ -184,99 +190,97 @@ Let's create a union type to represent the possible states of an HTTP request th
 ```js
 import { createType, VariantInfo } from "@jasonsbarr/functional-core";
 import {
-    Apply,
-    Applicative,
-    RightFold,
-    Functor,
-    Chain,
-    Monoid,
-    SemiGroup,
-    Setoid,
-    LeftApply,
-    LeftFold,
-    LeftFunctor,
-    LeftChain,
-    LeftSemiGroup
+  Apply,
+  Applicative,
+  RightFold,
+  Functor,
+  Chain,
+  Monoid,
+  SemiGroup,
+  Setoid,
+  LeftApply,
+  LeftFold,
+  LeftFunctor,
+  LeftChain,
+  LeftSemiGroup,
 } from "@jasonsbarr/functional-core/lib/types/typeClasses";
 
 const variantInfos = [
-    // Pending isn't really a "Left" state, but it has no value so it's simpler to treat it as one
-    VariantInfo("Pending", [], [
-        LeftApply, // ap method
-        LeftFold, // fold method
-        LeftFunctor, // map method
-        LeftChain, // chain method
-        LeftSemiGroup, // concat method
-        Setoid // equals method
+  // Pending isn't really a "Left" state, but it has no value so it's simpler to treat it as one
+  VariantInfo(
+    "Pending",
+    [],
+    [
+      LeftApply, // ap method
+      LeftFold, // fold method
+      LeftFunctor, // map method
+      LeftChain, // chain method
+      LeftSemiGroup, // concat method
+      Setoid, // equals method
     ],
     {
-        // all 3 variants need to have the same methods, so we need to define an appropriate version of mapError
-        mapError(fn) {
-            return this;
-        },
+      // all 3 variants need to have the same methods, so we need to define an appropriate version of mapError
+      mapError(fn) {
+        return this;
+      },
 
-        // Replace the default method that comes with the Setoid type class
-        equals(other) {
-            return other.type === HttpStates && other.variant === "Pending";
-        },
+      // Replace the default method that comes with the Setoid type class
+      equals(other) {
+        return other.type === HttpStates && other.variant === "Pending";
+      },
 
-        // The predefined concat method that comes with LeftSemiGroup won't work either
-        concat(other) {
-            return other;
-        },
+      // The predefined concat method that comes with LeftSemiGroup won't work either
+      concat(other) {
+        return other;
+      },
 
-        // need a Fold case for all 3 states
-        fold(pendingFn, errorFn, successFn) {
-            return pendingFn();
-        }
-    }),
-    VariantInfo("Error", [], [
-        LeftApply,
-        LeftFold,
-        LeftFunctor,
-        LeftChain,
-        LeftSemiGroup,
-        Setoid
-    ],
+      // need a Fold case for all 3 states
+      fold(pendingFn, errorFn, successFn) {
+        return pendingFn();
+      },
+    }
+  ),
+  VariantInfo(
+    "Error",
+    [],
+    [LeftApply, LeftFold, LeftFunctor, LeftChain, LeftSemiGroup, Setoid],
     {
-        mapError(fn) {
-            return HttpStates.Error(fn(this.value));
-        },
+      mapError(fn) {
+        return HttpStates.Error(fn(this.value));
+      },
 
-        fold(pendingFn, errorFn, successFn) {
-            return errorFn(this.value);
-        }
-    }),
-    VariantInfo("Success", [
-        Apply,
-        Fold,
-        Functor,
-        Chain,
-        SemiGroup,
-        Setoid
-    ],
-    {
-        mapError(fn) {
-            return this;
-        },
+      fold(pendingFn, errorFn, successFn) {
+        return errorFn(this.value);
+      },
+    }
+  ),
+  VariantInfo("Success", [Apply, Fold, Functor, Chain, SemiGroup, Setoid], {
+    mapError(fn) {
+      return this;
+    },
 
-        fold(pendingFn, errorFn, successFn) {
-            return successFn(this.value);
-        }
-    })
+    fold(pendingFn, errorFn, successFn) {
+      return successFn(this.value);
+    },
+  }),
 ];
 
-export const HttpState = createType("HttpState", variantInfos, [Applicative, Monoid], {
+export const HttpState = createType(
+  "HttpState",
+  variantInfos,
+  [Applicative, Monoid],
+  {
     // Required for Applicative
     of(value) {
-        return HttpState.Success(value);
+      return HttpState.Success(value);
     },
 
     // Required for Monoid
     empty() {
-        return HttpState.Pending();
-    }
-});
+      return HttpState.Pending();
+    },
+  }
+);
 ```
 
 ## Creating a type with pre-defined fields
@@ -294,12 +298,12 @@ import { Show } from "@jasonsbarr/functional-core/lib/types/typeClasses";
  * }
  */
 const variantInfos = [
-    VariantInfo("Point", ["x", "y"], [Show], {
-        toString() {
-            const { x, y } = this.value;
-            return `Point(x: ${x}, y: ${y})`;
-        }
-    })
+  VariantInfo("Point", ["x", "y"], [Show], {
+    toString() {
+      const { x, y } = this.value;
+      return `Point(x: ${x}, y: ${y})`;
+    },
+  }),
 ];
 
 const { Point } = createType("Point", variantInfos);
@@ -313,7 +317,7 @@ origin.valueOf(); // -> {x: 0, y: 0}
 Without the named fields you would have to pass an object to the constructor, e.g.
 
 ```js
-Point({x: 0, y: 0});
+Point({ x: 0, y: 0 });
 ```
 
 Extra values passed to the constructor will be ignored:
@@ -342,23 +346,23 @@ Each variant can have its own unique set of fields.
  *      height: number }
  */
 const variantInfos = [
-    VariantInfo("Circle"),
-    VariantInfo("Rectangle", ["width", "height"]),
-    VariantInfo("Triangle", ["base", "height"])
+  VariantInfo("Circle"),
+  VariantInfo("Rectangle", ["width", "height"]),
+  VariantInfo("Triangle", ["base", "height"]),
 ];
 
 const Shape = createType("Shape", variantInfos, [], {
-    area(shape) {
-        return switchType(
-            Shape,
-            {
-                Circle: (radius) => Math.PI * radius * radius,
-                Rectangle: ({ width, height }) => width * height,
-                Triangle: ({ base, height }) => (base * height) / 2
-            },
-            shape
-        );
-    }
+  area(shape) {
+    return switchType(
+      Shape,
+      {
+        Circle: (radius) => Math.PI * radius * radius,
+        Rectangle: ({ width, height }) => width * height,
+        Triangle: ({ base, height }) => (base * height) / 2,
+      },
+      shape
+    );
+  },
 });
 const { Circle, Rectangle, Triangle } = Shape;
 
@@ -378,14 +382,14 @@ You can simulate a tuple value for your custom type by defining no fields when c
  * type Point of number * number
  */
 const variantInfos = [
-    VariantInfo("Point", [], [], {
-        distance({ value: value2 }) {
-            const value1 = this.value;
-            const distX = value2[0] - value1[0];
-            const distY = value2[1] - value1[1];
-            return Math.sqrt((distX * distX) + (distY * distY));
-        }
-    })
+  VariantInfo("Point", [], [], {
+    distance({ value: value2 }) {
+      const value1 = this.value;
+      const distX = value2[0] - value1[0];
+      const distY = value2[1] - value1[1];
+      return Math.sqrt(distX * distX + distY * distY);
+    },
+  }),
 ];
 
 const { Point } = createType("Point", variantInfos);
@@ -403,23 +407,24 @@ origin.distance(point1); // -> 5
 You can use `_` as a catchall with `switchType` when you don't need a specific case for every single variant.
 
 ```js
-import { Some, None } from "@jasonsbarr/functional-core"
+import { Some, None } from "@jasonsbarr/functional-core";
 
 const HttpState = createType("HttpState", [
-    VariantInfo("Pending"),
-    VariantInfo("Error"),
-    VariantInfo("Success")
+  VariantInfo("Pending"),
+  VariantInfo("Error"),
+  VariantInfo("Success"),
 ]);
 
 // Just for demo purposes - you probably wouldn't want to do this in a real program
-export const tryGetHttpStateValue = (state) => switchType(
+export const tryGetHttpStateValue = (state) =>
+  switchType(
     "HttpState",
     {
-        Pending: () => None(),
-        _: (value) => Some(value)
+      Pending: () => None(),
+      _: (value) => Some(value),
     },
     state
-);
+  );
 ```
 
 ## Type Classes
