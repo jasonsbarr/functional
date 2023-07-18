@@ -31,7 +31,7 @@ import { isEven } from "@jasonsbarr/functional-core/lib/predicates/isEven";
 filter(isEven, [1, 2, 3, 4, 5, 6, 7, 8]); // -> [2, 4, 6, 8]
 ```
 
-All core functions and types can be imported from `/lib/core`, even though you shouldn't need to because you can just import from the entry point:
+All core functions and types can be imported from `/lib/core`:
 
 ```js
 import { createType } from "@jasonsbarr/functional-core/lib/core/createType";
