@@ -342,7 +342,7 @@ Each variant can have its own unique set of fields.
  *      height: number }
  */
 const variantInfos = [
-  VariantInfo("Circle"),
+  VariantInfo("Circle", ["radius"]),
   VariantInfo("Rectangle", ["width", "height"]),
   VariantInfo("Triangle", ["base", "height"]),
 ];
@@ -352,7 +352,7 @@ const Shape = createType("Shape", variantInfos, [], {
     return switchType(
       Shape,
       {
-        Circle: (radius) => Math.PI * radius * radius,
+        Circle: ({ radius }) => Math.PI * radius * radius,
         Rectangle: ({ width, height }) => width * height,
         Triangle: ({ base, height }) => (base * height) / 2,
       },
