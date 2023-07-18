@@ -7,7 +7,13 @@ You aggregate errors by using the `concat` method, which in the case of errors w
 ## Importing Validation
 
 ```js
-import { Validation, Success, Failure, succeed, fail } from "@jasonsbarr/types/lib/Validation";
+import {
+  Validation,
+  Success,
+  Failure,
+  succeed,
+  fail,
+} from "@jasonsbarr/types/lib/Validation";
 ```
 
 ## Usage Example: Using Validation for a Form Field in a React App
@@ -57,7 +63,7 @@ const handlePasswordFieldChange = (event) => {
 export default function PasswordField() {
     return (
         <div className="form-control">
-            {gte(1, length(passFieldErrors)) && <p className="error">{passFieldErrors[0]}</p>}
+            {gte(1, length(passFieldErrors)) && {passFieldErrors.map(e => <p className="error" key={e}>${e}</p>)}}
             <input type="password" value={passFieldState} onChange={handlePasswordFieldChange} />
         </div>
     );
