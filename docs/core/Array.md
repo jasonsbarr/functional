@@ -152,7 +152,7 @@ Usage:
 ```js
 import { isString } from "@jasonsbarr/functional-core/lib/predicates/isString";
 
-filter([1, 2, "hello", 3, "world"]); // -> ["hello", "world"]
+filter(isString, [1, 2, "hello", 3, "world"]); // -> ["hello", "world"]
 ```
 
 ## find
