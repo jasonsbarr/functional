@@ -222,7 +222,7 @@ const variantInfos = [
 
       // Replace the default method that comes with the Setoid type class
       equals(other) {
-        return other.type === HttpStates && other.variant === "Pending";
+        return other.type === "HttpStates" && other.variant === "Pending";
       },
 
       // The predefined concat method that comes with LeftSemiGroup won't work either
