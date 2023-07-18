@@ -13,7 +13,7 @@ When given a single numeric argument, it creates an array with that many empty i
 Import:
 
 ```js
-import { array } from "@jasonsbarr/functional-core/lib/array/array";
+import { array } from "@jasonsbarr/functional-core/";
 ```
 
 Usage:
@@ -38,8 +38,9 @@ import { arrayFrom } from "@jasonsbarr/functional-core/lib/array/arrayFrom";
 Usage:
 
 ```js
-const squares = arrayFrom(x => x * x, [1, 2, 3, 4, 5]); // -> [1, 4, 9, 16, 25]
+const squares = arrayFrom((x) => x * x, [1, 2, 3, 4, 5]); // -> [1, 4, 9, 16, 25]
 ```
+
 ## concat
 
 Concatenates 2 or more arrays. Curried for up to 2 arrays, so will partially apply if given 1 array.
@@ -221,7 +222,7 @@ import { flatMap } from from "@jasonsbarr/functional-core/lib/array/flatMap";
 Usage:
 
 ```js
-flatMap(x => x * x, [1, [2, 3, [4]]]); //-> [1, 4, 9, 16]
+flatMap((x) => x * x, [1, [2, 3, [4]]]); //-> [1, 4, 9, 16]
 ```
 
 ## flatN
@@ -257,7 +258,7 @@ import { forEach } from from "@jasonsbarr/functional-core/lib/array/forEach";
 Usage:
 
 ```js
-forEach(elem => console.log(elem), [1, 2, 3]);
+forEach((elem) => console.log(elem), [1, 2, 3]);
 // 1
 // 2
 // 3
@@ -370,7 +371,7 @@ Usage:
 ```js
 const ks = keys([1, 2, 3]);
 for (let k of ks) {
-    console.log(k);
+  console.log(k);
 }
 // 0
 // 1
@@ -446,7 +447,7 @@ import { map } from "@jasonsbarr/functional-core/lib/array/map";
 Usage:
 
 ```js
-map(x => x * x, [1, 2, 3, 4]); // -> [1, 4, 9, 16]
+map((x) => x * x, [1, 2, 3, 4]); // -> [1, 4, 9, 16]
 ```
 
 ## of
@@ -464,7 +465,11 @@ import { of } from "@jasonsbarr/functional-core/lib/array/of";
 Usage:
 
 ```js
-const m = new Map([["a", 1], ["b", 2], ["c", 3]]);
+const m = new Map([
+  ["a", 1],
+  ["b", 2],
+  ["c", 3],
+]);
 of(values(m)); // -> [1, 2, 3]
 ```
 
@@ -646,9 +651,9 @@ Usage:
 
 ```js
 const arr = [
-    { name: "Jason", age: 41 },
-    { name: "Daniel", age: 8 },
-    { name: "Gretchen", age: 37 }
+  { name: "Jason", age: 41 },
+  { name: "Daniel", age: 8 },
+  { name: "Gretchen", age: 37 },
 ];
 
 sortBy((a, b) => a.age - b.age, arr);
@@ -714,7 +719,7 @@ Usage:
 
 ```js
 for (let v of values([1, 2, 3, 4])) {
-    console.log(v);
+  console.log(v);
 }
 // 1
 // 2
