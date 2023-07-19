@@ -72,7 +72,7 @@ const writeFile = Task.fromCallback(fs.writeFile);
 
 ## Using Tasks
 
-Task has `map` and `chain` methods for processing the result of a Task, as well as `mapRejected` for processing the rejected case. A Task's computation is only performed when you call the `run` method on it:
+Task has `map` and `chain` methods for processing the result of a Task, as well as `mapRejected` and `chainRejected` for processing the rejected case. A Task's computation is only performed when you call the `run` method on it:
 
 ```js
 taskFetch("https://jsonplaceholder.typicode.com/posts/1")
@@ -89,6 +89,11 @@ taskFetch("https://jsonplaceholder.typicode.com/posts/1")
   .chain((html) =>
     getDOMElement(".posts").chain((postsContainer) =>
       appendHTMLToElement(postsContainer, html)
+    )
+  )
+  .chainRejected((html) =>
+    getDOMElement(".error").chainRejected((errorContainer) =>
+      appendHTMLToElement(errorContainer, html)
     )
   )
   .run();
