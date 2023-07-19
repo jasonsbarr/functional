@@ -286,6 +286,33 @@ export class Task {
   }
 
   /**
+   * Like Chain, but uses the rejected value
+   */
+  chainRejected(f) {
+    return task((reject, resolve, cancel) => {
+      const execution = this.run();
+
+      execution.listen({
+        onCancelled: cancel,
+        onRejected: (reason) => {
+          execution.link(
+            f(reason).run().listen({
+              onCancelled: cancel,
+              onRejected: reject,
+              onResolved: resolve,
+            })
+          );
+        },
+        onResolved: resolve,
+      });
+
+      if (this._isCancelled) {
+        execution.cancel();
+      }
+    }, this._cleanup);
+  }
+
+  /**
    * Concatenates 2 Tasks together by selecting the first task to finish (semigroup)
    */
   concat(that) {
