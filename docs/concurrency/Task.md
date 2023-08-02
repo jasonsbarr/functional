@@ -87,7 +87,7 @@ taskFetch("https://jsonplaceholder.typicode.com/posts/1")
 	</div>
   `
   )
-  .mapRejected(() => `<div class="error">Post not found</div>`)
+  .mapRejected(() => `<p class="error">Post not found</p>`)
   .chain((html) =>
     getDOMElement(".posts").chain((postsContainer) =>
       appendHTMLToElement(postsContainer, html)
