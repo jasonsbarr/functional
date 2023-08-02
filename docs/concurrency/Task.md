@@ -61,8 +61,8 @@ There are also static `fromPromise` and `fromCallback` methods that create funct
 
 ```js
 // From a Promise
-const taskFetch = Task.fromPromise(fetch);
-const fetchJSON = Task.fromPromise((response) => response.json());
+const taskFetch = (...args) => Task.fromPromise(fetch(...args));
+const fetchJSON = (response) => Task.fromPromise(response.json());
 
 // From a Nodeback
 import fs from "fs";
