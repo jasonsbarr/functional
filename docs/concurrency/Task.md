@@ -57,14 +57,16 @@ Task.rejected("BAD TASK, I REJECT YOU");
 Task.empty();
 ```
 
-There are also static `fromPromise` and `fromCallback` methods that create functions that convert Promise-returning functions and Node.js-style continuation callbacks (respectively) into Tasks:
+The `fromPromise` static method converts a Promise to a Task:
 
 ```js
-// From a Promise
 const taskFetch = (...args) => Task.fromPromise(fetch(...args));
 const fetchJSON = (response) => Task.fromPromise(response.json());
+```
 
-// From a Nodeback
+There is also a static `fromCallback` method that creates a function that converts Node.js-style continuation callbacks into Tasks:
+
+```js
 import fs from "fs";
 const readFile = Task.fromCallback(fs.readFile);
 const writeFile = Task.fromCallback(fs.writeFile);
